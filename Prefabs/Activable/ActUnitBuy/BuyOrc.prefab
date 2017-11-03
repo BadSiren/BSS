@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1564477974700708}
+  m_IsPrefabParent: 1
+--- !u!1 &1564477974700708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4622967379185028}
+  - component: {fileID: 114096541753598758}
+  m_Layer: 0
+  m_Name: BuyOrc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4622967379185028
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1564477974700708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114096541753598758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1564477974700708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79856e760fa1f4217ad14268c5ae91ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actIndex: ActUnitBuy
+  buttonImage: {fileID: 21300000, guid: 8d0cc727a992844a0ba3b120f29ebcb9, type: 3}
+  titleContent: "\uC624\uD06C \uAD6C\uB9E4\uD558\uAE30"
+  textContent: "\uC624\uD06C\uB97C \uAD6C\uB9E4\uD569\uB2C8\uB2E4."
+  costable: 1
+  buyPrefab: {fileID: 1040587561279744, guid: 9356746b6fd4e4a1983e914a842662fb, type: 2}
+  useMoney: 10
+  useFood: 0

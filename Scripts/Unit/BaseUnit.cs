@@ -23,8 +23,18 @@ namespace BSS.Unit {
 		public float health;
 		public float maxMana;
 		public float mana;
-		public float initArmor;
-		public float armor;
+		[SerializeField]
+		private float _initArmor;
+		public float initArmor {
+			get { 
+				return _initArmor;
+			}
+		}
+		public float armor {
+			get {
+				return initArmor;
+			}
+		}
 
 		public List<Activable> activableList = new List<Activable> ();
 
@@ -40,19 +50,23 @@ namespace BSS.Unit {
 		protected virtual void initialize() {
 			health = maxHealth;
 			mana = maxMana;
-			armor = initArmor;
 			activableList.Capacity = 9;
 
-			if (team != UnitTeam.Red) {
-				Destroy (GetComponent<Rigidbody2D> ());
-			}
+			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
 		}
-			
 			
 
 		public virtual void die() {
 			SendMessage ("onDieEvent", health, SendMessageOptions.DontRequireReceiver);
 			Destroy (gameObject);
+		}
+
+		public virtual void setEnemy() {
+			team = UnitTeam.Blue;
+			Destroy (GetComponent<Rigidbody2D> ());
+			foreach (var it in GetComponents<UpBase> ()) {
+				Destroy (it);
+			}
 		}
 
 		protected virtual void onHitEvent(AttackInfo attackInfo) {

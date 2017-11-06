@@ -23,7 +23,7 @@ namespace BSS.UI {
 				Debug.Log ("InformBoard is null");
 				return;
 			}
-			informBoard.Show ();
+			informBoard.Close ();
 		}
 		public void showInform(string _title,string _text) {
 			if (informBoard == null) {

@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 114326578254894978}
   - component: {fileID: 58457344322498106}
   - component: {fileID: 50483493490183632}
+  - component: {fileID: 114352700047171402}
   m_Layer: 0
   m_Name: Manticore
   m_TagString: Untagged
@@ -1720,6 +1721,19 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!114 &114352700047171402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147324988602504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb674aece454c75a6640a49c4659f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeIndex: ShortAttack
+  addDamage: 10
 --- !u!114 &114396420669832474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1735,8 +1749,7 @@ MonoBehaviour:
   _initDamage: 100
   _initAttackSpeed: 2
   _initRange: 6
-  upDamageLevel: 0
-  upDamage: 0
+  changeDamage: 0
   isAttackable: 1
 --- !u!114 &114476907591898200
 MonoBehaviour:
@@ -1770,8 +1783,7 @@ MonoBehaviour:
   health: 0
   maxMana: 500
   mana: 0
-  initArmor: 0
-  armor: 0
+  _initArmor: 10
   activableList: []
 --- !u!114 &114611796831586706
 MonoBehaviour:

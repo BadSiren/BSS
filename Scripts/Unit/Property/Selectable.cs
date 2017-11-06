@@ -12,7 +12,6 @@ namespace BSS {
 		public bool isSelected;
 		public bool canInputing=true;
 
-
 		public void Awake()
 		{
 			selectableList.Add (this);

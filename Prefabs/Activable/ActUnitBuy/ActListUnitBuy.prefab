@@ -53,6 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actIndex: ActListUnitBuy
   buttonImage: {fileID: 21300000, guid: 3479adcd4f212476891470ed975ab24d, type: 3}
+  titleContent: 
+  textContent: 
+  costable: 0
   activableList:
-  - {fileID: 114491805983118044, guid: f1bfb00ee443d45e99723c98054670a2, type: 2}
+  - {fileID: 114096541753598758, guid: 1d8a10802832e4313b2a7dbb9ec11f9b, type: 2}
   - {fileID: 114947490963044040, guid: fc6868dc036d9470f90f48a2cd1bb664, type: 2}

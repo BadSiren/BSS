@@ -21,8 +21,7 @@ namespace BSS.Unit {
 			BaseUnit unit=col.gameObject.GetComponent<BaseUnit> ();
 			if (unit == null || !validate(unit)) {
 				return;
-			}
-			
+			}			
 			unit.gameObject.SendMessage ("toMove", destination, SendMessageOptions.DontRequireReceiver);
 		}
 			

@@ -27,7 +27,10 @@ namespace BSS.Unit {
 		private float _initDamage;
 		public float initDamage {
 			get {
-				return _initDamage+(upDamageLevel*upDamage);
+				return _initDamage;
+			}
+			private set {
+				_initDamage = value;
 			}
 		}
 		[SerializeField]
@@ -45,10 +48,10 @@ namespace BSS.Unit {
 			}
 		}
 
-			
+		public float changeDamage=0f;
 		public float damage {
 			get {
-				return initDamage;
+				return initDamage+changeDamage;
 			}
 		}
 		public float attackSpeed {
@@ -62,9 +65,6 @@ namespace BSS.Unit {
 			}
 		}
 
-		public int upDamageLevel=0;
-		public float upDamage;
-
 		public bool isAttackable=true;
 		private BaseUnit owner;
 		private GameObject target;
@@ -74,10 +74,6 @@ namespace BSS.Unit {
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			attackableList.Add(this);
-
-			initAttackType ();
-
-			StartCoroutine(attackLoop());
 		}
 
 		void OnDestroy()
@@ -148,12 +144,13 @@ namespace BSS.Unit {
 			}
 		}
 
-		private void initAttackType() {
+		private void onInitialize() {
 			if (initRange > RANGETYPE) {
 				attackType = AttackType.Long;
 			} else {
 				attackType = AttackType.Short;
 			}
+			StartCoroutine(attackLoop());
 		}
 
 		//UnitEvent

@@ -54,11 +54,11 @@ MonoBehaviour:
   actIndex: ActUpgrade
   buttonImage: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
   titleContent: "\uC6D0\uAC70\uB9AC \uACF5\uACA9\uB825 \uC5C5\uADF8\uB808\uC774\uB4DC"
-  textContent: "\uD604\uC7AC\uB808\uBCA8: 0\n\uC6D0\uAC70\uB9AC \uACF5\uACA9\uB825\uC744
-    \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
+  textContent: "\uC6D0\uAC70\uB9AC \uACF5\uACA9\uB825\uC744 \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
   costable: 1
-  upgradeIndex: LongAttackUp
-  useInitMoney: 100
-  useAddMoney: 10
-  useInitFood: 100
-  useAddFood: 10
+  upgradeIndex: LongAttack
+  useInitMoney: 0
+  useAddMoney: 0
+  useInitFood: 10
+  useAddFood: 1
+  maxLevel: 50

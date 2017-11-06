@@ -448,6 +448,7 @@ GameObject:
   - component: {fileID: 114387949776899090}
   - component: {fileID: 58565498605034830}
   - component: {fileID: 50733256094288644}
+  - component: {fileID: 114516611151963460}
   m_Layer: 0
   m_Name: Medusa
   m_TagString: Untagged
@@ -1210,9 +1211,21 @@ MonoBehaviour:
   _initDamage: 30
   _initAttackSpeed: 2
   _initRange: 9
-  upDamageLevel: 0
-  upDamage: 0
+  changeDamage: 0
   isAttackable: 1
+--- !u!114 &114516611151963460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1738712847625442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb674aece454c75a6640a49c4659f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeIndex: LongAttack
+  addDamage: 5
 --- !u!114 &114521372000136250
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1232,9 +1245,9 @@ MonoBehaviour:
   health: 0
   maxMana: 200
   mana: 0
-  initArmor: 0
-  armor: 0
-  activableList: []
+  _initArmor: 1
+  activableList:
+  - {fileID: 114290726014373196, guid: c0098841daf4646d5b2401faebcdbd1d, type: 2}
 --- !u!114 &114581030117567462
 MonoBehaviour:
   m_ObjectHideFlags: 1

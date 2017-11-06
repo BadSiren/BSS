@@ -58,4 +58,4 @@ MonoBehaviour:
   costable: 1
   buyPrefab: {fileID: 1738712847625442, guid: 4a4b5f4759950464794553c674e4c479, type: 2}
   useMoney: 20
-  useFood: 5
+  useFood: 0

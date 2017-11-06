@@ -27,13 +27,24 @@ namespace BSS.UI {
 			}
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
 
+			/*
+			if (unit.GetComponent<Upgradable> () == null) {
+				sendBoolToReceiver ("ArmorUp", false);
+			} else {
+				sendBoolToReceiver ("ArmorUp", true);
+				sendToReceiver ("ArmorUp", unit.upArmorLevel.ToString());
+			}
+			*/
+
 			Attackable attackable = unit.GetComponent<Attackable> ();
 			if (attackable == null) {
 				sendBoolToReceiver ("Attack", false);
 				sendBoolToReceiver ("ShortAttack", false);
 				sendBoolToReceiver ("LongAttack", false);
+				sendBoolToReceiver ("AttackUp", false);
 			} else {
 				sendToReceiver ("Attack", valueToString(attackable.initDamage,attackable.damage));
+
 				if (attackable.attackType == AttackType.Short) {
 					sendBoolToReceiver ("ShortAttack", true);
 					sendBoolToReceiver ("LongAttack", false);
@@ -41,7 +52,17 @@ namespace BSS.UI {
 					sendBoolToReceiver ("ShortAttack", false);
 					sendBoolToReceiver ("LongAttack", true);
 				}
+				UpAttack upAttack = unit.GetComponent<UpAttack> ();
+				if (upAttack == null) {
+					sendBoolToReceiver ("AttackUp", false);
+				} else {
+					sendBoolToReceiver ("AttackUp", true);
+					sendToReceiver ("AttackUp", upAttack.level.ToString());
+				}
+
+
 			}
+
 		}
 		public void lookAtUnit() {
 			if (selectUnit == null) {

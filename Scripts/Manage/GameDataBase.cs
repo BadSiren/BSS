@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using EventsPlus;
+using BSS.Unit;
 
 namespace BSS.Data {
 	public class GameDataBase : MonoBehaviour
@@ -8,16 +10,11 @@ namespace BSS.Data {
 		public static GameDataBase instance;
 		public int initMoney;
 		public int initFood;
-		public int initShortAttackUp;
-		public int initLongAttackUp;
-		public int initArmorUp;
+
+		public Dictionary<string,int> upgrades = new Dictionary<string,int> ();
 
 		public PublisherInt pMoney;
 		public PublisherInt pFood;
-
-		public PublisherInt pShortAttackUp;
-		public PublisherInt pLongAttackUp;
-		public PublisherInt pArmorUp;
 
 		private int _money;
 		public int money {
@@ -40,37 +37,6 @@ namespace BSS.Data {
 			}
 		}
 
-		private int _shortAttackUp;
-		public int shortAttackUp {
-			get {
-				return _shortAttackUp;
-			}
-			set { 
-				_shortAttackUp = value;
-				pShortAttackUp.publish (value);
-			}
-		}
-		private int _longAttackUp;
-		public int longAttackUp {
-			get {
-				return _longAttackUp;
-			}
-			set { 
-				_longAttackUp = value;
-				pLongAttackUp.publish (value);
-			}
-		}
-		private int _armorUp;
-		public int armorUp {
-			get {
-				return _armorUp;
-			}
-			set { 
-				_armorUp = value;
-				pArmorUp.publish (value);
-			}
-		}
-
 
 
 		void Awake()
@@ -79,27 +45,17 @@ namespace BSS.Data {
 
 			pMoney.initialize();
 			pFood.initialize();
-			pShortAttackUp.initialize();
-			pLongAttackUp.initialize();
-			pArmorUp.initialize();
 
 		}
 		void Start() {
 			money = initMoney;
 			food = initFood;
-			shortAttackUp = initShortAttackUp;
-			longAttackUp = initLongAttackUp;
-			armorUp = initArmorUp;
 		}
 
 		public void OnDestroy()
 		{
 			pMoney.clear();
 			pFood.clear ();
-			pShortAttackUp.clear();
-			pLongAttackUp.clear();
-			pArmorUp.clear();
-
 		}
 
 		public bool useMoneyFood(int useMoney,int useFood) {
@@ -112,25 +68,19 @@ namespace BSS.Data {
 		}
 
 		//ActEvent
-		private void getShortAttackUpEvent(MessageCallback callback) {
-			callback.callback = shortAttackUp;
+		public void increaseUpgrade(string upIndex) {
+			if (upgrades.ContainsKey(upIndex)) {
+				upgrades [upIndex] +=1;
+			} else {
+				upgrades [upIndex] = 1;
+			}
+			UpBase.allApplyUpgrade (upIndex);
 		}
-		private void increaseShortAttackUpEvent() {
-			shortAttackUp++;
-		}
-
-		private void getLongAttackUpEvent(MessageCallback callback) {
-			callback.callback = longAttackUp;
-		}
-		private void increaseLongAttackUpEvent() {
-			longAttackUp++;
-		}
-
-		private void getArmorUpEvent(MessageCallback callback) {
-			callback.callback = armorUp;
-		}
-		private void increaseArmorUpEvent() {
-			armorUp++;
+		public int getUpgrade(string upIndex) {
+			if (upgrades.ContainsKey(upIndex)) {
+				return upgrades [upIndex];
+			} 
+			return 0;
 		}
 	}
 }

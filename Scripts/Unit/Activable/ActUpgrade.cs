@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using BSS.Data;
+using BSS.UI;
 
 namespace BSS.Unit {
 	[System.Serializable]
@@ -12,34 +13,27 @@ namespace BSS.Unit {
 		public int useInitFood;
 		public int useAddFood;
 
-		private int level=0;
-
-		private MessageCallback callback=new MessageCallback();
-
+		public int maxLevel;
+		public int level {
+			get {
+				return GameDataBase.instance.getUpgrade (upgradeIndex);
+			}
+		}
 
 		public override void activate(BaseUnit selectUnit) {
-			updateLevel ();
 			upgrade ();
 			showInformDynamic ();
 		}
 
-		public override void activateLongPress(BaseUnit selectUnit) {
-			updateLevel ();
-			base.activateLongPress (selectUnit);
-		}
-
 		private void upgrade() {
-			if (GameDataBase.instance.useMoneyFood(getMoney(),getFood())) {
-				GameDataBase.instance.SendMessage ("increase" + upgradeIndex+"Event", SendMessageOptions.DontRequireReceiver);
-				updateLevel ();
+			if (level<maxLevel && GameDataBase.instance.useMoneyFood(getMoney(),getFood()) ) {
+				GameDataBase.instance.SendMessage ("increaseUpgrade" ,upgradeIndex, SendMessageOptions.DontRequireReceiver);
 			}
 		}
-		private void updateLevel() {
-			GameDataBase.instance.SendMessage ("get" + upgradeIndex+"Event", callback, SendMessageOptions.DontRequireReceiver);
-			level = (int)callback.callback;
-			string _level = "@";
-			_level=System.Text.RegularExpressions.Regex.Replace(textContent, "[^0-9]+", string.Empty);
-			textContent=textContent.Replace(_level,level.ToString());
+
+		protected override void showInformDynamic() {
+			string temp = "레벨 : " + level.ToString () + " / " + maxLevel.ToString () + "\n" + textContent;
+			UIController.instance.showInform (titleContent,temp,getMoney(),getFood());
 		}
 
 		protected override int getMoney() {

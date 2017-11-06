@@ -7,7 +7,7 @@ namespace BSS.Unit {
 	{
 		public List<SpawnData> spawners;
 		public Vector3 spawnPosition;
-		public UnitTeam spawnTeam;
+		public bool isEnemy=true;
 		public bool isDeleteRigidbody=true;
 
 		public bool isOperated;
@@ -54,9 +54,8 @@ namespace BSS.Unit {
 						rewardable.food = nowSpawn.rewardFood;
 					}
 					var unit=obj.GetComponent<BaseUnit> ();
-					unit.team = spawnTeam;
-					if (isDeleteRigidbody) {
-						Destroy(unit.GetComponent<Rigidbody2D> ());
+					if (isEnemy) {
+						unit.setEnemy ();
 					}
 					spawnCount += 1;
 					if (spawnCount >= nowSpawn.count) {
@@ -72,6 +71,10 @@ namespace BSS.Unit {
 			nowSpawn = spawners [level-1];
 			StartCoroutine (stagePlay ());
 		}
+		public void clearLevel() {
+			
+		}
+
 		private void nextLevel() {
 			if (maxLevel == level) {
 				clearLevel ();
@@ -80,9 +83,6 @@ namespace BSS.Unit {
 			level += 1;
 			nowSpawn = spawners [level-1];
 			StartCoroutine (stagePlay ());
-		}
-		public void clearLevel() {
-			
 		}
 
 	}

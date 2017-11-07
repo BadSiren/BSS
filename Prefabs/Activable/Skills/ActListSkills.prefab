@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4095246299071470}
-  - component: {fileID: 114290726014373196}
+  - component: {fileID: 114826670292112138}
   m_Layer: 0
   m_Name: ActListSkills
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114290726014373196
+--- !u!114 &114826670292112138
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817143079708752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5ed3cd56b4f844f29798498ce057922, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bb6e48ec26db434a93fa824af86222e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actIndex: ActListSkills
@@ -56,6 +56,4 @@ MonoBehaviour:
   titleContent: 
   textContent: 
   costable: 0
-  activableList:
-  - {fileID: 114040503355041554, guid: 1970981c614df491db23ce69ac8ef9a8, type: 2}
-  - {fileID: 114947490963044040, guid: fc6868dc036d9470f90f48a2cd1bb664, type: 2}
+  actUndo: {fileID: 114947490963044040, guid: fc6868dc036d9470f90f48a2cd1bb664, type: 2}

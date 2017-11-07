@@ -1212,6 +1212,8 @@ MonoBehaviour:
   _initAttackSpeed: 2
   _initRange: 9
   changeDamage: 0
+  changeAttackSpeed: 0
+  changeRange: 0
   isAttackable: 1
 --- !u!114 &114516611151963460
 MonoBehaviour:
@@ -1247,7 +1249,11 @@ MonoBehaviour:
   mana: 0
   _initArmor: 1
   activableList:
-  - {fileID: 114290726014373196, guid: c0098841daf4646d5b2401faebcdbd1d, type: 2}
+  - {fileID: 114826670292112138, guid: c0098841daf4646d5b2401faebcdbd1d, type: 2}
+  skillList:
+  - skillBase: {fileID: 114747885740418892, guid: b1e3e4c4fbb5146978b5338fcfd23052,
+      type: 2}
+    level: 0
 --- !u!114 &114581030117567462
 MonoBehaviour:
   m_ObjectHideFlags: 1

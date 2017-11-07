@@ -7,6 +7,18 @@ namespace BSS.Unit {
 	public class ActList : Activable
 	{
 		public List<Activable> activableList;
+		public ActUndo actUndo;
+
+		private ActiveBoard board;
+
+		public override void onShow ()
+		{
+			base.onShow();
+			if (board == null) {
+				board=Board.boardList.Find (x => x.boardName == "ActiveBoard") as ActiveBoard;
+				return;
+			}
+		}
 
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
@@ -15,12 +27,9 @@ namespace BSS.Unit {
 
 		private void setActivable() {
 			if (activableList != null) {
-				ActiveBoard board=Board.boardList.Find (x => x.boardName == "ActiveBoard") as ActiveBoard;
-				if (board == null) {
-					Debug.Log ("ActiveBoard not found");
-					return;
-				}
-				board.setActivableList (activableList);
+				var temp = new List<Activable> ();
+				temp.Add (actUndo);
+				board.setActivableList (temp);
 			}
 		}
 	}

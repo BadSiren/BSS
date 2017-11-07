@@ -38,7 +38,6 @@ namespace BSS.UI {
 		public virtual void clearSelectUnit() {
 			selectUnit = null;
 		}
-
 	}
 }
 

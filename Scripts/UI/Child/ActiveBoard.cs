@@ -23,6 +23,8 @@ namespace BSS.UI {
 				} else {
 					resetActivableList ();
 				}
+			} else {
+				resetActivableList ();
 			}
 		}
 
@@ -31,6 +33,7 @@ namespace BSS.UI {
 			acitvableList = _acitvableList;
 			for (int i = 0; i < acitvableList.Capacity; i++) {
 				if (i < acitvableList.Count) {
+					acitvableList [i].onShow ();
 					sendToReceiver ("Button" + i.ToString (), acitvableList [i].buttonImage);
 				} else {
 					sendBoolToReceiver ("Button" + i.ToString (), false);

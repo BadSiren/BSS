@@ -587,7 +587,9 @@ MonoBehaviour:
   maxMana: 100
   mana: 0
   _initArmor: 3
-  activableList: []
+  activableList:
+  - {fileID: 114636559106446100, guid: 69f481f642fa240c1b3bc084a7ac333f, type: 2}
+  skillList: []
 --- !u!114 &114339438000603898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -604,6 +606,8 @@ MonoBehaviour:
   _initAttackSpeed: 1
   _initRange: 5
   changeDamage: 0
+  changeAttackSpeed: 0
+  changeRange: 0
   isAttackable: 1
 --- !u!114 &114566865778087290
 MonoBehaviour:

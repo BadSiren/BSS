@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Input;
+using BSS.Skill;
 
 namespace BSS.Unit {
 	public enum UnitTeam
@@ -37,6 +38,7 @@ namespace BSS.Unit {
 		}
 
 		public List<Activable> activableList = new List<Activable> ();
+		public List<Skillable> skillList = new List<Skillable> ();
 
 		protected virtual void OnEnable()
 		{
@@ -51,13 +53,19 @@ namespace BSS.Unit {
 			health = maxHealth;
 			mana = maxMana;
 			activableList.Capacity = 9;
+			skillInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
+		}
+		private void skillInitialize() {
+			foreach (var it in skillList) {
+				it.addComponent (gameObject);
+			}
 		}
 			
 
 		public virtual void die() {
-			SendMessage ("onDieEvent", health, SendMessageOptions.DontRequireReceiver);
+			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
 			Destroy (gameObject);
 		}
 

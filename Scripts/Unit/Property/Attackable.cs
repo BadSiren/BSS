@@ -39,6 +39,9 @@ namespace BSS.Unit {
 			get {
 				return _initAttackSpeed;
 			}
+			private set {
+				_initAttackSpeed = value;
+			}
 		}
 		[SerializeField]
 		private float _initRange;
@@ -46,22 +49,30 @@ namespace BSS.Unit {
 			get {
 				return _initRange;
 			}
+			private set {
+				_initRange = value;
+			}
 		}
 
+		[HideInInspector]
 		public float changeDamage=0f;
 		public float damage {
 			get {
 				return initDamage+changeDamage;
 			}
 		}
+		[HideInInspector]
+		public float changeAttackSpeed=0f;
 		public float attackSpeed {
 			get {
-				return initAttackSpeed;
+				return initAttackSpeed+changeAttackSpeed;
 			}
 		}
+		[HideInInspector]
+		public float changeRange=0f;
 		public float range {
 			get {
-				return initRange;
+				return initRange+changeRange;
 			}
 		}
 

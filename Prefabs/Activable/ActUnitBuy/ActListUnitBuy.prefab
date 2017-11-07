@@ -59,3 +59,4 @@ MonoBehaviour:
   activableList:
   - {fileID: 114096541753598758, guid: 1d8a10802832e4313b2a7dbb9ec11f9b, type: 2}
   - {fileID: 114947490963044040, guid: fc6868dc036d9470f90f48a2cd1bb664, type: 2}
+  actUndo: {fileID: 114947490963044040, guid: fc6868dc036d9470f90f48a2cd1bb664, type: 2}

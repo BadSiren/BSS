@@ -59,3 +59,4 @@ MonoBehaviour:
   buyPrefab: {fileID: 1147324988602504, guid: 8623d7b683b024a07ba7cd91849c7941, type: 2}
   useMoney: 50
   useFood: 0
+  isInvisible: 1

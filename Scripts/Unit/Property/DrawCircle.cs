@@ -10,7 +10,7 @@ namespace BSS.Unit {
 
 		private SpriteRenderer render;
 
-		void Start() {
+		void Awake() {
 			var obj = new GameObject ("DrawCircle");
 			obj.transform.SetParent (this.transform,false);
 			obj.transform.localScale = scale;

@@ -15,6 +15,9 @@ namespace BSS.Unit {
 		public string textContent;
 		public bool costable;
 
+
+		public virtual void onShow() {
+		}
 		public virtual void activate(BaseUnit selectUnit) {
 			showInformDynamic ();
 		}

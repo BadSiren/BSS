@@ -9,30 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1227127927603918}
+  m_RootGameObject: {fileID: 1323961407200448}
   m_IsPrefabParent: 1
---- !u!1 &1227127927603918
+--- !u!1 &1323961407200448
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4497505114475048}
-  - component: {fileID: 114040503355041554}
+  - component: {fileID: 4854960180213550}
+  - component: {fileID: 114636559106446100}
   m_Layer: 0
-  m_Name: SkillSlow
+  m_Name: ChangeManticore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4497505114475048
+--- !u!4 &4854960180213550
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227127927603918}
+  m_GameObject: {fileID: 1323961407200448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,19 +40,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114040503355041554
+--- !u!114 &114636559106446100
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1227127927603918}
+  m_GameObject: {fileID: 1323961407200448}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cb8510b011e147f985f924f09f40a0c, type: 3}
+  m_Script: {fileID: 11500000, guid: a4c73932f66b44739b124433a44e6c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actIndex: SkillSlow
-  buttonImage: {fileID: 21300000, guid: 55ee3414595b746fa8cee769ad173ac4, type: 3}
-  titleContent: "\uC2AC\uB85C\uC6B0"
-  textContent: "\uC2AC\uB85C\uC6B0\uD6A8\uACFC\uB97C \uC90D\uB2C8\uB2E4."
-  costable: 0
+  actIndex: ActUnitChange
+  buttonImage: {fileID: 21300000, guid: cd9a6577438724e89bd667363bbc6366, type: 3}
+  titleContent: "\uB9CC\uD2F0\uCF54\uC5B4 \uBCC0\uACBD"
+  textContent: "\uC774 \uC720\uB2DB\uC774 \uB9CC\uD2F0\uCF54\uC5B4\uB85C \uBCC0\uACBD\uB429\uB2C8\uB2E4."
+  costable: 1
+  changePrefab: {fileID: 1147324988602504, guid: 8623d7b683b024a07ba7cd91849c7941,
+    type: 2}
+  useMoney: 50
+  useFood: 0
+  isInvisible: 1

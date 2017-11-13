@@ -98,6 +98,9 @@ namespace BSS.Input {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(orgin, Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {
+				if (it.collider.GetType()==typeof(CircleCollider2D)) {
+					continue;
+				}
 				Clickable temp=it.collider.GetComponent<Clickable> ();
 				if (temp != null) {
 					clickableList.Add (temp);

@@ -58,22 +58,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1265416750616832
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 4309957026511662}
-  - component: {fileID: 114248414190687600}
-  m_Layer: 0
-  m_Name: EventManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1309510280058744
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,19 +74,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4309957026511662
-Transform:
-  m_ObjectHideFlags: 1
+--- !u!1 &1909364128276436
+GameObject:
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1265416750616832}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4835035379024684}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4837828193089066}
+  - component: {fileID: 114303784579880876}
+  m_Layer: 0
+  m_Name: GameDataBase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4489037337587076
 Transform:
   m_ObjectHideFlags: 1
@@ -114,7 +101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4835035379024684}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4704826275548592
 Transform:
@@ -141,10 +128,23 @@ Transform:
   m_Children:
   - {fileID: 4983095358172240}
   - {fileID: 4704826275548592}
-  - {fileID: 4309957026511662}
   - {fileID: 4489037337587076}
+  - {fileID: 4837828193089066}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4837828193089066
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909364128276436}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4835035379024684}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4983095358172240
 Transform:
@@ -171,38 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastedSelect: {fileID: 0}
-  pSelectEvent:
-    _channel: -1
-    _rawSubscriptions:
-    - _target: {fileID: 0}
-      _targetMethod: mShow,UnityEngine.GameObject
-      _subscriberOwner: {fileID: 0}
-      _subscriberVariable: 
-      _isDynamic: 1
-      _arguments: []
-    - _target: {fileID: 0}
-      _targetMethod: mShow,UnityEngine.GameObject
-      _subscriberOwner: {fileID: 0}
-      _subscriberVariable: 
-      _isDynamic: 1
-      _arguments: []
-    - _target: {fileID: 0}
-      _targetMethod: mClose
-      _subscriberOwner: {fileID: 0}
-      _subscriberVariable: 
-      _isDynamic: 0
-      _arguments: []
---- !u!114 &114248414190687600
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1265416750616832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb0bf4feda734e948f26ce2a14cb048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isBaseSelect: 1
 --- !u!114 &114253337694947846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -219,6 +188,37 @@ MonoBehaviour:
   doubleInterval: 0.4
   canCameraControl: 1
   cameraSpeed: 40
+--- !u!114 &114303784579880876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909364128276436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e60e87ea47cc42da9d61cd64070c509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initMoney: 200
+  initFood: 500
+  pMoney:
+    _channel: -1
+    _rawSubscriptions:
+    - _target: {fileID: 0}
+      _targetMethod: mupdateVariable,System.Int32
+      _subscriberOwner: {fileID: 0}
+      _subscriberVariable: 
+      _isDynamic: 1
+      _arguments: []
+  pFood:
+    _channel: -1
+    _rawSubscriptions:
+    - _target: {fileID: 0}
+      _targetMethod: mupdateVariable,System.Int32
+      _subscriberOwner: {fileID: 0}
+      _subscriberVariable: 
+      _isDynamic: 1
+      _arguments: []
 --- !u!114 &114779860718551752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,3 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   informBoard: {fileID: 0}
+  unitInfo: {fileID: 0}
+  activeBoard: {fileID: 0}
+  notifyBoard: {fileID: 0}

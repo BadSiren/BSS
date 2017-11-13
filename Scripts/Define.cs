@@ -42,7 +42,6 @@ namespace BSS {
 		public object callback;
 	}
 
-
 	//SendMessage =>This gameObject is all class.
 	//Publisher =>All gameObject is static class.
 

@@ -1024,7 +1024,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.7}
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   alpha: 0
   displayValue: 0
   positionMode: 0
-  texture: {fileID: 2800000, guid: 2a8f0effe2f754ab0ae9d3177bf472d0, type: 3}
+  texture: {fileID: 2800000, guid: c7f94635f69b040dfb1754c2c2c836eb, type: 3}
   addedHealth: {r: 0, g: 1, b: 0, a: 1}
   availableHealth: {r: 1, g: 1, b: 1, a: 1}
   displayedValue: {r: 1, g: 1, b: 1, a: 1}

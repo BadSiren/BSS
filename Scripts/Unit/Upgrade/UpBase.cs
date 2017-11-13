@@ -9,6 +9,9 @@ namespace BSS.Unit {
 		public string upgradeIndex;
 		public int level {
 			get {
+				if (GameDataBase.instance == null) {
+					return 0;
+				}
 				return GameDataBase.instance.getUpgrade (upgradeIndex);
 			}
 		}
@@ -19,7 +22,6 @@ namespace BSS.Unit {
 		protected virtual void onInitialize() {
 			upList.Add (this);
 			owner = GetComponent<BaseUnit> ();
-
 		}
 		protected virtual void OnDestroy() {
 			upList.Remove (this);

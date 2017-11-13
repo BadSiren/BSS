@@ -36,13 +36,19 @@ namespace BSS.Unit {
 		}
 
 		//UnitEvent
-		private void onToMoveEvent(Vector3 targetPos) {
+		private void onAllMoveEvent(Vector3 targetPos) {
 			lookAtTarget (targetPos);
 			moveMotion ();
+		}
+		private void onMoveStopEvent() {
+			idleMotion ();
 		}
 		private void onAttackEvent(AttackInfo attackInfo) {
 			lookAtTarget (attackInfo.hitter.transform.position);
 			attackMotion (attackInfo.attackSpeed);
+		}
+		private void onDieEvent() {
+			dieMotion ();
 		}
 	}
 }

@@ -22,11 +22,13 @@ namespace BSS.Unit {
 		public float speed=10f;
 		public bool canInputing;
 
-		public bool moving { get ; set;}
-
+		public bool isMoving;
 		private BaseUnit owner;
-		private Vector3 destination;
-		private GameObject target;
+		public Vector3 destination;
+		public bool isChasable=true;
+		public bool isPause;
+		public GameObject chaseTarget;
+
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
@@ -39,59 +41,86 @@ namespace BSS.Unit {
 			movableList.Remove(this);
 		}
 
-
-		public void toMove(Vector3 targetPos) {
-			StopAllCoroutines ();
-			target = null;
-			destination = targetPos;
-			moving = true;
-			StartCoroutine (move(0.5f));
-			SendMessage ("onToMoveEvent", destination,SendMessageOptions.DontRequireReceiver);
-		}
-		public void toMove(GameObject _target,float _range) {
-			StopAllCoroutines ();
-			target = _target;
-			destination = target.transform.position;
-			moving = true;
-			StartCoroutine (move(_range));
-			StartCoroutine (moveStopTimer(2f));
-			SendMessage ("onToMoveEvent",destination,SendMessageOptions.DontRequireReceiver);
-		}
-		public void toMove(MessageArgsTwo args) {
-			if (!moving &&args.parameter0 is GameObject && args.parameter1 is float) {
-				toMove (args.parameter0 as GameObject, (float)args.parameter1);
-			}
-		}
-		public void moveStop() {
-			moving = false;
-			target = null;
-			SendMessage ("idleMotion", SendMessageOptions.DontRequireReceiver);
-			SendMessage ("onMoveStopEvent",SendMessageOptions.DontRequireReceiver);
-		}
-
-		IEnumerator move(float distance) {
-			while (moving) {
-				if (checkDetination(distance)) {
-					moveStop ();
-					break;
+		void Update() {
+			if (isChasable &&chaseTarget != null) {
+				if (checkDestination(chaseTarget.transform.localPosition)) {
+					chaseTarget = null;
+					return;
 				}
-				if (target != null) {
-					destination = target.transform.position;
+				transform.position = Vector3.MoveTowards (transform.position, chaseTarget.transform.localPosition, speed * Time.deltaTime);
+				if (!isMoving) {
+					isMoving = true;
+					SendMessage ("onAllMoveEvent",chaseTarget.transform.localPosition, SendMessageOptions.DontRequireReceiver);
+				}
+				return;
+			}
+				
+			if (!isPause &&!checkZero (destination)) {
+				if (checkDestination (destination)) {
+					isChasable = true;
+					chaseTarget = null;
+					destination = Vector3.zero;
+					SendMessage ("onMoveStopEvent",SendMessageOptions.DontRequireReceiver);
+					return;
 				}
 				transform.position = Vector3.MoveTowards (transform.position, destination, speed * Time.deltaTime);
-				
-				yield return null;
+				if (!isMoving) {
+					isMoving = true;
+					SendMessage ("onAllMoveEvent",destination, SendMessageOptions.DontRequireReceiver);
+				}
+				return;
 			}
-			yield return null;
-		}
-		IEnumerator moveStopTimer(float time) {
-			yield return new WaitForSeconds (time);
-			moveStop ();
+			if (isMoving) {
+				isMoving = false;
+				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
+			}
 		}
 
-		private bool checkDetination(float dis) {
-			return Vector3.Distance (transform.position, destination) < dis;
+
+		public void toMove(Vector3 targetPos) {
+			isPause = false;
+			isChasable = false;
+			chaseTarget = null;
+			destination = targetPos;
 		}
+		public void toPatrol(Vector3 targetPos) {
+			isPause = false;
+			isChasable = true;
+			chaseTarget = null;
+			destination = targetPos;
+		}
+		public void movePause(bool reset=false) {
+			if (isPause) {
+				return;
+			}
+			isPause = true;
+			if (reset) {
+				StartCoroutine (coMoveResume ());
+			}
+		}
+		public void moveResume() {
+			if (!isPause) {
+				return;
+			}
+			isPause = false;
+		}
+
+
+		IEnumerator coMoveResume(float _time=0.5f) {
+			yield return new WaitForSeconds (_time);
+			moveResume ();
+		}
+			
+		private bool checkDestination(Vector3 des,float dis=0.5f) {
+			return Vector3.Distance (transform.position, des) < dis;
+		}
+		private bool checkZero(Vector3 des) {
+			return des == Vector3.zero;
+		}
+		private bool checkZero(Vector3 des0,Vector3 des1) {
+			return (des0 == Vector3.zero && des1==Vector3.zero);
+		}
+			
 			
 
 		//UnitEvent
@@ -103,6 +132,64 @@ namespace BSS.Unit {
 		private void onUnSelectEvent() {
 			canInputing = false;
 		}
+
+
+		//Enemy Chace AI
+		private void onFirstReserveEvent(GameObject obj) {
+			List<GameObject> targets = owner.getTargets ();
+			if (targets != null && targets.Count == 0) {
+				chaseTarget = obj;
+			}
+		}
+		private void onEnterTargetEvent(GameObject obj) {
+			if (chaseTarget!=null) {
+				chaseTarget = null;
+				isPause = true;
+			}
+		}
+		private void onNothingTargetEvent() {
+			List<GameObject> reserves = owner.getReserveTargets ();
+			if (reserves != null && reserves.Count > 0) {
+				chaseTarget = reserves [0];
+			}
+		}
+		private void onNothingDetectedEvent() {
+			chaseTarget = null;
+			isPause = false;
+		}
+		/*
+		private void onExitDetectedEvent(GameObject obj) {
+			if (chaseTarget!=null && obj.GetInstanceID()==chaseTarget.GetInstanceID()) {
+				List<GameObject> targets = owner.getTargets ();
+				if (targets != null && targets.Count > 0) {
+					chaseTarget = null;
+					isPause = true;
+				} else {
+					if (owner.detectedUnits.Count > 0) {
+						chaseTarget = owner.detectedUnits [0];
+					} else {
+						chaseTarget = null;
+						isPause = false;
+					}
+				}
+			}
+		}
+		*/
+
+
+		/*
+		private void onAttackEvent() {
+			movePause (true);
+		}
+		private void onFindTargetEvent() {
+			movePause ();
+		}
+		private void onExitTargetEvent() {
+			moveResume ();
+		}
+		*/
+
+
 
 	}
 }

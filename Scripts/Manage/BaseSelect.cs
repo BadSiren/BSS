@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Unit;
+using BSS.UI;
 
 namespace BSS {
 	public class BaseSelect : MonoBehaviour
@@ -9,20 +10,17 @@ namespace BSS {
 		public static BaseSelect instance;
 
 		public GameObject lastedSelect;
-		public PublisherGameObject pSelectEvent;
+		public bool isBaseSelect=true;
 
 		public void Awake()
 		{
 			instance = this;
-
-			pSelectEvent.initialize();
-		}
-		public void OnDestroy()
-		{
-			pSelectEvent.clear();
 		}
 		public void setSelect(GameObject obj) {
-			pSelectEvent.publish (obj);
+			BaseUnit unit=obj.GetComponent<BaseUnit> ();
+			if (isBaseSelect && unit!=null) {
+				UIController.instance.selectUnitEvent (unit);
+			}
 		}
 	}
 }

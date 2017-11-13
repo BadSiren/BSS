@@ -102,6 +102,8 @@ MonoBehaviour:
   destinaionTarget: {fileID: 0}
   destination: {x: -29.8, y: -13.6, z: 0}
   applyTeam: 1
+  isIgnore: 0
+  isPatrol: 1
 --- !u!212 &212433756863460136
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -134,7 +136,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2065766325
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4751900376d343a41beb4fa454643b5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

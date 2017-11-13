@@ -11,7 +11,7 @@ namespace BSS.UI {
 		public bool isStartedShow;
 		public static List<Board> boardList = new List<Board>();
 
-		private CanvasGroup canvasGroup;
+		protected CanvasGroup canvasGroup;
 		private ArgWithRecevier messageArgs = new ArgWithRecevier();
 
 		public void Awake()
@@ -55,22 +55,22 @@ namespace BSS.UI {
 			return temp;
 		}
 
-		protected void sendBoolToReceiver(string receiverName,bool _enabled) {
+		public void sendBoolToReceiver(string receiverName,bool _enabled) {
 			messageArgs.receiverName = receiverName;
 			messageArgs.parameter = _enabled;
 			BroadcastMessage ("receiveBoolMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);
 		}
-		protected void sendToReceiver(string receiverName,string _text) {
+		public void sendToReceiver(string receiverName,string _text) {
 			messageArgs.receiverName = receiverName;
 			messageArgs.parameter = _text;
 			BroadcastMessage ("receiveMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);
 		}
-		protected void sendToReceiver(string receiverName,Sprite _spr) {
+		public void sendToReceiver(string receiverName,Sprite _spr) {
 			messageArgs.receiverName = receiverName;
 			messageArgs.parameter = _spr;
 			BroadcastMessage ("receiveMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);
 		}
-		protected void sendToReceiver(string receiverName,Color _color) {
+		public void sendToReceiver(string receiverName,Color _color) {
 			messageArgs.receiverName = receiverName;
 			messageArgs.parameter = _color;
 			BroadcastMessage ("receiveMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);

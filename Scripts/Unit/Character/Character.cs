@@ -2,7 +2,6 @@
 using System.Collections;
 
 namespace BSS.Unit {
-	[RequireComponent(typeof(Animator))]
 	public class Character : MonoBehaviour
 	{
 		public bool isLookRight;
@@ -33,6 +32,9 @@ namespace BSS.Unit {
 		}
 		public void PlayAnimation(string _anim, bool _reset)
 		{
+			if (anim == null) {
+				return;
+			}
 			if (_reset) {	
 				anim.Play(_anim, -1, 0f);
 			} else {
@@ -41,6 +43,9 @@ namespace BSS.Unit {
 		}
 		public void SetAnimationSpeed(float _value)
 		{
+			if (anim == null) {
+				return;
+			}
 			anim.speed = _value;
 		}
 		public void idleMotion() {

@@ -5,85 +5,34 @@ using System.Collections.Generic;
 namespace BSS.Unit {
 	public class UnitSpawner : MonoBehaviour
 	{
-		public List<SpawnData> spawners;
-		public Vector3 spawnPosition;
-		public bool isEnemy=true;
-		public bool isDeleteRigidbody=true;
-
-		public bool isOperated;
-
-
-		private int _level;
-		public int level {
-			get {
-				return _level;
-			}
-			set { 
-				_level = value;
-				pLevel.publish (value);
-			}
-		}
-		public PublisherInt pLevel;
-
-		private int maxLevel;
-		private SpawnData nowSpawn;
-		private int spawnCount;
+		public List<SpawnData> spawnDatas;
+		public Vector3 destination;
 
 		void Awake() {
-			pLevel.initialize ();
-
-			maxLevel = spawners.Count;
-			if (isOperated) {
-				startLevel ();
-			}
-		}
-		void OnDestroy() {
-			pLevel.clear ();
-		}
-
-
-		IEnumerator stagePlay() {
-			bool loop = true;
-			while (loop) {
-				yield return new WaitForSeconds (nowSpawn.interval);
-				if (isOperated) { 
-					var obj=GameObject.Instantiate (nowSpawn.unitPrefab, spawnPosition, Quaternion.identity);
-					if (nowSpawn.isReward) {
-						var rewardable=obj.AddComponent<Rewardable> ();
-						rewardable.money = nowSpawn.rewardMoney;
-						rewardable.food = nowSpawn.rewardFood;
-					}
-					var unit=obj.GetComponent<BaseUnit> ();
-					if (isEnemy) {
-						unit.setEnemy ();
-					}
-					spawnCount += 1;
-					if (spawnCount >= nowSpawn.count) {
-						spawnCount = 0;
-						loop = false;
-						nextLevel ();
-					}
-				}
-			}
-		}
-		public void startLevel() {
-			level = 1;
-			nowSpawn = spawners [level-1];
-			StartCoroutine (stagePlay ());
-		}
-		public void clearLevel() {
-			
-		}
-
-		private void nextLevel() {
-			if (maxLevel == level) {
-				clearLevel ();
+			if (spawnDatas.Count == 0) {
+				Destroy (gameObject);
 				return;
 			}
-			level += 1;
-			nowSpawn = spawners [level-1];
-			StartCoroutine (stagePlay ());
 		}
 
+		public List<GameObject> spawnOnce(int level) {
+			if (spawnDatas.Count - 1 < level) {
+				return null;
+			}
+			List<GameObject> units = spawnDatas [level].getUnits ();
+			foreach (var it in units) {
+				it.transform.localPosition = transform.localPosition+new Vector3(Random.Range(-1f,1f),Random.Range(-3f,3f),0f);
+				if (destination != Vector3.zero) {
+					it.SendMessage ("toPatrol", destination, SendMessageOptions.DontRequireReceiver);
+				}
+			}
+			return units;
+		}
+		public string getSpawnText(int level) {
+			if (spawnDatas.Count - 1 < level) {
+				return "";
+			}
+			return spawnDatas [level].text;
+		}
 	}
 }

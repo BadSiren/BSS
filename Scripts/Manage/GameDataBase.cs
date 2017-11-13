@@ -8,8 +8,6 @@ namespace BSS.Data {
 	public class GameDataBase : MonoBehaviour
 	{
 		public static GameDataBase instance;
-		public int initMoney;
-		public int initFood;
 
 		public Dictionary<string,int> upgrades = new Dictionary<string,int> ();
 
@@ -46,10 +44,6 @@ namespace BSS.Data {
 			pMoney.initialize();
 			pFood.initialize();
 
-		}
-		void Start() {
-			money = initMoney;
-			food = initFood;
 		}
 
 		public void OnDestroy()

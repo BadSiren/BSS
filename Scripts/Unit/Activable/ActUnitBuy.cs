@@ -13,9 +13,19 @@ namespace BSS.Unit {
 		public int useFood;
 		public bool isInvisible;
 
+		public override void onShow() {
+			base.onShow ();
+			if (buttonImage == null) {
+				var character=buyPrefab.GetComponent<Charactable> ();
+				if (character == null) {
+					return;
+				}
+				buttonImage = character.portrait;
+			}
+		}
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
-			unitBuy (selectUnit.gameObject.transform.localPosition+new Vector3(0f,-1f,0f),selectUnit);
+			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-1f,0f),selectUnit);
 
 		}
 

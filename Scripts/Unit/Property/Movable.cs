@@ -25,9 +25,9 @@ namespace BSS.Unit {
 		public bool isMoving;
 		private BaseUnit owner;
 		public Vector3 destination;
-		public bool isChasable=true;
 		public bool isPause;
-		public GameObject chaseTarget;
+
+		private bool isIgnore;
 
 
 		void Awake() {
@@ -42,25 +42,12 @@ namespace BSS.Unit {
 		}
 
 		void Update() {
-			if (isChasable &&chaseTarget != null) {
-				if (checkDestination(chaseTarget.transform.localPosition)) {
-					chaseTarget = null;
-					return;
-				}
-				transform.position = Vector3.MoveTowards (transform.position, chaseTarget.transform.localPosition, speed * Time.deltaTime);
-				if (!isMoving) {
-					isMoving = true;
-					SendMessage ("onAllMoveEvent",chaseTarget.transform.localPosition, SendMessageOptions.DontRequireReceiver);
-				}
-				return;
-			}
-				
 			if (!isPause &&!checkZero (destination)) {
 				if (checkDestination (destination)) {
-					isChasable = true;
-					chaseTarget = null;
+					isIgnore = false;
 					destination = Vector3.zero;
-					SendMessage ("onMoveStopEvent",SendMessageOptions.DontRequireReceiver);
+					SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
+					SendMessage ("onArriveEvent", SendMessageOptions.DontRequireReceiver);
 					return;
 				}
 				transform.position = Vector3.MoveTowards (transform.position, destination, speed * Time.deltaTime);
@@ -78,16 +65,31 @@ namespace BSS.Unit {
 
 
 		public void toMove(Vector3 targetPos) {
+			if (isIgnore) {
+				return;
+			}
 			isPause = false;
-			isChasable = false;
-			chaseTarget = null;
 			destination = targetPos;
+			isMoving = true;
+			if (targetPos != Vector3.zero) {
+				SendMessage ("onAllMoveEvent", destination, SendMessageOptions.DontRequireReceiver);
+			}
 		}
-		public void toPatrol(Vector3 targetPos) {
+		public void toMoveByForce(Vector3 targetPos) {
+			isIgnore = true;
 			isPause = false;
-			isChasable = true;
-			chaseTarget = null;
 			destination = targetPos;
+			isMoving = true;
+			SendMessage ("onAllMoveEvent",destination, SendMessageOptions.DontRequireReceiver);
+			SendMessage ("onMoveByForceEvent",destination, SendMessageOptions.DontRequireReceiver);
+		}
+
+		public void moveStopTimer(float _time) {
+			StartCoroutine (coMoveStopTimer(_time));
+		}
+		IEnumerator coMoveStopTimer(float _time) {
+			yield return new WaitForSeconds (_time);
+			toMove (Vector3.zero);
 		}
 		public void movePause(bool reset=false) {
 			if (isPause) {
@@ -122,7 +124,6 @@ namespace BSS.Unit {
 		}
 			
 			
-
 		//UnitEvent
 		private void onSelectEvent() {
 			if (owner.team == UnitTeam.Red) {
@@ -132,65 +133,9 @@ namespace BSS.Unit {
 		private void onUnSelectEvent() {
 			canInputing = false;
 		}
-
-
-		//Enemy Chace AI
-		private void onFirstReserveEvent(GameObject obj) {
-			List<GameObject> targets = owner.getTargets ();
-			if (targets != null && targets.Count == 0) {
-				chaseTarget = obj;
-			}
-		}
-		private void onEnterTargetEvent(GameObject obj) {
-			if (chaseTarget!=null) {
-				chaseTarget = null;
-				isPause = true;
-			}
-		}
-		private void onNothingTargetEvent() {
-			List<GameObject> reserves = owner.getReserveTargets ();
-			if (reserves != null && reserves.Count > 0) {
-				chaseTarget = reserves [0];
-			}
-		}
-		private void onNothingDetectedEvent() {
-			chaseTarget = null;
-			isPause = false;
-		}
-		/*
-		private void onExitDetectedEvent(GameObject obj) {
-			if (chaseTarget!=null && obj.GetInstanceID()==chaseTarget.GetInstanceID()) {
-				List<GameObject> targets = owner.getTargets ();
-				if (targets != null && targets.Count > 0) {
-					chaseTarget = null;
-					isPause = true;
-				} else {
-					if (owner.detectedUnits.Count > 0) {
-						chaseTarget = owner.detectedUnits [0];
-					} else {
-						chaseTarget = null;
-						isPause = false;
-					}
-				}
-			}
-		}
-		*/
-
-
-		/*
-		private void onAttackEvent() {
+		private void onAttackEvent(AttackInfo attackInfo) {
 			movePause (true);
 		}
-		private void onFindTargetEvent() {
-			movePause ();
-		}
-		private void onExitTargetEvent() {
-			moveResume ();
-		}
-		*/
-
-
-
 	}
 }
 

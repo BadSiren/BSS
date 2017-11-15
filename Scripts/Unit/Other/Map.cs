@@ -8,7 +8,7 @@ namespace BSS {
 		public void toMoveAllEvent(Vector3 targetPos) {
 			foreach (var it in Movable.movableList) {
 				if (it.canInputing) {
-					it.toMove (targetPos);
+					it.toMoveByForce (targetPos);
 
 				}
 			}
@@ -16,7 +16,7 @@ namespace BSS {
 		public void toPatrolAllEvent(Vector3 targetPos) {
 			foreach (var it in Movable.movableList) {
 				if (it.canInputing) {
-					it.toPatrol (targetPos);
+					it.toMove (targetPos);
 				}
 			}
 		}

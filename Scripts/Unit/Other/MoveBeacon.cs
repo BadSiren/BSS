@@ -8,7 +8,7 @@ namespace BSS.Unit {
 		public Vector3 destination;
 		public UnitTeam applyTeam;
 		public bool isIgnore;
-		public bool isPatrol;
+		public bool isForce;
 
 		void Awake() {
 			if (destinaionTarget != null) {
@@ -24,8 +24,8 @@ namespace BSS.Unit {
 			if (unit == null || !validate(unit)) {
 				return;
 			}
-			if (isPatrol) {
-				unit.gameObject.SendMessage ("toPatrol", destination, SendMessageOptions.DontRequireReceiver);
+			if (isForce) {
+				unit.gameObject.SendMessage ("toMoveByForce", destination, SendMessageOptions.DontRequireReceiver);
 			} else {
 				unit.gameObject.SendMessage ("toMove", destination, SendMessageOptions.DontRequireReceiver);
 			}

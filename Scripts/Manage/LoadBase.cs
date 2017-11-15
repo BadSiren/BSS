@@ -9,7 +9,8 @@ namespace BSS {
 	{
 		public static LoadBase instance;
 
-		public string loadScene="PlayScene";
+		public string lobbyScene="LobbyScene";
+		public string playScene="PlayScene";
 		public int startMoney;
 		public int startFood;
 
@@ -26,8 +27,11 @@ namespace BSS {
 			DontDestroyOnLoad (gameObject);
 		}
 
+		public void loadLobbyScene() {
+			SceneManager.LoadScene (lobbyScene);
+		}
 		public void loadPlayScene() {
-			SceneManager.LoadScene (loadScene);
+			SceneManager.LoadScene (playScene);
 		}
 	}
 }

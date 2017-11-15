@@ -15,13 +15,16 @@ namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
 	public class Attackable : MonoBehaviour
 	{
-		
+		private const float SIGHT=20f;
 		private const float RANGETYPE=6f;
 
 		public static List<Attackable> attackableList = new List<Attackable>();
 
 		[HideInInspector]
 		public AttackType attackType;
+		public UnitTeam team {
+			get {return owner.team;}
+		}
 
 		[SerializeField]
 		private float _initDamage;
@@ -69,14 +72,13 @@ namespace BSS.Unit {
 			}
 		}
 		[HideInInspector]
-		private float _changeRange;
+		private float _changeRange=0f;
 		public float changeRange {
 			get {
 				return _changeRange;
 			}
 			set {
 				_changeRange=value;
-				attackCollider.setRadius (range);
 			}
 		}
 		public float range {
@@ -87,26 +89,31 @@ namespace BSS.Unit {
 			
 		private BaseUnit owner;
 		[SerializeField]
-		private GameObject target;
+		public GameObject target;
 		[SerializeField]
 		public List<GameObject> targets =new List<GameObject> ();
 		[SerializeField]
-		public List<GameObject> reserveTargets =new List<GameObject> ();
-		private bool isIgnore;
+		public List<GameObject> detects =new List<GameObject> ();
 
+
+		public AttackState state;
+		public enum AttackState {
+			Idle,Detect,Attack,Ignore
+		}
+
+		private AttackCollider detectCollider;
 		private AttackCollider attackCollider;
-		private MessageArgsTwo args;
 
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			attackableList.Add(this);
 
+			initDetectCollider ();
 			initAttackCollider ();
-
 		}
 		void Start (){
-			changeRange = 0f;
+			setIdle ();
 		}
 		void OnDestroy()
 		{
@@ -124,89 +131,87 @@ namespace BSS.Unit {
 			enemyObject.SendMessage ("onHitEvent",attackInfo, SendMessageOptions.DontRequireReceiver);
 		}
 
+		public void setIgnore() {
+			state = AttackState.Ignore;
+			detectCollider.setDisable ();
+			attackCollider.setDisable ();
+			target = null;
+		}
+		public void setIdle() {
+			state = AttackState.Idle;
+			detectCollider.setEnable (SIGHT);
+		}
 
 		IEnumerator attackLoop() {
 			while (true) {
 				yield return new WaitForSeconds (1f/attackSpeed);
-				if (target != null) {
-					attack (target);
+				if (state == AttackState.Ignore) {
+					continue;
 				}
 
+				if (target == null) {
+					if (state != AttackState.Idle) {
+						state = AttackState.Idle;
+						detectCollider.setEnable (SIGHT);
+					}
+				} else {
+					attack (target);
+				}
 			}
 		}
+
 
 		private void initAttackCollider() {
 			GameObject obj = new GameObject ("AttackRange");
 			obj.transform.SetParent (gameObject.transform,false);
 			attackCollider=obj.AddComponent <AttackCollider>();
 			attackCollider.attakable = this;
+			attackCollider.triggerEnter = "OnTriggerEnterTarget";
+			attackCollider.triggerExit = "OnTriggerExitTarget";
+			attackCollider.setDisable ();
 		}
+		private void initDetectCollider() {
+			GameObject obj = new GameObject ("DetectRange");
+			obj.transform.SetParent (gameObject.transform,false);
+			detectCollider=obj.AddComponent <AttackCollider>();
+			detectCollider.attakable = this;
+			detectCollider.triggerEnter = "OnTriggerEnterDetect";
+			detectCollider.triggerExit = "OnTriggerExitDetect";
+			detectCollider.setDisable ();
+		}
+		//Attack Collider Trigger
+		private void OnTriggerEnterDetect(Collider2D col) {
+			if (state == AttackState.Ignore) {return;}
 
-
-		public void OnTriggerEnterTarget(Collider2D col) {
-			if (col.tag == "Ignore"||col is CircleCollider2D) {
-				return;
-			}
-			BaseUnit unit=col.gameObject.GetComponent<BaseUnit> ();
-			if (unit == null || !checkHostile(unit) || unit.isInvincible)
-			{
-				return;
-			}
-
-			if (reserveTargets.Contains (col.gameObject)) {
-				reserveTargets.Remove (col.gameObject);
-				SendMessage ("onExitReserveEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				if (reserveTargets.Count == 0) {
-					SendMessage ("onNothingReserveEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				}
-			}
-			if (!targets.Contains (col.gameObject)) {
-				targets.Add (col.gameObject);
-				SendMessage ("onEnterTargetEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				if (targets.Count == 1) {
-					target = targets [0];
-					SendMessage ("onFirstTargetEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				}
+			if (state==AttackState.Idle && checkHostile (col.gameObject) ) {
+				detectCollider.setDisable ();
+				state = AttackState.Detect;
+				SendMessage("toMove",col.gameObject.transform.localPosition,SendMessageOptions.DontRequireReceiver);
+				attackCollider.setEnable (range);
 			}
 		}
-		public void OnTriggerExitTarget(Collider2D col) {
-			if (col.tag == "Ignore" ||  col is CircleCollider2D) {
-				return;
-			}
-			BaseUnit unit=col.gameObject.GetComponent<BaseUnit> ();
-			if (unit == null || !checkHostile(unit) || unit.isInvincible)
-			{
-				return;
-			}
-			if (!reserveTargets.Contains (col.gameObject) && col.tag!="Die") {
-				reserveTargets.Add (col.gameObject);
-				SendMessage ("onEnterReserveEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				if (reserveTargets.Count == 1) {
-					SendMessage ("onFirstReserveEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				}
-			}
-			if (targets.Contains (col.gameObject)) {
-				targets.Remove (col.gameObject);
-				if (target != null && target.GetInstanceID () == col.gameObject.GetInstanceID ()) {
-					findEnemy (ref target); 
-				}
-				SendMessage ("onExitTargetEvent", col.gameObject, SendMessageOptions.DontRequireReceiver);
-				if (targets.Count == 0) {
-					SendMessage ("onNothingTargetEvent",  SendMessageOptions.DontRequireReceiver);
-				}
-			}
+		private void OnTriggerEnterTarget(Collider2D col) {
+			if (state == AttackState.Ignore) {return;}
+			if (target != null) {return;}
 
+			if (checkHostile (col.gameObject) && state==AttackState.Detect) {
+				state = AttackState.Attack;
+				target = col.gameObject;
+				SendMessage("moveStopTimer",0.1f,SendMessageOptions.DontRequireReceiver);
+			}
 		}
+		private void OnTriggerExitTarget(Collider2D col) {
+			if (state == AttackState.Ignore) {return;}
+			if (target == null) {return;}
 
-
-		private bool findEnemy(ref GameObject obj) {
-			if (targets.Count == 0) {
-				obj = null;
-				return false;
-			} 
-			obj=targets [0];
-			return true;
+			if (target.gameObject.GetInstanceID () == col.gameObject.GetInstanceID ()) {
+				target = null;
+				state = AttackState.Idle;
+				attackCollider.setDisable ();
+				detectCollider.setEnable (SIGHT);
+			}
 		}
+			
 
 		private bool checkRange(Vector3 targetPos,float dis) {
 			return Vector3.Distance (transform.localPosition, targetPos) < dis;
@@ -222,7 +227,11 @@ namespace BSS.Unit {
 			return true;
 		}
 		private bool checkHostile(BaseUnit enemyUnit) {
-			return checkHostile (gameObject.GetComponent<BaseUnit> ().team, enemyUnit.team);
+			return checkHostile (team, enemyUnit.team);
+		}
+		private bool checkHostile(GameObject enemy) {
+			BaseUnit unit = enemy.GetComponent<BaseUnit> ();
+			return checkHostile (team, unit.team);
 		}
 
 		//UnitEvent
@@ -234,58 +243,14 @@ namespace BSS.Unit {
 			}
 			StartCoroutine(attackLoop());
 		}
-
-		private void onEnterDetectedEvent(GameObject obj) {
-			if (!reserveTargets.Contains (obj)) {
-				reserveTargets.Add (obj);
-				if (reserveTargets.Count == 1) {
-					SendMessage ("onFirstReserveEvent", obj, SendMessageOptions.DontRequireReceiver);
-				}
-				SendMessage ("onEnterReserveEvent", obj, SendMessageOptions.DontRequireReceiver);
+		private void onMoveByForceEvent() {
+			setIgnore ();
+		}
+		private void onArriveEvent() {
+			if (state == AttackState.Ignore) {
+				setIdle ();
 			}
 		}
-		private void onExitDetectedEvent(GameObject obj) {
-			if (reserveTargets.Contains (obj)) {
-				reserveTargets.Remove (obj);
-				SendMessage ("onExitReserveEvent", obj, SendMessageOptions.DontRequireReceiver);
-				if (reserveTargets.Count == 0) {
-					SendMessage ("onNothingReserveEvent", obj, SendMessageOptions.DontRequireReceiver);
-				}
-			}
-		}
-
-		/*
-		private void onToMoveEvent(Vector3 targetPos) {
-			isIgnore = true;
-			if (target != null) {
-				target = null;
-				SendMessage ("onExitTargetEvent", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-		private void onToPatrolEvent(Vector3 targetPos) {
-			isIgnore = false;
-			if (target==null && findEnemy (ref target)) {
-				SendMessage ("onFindTargetEvent", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-		private void onMoveStopEvent() {
-			isIgnore = false;
-			if (target==null && findEnemy (ref target)) {
-				SendMessage ("onFindTargetEvent", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-
-		private void onHitEvent(AttackInfo attackInfo) {
-			if (isIgnore || target!=null) {
-				return;
-			}
-			SendMessage ("toPatrolStopover",attackInfo.attacker.transform.localPosition, SendMessageOptions.DontRequireReceiver);
-		}
-		*/
-
-
-
-
 
 	}
 }

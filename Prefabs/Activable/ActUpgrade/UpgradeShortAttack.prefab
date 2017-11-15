@@ -57,8 +57,8 @@ MonoBehaviour:
   textContent: "\uADFC\uC811 \uACF5\uACA9\uB825\uC744 \uC5C5\uADF8\uB808\uC774\uB4DC\uD569\uB2C8\uB2E4."
   costable: 1
   upgradeIndex: ShortAttack
-  useInitMoney: 0
-  useAddMoney: 0
-  useInitFood: 10
-  useAddFood: 1
+  useInitMoney: 20
+  useAddMoney: 2
+  useInitFood: 0
+  useAddFood: 0
   maxLevel: 50

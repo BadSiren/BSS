@@ -6,6 +6,7 @@ namespace BSS.Unit {
 	public class UnitSpawner : MonoBehaviour
 	{
 		public List<SpawnData> spawnDatas;
+		public bool isForce;
 		public Vector3 destination;
 
 		void Awake() {
@@ -23,7 +24,11 @@ namespace BSS.Unit {
 			foreach (var it in units) {
 				it.transform.localPosition = transform.localPosition+new Vector3(Random.Range(-1f,1f),Random.Range(-3f,3f),0f);
 				if (destination != Vector3.zero) {
-					it.SendMessage ("toPatrol", destination, SendMessageOptions.DontRequireReceiver);
+					if (isForce) {
+						it.SendMessage ("toMoveByForce", destination, SendMessageOptions.DontRequireReceiver);
+					} else {
+						it.SendMessage ("toMove", destination, SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			}
 			return units;

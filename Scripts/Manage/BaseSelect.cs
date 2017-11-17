@@ -21,6 +21,7 @@ namespace BSS {
 			if (isBaseSelect && unit!=null) {
 				UIController.instance.selectUnitEvent (unit);
 			}
+
 		}
 	}
 }

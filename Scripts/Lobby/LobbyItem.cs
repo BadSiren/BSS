@@ -2,16 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BSS.Lobby {
-	public class LobbyItem : MonoBehaviour
-	{
-		public string iIndex;
-		public string iName;
-		public string content;
-		public Sprite icon;
-		public Dictionary<string,int> properties=new Dictionary<string,int>();
+namespace BSS.LobbyItemSystem {
+	public enum LobbyItemType {
+		Equip,Consume
+	}
 
+	[System.Serializable]
+	public class LobbyItem : ScriptableObject {
+		public string ID;
+		public LobbyItemType type;
+		public Sprite icon;
+		public string itemTitle = "";
+		public string itemDescription = "";
+		public int buyCost;
+		public int sellCost;
+		public int rairty;
 
 	}
+
+
+
 }
 

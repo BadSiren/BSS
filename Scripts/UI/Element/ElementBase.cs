@@ -7,7 +7,7 @@ namespace BSS.UI {
 	{
 		public enum ContentType
 		{
-			Text,Image,Button
+			Text,Image,Button,Toggle
 		}
 
 
@@ -18,6 +18,7 @@ namespace BSS.UI {
 		private Text textComp;
 		private Image imageComp;
 		private Button buttonComp;
+		private Toggle toggleComp;
 
 
 		void Awake() {
@@ -30,6 +31,9 @@ namespace BSS.UI {
 				break;
 			case ContentType.Button:
 				buttonComp = GetComponent<Button> ();
+				break;
+			case ContentType.Toggle:
+				toggleComp = GetComponent<Toggle> ();
 				break;
 			}
 
@@ -48,6 +52,9 @@ namespace BSS.UI {
 				break;
 			case ContentType.Button:
 				buttonComp.enabled = _enabled;
+				break;
+			case ContentType.Toggle:
+				toggleComp.enabled = _enabled;
 				break;
 			}
 		}
@@ -85,11 +92,15 @@ namespace BSS.UI {
 			}
 			imageComp.sprite = changeSprite;
 		}
-		public void updateVariable(Color textColor) {
-			if (contentType != ContentType.Text) {
+		public void updateVariable(Color _color) {
+			if (contentType == ContentType.Text) {
+				textComp.color = _color;
 				return;
 			}
-			textComp.color = textColor;
+			if (contentType == ContentType.Image) {
+				imageComp.color = _color;
+				return;
+			}
 		}
 		public void updateVariable(string resultText) {
 			if (contentType != ContentType.Text) {

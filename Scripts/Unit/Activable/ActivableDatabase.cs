@@ -3,37 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace BSS.Unit {
-	public class ActivableDatabase : MonoBehaviour
+	public class ActivableDatabase : ScriptableObject
 	{
-		private static ActivableDatabase _instance;
-		public static ActivableDatabase instance {
-			get {
-				if (_instance == null) {
-					_instance = GameObject.FindObjectOfType<ActivableDatabase> ();
-				}
-				if (_instance == null) {
-					Debug.LogError ("No Unit Database");
-				}
-				return _instance;
-			}
+		public static ActivableDatabase instance;
+		public List<Activable> activableList=new List<Activable>();
+
+		public Activable getActivable(string _ID){
+			Activable activable=activableList.Find(x=>x.ID==_ID);
+			return activable;
 		}
-		public List<GameObject> activablePrefabDatabaseList;
-		[HideInInspector]
-		public List<Activable> activableDatabaseList = new List<Activable> ();
-		public Dictionary<string,GameObject> activablePrefabDatabaseDic=new Dictionary<string,GameObject>();
-		public Dictionary<string,Activable> activableDatabaseDic=new Dictionary<string,Activable>();
-
-
-		void Awake() {
-			if (_instance != null) {
-				Destroy (gameObject);
-				return;
-			}
-
-			DontDestroyOnLoad(gameObject);
-			initialize ();
-		}
-
+		/*
 		void initialize() {
 			foreach (var it in activablePrefabDatabaseList) {
 				var act=it.GetComponent<Activable> ();
@@ -42,6 +21,7 @@ namespace BSS.Unit {
 				activableDatabaseDic [act.actIndex] = act;
 			}
 		}
+		*/
 	}
 
 }

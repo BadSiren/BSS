@@ -6,6 +6,7 @@ using BSS.UI;
 namespace BSS.Unit {
 	public class ActListSkills : Activable
 	{
+		/*
 		public ActUndo actUndo;
 
 		private ActiveBoard board;
@@ -27,7 +28,6 @@ namespace BSS.Unit {
 			List<Activable> activableList = new List<Activable> ();
 			foreach (var it in selectUnit.skillList) {
 				Activable activable=new Activable ();
-				activable.actIndex = it.skillBase.skillIndex;
 				activable.buttonImage = it.skillBase.skillImage;
 				activable.titleContent = it.skillBase.skillName;
 				activable.textContent = it.skillBase.skillText;
@@ -36,6 +36,7 @@ namespace BSS.Unit {
 			activableList.Add (actUndo);
 			board.setActivableList (activableList);
 		}
+		*/
 	}
 }
 

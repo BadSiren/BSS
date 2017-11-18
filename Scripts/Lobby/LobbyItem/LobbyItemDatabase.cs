@@ -14,18 +14,6 @@ namespace BSS.LobbyItemSystem {
 				instance = this;
 			}
 		}
-
-		/*
-		[MenuItem("Assets/BSS/Create/LobbyItemDatabase")]
-		public static void CreateLobbyEquipItem ()
-		{
-			string _path = EditorUtility.SaveFilePanel ("Create LobbyItemDatabase", "Assets/BSS/CustomAsset/LobbyItem/", "", "asset");
-			if( _path.Length != 0 )
-			{
-				ScriptableObjectUtility.CreateAsset<LobbyItemDatabase> (_path);
-			}
-		}
-		*/
 			
 
 		public LobbyItem getItem(string _ID){

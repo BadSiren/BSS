@@ -38,8 +38,6 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
-
-		public List<string> activableText = new List<string> ();
 		public List<Activable> activableList = new List<Activable> ();
 		public List<Skillable> skillList = new List<Skillable> ();
 		public List<GameObject> detectedUnits =new List<GameObject> ();
@@ -60,12 +58,8 @@ namespace BSS.Unit {
 				Destroy (it);
 			}
 		}
-		public void addActivable(string actIndex) {
-			var act=ActivableDatabase.instance.activableDatabaseDic [actIndex];
-			if (act == null) {
-				return;
-			}
-			activableList.Add (act);
+		public void addActivable(Activable _activable) {
+			activableList.Add (_activable);
 		}
 
 		protected virtual void OnEnable()
@@ -80,18 +74,12 @@ namespace BSS.Unit {
 		protected virtual void initialize() {
 			health = maxHealth;
 			mana = maxMana;
-			actInitialize ();
 
 			skillInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
 		}
-		private void actInitialize() {
-			activableList.Capacity = 9;
-			foreach (var it in activableText) {
-				addActivable (it);
-			}
-		}
+			
 
 		private void skillInitialize() {
 			foreach (var it in skillList) {

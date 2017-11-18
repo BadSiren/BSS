@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using EventsPlus;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace BSS.UI {
 	[RequireComponent (typeof(CanvasGroup))]
@@ -10,25 +12,26 @@ namespace BSS.UI {
 		public string boardName;
 		public bool isStartedShow;
 		public static List<Board> boardList = new List<Board>();
+		public UnityEvent onShow = new UnityEvent();
+		public UnityEvent onClose = new UnityEvent();
 
 		protected CanvasGroup canvasGroup;
 		private ArgWithRecevier messageArgs = new ArgWithRecevier();
+
 
 		public void Awake()
 		{
 			canvasGroup=GetComponent<CanvasGroup> ();
 
-
 			initailze ();
+		}
+		void Start() {
+			if (isStartedShow) {
+				Show ();
+			} 
 		}
 		protected virtual void initailze() {
 			boardList.Add (this);
-
-			if (isStartedShow) {
-				Show ();
-			} else {
-				Close ();
-			}
 		}
 		public void OnDestroy()
 		{
@@ -43,12 +46,17 @@ namespace BSS.UI {
 			canvasGroup.interactable = true;
 			canvasGroup.blocksRaycasts = true;
 
-			BroadcastMessage ("BoardShowEvent", SendMessageOptions.DontRequireReceiver);
+			onShow.Invoke ();
 		}
 		public virtual void Close() {
+			if (canvasGroup.alpha == 0f) {
+				return;
+			}
 			canvasGroup.alpha = 0f;
 			canvasGroup.interactable = false;
 			canvasGroup.blocksRaycasts = false;
+
+			onClose.Invoke ();
 		}
 		public static Board find(string _name) {
 			Board temp=boardList.Find (x => x.boardName == _name);

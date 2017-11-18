@@ -5,15 +5,26 @@ using BSS.UI;
 
 namespace BSS.Unit {
 	[System.Serializable]
-	public class Activable : MonoBehaviour
+	public class Activable : ScriptableObject
 	{
-		public string actIndex;
+		public string ID;
 		public Sprite buttonImage;
+		[SerializeField]
 		[TextArea()]
-		public string titleContent;
+		private string _titleContent;
+		public virtual string titleContent {
+			get {
+				return _titleContent;
+			}
+		}
+		[SerializeField]
 		[TextArea()]
-		public string textContent;
-		public bool costable;
+		private string _textContent;
+		public virtual string textContent {
+			get {
+				return _titleContent;
+			}
+		}
 
 
 		public virtual void onShow() {
@@ -30,19 +41,11 @@ namespace BSS.Unit {
 		protected virtual void showInformDynamic() {
 			if (string.IsNullOrEmpty (titleContent)) {
 				UIController.instance.clearInform ();
-			} else if (!costable) {
+			}  else {
 				UIController.instance.showInform (titleContent,textContent);
-			} else {
-				UIController.instance.showInform (titleContent,textContent,getMoney(),getFood());
 			}
 		}
 
-		protected virtual int getMoney() {
-			return 0;
-		}
-		protected virtual int getFood() {
-			return 0;
-		}
 
 	}
 }

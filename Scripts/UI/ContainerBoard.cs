@@ -25,10 +25,24 @@ namespace BSS.UI {
 		public abstract void activeButton (int _num);
 		public abstract void activeButtonLongPress (int _num);
 		//
-		protected abstract string getTitle(int num);
-		protected abstract Sprite getIcon (int num);
+		protected virtual string getTitle(int num) {
+			var item = UserJson.instance.getLobbyItem (num, containerName);
+			if (item == null) {
+				return "";
+			}
+			return UserJson.instance.getLobbyItem (num, containerName).itemTitle;
+		}
+		protected virtual Sprite getIcon (int num) {
+			var item = UserJson.instance.getLobbyItem (num, containerName);
+			if (item == null) {
+				return null;
+			}
+			return UserJson.instance.getLobbyItem (num, containerName).icon;
+		}
 
-		protected abstract int getCount ();
+		protected virtual int getCount () {
+			return UserJson.instance.getCount (containerName);
+		}
 		protected virtual int getCountPage() {
 			return getCount()-page*viewSlot;
 		}

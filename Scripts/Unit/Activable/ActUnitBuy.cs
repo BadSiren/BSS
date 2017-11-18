@@ -8,63 +8,48 @@ namespace BSS.Unit {
 	[System.Serializable]
 	public class ActUnitBuy : Activable
 	{
-		public string unitIndex;
+		public GameObject buyPrefab;
 		public int useMoney;
 		public int useFood;
 		public bool isInvisible;
 
-		private GameObject buyPrefab;
+		private BaseUnit unit;
+		private Charactable character;
+		private Attackable attack;
+
+		void OnEnable() {
+			unit=buyPrefab.GetComponent<BaseUnit> ();
+			if (unit == null) {
+				Debug.LogError ("Not Unit!");
+			}
+			character=buyPrefab.GetComponent<Charactable> ();
+			attack=buyPrefab.GetComponent<Attackable> ();
+		}
 
 		public override void onShow() {
 			base.onShow ();
-			if (buyPrefab == null) {
-				buyPrefab = UnitDatabase.instance.unitPrefabDatabaseDic [unitIndex];
-				initialize (buyPrefab);
-			}
 		}
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
 			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-1f,0f),selectUnit);
-
 		}
-
-		private void initialize(GameObject prefab) {
-			var unit=buyPrefab.GetComponent<BaseUnit> ();
-			var character=buyPrefab.GetComponent<Charactable> ();
-			var attack=buyPrefab.GetComponent<Attackable> ();
-			if (unit != null) {
-				titleContent = unit.uName + " 구매하기";
-				textContent = unit.uName + "를 구매합니다. \n체력: "+unit.maxHealth.ToString();
-				if (attack != null) {
-					textContent = textContent + "\n공격력: " + attack.initDamage.ToString ();
-				}
-			}
-			if (character != null) {
-				buttonImage = character.portrait;
-			}
-		}
+			
 
 		private void unitBuy(Vector3 pos,BaseUnit selectUnit) {
 			if (buyPrefab==null) {
 				//buyUnit is null
 				return;
 			}
-			if (GameDataBase.instance.useMoneyFood(getMoney(),getFood())) {
+			if (GameDataBase.instance.useMoneyFood(useMoney,useFood)) {
 				GameObject obj=GameObject.Instantiate (buyPrefab, pos, Quaternion.identity);
 				obj.SetActive (true);
 				BaseUnit unit = obj.GetComponent<BaseUnit> ();
 				unit.team = selectUnit.team;
-				if (isInvisible) {
-					unit.isInvincible = true;
-				}
+				unit.isInvincible = isInvisible;
 			}
 		}
-
-		protected override int getMoney() {
-			return useMoney;
-		}
-		protected override int getFood() {
-			return useFood;
+		protected override void showInformDynamic() {
+			UIController.instance.showInform (titleContent,textContent,useMoney,useFood);
 		}
 
 		private string typeToString(string _type) {

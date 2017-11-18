@@ -6,6 +6,7 @@ using BSS.UI;
 namespace BSS.Unit {
 	public class ActList : Activable
 	{
+		/*
 		public List<Activable> activableList;
 		public ActUndo actUndo;
 
@@ -32,6 +33,7 @@ namespace BSS.Unit {
 				board.setActivableList (temp);
 			}
 		}
+		*/
 	}
 }
 

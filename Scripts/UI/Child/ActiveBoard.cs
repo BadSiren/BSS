@@ -31,6 +31,7 @@ namespace BSS.UI {
 		public void setActivableList (List<Activable> _acitvableList) {
 			preActivableList = acitvableList;
 			acitvableList = _acitvableList;
+			acitvableList.Capacity = 9;
 			for (int i = 0; i < acitvableList.Capacity; i++) {
 				if (i < acitvableList.Count) {
 					acitvableList [i].onShow ();

@@ -36,10 +36,10 @@ namespace BSS.Unit {
 			UIController.instance.showInform (titleContent,temp,getMoney(),getFood());
 		}
 
-		protected override int getMoney() {
+		protected int getMoney() {
 			return useInitMoney+level*useAddMoney;
 		}
-		protected override int getFood() {
+		protected int getFood() {
 			return useInitFood+level*useAddFood;
 		}
 

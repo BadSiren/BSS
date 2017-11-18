@@ -1,0 +1,36 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using BSS.UI;
+
+namespace BSS.LobbyItemSystem {
+	public class LobbyActTransport : LobbyAct
+	{
+		public string transContainer;
+		public bool isContainerShow=true;
+
+		public override void activate (int _num,string _containerName) {
+			UserJson.instance.transportItem (_num, _containerName, transContainer);
+			if (isContainerShow) {
+				containerShow (_containerName);
+				containerShow (transContainer);
+			}
+
+		}
+		private void containerShow(string _containerName) {
+			var boards = Board.boardList.FindAll (x => x is ContainerBoard);
+			List<ContainerBoard> contains = new List<ContainerBoard> ();
+			foreach (var it in boards) {
+				contains.Add(it as ContainerBoard);
+			}
+			var contain =contains.Find (x => x.containerName == _containerName);
+			if (contain == null) {
+				return;
+			}
+			contain.Show ();
+		}
+
+
+	}
+}
+

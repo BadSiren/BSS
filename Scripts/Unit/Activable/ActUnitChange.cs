@@ -8,6 +8,7 @@ namespace BSS.Unit {
 	[System.Serializable]
 	public class ActUnitChange : Activable
 	{
+		/*
 		public string unitIndex;
 		public int useMoney;
 		public int useFood;
@@ -63,12 +64,13 @@ namespace BSS.Unit {
 			}
 		}
 
-		protected override int getMoney() {
+		protected int getMoney() {
 			return useMoney;
 		}
-		protected override int getFood() {
+		protected int getFood() {
 			return useFood;
 		}
+		*/
 
 	}
 }

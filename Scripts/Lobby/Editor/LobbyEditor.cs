@@ -21,6 +21,7 @@ namespace BSS.LobbyItemSystem {
 			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
 			if( _path.Length != 0 )
 			{
+				
 				ScriptableObjectUtility.CreateAsset<LobbyEquipItem> (_path);
 			}
 		}

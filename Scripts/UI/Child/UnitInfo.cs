@@ -59,10 +59,15 @@ namespace BSS.UI {
 					sendBoolToReceiver ("AttackUp", true);
 					sendToReceiver ("AttackUp", upAttack.level.ToString());
 				}
-
-
 			}
+		}
 
+		public void setSelectUnit(GameObject obj) {
+			var _unit=obj.GetComponent<BaseUnit> ();
+			if (_unit == null) {
+				return;
+			}
+			setSelectUnit (_unit);
 		}
 		public void lookAtUnit() {
 			if (selectUnit == null) {

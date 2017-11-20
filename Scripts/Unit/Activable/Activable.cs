@@ -26,7 +26,6 @@ namespace BSS.Unit {
 			}
 		}
 
-
 		public virtual void onShow() {
 		}
 		public virtual void activate(BaseUnit selectUnit) {

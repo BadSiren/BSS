@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using BSS.Data;
+using BSS.Play;
 
 namespace BSS.Unit {
 	public class UpBase : MonoBehaviour
@@ -9,19 +9,21 @@ namespace BSS.Unit {
 		public string upgradeIndex;
 		public int level {
 			get {
-				if (GameDataBase.instance == null) {
-					return 0;
-				}
-				return GameDataBase.instance.getUpgrade (upgradeIndex);
+				return actUpgrade.level;
 			}
 		}
 		public static List<UpBase> upList=new List<UpBase>();
 
 		protected BaseUnit owner;
+		protected ActUpgrade actUpgrade;
 
 		protected virtual void onInitialize() {
 			upList.Add (this);
 			owner = GetComponent<BaseUnit> ();
+			actUpgrade=ActUpgrade.getActUpgrade (upgradeIndex);
+			if (actUpgrade == null) {
+				Destroy (this);
+			}
 		}
 		protected virtual void OnDestroy() {
 			upList.Remove (this);

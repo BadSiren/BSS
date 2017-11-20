@@ -41,6 +41,11 @@ namespace BSS.Input {
 			}
 			cameraControl.enabled = _enabled;
 		}
+		public static Vector3 getMousePoint2D() {
+			var _mousePos=Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);
+			_mousePos=new Vector3 (_mousePos.x, _mousePos.y, 0f);
+			return _mousePos;
+		}
 
 
 		private void mouseInputWait() {
@@ -59,7 +64,7 @@ namespace BSS.Input {
 					currentMousePointSave ();
 					Clickable clickable = getClickPriority (mousePoint);
 					if (clickable!=null) {
-						clickable.onLongClick (mousePoint);
+						clickable.onLongClick ();
 					}
 					isLongPress = true;
 					pressTime = 0f;
@@ -75,11 +80,11 @@ namespace BSS.Input {
 				Clickable click = getClickPriority (mousePoint);
 				if (click == null) {return;}
 				if (isTouching) {
-					click.onClick (mousePoint);
-					click.onDoubleClick (mousePoint);
+					click.onClick ();
+					click.onDoubleClick ();
 				} else {
 					StartCoroutine (waitTouch ());
-					click.onClick (mousePoint);
+					click.onClick ();
 				}
 			}
 		}
@@ -91,8 +96,7 @@ namespace BSS.Input {
 		}
 
 		private void currentMousePointSave() {
-			mousePoint=Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);
-			mousePoint = new Vector3 (mousePoint.x, mousePoint.y, 0f);
+			mousePoint = getMousePoint2D ();
 		}
 		private Clickable getClickPriority(Vector3 orgin) {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(orgin, Vector2.zero, 0f);

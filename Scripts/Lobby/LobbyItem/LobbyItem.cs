@@ -12,7 +12,7 @@ namespace BSS.LobbyItemSystem {
 		public string itemDescription = "";
 		public int buyCost;
 		public int sellCost;
-		public int rairty;
+		public int rairity;
 
 		public List<LobbyAct> lobbyActs;
 		public List<string> properties;

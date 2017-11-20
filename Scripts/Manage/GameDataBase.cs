@@ -4,15 +4,10 @@ using System.Collections.Generic;
 using EventsPlus;
 using BSS.Unit;
 
-namespace BSS.Data {
+namespace BSS.Play {
 	public class GameDataBase : MonoBehaviour
 	{
 		public static GameDataBase instance;
-
-		public Dictionary<string,int> upgrades = new Dictionary<string,int> ();
-
-		public PublisherInt pMoney;
-		public PublisherInt pFood;
 
 		private int _money;
 		public int money {
@@ -21,7 +16,7 @@ namespace BSS.Data {
 			}
 			set { 
 				_money = value;
-				pMoney.publish (value);
+				BaseEventListener.onPublishInt ("GameMoney", _money);
 			}
 		}
 		private int _food;
@@ -31,25 +26,15 @@ namespace BSS.Data {
 			}
 			set { 
 				_food = value;
-				pFood.publish (value);
+				BaseEventListener.onPublishInt ("Food", _food);
 			}
 		}
-
+		public Dictionary<string,int> upgrades=new Dictionary<string,int>();
 
 
 		void Awake()
 		{
 			instance = this;
-
-			pMoney.initialize();
-			pFood.initialize();
-
-		}
-
-		public void OnDestroy()
-		{
-			pMoney.clear();
-			pFood.clear ();
 		}
 
 		public bool useMoneyFood(int useMoney,int useFood) {
@@ -60,21 +45,14 @@ namespace BSS.Data {
 			food -= useFood;
 			return true;
 		}
-
-		//ActEvent
-		public void increaseUpgrade(string upIndex) {
-			if (upgrades.ContainsKey(upIndex)) {
-				upgrades [upIndex] +=1;
-			} else {
-				upgrades [upIndex] = 1;
+		public int getUpgradeLevel(string upIndex) {
+			if (!upgrades.ContainsKey (upIndex)) {
+				upgrades [upIndex] = 0;
 			}
-			UpBase.allApplyUpgrade (upIndex);
+			return upgrades [upIndex];
 		}
-		public int getUpgrade(string upIndex) {
-			if (upgrades.ContainsKey(upIndex)) {
-				return upgrades [upIndex];
-			} 
-			return 0;
+		public void setUpgradeLevel(string upIndex,int _level) {
+			upgrades [upIndex] = _level;
 		}
 	}
 }

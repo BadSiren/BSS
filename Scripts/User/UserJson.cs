@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.LobbyItemSystem;
+using BSS;
 
 public class UserJson : MonoBehaviour
 {
@@ -18,17 +19,11 @@ public class UserJson : MonoBehaviour
 	private static UserJson _instance;
 	public static UserJson instance {
 		get {
-			if (_instance == null) {
-				_instance = GameObject.FindObjectOfType<UserJson> ();
-			}
-			if (_instance == null) {
-				Debug.LogError ("No UserJson");
-			}
 			return _instance;
 		}
 	}
 
-	public string moneyName="Money";
+	public string moneyName="Cube";
 	public string gemName="Gem";
 
 	public string inventoryName="Inventory";
@@ -39,7 +34,20 @@ public class UserJson : MonoBehaviour
 
 
 	void Awake() {
+		if (_instance == null) {
+			_instance = this;
+		} else {
+			Destroy (gameObject);
+			return;
+		}
+		DontDestroyOnLoad (gameObject);
+
+
 		intialize ();
+	}
+	void Start() {
+		addMoney (0);
+		addGem (0);
 	}
 		
 	void intialize() {
@@ -47,9 +55,11 @@ public class UserJson : MonoBehaviour
 		if (!ES2.Exists (moneyName)) {
 			ES2.Save (0, moneyName);
 		}
+
 		if (!ES2.Exists (gemName)) {
 			ES2.Save (0, gemName);
 		}
+
 		if (!ES2.Exists (inventoryName)) {
 			ES2.Save (new List<string>(), inventoryName);
 		}
@@ -70,14 +80,44 @@ public class UserJson : MonoBehaviour
 		}
 	}
 
-	//Inventory Function
+	//Monery Function
+	public void addMoney(int _money) {
+		int loadMoney=ES2.Load<int> (moneyName);
+		ES2.Save<int> (loadMoney + _money, moneyName);
+		BaseEventListener.onPublishInt ("Money", loadMoney + _money);
+	}
+	public bool useMoney(int _money) {
+		int loadMoney=ES2.Load<int> (moneyName);
+		if (loadMoney < _money) {
+			return false;
+		}
+		ES2.Save<int> (loadMoney - _money, moneyName);
+		BaseEventListener.onPublishInt ("Money", loadMoney - _money);
+		return true;
+	}
+	public void addGem(int _gem) {
+		int loadGem=ES2.Load<int> (gemName);
+		ES2.Save<int> (loadGem + _gem, gemName);
+		BaseEventListener.onPublishInt ("Gem", loadGem + _gem);
+	}
+	public bool useGem(int _gem) {
+		int loadGem=ES2.Load<int> (gemName);
+		if (loadGem < _gem) {
+			return false;
+		}
+		ES2.Save<int> (loadGem - _gem, gemName);
+		BaseEventListener.onPublishInt ("Gem", loadGem - _gem);
+		return true;
+	}
+
+	//Container Function
 	public bool addItem(UserItem userItem,string _container) {
 		if (!ES2.Exists (_container) || !existLobbyItem(userItem)) {
 			Debug.Log ("Item not found");
 			return false;
 		}
 		List<string> container=ES2.LoadList<string> (_container);
-		if (container.Count >= containerMax[_container]) {
+		if (getEmptySpace (_container) == 0) {
 			Debug.Log ("Inventory Full");
 			return false;
 		}
@@ -130,6 +170,13 @@ public class UserJson : MonoBehaviour
 		removeItem (_itemSlot, _nowContainer);
 		return true;
 	}
+	public int getEmptySpace(string _container) {
+		if (containerMax.ContainsKey(_container)) {
+			return containerMax [_container];
+		}
+		Debug.Log ("No Container!");
+		return 0;
+	}
 	private void resetItems(string _container) {
 		ES2.Delete (_container);
 	}
@@ -157,7 +204,8 @@ public class UserJson : MonoBehaviour
 		if (userItem == null) {
 			return null;
 		}
-		return LobbyItemDatabase.instance.getItem (userItem.ID);
+
+		return BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID);
 	}
 	public List<LobbyItem> getLobbyItems(string _container) {
 		List<LobbyItem> lobbyItems = new List<LobbyItem> ();
@@ -170,7 +218,7 @@ public class UserJson : MonoBehaviour
 		return lobbyItems;
 	}
 	public bool existLobbyItem(UserItem userItem) {
-		if (userItem == null || LobbyItemDatabase.instance.getItem (userItem.ID) == null) {
+		if (userItem == null || BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID) == null) {
 			return false;
 		}
 		return true;

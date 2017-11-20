@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 222710092136594032}
   - component: {fileID: 114986248825840410}
   - component: {fileID: 114358281944948398}
+  - component: {fileID: 114481923815266680}
   m_Layer: 5
   m_Name: FoodText
   m_TagString: Untagged
@@ -74,6 +75,7 @@ GameObject:
   - component: {fileID: 222418117580299772}
   - component: {fileID: 114283623189030896}
   - component: {fileID: 114994765225794898}
+  - component: {fileID: 114255534654604160}
   m_Layer: 5
   m_Name: MoneyText
   m_TagString: Untagged
@@ -159,6 +161,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114255534654604160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1717133108153908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  listenName: GameMoney
+  sendMessage: updateVariable
 --- !u!114 &114283623189030896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +248,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 0
   elementName: Food
+--- !u!114 &114481923815266680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363421129171598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  listenName: Food
+  sendMessage: updateVariable
 --- !u!114 &114565662064020044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,6 +329,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardName: ViewBoard
   isStartedShow: 1
+  onShow:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onClose:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114986248825840410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -500,7 +540,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1905319090342210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -376.12628, y: 254.79828, z: 0}
+  m_LocalPosition: {x: 260, y: -30, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224441431178555026}
@@ -510,7 +550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -376.12628, y: 254.79828}
+  m_AnchoredPosition: {x: 260, y: -30}
   m_SizeDelta: {x: 520, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &225222167919593786

@@ -11,6 +11,7 @@ namespace BSS {
 
 		public string lobbyScene="LobbyScene";
 		public string playScene="PlayScene";
+		public string itemScene="ItemScene";
 		public int startMoney;
 		public int startFood;
 
@@ -32,6 +33,9 @@ namespace BSS {
 		}
 		public void loadPlayScene() {
 			SceneManager.LoadScene (playScene);
+		}
+		public void loadItemScene() {
+			SceneManager.LoadScene (itemScene);
 		}
 	}
 }

@@ -58,9 +58,5 @@ namespace BSS.UI {
 			state = (InvenState)System.Enum.Parse (typeof(InvenState), _state);
 			Show ();
 		}
-
-		protected override Sprite getIcon (int num) {
-			return UserJson.instance.getLobbyItem (num, containerName).icon;
-		}
 	}
 }

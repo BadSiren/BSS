@@ -15,6 +15,7 @@ namespace BSS.Unit {
 				ScriptableObjectUtility.CreateAsset<ActivableDatabase> (_path);
 			}
 		}
+
 		[MenuItem("Assets/BSS/Create/Acitvable/UnitBuy")]
 		public static void CreateUnitBuy ()
 		{
@@ -22,6 +23,15 @@ namespace BSS.Unit {
 			if( _path.Length != 0 )
 			{
 				ScriptableObjectUtility.CreateAsset<ActUnitBuy> (_path);
+			}
+		}
+		[MenuItem("Assets/BSS/Create/Acitvable/Upgrade")]
+		public static void CreateUpgrade ()
+		{
+			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
+			if( _path.Length != 0 )
+			{
+				ScriptableObjectUtility.CreateAsset<ActUpgrade> (_path);
 			}
 		}
 	}

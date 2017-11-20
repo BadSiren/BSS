@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8b864cc054b4af0a62ae01340e1229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScene: PlayScene
+  lobbyScene: LobbyScene
+  playScene: PlayScene
+  itemScene: ItemScene
   startMoney: 100
-  startFood: 10
-  levelDatas:
-  - {fileID: 114009452862470660, guid: 7d74ddff1e5e24c67bd9bc129dd454c0, type: 2}
+  startFood: 0
   selcectMode: 0
   selcectLevel: 0

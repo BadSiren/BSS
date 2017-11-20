@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.UI;
-using BSS.Data;
+using BSS.Play;
 
 namespace BSS.Unit {
 	[System.Serializable]

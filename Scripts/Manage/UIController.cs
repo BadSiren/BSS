@@ -36,11 +36,6 @@ namespace BSS.UI {
 		public void showNotify(string _title,string _text,float _time) {
 			notifyBoard.Show (_title,_text,_time);
 		}
-		public void selectUnitEvent(BaseUnit unit) {
-			informBoard.Close ();
-			unitInfo.setSelectUnit (unit);
-			activeBoard.setSelectUnit (unit);
-		}
 
 	}
 }

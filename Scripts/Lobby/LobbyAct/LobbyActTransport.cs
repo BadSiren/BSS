@@ -6,14 +6,19 @@ using BSS.UI;
 namespace BSS.LobbyItemSystem {
 	public class LobbyActTransport : LobbyAct
 	{
-		public string transContainer;
 		public bool isContainerShow=true;
 
 		public override void activate (int _num,string _containerName) {
-			UserJson.instance.transportItem (_num, _containerName, transContainer);
+			LobbyItem _item=UserJson.instance.getLobbyItem (_num, _containerName);
+			LobbyEquipItem item = _item as LobbyEquipItem;
+			if (item == null) {
+				return;
+			}
+
+			UserJson.instance.transportItem (_num, _containerName, item.containerName);
 			if (isContainerShow) {
 				containerShow (_containerName);
-				containerShow (transContainer);
+				containerShow (item.containerName);
 			}
 
 		}

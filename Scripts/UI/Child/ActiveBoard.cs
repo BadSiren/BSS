@@ -27,6 +27,13 @@ namespace BSS.UI {
 				resetActivableList ();
 			}
 		}
+		public void setSelectUnit(GameObject obj) {
+			var _unit=obj.GetComponent<BaseUnit> ();
+			if (_unit == null) {
+				return;
+			}
+			setSelectUnit (_unit);
+		}
 
 		public void setActivableList (List<Activable> _acitvableList) {
 			preActivableList = acitvableList;

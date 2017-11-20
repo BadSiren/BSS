@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using BSS.Data;
+using BSS.Play;
 
 namespace BSS.Unit {
 	public class Rewardable : MonoBehaviour

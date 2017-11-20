@@ -18,10 +18,13 @@ namespace BSS.UI {
 			num = _num;
 			sendToReceiver ("Icon", lobbyItem.icon);
 			sendToReceiver ("Title", lobbyItem.itemTitle);
+			sendToReceiver ("Rairity", lobbyItem.rairity.ToString());
 			sendToReceiver ("Text", lobbyItem.itemDescription);
 			if (lobbyItem is LobbyEquipItem) {
+				sendToReceiver ("Type", "장착아이템");
 				sendToReceiver ("Select", "장착하기");
 			} else {
+				sendToReceiver ("Type", "소모아이템");
 				sendToReceiver ("Select", "사용하기");
 			}
 		}

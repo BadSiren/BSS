@@ -2,31 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.UI;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[System.Serializable]
-	public class Activable : ScriptableObject
+	public class Activable : SerializedScriptableObject
 	{
 		public string ID;
 		public Sprite buttonImage;
 		[SerializeField]
 		[TextArea()]
-		private string _titleContent;
-		public virtual string titleContent {
-			get {
-				return _titleContent;
-			}
-		}
+		public string titleContent;
 		[SerializeField]
 		[TextArea()]
-		private string _textContent;
-		public virtual string textContent {
-			get {
-				return _titleContent;
-			}
-		}
+		public string textContent;
 
-		public virtual void onShow() {
+		public virtual void onInit(string _ID) {
+			
+		}
+		public virtual void onInit(List<string> properties) {
+
 		}
 		public virtual void activate(BaseUnit selectUnit) {
 			showInformDynamic ();

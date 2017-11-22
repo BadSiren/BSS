@@ -83,6 +83,11 @@ namespace BSS.UI {
 			messageArgs.parameter = _color;
 			BroadcastMessage ("receiveMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);
 		}
+		public void sendIndexToReceiver(string receiverName,int _index) {
+			messageArgs.receiverName = receiverName;
+			messageArgs.parameter = _index;
+			BroadcastMessage ("receiveIndexMessageEvent", messageArgs, SendMessageOptions.DontRequireReceiver);
+		}
 
 			
 	}

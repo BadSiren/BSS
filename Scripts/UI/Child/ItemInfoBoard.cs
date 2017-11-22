@@ -18,7 +18,9 @@ namespace BSS.UI {
 			num = _num;
 			sendToReceiver ("Icon", lobbyItem.icon);
 			sendToReceiver ("Title", lobbyItem.itemTitle);
-			sendToReceiver ("Rairity", lobbyItem.rairity.ToString());
+			var rairInfo=BSDatabase.instance.lobbyItemDatabase.rairityInfos [lobbyItem.rairity];
+			sendToReceiver ("Rairity", rairInfo.title);
+			sendToReceiver ("Rairity", rairInfo.col);
 			sendToReceiver ("Text", lobbyItem.itemDescription);
 			if (lobbyItem is LobbyEquipItem) {
 				sendToReceiver ("Type", "장착아이템");

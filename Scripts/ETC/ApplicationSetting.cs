@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 namespace BSS {
 	public class ApplicationSetting : MonoBehaviour
 	{
+		public string sceneName;
 
-		public void loadScene(string sceneName) {
+		public void loadScene() {
 			SceneManager.LoadScene (sceneName);
 		}
 		public void applicationEnd() {

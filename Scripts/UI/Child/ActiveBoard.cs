@@ -41,7 +41,6 @@ namespace BSS.UI {
 			acitvableList.Capacity = 9;
 			for (int i = 0; i < acitvableList.Capacity; i++) {
 				if (i < acitvableList.Count) {
-					acitvableList [i].onShow ();
 					sendToReceiver ("Button" + i.ToString (), acitvableList [i].buttonImage);
 				} else {
 					sendBoolToReceiver ("Button" + i.ToString (), false);

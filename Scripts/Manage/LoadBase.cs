@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using BSS.Level;
+using BSS.LobbyItemSystem;
+using Sirenix.OdinInspector;
 
 namespace BSS {
 	public class LoadBase : MonoBehaviour

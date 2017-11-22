@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using BSS.LobbyItemSystem;
 using BSS;
+using Sirenix.OdinInspector;
 
-public class UserJson : MonoBehaviour
+public class UserJson : SerializedMonoBehaviour
 {
 	[System.Serializable]
 	public class UserItem
 	{
 		public string ID;
+		public int index;
 
 		public UserItem(string _id) {
 			ID=_id;
+			index=0;
 		}
 	}
 
@@ -23,13 +26,11 @@ public class UserJson : MonoBehaviour
 		}
 	}
 
-	public string moneyName="Cube";
+	public string moneyName="Money";
 	public string gemName="Gem";
 
 	public string inventoryName="Inventory";
-	public int inventoryMax=60;
 	public List<string> equipContainers = new List<string> ();
-	public List<int> equipContainerMax = new List<int> ();
 	public Dictionary<string,int> containerMax=new Dictionary<string,int>();
 
 
@@ -45,13 +46,8 @@ public class UserJson : MonoBehaviour
 
 		intialize ();
 	}
-	void Start() {
-		addMoney (0);
-		addGem (0);
-	}
 		
 	void intialize() {
-		containerMaxInit ();
 		if (!ES2.Exists (moneyName)) {
 			ES2.Save (0, moneyName);
 		}
@@ -68,16 +64,7 @@ public class UserJson : MonoBehaviour
 				ES2.Save (new List<string>(), equipContainers[i]);
 			}
 		}
-
-	}
-	private void containerMaxInit() {
-		containerMax [inventoryName] = inventoryMax;
-		if (equipContainers.Count != equipContainerMax.Count) {
-			Debug.LogError ("Container Max Error");
-		}
-		for (int i=0;i<equipContainers.Count;i++) {
-			containerMax [equipContainers [i]] = equipContainerMax [i];
-		}
+		addMoney (10000);
 	}
 
 	//Monery Function
@@ -112,27 +99,22 @@ public class UserJson : MonoBehaviour
 
 	//Container Function
 	public bool addItem(UserItem userItem,string _container) {
-		if (!ES2.Exists (_container) || !existLobbyItem(userItem)) {
-			Debug.Log ("Item not found");
-			return false;
-		}
 		List<string> container=ES2.LoadList<string> (_container);
-		if (getEmptySpace (_container) == 0) {
-			Debug.Log ("Inventory Full");
+		var _item=BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID);
+		if (_item==null ||  getEmptySpace (_container) == 0) {
+			Debug.Log ("add fail");
 			return false;
 		}
+
 		string json=JsonUtility.ToJson (userItem);
 		container.Add (json);
 		ES2.Save (container, _container);
 		return true;
 	}
 	public bool removeItem(int slot,string _container) {
-		if (!ES2.Exists (_container)) {
-			return false;
-		}
 		List<string> container=ES2.LoadList<string> (_container);
 		if (slot>container.Count-1) {
-			Debug.Log ("No Item");
+			Debug.Log ("remove fail");
 			return false;
 		}
 		container.RemoveAt (slot);
@@ -140,12 +122,9 @@ public class UserJson : MonoBehaviour
 		return true;
 	}
 	public bool changeItem(int preSlot,int nowSlot,string _container) {
-		if (preSlot == nowSlot || !ES2.Exists (_container)) {
-			return false;
-		}
 		List<string> container=ES2.LoadList<string> (_container);
-		if (preSlot>container.Count-1 || nowSlot>container.Count-1 ) {
-			Debug.Log ("No Item");
+		if (preSlot == nowSlot ||preSlot>container.Count-1 || nowSlot>container.Count-1 ) {
+			Debug.Log ("change fail");
 			return false;
 		}
 		string temp = container [preSlot];
@@ -155,12 +134,9 @@ public class UserJson : MonoBehaviour
 		return true;
 	}
 	public bool transportItem(int _itemSlot,string _nowContainer,string _nextContainer) {
-		if (!ES2.Exists (_nowContainer) || !ES2.Exists (_nextContainer)) {
-			return false;
-		}
 		List<string> nowContainer=ES2.LoadList<string> (_nowContainer);
 		if (_itemSlot>nowContainer.Count-1) {
-			Debug.Log ("No Item");
+			Debug.Log ("transport fail");
 			return false;
 		}
 		UserItem userItem=getUserItem (_itemSlot, _nowContainer);
@@ -172,7 +148,7 @@ public class UserJson : MonoBehaviour
 	}
 	public int getEmptySpace(string _container) {
 		if (containerMax.ContainsKey(_container)) {
-			return containerMax [_container];
+			return containerMax [_container]-getCount(_container);
 		}
 		Debug.Log ("No Container!");
 		return 0;
@@ -216,6 +192,15 @@ public class UserJson : MonoBehaviour
 			}
 		}
 		return lobbyItems;
+	}
+	public List<LobbyEquipItem> getLobbyEquipItems(string _container) {
+		List<LobbyItem> lobbyItems = getLobbyItems (_container);
+		lobbyItems=lobbyItems.FindAll (x => x is LobbyEquipItem);
+		List<LobbyEquipItem> lobbyEquipItems = new List<LobbyEquipItem> ();
+		for (int i = 0; i < lobbyItems.Count; i++) {
+			lobbyEquipItems.Add (lobbyItems [i] as LobbyEquipItem);
+		}
+		return lobbyEquipItems;
 	}
 	public bool existLobbyItem(UserItem userItem) {
 		if (userItem == null || BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID) == null) {

@@ -7,7 +7,7 @@ namespace BSS {
 	{
 		public enum ListenType
 		{
-			Void,GameObject,Int
+			Void,GameObject,Int,String
 		}
 
 		public static List<BaseEventListener> eventListeners = new List<BaseEventListener> ();
@@ -42,6 +42,13 @@ namespace BSS {
 		}
 		public static void onPublishInt(string _listenType,int param) {
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.type==ListenType.Int);
+			foreach (var it in listeners) {
+				it.gameObject.SendMessage (it.sendMessage,param, SendMessageOptions.DontRequireReceiver);
+			}
+			onPublish (_listenType);
+		}
+		public static void onPublishString(string _listenType,string param) {
+			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.type==ListenType.String);
 			foreach (var it in listeners) {
 				it.gameObject.SendMessage (it.sendMessage,param, SendMessageOptions.DontRequireReceiver);
 			}

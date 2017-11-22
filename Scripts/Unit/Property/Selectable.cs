@@ -15,7 +15,6 @@ namespace BSS {
 		public static GameObject lastSelected;
 
 		public bool isSelected;
-		public bool canInputing=true;
 		private BaseUnit owner;
 
 		public void Awake()
@@ -34,9 +33,6 @@ namespace BSS {
 		}
 
 		public void onSelect() {
-			if (!canInputing) {
-				return;
-			}
 			if (!selectedList.Contains (gameObject)) {
 				selectedList.Add (gameObject);
 			}

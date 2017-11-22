@@ -42,9 +42,6 @@ namespace BSS.Unit {
 		public List<Skillable> skillList = new List<Skillable> ();
 		public List<GameObject> detectedUnits =new List<GameObject> ();
 
-
-
-
 		public virtual void die() {
 			tag = "Die";
 			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
@@ -78,6 +75,7 @@ namespace BSS.Unit {
 			skillInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
+			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
 		}
 			
 

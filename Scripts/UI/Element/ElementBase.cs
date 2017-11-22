@@ -14,11 +14,11 @@ namespace BSS.UI {
 		public ContentType contentType;
 		public string elementName;
 
-		private Board board;
-		private Text textComp;
-		private Image imageComp;
-		private Button buttonComp;
-		private Toggle toggleComp;
+		protected Board board;
+		protected Text textComp;
+		protected Image imageComp;
+		protected Button buttonComp;
+		protected Toggle toggleComp;
 
 
 		void Awake() {
@@ -86,6 +86,7 @@ namespace BSS.UI {
 		}
 
 
+
 		public void updateVariable(Sprite changeSprite) {
 			if (contentType != ContentType.Image) {
 				return;
@@ -115,6 +116,8 @@ namespace BSS.UI {
 		public void updateVariable(float resultText) {
 			updateVariable (resultText.ToString ());
 		}
+
+
 
 		public virtual void BoardShowEvent() {}
 	}

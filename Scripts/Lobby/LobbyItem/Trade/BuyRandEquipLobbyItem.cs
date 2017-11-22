@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 namespace BSS.LobbyItemSystem {
+	[System.Serializable]
+	public class RandRange {
+		public string containerName;
+		public int rairity;//(value<0) is Random
+		public List<float> rairtyProbs;
+	}
 	public class BuyRandEquipLobbyItem : MonoBehaviour
 	{
 		public enum CurrencyType
@@ -10,51 +16,99 @@ namespace BSS.LobbyItemSystem {
 			Money,Gem
 		}
 		//Rand Range
-		public string containerName;
-		public int rairity;//(value<0) is Random
-		public List<float> rairtyProbs;
+		public RandRange randRange;
 
 		public CurrencyType type;
 		public int needValue;
 
+		public static LobbyEquipItem lastBuyItem;
+		public static List<LobbyEquipItem> lastBuyItems=new List<LobbyEquipItem>();
+
+
 		public void buyItem() {
-			int _rairty = rairity;
-			if (_rairty < 0) {
-				_rairty = chooseProb (rairtyProbs);
-			}
-
-			List<LobbyEquipItem> items;
-			if (string.IsNullOrEmpty (containerName)) {
-				items = BSDatabase.instance.lobbyItemDatabase.getLobbyEquipItem ().FindAll (x => x.rairity == _rairty);
-			} else {
-				items = BSDatabase.instance.lobbyItemDatabase.getLobbyEquipItem ().FindAll (x => x.containerName == containerName && x.rairity == _rairty);
-			}
-			Debug.Log (items.Count);
-
-			if (items==null || items.Count == 0) {
-				Debug.Log ("No Item");
+			LobbyEquipItem _item = getItem (randRange);
+			if (_item == null) {
 				return;
 			}
 
 			if (type == CurrencyType.Money) {
 				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) > 0 && UserJson.instance.useMoney (needValue)) {
-					int _index=Random.Range (0, items.Count);
-					UserJson.instance.addItem (new UserJson.UserItem (items[_index].ID), UserJson.instance.inventoryName);
+					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
+					lastBuyItem = _item;
+					BaseEventListener.onPublish ("ItemBuy");
 				} else {
 					Debug.Log (11);
 				}
-
 			} else if (type == CurrencyType.Gem) {
 				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName)>0 && UserJson.instance.useGem (needValue)) {
-					int _index=Random.Range (0, items.Count);
-					UserJson.instance.addItem (new UserJson.UserItem (items[_index].ID), UserJson.instance.inventoryName);
+					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
+					BaseEventListener.onPublish ("ItemBuy");
+					lastBuyItem = _item;
+				} else {
+					Debug.Log (11);
+				}
+			}
+		}
+		public void buyItems(int _num) {
+			List<LobbyEquipItem> _items = new List<LobbyEquipItem> ();
+			while(true) {
+				LobbyEquipItem _item = getItem (randRange);
+				if (_item != null) {
+					_items.Add (_item);
+				} else {
+					Debug.LogError ("Item Nothing");
+					return;
+				}
+				if (_items.Count == _num) {
+					break;
+				}
+			}
+
+			if (type == CurrencyType.Money) {
+				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) > _num-1 && UserJson.instance.useMoney (needValue)) {
+					lastBuyItems.Clear ();
+					for (int i = 0; i < _num; i++) {
+						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
+						lastBuyItems.Add (_items [i]);
+					}
+					BaseEventListener.onPublish ("ItemBuy");
+				} else {
+					Debug.Log (11);
+				}
+			} else if (type == CurrencyType.Gem) {
+				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName)>_num-1 && UserJson.instance.useGem (needValue)) {
+					lastBuyItems.Clear ();
+					for (int i = 0; i < _num; i++) {
+						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
+						lastBuyItems.Add (_items [i]);
+					}
+					BaseEventListener.onPublish ("ItemBuy");
 				} else {
 					Debug.Log (11);
 				}
 			}
 		}
 
-		public int chooseProb (List<float> probs) {
+
+		private LobbyEquipItem getItem(RandRange _randRange) {
+			int _rairty = _randRange.rairity;
+			if (_rairty < 0) {
+				_rairty = chooseProb (_randRange.rairtyProbs);
+			}
+			List<LobbyEquipItem> items;
+			if (string.IsNullOrEmpty (_randRange.containerName)) {
+				items = BSDatabase.instance.lobbyItemDatabase.getLobbyEquipItems ().FindAll (x => x.rairity == _rairty);
+			} else {
+				items = BSDatabase.instance.lobbyItemDatabase.getLobbyEquipItems ().FindAll (x => x.containerName == _randRange.containerName && x.rairity == _rairty);
+			}
+			if (items==null || items.Count == 0) {
+				Debug.Log ("No Item");
+				return null;
+			}
+			return items[Random.Range (0, items.Count)];
+		}
+
+		private int chooseProb (List<float> probs) {
 			if (probs == null || probs.Count==0) {
 				return 0;
 			}

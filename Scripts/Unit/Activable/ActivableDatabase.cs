@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
-	public class ActivableDatabase : ScriptableObject
+	public class ActivableDatabase : SerializedScriptableObject
 	{
-		public List<Activable> activableList=new List<Activable>();
+		public Dictionary<string,Activable> activables=new Dictionary<string,Activable>();
 	}
 }
 

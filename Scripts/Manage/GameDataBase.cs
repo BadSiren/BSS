@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using EventsPlus;
 using BSS.Unit;
+using Sirenix.OdinInspector;
 
 namespace BSS.Play {
-	public class GameDataBase : MonoBehaviour
+	public class GameDataBase : SerializedMonoBehaviour
 	{
 		public static GameDataBase instance;
 

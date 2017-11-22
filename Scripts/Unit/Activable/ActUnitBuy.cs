@@ -8,27 +8,40 @@ namespace BSS.Unit {
 	[System.Serializable]
 	public class ActUnitBuy : Activable
 	{
-		public GameObject buyPrefab;
+		public int needProperty=5;
+
+		//Property
 		public int useMoney;
 		public int useFood;
-		public bool isInvisible;
+		public float addHealth;
+		public float addDamage;
 
+		private GameObject unitPrefab;
 		private BaseUnit unit;
 		private Charactable character;
-		private Attackable attack;
 
-		void OnEnable() {
-			unit=buyPrefab.GetComponent<BaseUnit> ();
-			if (unit == null) {
-				Debug.LogError ("Not Unit!");
+		public override void onInit(string _ID) {
+			ID = _ID;
+			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (_ID,out unitPrefab);
+			unit=unitPrefab.GetComponent<BaseUnit> ();
+			titleContent=unit.uName.ToString () + " 생산하기";
+			textContent=unit.uName.ToString () + " 생산합니다.";
+			character = unitPrefab.GetComponent<Charactable> ();
+			if (character != null) {
+				buttonImage = character.portrait;
 			}
-			character=buyPrefab.GetComponent<Charactable> ();
-			attack=buyPrefab.GetComponent<Attackable> ();
 		}
-
-		public override void onShow() {
-			base.onShow ();
+		public override void onInit(List<string> properties) {
+			if (properties.Count < needProperty) {
+				return;
+			}
+			onInit (properties [0]);
+			useMoney = int.Parse (properties [1]);
+			useFood = int.Parse (properties [2]);
+			addHealth = int.Parse (properties [3]);
+			addDamage = int.Parse (properties [4]);
 		}
+			
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
 			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-1f,0f),selectUnit);
@@ -36,18 +49,21 @@ namespace BSS.Unit {
 			
 
 		private void unitBuy(Vector3 pos,BaseUnit selectUnit) {
-			if (buyPrefab==null) {
-				//buyUnit is null
-				return;
-			}
 			if (GameDataBase.instance.useMoneyFood(useMoney,useFood)) {
-				GameObject obj=GameObject.Instantiate (buyPrefab, pos, Quaternion.identity);
-				obj.SetActive (true);
-				BaseUnit unit = obj.GetComponent<BaseUnit> ();
-				unit.team = selectUnit.team;
-				unit.isInvincible = isInvisible;
+				GameObject obj=GameObject.Instantiate (unitPrefab, pos, Quaternion.identity);
+				BaseUnit _unit = obj.GetComponent<BaseUnit> ();
+				_unit.team = selectUnit.team;
+				_unit.maxHealth += addHealth;
+				_unit.health = _unit.maxHealth;
+				Attackable _attack = obj.GetComponent<Attackable> ();
+				if (_attack != null) {
+					_attack.changeDamage += addDamage;
+				}
+
 			}
 		}
+
+
 		protected override void showInformDynamic() {
 			UIController.instance.showInform (titleContent,textContent,useMoney,useFood);
 		}

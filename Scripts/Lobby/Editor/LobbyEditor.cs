@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using BSS.Play;
 
 namespace BSS.LobbyItemSystem {
 	public class LobbyEditor : MonoBehaviour
@@ -43,6 +44,17 @@ namespace BSS.LobbyItemSystem {
 			if( _path.Length != 0 )
 			{
 				ScriptableObjectUtility.CreateAsset<LobbyActTransport> (_path);
+			}
+		}
+
+		//Play Act
+		[MenuItem("Assets/BSS/Create/PlayAct/AddActivable")]
+		public static void CreateAddActivable ()
+		{
+			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
+			if( _path.Length != 0 )
+			{
+				ScriptableObjectUtility.CreateAsset<AddActivable> (_path);
 			}
 		}
 	}

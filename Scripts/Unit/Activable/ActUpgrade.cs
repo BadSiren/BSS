@@ -4,41 +4,55 @@ using System.Collections.Generic;
 using BSS.Play;
 using BSS.UI;
 
+
+
 namespace BSS.Unit {
 	[System.Serializable]
 	public class ActUpgrade: Activable
 	{
-		public static List<ActUpgrade> actUpgradeList=new List<ActUpgrade>();
-		public string upgradeIndex;
+		public int needProperty=6;
+
+		//Property(+ID)
+		public int maxLevel;
 		public int useInitMoney;
 		public int useAddMoney;
 		public int useInitFood;
 		public int useAddFood;
 
-		public int maxLevel;
+
 		public int level {
 			get {
 				if (GameDataBase.instance == null) {
 					return 0;
 				} 
-				return GameDataBase.instance.getUpgradeLevel (upgradeIndex);
+				return GameDataBase.instance.getUpgradeLevel (ID);
 			}
 			set {
 				if (GameDataBase.instance != null) {
-					GameDataBase.instance.setUpgradeLevel (upgradeIndex,value);
+					GameDataBase.instance.setUpgradeLevel (ID,value);
 				} 
 			}
 		}
 
-		void OnEnable() {
-			if (!actUpgradeList.Contains (this)) {
-				actUpgradeList.Add (this);
-			}
+
+		public override void onInit(string _ID) {
+			ID = _ID;
+			Upgrade up;
+			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (_ID,out up);
+			titleContent = up.title;
+			textContent=up.title;
+			buttonImage = up.icon;
 		}
-		void OnDisable() {
-			if (actUpgradeList.Contains (this)) {
-				actUpgradeList.Remove (this);
+		public override void onInit(List<string> properties) {
+			if (properties.Count < needProperty) {
+				return;
 			}
+			onInit (properties [0]);
+			maxLevel=int.Parse (properties [1]);
+			useInitMoney = int.Parse (properties [2]);
+			useAddMoney = int.Parse (properties [3]);
+			useInitFood = int.Parse (properties [4]);
+			useAddFood = int.Parse (properties [5]);
 		}
 
 		public override void activate(BaseUnit selectUnit) {
@@ -46,14 +60,10 @@ namespace BSS.Unit {
 			showInformDynamic ();
 		}
 
-		public static ActUpgrade getActUpgrade(string upIndex) {
-			return actUpgradeList.Find (x => x.upgradeIndex == upIndex);
-		}
-
 		private void upgrade() {
 			if (level<maxLevel && GameDataBase.instance.useMoneyFood(getMoney(),getFood()) ) {
 				level++;
-				UpBase.allApplyUpgrade (upgradeIndex);
+				UpBase.allApplyUpgrade (ID);
 			}
 		}
 

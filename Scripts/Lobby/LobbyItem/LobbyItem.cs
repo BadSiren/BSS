@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace BSS.LobbyItemSystem {
 	[System.Serializable]
-	public class LobbyItem : ScriptableObject {
+	public class LobbyItem : SerializedScriptableObject {
 		public string ID;
 		public Sprite icon;
 		public string itemTitle = "";
@@ -15,7 +16,6 @@ namespace BSS.LobbyItemSystem {
 		public int rairity;
 
 		public List<LobbyAct> lobbyActs;
-		public List<string> properties;
 	}
 
 

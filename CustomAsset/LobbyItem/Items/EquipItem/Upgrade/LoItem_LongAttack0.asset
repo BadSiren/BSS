@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 609bf114836b44da280d0664ced99715, type: 3}
+  m_Name: LoItem_LongAttack0
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: properties
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyEquipItem+Property,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|BSS.LobbyItemSystem.LobbyEquipItem+Property, Assembly-CSharp
+    - Name: target
+      Entry: 1
+      Data: UpgradeCenter
+    - Name: playAct
+      Entry: 1
+      Data: AddActivable
+    - Name: arguments
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 7
+    - Name: 
+      Entry: 1
+      Data: Upgrade
+    - Name: 
+      Entry: 1
+      Data: LongAttack
+    - Name: 
+      Entry: 1
+      Data: 3
+    - Name: 
+      Entry: 1
+      Data: 10
+    - Name: 
+      Entry: 1
+      Data: 5
+    - Name: 
+      Entry: 1
+      Data: 0
+    - Name: 
+      Entry: 1
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  ID: LongAttack0
+  icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
+  itemTitle: "\uC6D0\uAC70\uB9AC\uACF5\uACA9\uC5C5"
+  itemDescription: "[\uC5C5\uAE00\uC13C\uD130]\n\uC5C5\uAE00\uC13C\uD130\uC5D0\uC11C
+    \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744 \uC5C5\uADF8\uB808\uC774\uB4DC\uD560 \uC218
+    \uC788\uC2B5\uB2C8\uB2E4.\n\uCD5C\uB300\uB808\uBCA8 : [3]\n\uC5C5\uAE00\uAC00\uACA9
+    : [10+5/0+0]"
+  buyCost: 0
+  sellCost: 0
+  rairity: 0
+  lobbyActs:
+  - {fileID: 11400000, guid: 31cf2782230b44f5cb4fe4dffa6e5d54, type: 2}
+  containerName: UpgradeCenter

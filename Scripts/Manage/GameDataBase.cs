@@ -31,6 +31,7 @@ namespace BSS.Play {
 			}
 		}
 		public Dictionary<string,int> upgrades=new Dictionary<string,int>();
+		public Dictionary<string,List<Upgradable>> upListeners=new Dictionary<string,List<Upgradable>>();
 
 
 		void Awake()
@@ -46,14 +47,35 @@ namespace BSS.Play {
 			food -= useFood;
 			return true;
 		}
-		public int getUpgradeLevel(string upIndex) {
-			if (!upgrades.ContainsKey (upIndex)) {
-				upgrades [upIndex] = 0;
+		public int getUpgradeLevel(string upID) {
+			if (!upgrades.ContainsKey (upID)) {
+				upgrades [upID] = 0;
 			}
-			return upgrades [upIndex];
+			return upgrades [upID];
 		}
-		public void setUpgradeLevel(string upIndex,int _level) {
-			upgrades [upIndex] = _level;
+		public void setUpgradeLevel(string upID,int _level) {
+			upgrades [upID] = _level;
+			if (upListeners.ContainsKey(upID)) {
+				foreach (var it in upListeners[upID]) {
+					it.onUpgradeApply ();
+				}
+			}
 		}
+		public void addUpListener(Upgradable _up) {
+			if (!upListeners.ContainsKey (_up.ID)) {
+				upListeners [_up.ID] = new List<Upgradable> ();
+			}
+			if (!upListeners [_up.ID].Contains (_up)) {
+				upListeners [_up.ID].Add (_up);
+			}
+		}
+		public void removeUpListener(Upgradable _up) {
+			if (upListeners.ContainsKey (_up.ID)) {
+				if (upListeners [_up.ID].Contains(_up)) {
+					upListeners [_up.ID].Remove (_up);
+				}
+			}
+		}
+
 	}
 }

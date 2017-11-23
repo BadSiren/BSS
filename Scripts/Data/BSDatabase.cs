@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BSS.LobbyItemSystem;
 using BSS.Unit;
+using BSS.Level;
 using Sirenix.OdinInspector;
 
 namespace BSS {
@@ -13,6 +14,8 @@ namespace BSS {
 		public LobbyItemDatabase lobbyItemDatabase;
 		public ActivableDatabase activableDatabase;
 		public BaseUnitDatabase baseUnitDatabase;
+		public LevelDatabase levelDatabase;
+
 
 		void Awake() {
 			if (instance == null) {

@@ -10,7 +10,7 @@ namespace BSS.Unit {
 	{
 		public int needProperty=5;
 
-		//Property
+		//Property(+ID)
 		public int useMoney;
 		public int useFood;
 		public float addHealth;

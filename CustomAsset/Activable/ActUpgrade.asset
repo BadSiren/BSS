@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b308e454fbc4e06b90382e6c035584, type: 3}
+  m_Name: ActUpgrade
+  m_EditorClassIdentifier: 
+  ID: 
+  buttonImage: {fileID: 0}
+  _titleContent: 
+  _textContent: 
+  upgradeIndex: 
+  useInitMoney: 0
+  useAddMoney: 0
+  useInitFood: 0
+  useAddFood: 0
+  maxLevel: 0

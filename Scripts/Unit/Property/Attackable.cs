@@ -16,12 +16,10 @@ namespace BSS.Unit {
 	public class Attackable : MonoBehaviour
 	{
 		private const float SIGHT=20f;
-		private const float RANGETYPE=6f;
 
 		public static List<Attackable> attackableList = new List<Attackable>();
 
-		[HideInInspector]
-		public AttackType attackType;
+		public Sprite icon;
 		public UnitTeam team {
 			get {return owner.team;}
 		}
@@ -88,12 +86,9 @@ namespace BSS.Unit {
 		}
 			
 		private BaseUnit owner;
-		[SerializeField]
-		public GameObject target;
-		[SerializeField]
-		public List<GameObject> targets =new List<GameObject> ();
-		[SerializeField]
-		public List<GameObject> detects =new List<GameObject> ();
+		private GameObject target;
+		private List<GameObject> targets =new List<GameObject> ();
+		private List<GameObject> detects =new List<GameObject> ();
 
 
 		public AttackState state;
@@ -236,11 +231,6 @@ namespace BSS.Unit {
 
 		//UnitEvent
 		private void onInitialize() {
-			if (initRange > RANGETYPE) {
-				attackType = AttackType.Long;
-			} else {
-				attackType = AttackType.Short;
-			}
 			StartCoroutine(attackLoop());
 		}
 		private void onMoveByForceEvent() {

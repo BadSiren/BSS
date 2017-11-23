@@ -8,9 +8,296 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f756850ec13b4552bdcab69c8aa8503, type: 3}
+  m_Script: {fileID: 11500000, guid: e77af9e930bb1412f8b0abd1586b83b9, type: 3}
   m_Name: _LobbyItemDatabase
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 2bd248dd95df44af2b022ec2772f2b71, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: rairityInfos
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uB178\uB9D0"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uB9E4\uC9C1"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.2794118
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.9682093
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uB808\uC5B4"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 0.676470757
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uC720\uB2C8\uD06C"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.5294118
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uC5D0\uD53D"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0.970588267
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: BSS.LobbyItemSystem.LobbyItemDatabase+RairityInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uC2A4\uD398\uC15C"
+    - Name: col
+      Entry: 7
+      Data: UnityEngine.Color, UnityEngine.CoreModule
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 0
+    - Name: 
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: playActs
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Play.PlayAct,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: AddActivable
+    - Name: 
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   lobbyItems:
-  - {fileID: 11400000, guid: 906db21b76f0d474ca1e093101ab42e6, type: 2}
-  - {fileID: 11400000, guid: 092f7aaeda8814c45ade8687b3d7ee69, type: 2}
+  - {fileID: 11400000, guid: f6227a5dbe8eb454daef694e1d97dd39, type: 2}
+  - {fileID: 11400000, guid: efcd5ecd6256b4fc5bd661248c500140, type: 2}
+  - {fileID: 11400000, guid: f720cb383fcd846bb9f9b1cbfd4fcaf0, type: 2}
+  - {fileID: 11400000, guid: 4d19173a2f2b643f693995d957a4a79d, type: 2}
+  - {fileID: 11400000, guid: 5bea9e2096a834786a8b9cf45163fa90, type: 2}
+  - {fileID: 11400000, guid: c8462b93f6e2e469db3fff47fa2b8374, type: 2}
+  - {fileID: 11400000, guid: 19500f62de3dc407a8005aac2f07e0a6, type: 2}
+  - {fileID: 11400000, guid: c198dcc7081ff45b59e34f1ba07ab7d9, type: 2}
+  - {fileID: 11400000, guid: b466092a4670b40e19c55828c67c6880, type: 2}
+  - {fileID: 11400000, guid: 864d98774ae1f46b1b6a9de6c8939dbf, type: 2}
+  - {fileID: 11400000, guid: acb608ad9c01f4cf4a0b743976337c05, type: 2}

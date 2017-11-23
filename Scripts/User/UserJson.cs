@@ -64,7 +64,6 @@ public class UserJson : SerializedMonoBehaviour
 				ES2.Save (new List<string>(), equipContainers[i]);
 			}
 		}
-		addMoney (10000);
 	}
 
 	//Monery Function

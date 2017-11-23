@@ -37,10 +37,10 @@ namespace BSS.Unit {
 
 		public override void onInit(string _ID) {
 			ID = _ID;
-			Upgrade up;
+			Upgradable up;
 			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (_ID,out up);
-			titleContent = up.title;
-			textContent=up.title;
+			titleContent = up.titleContent;
+			textContent=up.textContent;
 			buttonImage = up.icon;
 		}
 		public override void onInit(List<string> properties) {
@@ -63,7 +63,6 @@ namespace BSS.Unit {
 		private void upgrade() {
 			if (level<maxLevel && GameDataBase.instance.useMoneyFood(getMoney(),getFood()) ) {
 				level++;
-				UpBase.allApplyUpgrade (ID);
 			}
 		}
 

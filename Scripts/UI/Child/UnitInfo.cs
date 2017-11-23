@@ -27,38 +27,18 @@ namespace BSS.UI {
 			}
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
 
-			/*
-			if (unit.GetComponent<Upgradable> () == null) {
-				sendBoolToReceiver ("ArmorUp", false);
-			} else {
-				sendBoolToReceiver ("ArmorUp", true);
-				sendToReceiver ("ArmorUp", unit.upArmorLevel.ToString());
-			}
-			*/
-
 			Attackable attackable = unit.GetComponent<Attackable> ();
 			if (attackable == null) {
 				sendBoolToReceiver ("Attack", false);
+				sendBoolToReceiver ("AttackIcon", false);
 				sendBoolToReceiver ("ShortAttack", false);
 				sendBoolToReceiver ("LongAttack", false);
 				sendBoolToReceiver ("AttackUp", false);
 			} else {
 				sendToReceiver ("Attack", valueToString(attackable.initDamage,attackable.damage));
-
-				if (attackable.attackType == AttackType.Short) {
-					sendBoolToReceiver ("ShortAttack", true);
-					sendBoolToReceiver ("LongAttack", false);
-				} else {
-					sendBoolToReceiver ("ShortAttack", false);
-					sendBoolToReceiver ("LongAttack", true);
-				}
-				UpAttack upAttack = unit.GetComponent<UpAttack> ();
-				if (upAttack == null) {
-					sendBoolToReceiver ("AttackUp", false);
-				} else {
-					sendBoolToReceiver ("AttackUp", true);
-					sendToReceiver ("AttackUp", upAttack.level.ToString());
-				}
+				sendBoolToReceiver ("Attack", true);
+				sendToReceiver ("AttackIcon", attackable.icon);
+				sendBoolToReceiver ("AttackUp", false);
 			}
 		}
 
@@ -81,18 +61,18 @@ namespace BSS.UI {
 				return;
 			}
 			Attackable attackable=selectUnit.GetComponent<Attackable> ();
-			string text0 = "공격형태: " + typeToString (attackable.attackType.ToString());
+			//string text0 = "공격형태: " + typeToString (attackable.attackType.ToString());
 			string text1 = "공격력: " + valueToString (attackable.initDamage, attackable.damage);
 			string text2 = "공격속도: " + valueToString (attackable.initAttackSpeed, attackable.attackSpeed);
 			string text3 = "사거리: " + valueToString (attackable.initRange, attackable.range);
-			UIController.instance.showInform (selectUnit.uName + " 공격정보",text0+"\n"+text1+"\n"+text2+"\n"+text3);
+			UIController.instance.showInform (selectUnit.uName + " 공격정보",text1+"\n"+text2+"\n"+text3);
 		}
 		public void buttonDefenceInfo() {
 			if (selectUnit == null) {
 				return;
 			}
 			string text0 = "방어력: " + valueToString (selectUnit.initArmor, selectUnit.armor);
-			string text1 = "피해감소율: " + valueToStringFloor (reductionCalc(selectUnit.initArmor)*100f, reductionCalc(selectUnit.armor)*100f) +"%";
+			string text1 = "피해감소율: " + valueToStringFloor (BaseUnit.reductionArmor(selectUnit.initArmor)*100f, BaseUnit.reductionArmor(selectUnit.armor)*100f) +"%";
 			UIController.instance.showInform (selectUnit.uName + " 방어정보",text0+"\n"+text1);
 		}
 
@@ -108,9 +88,6 @@ namespace BSS.UI {
 			string initText = string.Format ("{0:0}", initValue);
 			string addText = string.Format ("{0:0}", allValue - initValue);
 			return initText +" (+"+ addText+")";
-		}
-		private float reductionCalc(float _armor) {
-			return 1f-(100f / (_armor + 100f));
 		}
 		private string teamToString(string team) {
 			switch (team) {

@@ -14,6 +14,7 @@ namespace BSS.LobbyItemSystem {
 			if( _path.Length != 0 )
 			{
 				ScriptableObjectUtility.CreateAsset<LobbyItemDatabase> (_path);
+
 			}
 		}
 		[MenuItem("Assets/BSS/Create/LobbyItem/EquipItem")]

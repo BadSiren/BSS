@@ -18,13 +18,13 @@ namespace BSS.Unit {
 		}
 
 		//Upgrade
-		[MenuItem("Assets/BSS/Create/Upgrade")]
-		public static void CreateUpgrade ()
+		[MenuItem("Assets/BSS/Create/Upgradable/UpAttack")]
+		public static void CreateUpAttack ()
 		{
 			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
 			if( _path.Length != 0 )
 			{
-				ScriptableObjectUtility.CreateAsset<Upgrade> (_path);
+				ScriptableObjectUtility.CreateAsset<UpAttack> (_path);
 			}
 		}
 	}

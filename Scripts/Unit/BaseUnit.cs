@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using BSS.Input;
 using BSS.Skill;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	public enum UnitTeam
@@ -11,7 +12,7 @@ namespace BSS.Unit {
 		Blue, //Enemy Team
 		White //Neutral Team
 	}
-	public class BaseUnit : MonoBehaviour
+	public class BaseUnit : SerializedMonoBehaviour
 	{
 		public static List<BaseUnit> unitList = new List<BaseUnit>();
 
@@ -38,8 +39,11 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
+		public Dictionary<string,float> existUpgradables = new Dictionary<string,float> ();
+
 		public List<Activable> activableList = new List<Activable> ();
-		public List<Skillable> skillList = new List<Skillable> ();
+		public List<Upgradable> upgradableList= new List<Upgradable>();
+		//public List<Skillable> skillList = new List<Skillable> ();
 		public List<GameObject> detectedUnits =new List<GameObject> ();
 
 		public virtual void die() {
@@ -50,13 +54,25 @@ namespace BSS.Unit {
 
 		public virtual void setEnemy() {
 			team = UnitTeam.Blue;
-
-			foreach (var it in GetComponents<UpBase> ()) {
-				Destroy (it);
-			}
+			resetActivable ();
+			resetUpgradable ();
 		}
 		public void addActivable(Activable _activable) {
 			activableList.Add (_activable);
+		}
+		public void resetActivable() {
+			foreach (var it in activableList) {Destroy (it);}
+			activableList.Clear ();
+		}
+		public void addUpgradable(Upgradable _upgradable) {
+			upgradableList.Add (_upgradable);
+		}
+		public void addUpgradable(string upID,float argument) {
+			BSDatabase.instance.baseUnitDatabase.upgrades [upID].onCreate (gameObject, argument);
+		}
+		public void resetUpgradable() {
+			foreach (var it in upgradableList) {Destroy (it);}
+			upgradableList.Clear ();
 		}
 
 		protected virtual void OnEnable()
@@ -67,26 +83,33 @@ namespace BSS.Unit {
 		protected virtual void OnDisable()
 		{
 			unitList.Remove(this);
+			resetActivable ();
+			resetUpgradable ();
 		}
 		protected virtual void initialize() {
 			health = maxHealth;
 			mana = maxMana;
 
+			upgradeInitialize ();
 			skillInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
 			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
 		}
 			
-
-		private void skillInitialize() {
-			foreach (var it in skillList) {
-				it.addComponent (gameObject);
+		private void upgradeInitialize() {
+			foreach (var it in existUpgradables) {
+				addUpgradable (it.Key, it.Value);
 			}
+		}
+		private void skillInitialize() {
+			//foreach (var it in skillList) {
+			//	it.addComponent (gameObject);
+			//}
 		}
 			
 		private void hitDamage(AttackInfo attackInfo) {
-			float _damage = attackInfo.damage * (1f - reductionCalc (armor));
+			float _damage = attackInfo.damage * (1f - reductionArmor (armor));
 			health -= _damage;
 			if (health < 0.1f) {
 				attackInfo.attacker.SendMessage ("onKillEvent",gameObject, SendMessageOptions.DontRequireReceiver);
@@ -94,8 +117,8 @@ namespace BSS.Unit {
 			}
 			SendMessage ("AssignHealthValue", health, SendMessageOptions.DontRequireReceiver);
 		}
-		private float reductionCalc(float _armor) {
-			return 1f-(100f / (_armor + 100f));
+		public static float reductionArmor(float _armor) {
+			return 1f-(50f / (_armor + 50f));
 		}
 
 

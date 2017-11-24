@@ -373,6 +373,7 @@ GameObject:
   - component: {fileID: 114061592675696840}
   - component: {fileID: 50701424814478580}
   - component: {fileID: 61501808466986536}
+  - component: {fileID: 114171862426958480}
   m_Layer: 0
   m_Name: Medusa
   m_TagString: Untagged
@@ -1162,6 +1163,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portrait: {fileID: 21300000, guid: 6e74439386cec4a9caa2a22d16a91cbd, type: 3}
+--- !u!114 &114171862426958480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675832131944250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _map: {fileID: 0}
+  maxSpeed: 0
+  mass: 1
+  stoppingDistance: 0.2
+  slowingDistance: 0
+  accelerationRate: 1000
+  decelerationRate: 0
+  lookAheadDistance: 0
+  avoidRadius: 0
+  centerOffset: {x: 0, y: 0}
+  rotateTransform: 0
+  rotateSpeed: 0
+  repath: 0
+  restrict: 0
+  closerPointOnInvalid: 1
+  debugPath: 0
 --- !u!114 &114319566346945270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1179,9 +1207,6 @@ MonoBehaviour:
   _initRange: 5
   changeDamage: 0
   changeAttackSpeed: 0
-  target: {fileID: 0}
-  targets: []
-  detects: []
   state: 0
 --- !u!114 &114338303923676290
 MonoBehaviour:
@@ -1209,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4165a8f56ba404f14a0d7c1d98d73c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  _initSpeed: 10
   canInputing: 0
   isMoving: 0
   destination: {x: 0, y: 0, z: 0}

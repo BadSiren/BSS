@@ -18,19 +18,23 @@ namespace BSS.LobbyItemSystem {
 				Debug.Log ("No Item");
 				return;
 			}
+			if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) <=0) {
+				BaseEventListener.onPublish ("NoSpace");
+				return;
+			}
 
 			if (type == CurrencyType.Money) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) > 0 && UserJson.instance.useMoney (needValue)) {
+				if (UserJson.instance.useMoney (needValue)) {
 					UserJson.instance.addItem (new UserJson.UserItem (lobbyItemID), UserJson.instance.inventoryName);
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoMoney");
 				}
 
 			} else if (type == CurrencyType.Gem) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName)>0 && UserJson.instance.useGem (needValue)) {
+				if (UserJson.instance.useGem (needValue)) {
 					UserJson.instance.addItem (new UserJson.UserItem (lobbyItemID), UserJson.instance.inventoryName);
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoGem");
 				}
 			}
 

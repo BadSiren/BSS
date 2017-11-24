@@ -403,9 +403,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   listenName: UnitSelect
+  listenType: 1
   sendMessage: setSelectUnit
+  isDynamic: 1
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
 --- !u!114 &114185018859008080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -517,6 +531,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03a6f208e59a4b688c55a2ece60ab44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   boardName: UnitInfo
   isStartedShow: 1
   onShow:

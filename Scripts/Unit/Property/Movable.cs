@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Input;
-using EventsPlus;
 
 namespace BSS.Unit {
+	[RequireComponent (typeof (PolyNavAgent))]
 	[RequireComponent (typeof (BaseUnit))]
 	public class Movable : MonoBehaviour
 	{
 		public static List<Movable> movableList = new List<Movable>();
 
+		[SerializeField]
 		private float _initSpeed;
 		public float initSpeed {
 			get {
@@ -19,7 +20,14 @@ namespace BSS.Unit {
 				_initSpeed = value;
 			}
 		}
-		public float speed=10f;
+		public float speed {
+			get {
+				return navAgent.maxSpeed;
+			}
+			set {
+				navAgent.maxSpeed=value;
+			}
+		}
 		public bool canInputing;
 
 		public bool isMoving;
@@ -27,44 +35,28 @@ namespace BSS.Unit {
 		public Vector3 destination;
 		public bool isPause;
 
+		private PolyNavAgent navAgent;
 		private bool isIgnore;
 
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
+			navAgent=GetComponent<PolyNavAgent> ();
 			movableList.Add(this);
 
-			initSpeed = speed;
+			speed = initSpeed;
 		}
 		void OnDestroy()
 		{
 			movableList.Remove(this);
 		}
 
-		void Update() {
-			if (!isPause &&!checkZero (destination)) {
-				if (checkDestination (destination)) {
-					isIgnore = false;
-					destination = Vector3.zero;
-					SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
-					SendMessage ("onArriveEvent", SendMessageOptions.DontRequireReceiver);
-					return;
-				}
-				transform.position = Vector3.MoveTowards (transform.position, destination, speed * Time.deltaTime);
-				if (!isMoving) {
-					isMoving = true;
-					SendMessage ("onAllMoveEvent",destination, SendMessageOptions.DontRequireReceiver);
-				}
-				return;
-			}
-			if (isMoving) {
-				isMoving = false;
-				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-
-
 		public void toMove(Vector3 targetPos) {
+			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+			navAgent.SetDestination (targetPos,(x)=> {
+				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
+			});
+			/*
 			if (isIgnore) {
 				return;
 			}
@@ -74,53 +66,25 @@ namespace BSS.Unit {
 			if (targetPos != Vector3.zero) {
 				SendMessage ("onAllMoveEvent", destination, SendMessageOptions.DontRequireReceiver);
 			}
+			*/
 		}
 		public void toMoveByForce(Vector3 targetPos) {
+			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+			navAgent.SetDestination (targetPos,(x)=> {
+				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
+			});
+			/*
 			isIgnore = true;
 			isPause = false;
 			destination = targetPos;
 			isMoving = true;
 			SendMessage ("onAllMoveEvent",destination, SendMessageOptions.DontRequireReceiver);
 			SendMessage ("onMoveByForceEvent",destination, SendMessageOptions.DontRequireReceiver);
+			*/
 		}
-
-		public void moveStopTimer(float _time) {
-			StartCoroutine (coMoveStopTimer(_time));
-		}
-		IEnumerator coMoveStopTimer(float _time) {
-			yield return new WaitForSeconds (_time);
-			toMove (Vector3.zero);
-		}
-		public void movePause(bool reset=false) {
-			if (isPause) {
-				return;
-			}
-			isPause = true;
-			if (reset) {
-				StartCoroutine (coMoveResume ());
-			}
-		}
-		public void moveResume() {
-			if (!isPause) {
-				return;
-			}
-			isPause = false;
-		}
-
-
-		IEnumerator coMoveResume(float _time=0.5f) {
-			yield return new WaitForSeconds (_time);
-			moveResume ();
-		}
-			
-		private bool checkDestination(Vector3 des,float dis=0.5f) {
-			return Vector3.Distance (transform.position, des) < dis;
-		}
-		private bool checkZero(Vector3 des) {
-			return des == Vector3.zero;
-		}
-		private bool checkZero(Vector3 des0,Vector3 des1) {
-			return (des0 == Vector3.zero && des1==Vector3.zero);
+		public void moveStop() {
+			navAgent.Stop ();
+			SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
 		}
 			
 			
@@ -134,7 +98,6 @@ namespace BSS.Unit {
 			canInputing = false;
 		}
 		private void onAttackEvent(AttackInfo attackInfo) {
-			movePause (true);
 		}
 	}
 }

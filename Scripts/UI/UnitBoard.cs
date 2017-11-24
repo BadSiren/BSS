@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using BSS.Unit;
-using EventsPlus;
 
 namespace BSS.UI {
 	public class UnitBoard : Board

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	public class AttackInfo {
@@ -13,7 +14,7 @@ namespace BSS.Unit {
 		Short,Long
 	}
 	[RequireComponent (typeof (BaseUnit))]
-	public class Attackable : MonoBehaviour
+	public class Attackable : SerializedMonoBehaviour
 	{
 		private const float SIGHT=20f;
 
@@ -86,8 +87,11 @@ namespace BSS.Unit {
 		}
 			
 		private BaseUnit owner;
+		[SerializeField]
 		private GameObject target;
+		[SerializeField]
 		private List<GameObject> targets =new List<GameObject> ();
+		[SerializeField]
 		private List<GameObject> detects =new List<GameObject> ();
 
 
@@ -131,6 +135,7 @@ namespace BSS.Unit {
 			detectCollider.setDisable ();
 			attackCollider.setDisable ();
 			target = null;
+
 		}
 		public void setIdle() {
 			state = AttackState.Idle;
@@ -192,7 +197,7 @@ namespace BSS.Unit {
 			if (checkHostile (col.gameObject) && state==AttackState.Detect) {
 				state = AttackState.Attack;
 				target = col.gameObject;
-				SendMessage("moveStopTimer",0.1f,SendMessageOptions.DontRequireReceiver);
+				SendMessage("moveStop",SendMessageOptions.DontRequireReceiver);
 			}
 		}
 		private void OnTriggerExitTarget(Collider2D col) {
@@ -236,7 +241,7 @@ namespace BSS.Unit {
 		private void onMoveByForceEvent() {
 			setIgnore ();
 		}
-		private void onArriveEvent() {
+		private void onMoveStopEvent() {
 			if (state == AttackState.Ignore) {
 				setIdle ();
 			}

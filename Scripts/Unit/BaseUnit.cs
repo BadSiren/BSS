@@ -44,7 +44,6 @@ namespace BSS.Unit {
 		public List<Activable> activableList = new List<Activable> ();
 		public List<Upgradable> upgradableList= new List<Upgradable>();
 		//public List<Skillable> skillList = new List<Skillable> ();
-		public List<GameObject> detectedUnits =new List<GameObject> ();
 
 		public virtual void die() {
 			tag = "Die";

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using EventsPlus;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 namespace BSS.UI {
 	[RequireComponent (typeof(CanvasGroup))]
-	public class Board : MonoBehaviour
+	public class Board : SerializedMonoBehaviour
 	{
 		public string boardName;
 		public bool isStartedShow;

@@ -30,22 +30,28 @@ namespace BSS.LobbyItemSystem {
 			if (_item == null) {
 				return;
 			}
+			if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) <= 0) {
+				BaseEventListener.onPublish ("NoSpace");
+				return;
+			}
 
 			if (type == CurrencyType.Money) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) > 0 && UserJson.instance.useMoney (needValue)) {
+				if (UserJson.instance.useMoney (needValue)) {
 					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
 					lastBuyItem = _item;
 					BaseEventListener.onPublish ("ItemBuy");
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoMoney");
+					return;
 				}
 			} else if (type == CurrencyType.Gem) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName)>0 && UserJson.instance.useGem (needValue)) {
+				if (UserJson.instance.useGem (needValue)) {
 					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
-					BaseEventListener.onPublish ("ItemBuy");
 					lastBuyItem = _item;
+					BaseEventListener.onPublish ("ItemBuy");
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoGem");
+					return;
 				}
 			}
 		}
@@ -63,28 +69,36 @@ namespace BSS.LobbyItemSystem {
 					break;
 				}
 			}
+			if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) <= _num - 1) {
+				BaseEventListener.onPublish ("NoSpace");
+				return;
+			}
 
 			if (type == CurrencyType.Money) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) > _num-1 && UserJson.instance.useMoney (needValue)) {
+				if (UserJson.instance.useMoney (needValue)) {
 					lastBuyItems.Clear ();
 					for (int i = 0; i < _num; i++) {
 						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
 						lastBuyItems.Add (_items [i]);
 					}
 					BaseEventListener.onPublish ("ItemBuy");
+					return;
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoMoney");
+					return;
 				}
 			} else if (type == CurrencyType.Gem) {
-				if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName)>_num-1 && UserJson.instance.useGem (needValue)) {
+				if (UserJson.instance.useGem (needValue)) {
 					lastBuyItems.Clear ();
 					for (int i = 0; i < _num; i++) {
 						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
 						lastBuyItems.Add (_items [i]);
 					}
 					BaseEventListener.onPublish ("ItemBuy");
+					return;
 				} else {
-					Debug.Log (11);
+					BaseEventListener.onPublish ("NoGem");
+					return;
 				}
 			}
 		}

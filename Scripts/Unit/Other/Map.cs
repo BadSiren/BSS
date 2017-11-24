@@ -6,30 +6,23 @@ using BSS.Input;
 namespace BSS {
 	public class Map : MonoBehaviour
 	{
-		public void selectedToMoveByForce(Vector3 targetPos) {
+		public void selectedToMoveByForce() {
 			if (Selectable.selectTeam != UnitTeam.Red) {
 				return;
 			}
+			Vector3 mousePoint = BaseInput.getMousePoint2D ();
 			foreach (var it in Selectable.selectedList) {
-				it.SendMessage ("toMoveByForce", targetPos, SendMessageOptions.DontRequireReceiver);
+				it.SendMessage ("toMoveByForce", mousePoint, SendMessageOptions.DontRequireReceiver);
 			}
 		}
-		public void selectedToMove(Vector3 targetPos) {
+		public void selectedToMove() {
 			if (Selectable.selectTeam != UnitTeam.Red) {
 				return;
 			}
+			Vector3 mousePoint = BaseInput.getMousePoint2D ();
 			foreach (var it in Selectable.selectedList) {
-				it.SendMessage ("toMove", targetPos, SendMessageOptions.DontRequireReceiver);
+				it.SendMessage ("toMove", mousePoint, SendMessageOptions.DontRequireReceiver);
 			}
-		}
-
-		private void onDoubleClickEvent() {
-			Vector3 mousePoint = BaseInput.getMousePoint2D ();
-			selectedToMoveByForce (mousePoint);
-		}
-		private void onLongClickEvent() {
-			Vector3 mousePoint = BaseInput.getMousePoint2D ();
-			selectedToMove (mousePoint);
 		}
 	}
 }

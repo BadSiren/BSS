@@ -16,7 +16,7 @@ namespace BSS.UI {
 			if (getCount() - 1 < pageNum) {
 				return;
 			}
-			UserJson.instance.transportItem (pageNum, containerName, UserJson.instance.inventoryName);
+			UserJson.instance.changeContainer (pageNum, containerName, UserJson.instance.inventoryName);
 			InventoryBoard inven=Board.boardList.Find (x => x is InventoryBoard) as InventoryBoard;
 			inven.Show ();
 			Show ();

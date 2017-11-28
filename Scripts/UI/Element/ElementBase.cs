@@ -9,8 +9,7 @@ namespace BSS.UI {
 		{
 			Text,Image,Button,Toggle
 		}
-
-
+			
 		public ContentType contentType;
 		public string elementName;
 

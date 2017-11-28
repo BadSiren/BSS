@@ -8,18 +8,36 @@ namespace BSS.Unit {
 	[System.Serializable]
 	public class ActUnitBuy : Activable
 	{
-		public int needProperty=5;
+		[TextArea(0,0)]
+		[Header("UseFood : Optional")]
+		[Header("UseMoney : Optional")]
+		[Header("UnitID : Mandatory")]
+		public readonly string tip="";
 
-		//Property(+ID)
-		public int useMoney;
-		public int useFood;
-		public float addHealth;
-		public float addDamage;
-
+		private int useMoney;
+		private int useFood;
 		private GameObject unitPrefab;
 		private BaseUnit unit;
 		private Charactable character;
 
+		public override void initialize(Dictionary<string,string> args) {
+			ID = args ["UnitID"];
+			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (ID,out unitPrefab);
+			unit=unitPrefab.GetComponent<BaseUnit> ();
+			titleContent=unit.uName.ToString () + " 생산하기";
+			textContent=unit.uName.ToString () + " 생산합니다.";
+			character = unitPrefab.GetComponent<Charactable> ();
+			if (character != null) {
+				buttonImage = character.portrait;
+			}
+			if (args.ContainsKey ("UseMoney")) {
+				useMoney = int.Parse (args ["UseMoney"]);
+			}
+			if (args.ContainsKey ("UseFood")) {
+				useFood = int.Parse (args ["UseFood"]);
+			}
+		}
+		/*
 		public override void onInit(string _ID) {
 			ID = _ID;
 			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (_ID,out unitPrefab);
@@ -41,6 +59,7 @@ namespace BSS.Unit {
 			addHealth = int.Parse (properties [3]);
 			addDamage = int.Parse (properties [4]);
 		}
+		*/
 			
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
@@ -53,13 +72,6 @@ namespace BSS.Unit {
 				GameObject obj=GameObject.Instantiate (unitPrefab, pos, Quaternion.identity);
 				BaseUnit _unit = obj.GetComponent<BaseUnit> ();
 				_unit.team = selectUnit.team;
-				_unit.maxHealth += addHealth;
-				_unit.health = _unit.maxHealth;
-				Attackable _attack = obj.GetComponent<Attackable> ();
-				if (_attack != null) {
-					_attack.changeDamage += addDamage;
-				}
-
 			}
 		}
 

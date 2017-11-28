@@ -14,24 +14,40 @@ namespace BSS.LobbyItemSystem {
 
 		public List<LobbyItem> lobbyItems = new List<LobbyItem> ();
 		public Dictionary<int,RairityInfo> rairityInfos=new Dictionary<int,RairityInfo>();
-		public Dictionary<string,PlayAct> playActs=new Dictionary<string,PlayAct>();
+		public Dictionary<string,EquipProperty> equipProperties=new Dictionary<string,EquipProperty>();
 
-		public List<LobbyEquipItem> getLobbyEquipItems() {
-			List<LobbyEquipItem> equipItems = new List<LobbyEquipItem> ();
-			var items=lobbyItems.FindAll (x => x is LobbyEquipItem);
-			foreach (var it in items) {
-				equipItems.Add (it as LobbyEquipItem);
+		public List<T> getLobbyItems<T>() where T : LobbyItem{
+			List<T> items = new List<T> ();
+			foreach (var it in lobbyItems.FindAll (x => x is T)) {
+				items.Add (it as T);
 			}
-			return equipItems;
+			return items;
 		}
-		public List<LobbyConsumeItem> getLobbyConsumeItems() {
-			List<LobbyConsumeItem> consumeItems = new List<LobbyConsumeItem> ();
-			var items=lobbyItems.FindAll (x => x is LobbyConsumeItem);
-			foreach (var it in items) {
-				consumeItems.Add (it as LobbyConsumeItem);
+		public T getLobbyItem<T>(string _ID) where T : LobbyItem{
+			List<T> items = getLobbyItems<T> ();
+			return items.Find (x => x.ID == _ID);
+		}
+
+		public T createLobbyItem<T>(string _ID) where T : LobbyItem   {
+			var item=lobbyItems.Find (x => x.ID == _ID);
+			return (ScriptableObject.Instantiate (item) as T);
+		}
+
+		public T getEquipProperty<T>(string _ID) where T : EquipProperty{
+			if (!equipProperties.ContainsKey (_ID)) {
+				Debug.LogError ("No Property");
 			}
-			return consumeItems;
+			return (equipProperties [_ID] as T);
 		}
+		public T createEquipProperty<T>(string _ID,Dictionary<string,string> args) where T : EquipProperty{
+			if (!equipProperties.ContainsKey (_ID)) {
+				Debug.LogError ("No Property");
+			}
+			var property=ScriptableObject.Instantiate (equipProperties [_ID]) as T;
+			property.initialize (args);
+			return property;
+		}
+
 	}
 }
 

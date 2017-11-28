@@ -53,7 +53,7 @@ namespace BSS.UI {
 		}
 
 		protected virtual int getCount () {
-			return UserJson.instance.getCount (containerName);
+			return UserJson.instance.containers[containerName].Count;
 		}
 		protected virtual int getCountPage() {
 			return getCount()-page*viewSlot;

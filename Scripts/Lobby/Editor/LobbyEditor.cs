@@ -48,14 +48,23 @@ namespace BSS.LobbyItemSystem {
 			}
 		}
 
-		//Play Act
-		[MenuItem("Assets/BSS/Create/PlayAct/AddActivable")]
+		//EquipProperty
+		[MenuItem("Assets/BSS/Create/EquipProperty/AddActivable")]
 		public static void CreateAddActivable ()
 		{
 			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
 			if( _path.Length != 0 )
 			{
 				ScriptableObjectUtility.CreateAsset<AddActivable> (_path);
+			}
+		}
+		[MenuItem("Assets/BSS/Create/EquipProperty/AddHealth")]
+		public static void CreateAddHealth ()
+		{
+			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
+			if( _path.Length != 0 )
+			{
+				ScriptableObjectUtility.CreateAsset<AddHealth> (_path);
 			}
 		}
 	}

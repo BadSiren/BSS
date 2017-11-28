@@ -17,12 +17,11 @@ namespace BSS.Unit {
 		[TextArea()]
 		public string textContent;
 
-		public virtual void onInit(string _ID) {
-			
-		}
-		public virtual void onInit(List<string> properties) {
 
+		public virtual void initialize(Dictionary<string,string> args) {
 		}
+
+
 		public virtual void activate(BaseUnit selectUnit) {
 			showInformDynamic ();
 		}

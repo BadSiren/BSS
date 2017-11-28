@@ -5,6 +5,7 @@ using UnityEditor;
 namespace BSS {
 	public class BSEditor : EditorWindow
 	{
+		/*
 		int mainToolbarIndex = 0;
 		string[] mainToolbars = {"Unit", "LobbyItem", "toolbar3"};
 
@@ -29,6 +30,7 @@ namespace BSS {
 
 			GUILayout.EndArea();
 		}
+		*/
 	}
 }
 

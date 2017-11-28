@@ -37,7 +37,7 @@ namespace BSS.UI {
 				if (preSlot == -1) {
 					preSlot = pageNum;
 				} else {
-					UserJson.instance.changeItem (preSlot,pageNum,containerName);
+					UserJson.instance.changeSlot (preSlot,pageNum,containerName);
 					preSlot = -1;
 				}
 			}

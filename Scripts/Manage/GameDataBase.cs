@@ -33,8 +33,7 @@ namespace BSS.Play {
 		public Dictionary<string,List<Upgradable>> upListeners=new Dictionary<string,List<Upgradable>>();
 
 
-		void Awake()
-		{
+		void Awake() {
 			instance = this;
 		}
 

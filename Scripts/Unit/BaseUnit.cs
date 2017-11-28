@@ -43,11 +43,11 @@ namespace BSS.Unit {
 
 		public List<Activable> activableList = new List<Activable> ();
 		public List<Upgradable> upgradableList= new List<Upgradable>();
-		//public List<Skillable> skillList = new List<Skillable> ();
 
 		public virtual void die() {
 			tag = "Die";
 			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
+			BaseEventListener.onPublishString ("UnitDie", uIndex);
 			Destroy (gameObject);
 		}
 
@@ -85,12 +85,15 @@ namespace BSS.Unit {
 			resetActivable ();
 			resetUpgradable ();
 		}
+		void Start() {
+			
+		}
+
 		protected virtual void initialize() {
 			health = maxHealth;
 			mana = maxMana;
 
 			upgradeInitialize ();
-			skillInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
 			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
@@ -100,11 +103,6 @@ namespace BSS.Unit {
 			foreach (var it in existUpgradables) {
 				addUpgradable (it.Key, it.Value);
 			}
-		}
-		private void skillInitialize() {
-			//foreach (var it in skillList) {
-			//	it.addComponent (gameObject);
-			//}
 		}
 			
 		private void hitDamage(AttackInfo attackInfo) {

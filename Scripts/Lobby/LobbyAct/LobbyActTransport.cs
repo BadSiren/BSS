@@ -15,7 +15,7 @@ namespace BSS.LobbyItemSystem {
 				return;
 			}
 
-			UserJson.instance.transportItem (_num, _containerName, item.containerName);
+			UserJson.instance.changeContainer (_num, _containerName, item.containerName);
 			if (isContainerShow) {
 				containerShow (_containerName);
 				containerShow (item.containerName);

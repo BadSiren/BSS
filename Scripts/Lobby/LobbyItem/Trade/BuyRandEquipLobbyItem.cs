@@ -11,6 +11,7 @@ namespace BSS.LobbyItemSystem {
 	}
 	public class BuyRandEquipLobbyItem : MonoBehaviour
 	{
+		
 		public enum CurrencyType
 		{
 			Money,Gem
@@ -24,8 +25,8 @@ namespace BSS.LobbyItemSystem {
 		public static LobbyEquipItem lastBuyItem;
 		public static List<LobbyEquipItem> lastBuyItems=new List<LobbyEquipItem>();
 
-
-		public void buyItem() {
+		/*
+		public void buyItemRand() {
 			LobbyEquipItem _item = getItem (randRange);
 			if (_item == null) {
 				return;
@@ -37,7 +38,7 @@ namespace BSS.LobbyItemSystem {
 
 			if (type == CurrencyType.Money) {
 				if (UserJson.instance.useMoney (needValue)) {
-					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
+					UserJson.instance.addItem (new UserItem (_item.ID), UserJson.instance.inventoryName);
 					lastBuyItem = _item;
 					BaseEventListener.onPublish ("ItemBuy");
 				} else {
@@ -46,7 +47,7 @@ namespace BSS.LobbyItemSystem {
 				}
 			} else if (type == CurrencyType.Gem) {
 				if (UserJson.instance.useGem (needValue)) {
-					UserJson.instance.addItem (new UserJson.UserItem (_item.ID), UserJson.instance.inventoryName);
+					UserJson.instance.addItem (new UserItem (_item.ID), UserJson.instance.inventoryName);
 					lastBuyItem = _item;
 					BaseEventListener.onPublish ("ItemBuy");
 				} else {
@@ -78,7 +79,7 @@ namespace BSS.LobbyItemSystem {
 				if (UserJson.instance.useMoney (needValue)) {
 					lastBuyItems.Clear ();
 					for (int i = 0; i < _num; i++) {
-						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
+						UserJson.instance.addItem (new UserItem (_items[i].ID), UserJson.instance.inventoryName);
 						lastBuyItems.Add (_items [i]);
 					}
 					BaseEventListener.onPublish ("ItemBuy");
@@ -91,7 +92,7 @@ namespace BSS.LobbyItemSystem {
 				if (UserJson.instance.useGem (needValue)) {
 					lastBuyItems.Clear ();
 					for (int i = 0; i < _num; i++) {
-						UserJson.instance.addItem (new UserJson.UserItem (_items[i].ID), UserJson.instance.inventoryName);
+						UserJson.instance.addItem (new UserItem (_items[i].ID), UserJson.instance.inventoryName);
 						lastBuyItems.Add (_items [i]);
 					}
 					BaseEventListener.onPublish ("ItemBuy");
@@ -142,6 +143,7 @@ namespace BSS.LobbyItemSystem {
 			}
 			return probs.Count - 1;
 		}
+	*/
 	}
 }
 

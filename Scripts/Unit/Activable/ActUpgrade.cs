@@ -7,12 +7,15 @@ using BSS.UI;
 
 
 namespace BSS.Unit {
+	//UpID : Mandatory
+
 	[System.Serializable]
 	public class ActUpgrade: Activable
 	{
-		public int needProperty=6;
+		[TextArea(0,0)]
+		[Header("UpID : Mandatory")]
+		public readonly string tip="";
 
-		//Property(+ID)
 		public int maxLevel;
 		public int useInitMoney;
 		public int useAddMoney;
@@ -33,8 +36,15 @@ namespace BSS.Unit {
 				} 
 			}
 		}
-
-
+		public override void initialize(Dictionary<string,string> args) {
+			ID = args ["UpID"];
+			Upgradable up;
+			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (ID,out up);
+			titleContent = up.titleContent;
+			textContent=up.textContent;
+			buttonImage = up.icon;
+		}
+		/*
 		public override void onInit(string _ID) {
 			ID = _ID;
 			Upgradable up;
@@ -54,6 +64,7 @@ namespace BSS.Unit {
 			useInitFood = int.Parse (properties [4]);
 			useAddFood = int.Parse (properties [5]);
 		}
+		*/
 
 		public override void activate(BaseUnit selectUnit) {
 			upgrade ();

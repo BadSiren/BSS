@@ -22,44 +22,86 @@ MonoBehaviour:
     SerializationNodes:
     - Name: properties
       Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyEquipItem+Property,
-        Assembly-CSharp]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 1|BSS.LobbyItemSystem.LobbyEquipItem+Property, Assembly-CSharp
-    - Name: target
-      Entry: 1
-      Data: UnitShop
-    - Name: playAct
+      Data: 
+    - Name: 
       Entry: 1
       Data: AddActivable
-    - Name: arguments
+    - Name: 
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[System.String, mscorlib]], mscorlib
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ActID
     - Name: 
       Entry: 1
       Data: UnitBuy
     - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: UnitID
+    - Name: 
       Entry: 1
       Data: Orc
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: UseMoney
     - Name: 
       Entry: 1
       Data: 10
     - Name: 
-      Entry: 1
-      Data: 0
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
     - Name: 
       Entry: 1
-      Data: 0
+      Data: ApplyUnitID
     - Name: 
       Entry: 1
-      Data: 0
+      Data: UnitShop
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

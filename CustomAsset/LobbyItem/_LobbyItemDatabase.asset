@@ -15,7 +15,8 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 2bd248dd95df44af2b022ec2772f2b71, type: 2}
+    - {fileID: 11400000, guid: 94ca75d11221d426b8b3b117938aa993, type: 2}
+    - {fileID: 11400000, guid: b32b5b98ba77a4f60870f0502281bdd4, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -257,9 +258,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: playActs
+    - Name: equipProperties
       Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Play.PlayAct,
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.LobbyItemSystem.EquipProperty,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 7
@@ -270,7 +271,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -284,6 +285,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: AddHealth
+    - Name: 
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -291,13 +304,7 @@ MonoBehaviour:
       Data: 
   lobbyItems:
   - {fileID: 11400000, guid: f6227a5dbe8eb454daef694e1d97dd39, type: 2}
-  - {fileID: 11400000, guid: efcd5ecd6256b4fc5bd661248c500140, type: 2}
-  - {fileID: 11400000, guid: f720cb383fcd846bb9f9b1cbfd4fcaf0, type: 2}
   - {fileID: 11400000, guid: 4d19173a2f2b643f693995d957a4a79d, type: 2}
   - {fileID: 11400000, guid: 5bea9e2096a834786a8b9cf45163fa90, type: 2}
-  - {fileID: 11400000, guid: c8462b93f6e2e469db3fff47fa2b8374, type: 2}
-  - {fileID: 11400000, guid: 19500f62de3dc407a8005aac2f07e0a6, type: 2}
-  - {fileID: 11400000, guid: c198dcc7081ff45b59e34f1ba07ab7d9, type: 2}
-  - {fileID: 11400000, guid: b466092a4670b40e19c55828c67c6880, type: 2}
   - {fileID: 11400000, guid: 864d98774ae1f46b1b6a9de6c8939dbf, type: 2}
   - {fileID: 11400000, guid: acb608ad9c01f4cf4a0b743976337c05, type: 2}

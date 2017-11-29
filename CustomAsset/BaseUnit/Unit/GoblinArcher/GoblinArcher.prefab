@@ -1049,7 +1049,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   uIndex: GoblinArcher
-  uName: "\uACE0\uBE14\uB9B0\uAD81\uC218"
+  uName: "\uACE0\uBE14\uB9B0\uC544\uCC98"
   team: 0
   isInvincible: 0
   maxHealth: 50
@@ -1060,7 +1060,6 @@ MonoBehaviour:
   changeArmor: 0
   activableList: []
   upgradableList: []
-  detectedUnits: []
 --- !u!114 &114459808528533420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1072,7 +1071,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc1e540c46584bf7b100e4d637d8715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   priority: 0
+  onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDoubleClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onLongClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   isSelected: 0
 --- !u!114 &114468525485198732
 MonoBehaviour:
@@ -1224,12 +1247,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf4ba032197e4631a020d7e8280ecc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
   _initDamage: 8
   _initAttackSpeed: 1.4
   _initRange: 10
   changeDamage: 0
   changeAttackSpeed: 0
+  target: {fileID: 0}
+  targets: []
+  detects: []
   state: 0
 --- !u!114 &114994359356458928
 MonoBehaviour:

@@ -21,7 +21,7 @@ namespace BSS.UI {
 			var rairInfo=BSDatabase.instance.lobbyItemDatabase.rairityInfos [lobbyItem.rairity];
 			sendToReceiver ("Rairity", rairInfo.title);
 			sendToReceiver ("Rairity", rairInfo.col);
-			sendToReceiver ("Text", lobbyItem.itemDescription);
+			sendToReceiver ("Text", getPropertyText (lobbyItem.itemDescription, lobbyItem));
 			if (lobbyItem is LobbyEquipItem) {
 				sendToReceiver ("Type", "장착아이템");
 				sendToReceiver ("Select", "장착하기");
@@ -42,6 +42,15 @@ namespace BSS.UI {
 			if (lobbyItem is LobbyConsumeItem) {
 				UserJson.instance.removeItem (num, containerName);
 			}
+		}
+
+		private string getPropertyText(string orgin,LobbyItem item) {
+			if (item is LobbyEquipItem) {
+				foreach (var it in (item as LobbyEquipItem).properties) {
+					orgin=orgin+BSDatabase.instance.lobbyItemDatabase.getEquipProperty<EquipProperty> (it.Key).getDescription (it.Value)+"\n";
+				}
+			}
+			return orgin;
 		}
 	}
 }

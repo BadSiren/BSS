@@ -63,7 +63,7 @@ namespace BSS.Unit {
 			
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
-			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-1f,0f),selectUnit);
+			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-2f,0f),selectUnit);
 		}
 			
 

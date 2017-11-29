@@ -48,21 +48,12 @@ namespace BSS {
 			foreach (var it in containerMax) {
 				containers [it.Key] = new List<LobbyItem> ();
 				containers [it.Key].Capacity = it.Value;
-			}
-			/*
-			if (!ES2.Exists (inventoryName)) {
-				ES2.Save (new List<string>(), inventoryName);
-			}
-			for (int i = 0; i < equipContainers.Count; i++) {
-				if (!ES2.Exists (equipContainers[i])) {
-					ES2.Save (new List<string>(), equipContainers[i]);
+				if (!ES2.Exists (it.Key)) {
+					ES2.Save (new List<string>(), it.Key);
 				}
+				itemInitialize (it.Key);
 			}
-			*/
-		}
-		void Start() {
-			var item=BSDatabase.instance.lobbyItemDatabase.createLobbyItem<LobbyEquipItem> ("Orc0");
-			addItem (item, "Inventory");
+
 		}
 
 		//Monery Function
@@ -80,6 +71,13 @@ namespace BSS {
 			BaseEventListener.onPublishInt ("Money", loadMoney - _money);
 			return true;
 		}
+		public bool isMoney(int _money) {
+			int loadMoney=ES2.Load<int> (moneyName);
+			if (loadMoney < _money) {
+				return false;
+			}
+			return true;
+		}
 		public void addGem(int _gem) {
 			int loadGem=ES2.Load<int> (gemName);
 			ES2.Save<int> (loadGem + _gem, gemName);
@@ -94,14 +92,30 @@ namespace BSS {
 			BaseEventListener.onPublishInt ("Gem", loadGem - _gem);
 			return true;
 		}
+		public bool isGem(int _gem) {
+			int loadGem=ES2.Load<int> (gemName);
+			if (loadGem < _gem) {
+				return false;
+			}
+			return true;
+		}
 
 		//Container Function
-		public bool addItem(LobbyItem item,string container) {
+		public bool addItem(LobbyItem item,string container,bool isSave=true) {
 			if (getEmptySpace (container) == 0) {
 				Debug.Log ("Add fail");
 				return false;
 			}
 			containers [container].Add (item);
+
+			//ES2 Save
+			if (isSave) {
+				var _container = ES2.LoadList<string> (container);
+				UserItem userItem = new UserItem (item);
+				_container.Add (userItem.toJson ());
+				ES2.Save (_container, container);
+			}
+
 			return true;
 		}
 		public bool removeItem(int slot,string container) {
@@ -110,6 +124,12 @@ namespace BSS {
 				return false;
 			}
 			containers[container].RemoveAt (slot);
+
+			//ES2 Save
+			var _container=ES2.LoadList<string> (container);
+			_container.RemoveAt (slot);
+			ES2.Save (_container, container);
+
 			return true;
 		}
 		public bool changeSlot(int preSlot,int nowSlot,string container) {
@@ -120,6 +140,14 @@ namespace BSS {
 			LobbyItem temp = containers[container][preSlot];
 			containers[container] [preSlot] = containers[container][nowSlot];
 			containers[container] [nowSlot] = temp;
+
+			//ES2 Save
+			var _container=ES2.LoadList<string> (container);
+			string _temp = _container [preSlot];
+			_container [preSlot] = _container [nowSlot];
+			_container [nowSlot] = _temp;
+			ES2.Save (_container, container);
+
 			return true;
 		}
 		public bool changeContainer(int itemSlot,string nowContainer,string nextContainer) {
@@ -147,119 +175,12 @@ namespace BSS {
 			}
 			return containers [container] [slot];
 		}
-		/*
-		public bool removeItem(int slot,string _container) {
-			List<string> container=ES2.LoadList<string> (_container);
-			if (slot>container.Count-1) {
-				Debug.Log ("remove fail");
-				return false;
-			}
-			container.RemoveAt (slot);
-			ES2.Save (container, _container);
-			return true;
-		}
-		public bool changeItem(int preSlot,int nowSlot,string _container) {
-			List<string> container=ES2.LoadList<string> (_container);
-			if (preSlot == nowSlot ||preSlot>container.Count-1 || nowSlot>container.Count-1 ) {
-				Debug.Log ("change fail");
-				return false;
-			}
-			string temp = container [preSlot];
-			container [preSlot] = container [nowSlot];
-			container [nowSlot] = temp;
-			ES2.Save (container, _container);
-			return true;
-		}
-		public bool transportItem(int _itemSlot,string _nowContainer,string _nextContainer) {
-			List<string> nowContainer=ES2.LoadList<string> (_nowContainer);
-			if (_itemSlot>nowContainer.Count-1) {
-				Debug.Log ("transport fail");
-				return false;
-			}
-			UserItem userItem=getUserItem (_itemSlot, _nowContainer);
-			if (userItem == null || !addItem (userItem, _nextContainer)) {
-				return false;
-			}
-			removeItem (_itemSlot, _nowContainer);
-			return true;
-		}
-		public int getEmptySpace(string _container) {
-			if (containerMax.ContainsKey(_container)) {
-				return containerMax [_container]-getCount(_container);
-			}
-			Debug.Log ("No Container!");
-			return 0;
-		}
-		private void resetItems(string _container) {
-			ES2.Delete (_container);
-		}
-		private void resetItems(List<string> _containers) {
-			foreach (var it in _containers) {
-				ES2.Delete (it);
-			}
-		}
 
-		//Item Function
-		public UserItem getUserItem(int slot,string _container) {
-			if (!ES2.Exists (_container)) {
-				Debug.LogError ("No Container");
-				return null;
-			}
-			List<string> container=ES2.LoadList<string> (_container);
-			if (slot > container.Count - 1) {
-				Debug.Log ("No Item");
-				return null;
-			}
-			UserItem userItem=JsonUtility.FromJson<UserItem> (container [slot]);
-			return userItem;
-		}
-		public LobbyItem getLobbyItem(int slot,string _container) {
-			UserItem userItem = getUserItem (slot,_container);
-			if (userItem == null) {
-				return null;
-			}
-
-			return BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID);
-		}
-		public List<LobbyItem> getLobbyItems(string _container) {
-			List<LobbyItem> lobbyItems = new List<LobbyItem> ();
-			for (int i = 0; i < getCount (_container); i++) {
-				var _item=getLobbyItem (i, _container);
-				if (_item!=null) {
-					lobbyItems.Add (_item);
-				}
-			}
-			return lobbyItems;
-		}
-		public List<LobbyEquipItem> getLobbyEquipItems(string _container) {
-			List<LobbyItem> lobbyItems = getLobbyItems (_container);
-			lobbyItems=lobbyItems.FindAll (x => x is LobbyEquipItem);
-			List<LobbyEquipItem> lobbyEquipItems = new List<LobbyEquipItem> ();
-			for (int i = 0; i < lobbyItems.Count; i++) {
-				lobbyEquipItems.Add (lobbyItems [i] as LobbyEquipItem);
-			}
-			return lobbyEquipItems;
-		}
-		public bool existLobbyItem(UserItem userItem) {
-			if (userItem == null || BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == userItem.ID) == null) {
-				return false;
-			}
-			return true;
-		}
-		public int getCount(string _container) {
-			if (!ES2.Exists (_container)) {
-				return 0;
-			}
-			List<string> container=ES2.LoadList<string> (_container);
-			return container.Count;
-		}
-		*/
-		private void resetItems(string _container) {
-			ES2.Delete (_container);
-		}
-		private void resetItems(List<string> _containers) {
-			foreach (var it in _containers) {
-				ES2.Delete (it);
+		private void itemInitialize(string container) {
+			List<string> jsonList=ES2.LoadList<string> (container);
+			foreach (var json in jsonList) {
+				var userItem=new UserItem (json);
+				addItem(userItem.toItem (),container,false);
 			}
 		}
 	}

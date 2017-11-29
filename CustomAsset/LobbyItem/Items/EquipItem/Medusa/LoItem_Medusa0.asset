@@ -120,9 +120,9 @@ MonoBehaviour:
   ID: Medusa0
   icon: {fileID: 21300000, guid: 6e74439386cec4a9caa2a22d16a91cbd, type: 3}
   itemTitle: "\uBA54\uB450\uC0AC"
-  itemDescription: "[\uC720\uB2DB\uC0C1\uC810]\n\uC720\uB2DB\uC0C1\uC810\uC5D0\uC11C
-    \uBA54\uB450\uC0AC\uB97C \uC0DD\uC0B0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n\uAD6C\uB9E4\uAC00\uACA9
-    : [20/0]"
+  itemDescription: "\uC720\uB2DB\uC0C1\uC810\uC5D0\uC11C \uBA54\uB450\uC0AC\uB97C
+    \uC0DD\uC0B0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n[\uC0DD\uC0B0\uBE44\uC6A9:
+    20/0]"
   buyCost: 0
   sellCost: 0
   rairity: 1

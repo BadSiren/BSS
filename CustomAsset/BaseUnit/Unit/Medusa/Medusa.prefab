@@ -1201,12 +1201,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf4ba032197e4631a020d7e8280ecc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   icon: {fileID: 21300000, guid: 39df0c9a552cc7c4f9e5f94ac7c1ff39, type: 3}
   _initDamage: 15
   _initAttackSpeed: 1.2
   _initRange: 5
   changeDamage: 0
   changeAttackSpeed: 0
+  target: {fileID: 0}
+  targets: []
+  detects: []
   state: 0
 --- !u!114 &114338303923676290
 MonoBehaviour:
@@ -1250,7 +1262,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc1e540c46584bf7b100e4d637d8715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   priority: 0
+  onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDoubleClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onLongClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   isSelected: 0
 --- !u!114 &114686869909484866
 MonoBehaviour:
@@ -1322,7 +1358,6 @@ MonoBehaviour:
   changeArmor: 0
   activableList: []
   upgradableList: []
-  detectedUnits: []
 --- !u!114 &114958148090892680
 MonoBehaviour:
   m_ObjectHideFlags: 1

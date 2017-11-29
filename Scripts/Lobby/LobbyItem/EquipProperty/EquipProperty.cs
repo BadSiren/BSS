@@ -10,6 +10,11 @@ namespace BSS.LobbyItemSystem {
 		}
 		public virtual void onUnitCreateAct(GameObject target) {
 		}
+		public virtual void onSetEnemyAct(GameObject target) {
+		}
+		public virtual string getDescription(Dictionary<string,string> args) {
+			return "";
+		}
 	}
 }
 

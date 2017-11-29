@@ -55,6 +55,7 @@ namespace BSS.Unit {
 			team = UnitTeam.Blue;
 			resetActivable ();
 			resetUpgradable ();
+			BaseEventListener.onPublishGameObject ("SetEnemy", gameObject);
 		}
 		public void addActivable(Activable _activable) {
 			activableList.Add (_activable);

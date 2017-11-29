@@ -2,6 +2,7 @@
 using System.Collections;
 
 namespace BSS.Unit {
+	[RequireComponent(typeof(Collider2D))]
 	public class MoveBeacon : MonoBehaviour
 	{
 		public Transform destinaionTarget;

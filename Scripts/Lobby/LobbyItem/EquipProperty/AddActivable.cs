@@ -5,10 +5,10 @@ using BSS.Unit;
 
 namespace BSS.LobbyItemSystem {
 	public class AddActivable : EquipProperty  {
-		[TextArea(0,0)]
+		[TextArea()]
 		[Header("ActID : Mandatory")]
 		[Header("ApplyUnitID : Mandatory")]
-		public readonly string tip="";
+		public string description="";
 
 		private Activable activable;
 		private string unitID;
@@ -25,6 +25,9 @@ namespace BSS.LobbyItemSystem {
 			if (unit!=null && unit.uIndex == unitID) {
 				target.SendMessage ("addActivable", activable, SendMessageOptions.DontRequireReceiver);
 			}
+		}
+		public override string getDescription(Dictionary<string,string> args) {
+			return description;
 		}
 
 	}

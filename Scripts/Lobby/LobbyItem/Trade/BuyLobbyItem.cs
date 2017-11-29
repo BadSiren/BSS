@@ -13,37 +13,50 @@ namespace BSS.LobbyItemSystem {
 		public CurrencyType type;
 		public int needValue;
 
+		public static LobbyItem lastBuyItem;
+		public static List<LobbyItem> lastBuyItems=new List<LobbyItem> ();
 
 		public void buyItem(string lobbyItemID) {
-			var item=BSDatabase.instance.lobbyItemDatabase.lobbyItems.Find (x => x.ID == lobbyItemID);
-			buyItem (item);
-		}
-		public void buyItem(LobbyItem item) {
-			if (item == null) {
-				Debug.LogError ("No Item");
+			if (!buyValidate(1)) {
 				return;
 			}
-			if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) <=0) {
+
+			var item=BSDatabase.instance.lobbyItemDatabase.createLobbyItem<LobbyItem> (lobbyItemID);
+			UserJson.instance.addItem (item, UserJson.instance.inventoryName);
+			lastBuyItem = item;
+			BaseEventListener.onPublish ("ItemBuy");
+		}
+		public void buyItems(List<string> lobbyItemIDs) {
+			if (!buyValidate(lobbyItemIDs.Count)) {
+				return;
+			}
+			lastBuyItems.Clear ();
+			for (int i = 0; i < lobbyItemIDs.Count; i++) {
+				var item = BSDatabase.instance.lobbyItemDatabase.createLobbyItem<LobbyItem> (lobbyItemIDs[i]);
+				UserJson.instance.addItem (item, UserJson.instance.inventoryName);
+				lastBuyItems.Add (item);
+			}
+			BaseEventListener.onPublish ("ItemBuy");
+		}
+
+		protected bool buyValidate(int _needSpace) {
+			if (UserJson.instance.getEmptySpace (UserJson.instance.inventoryName) <_needSpace) {
 				BaseEventListener.onPublish ("NoSpace");
-				return;
+				return false;
 			}
-
 			if (type == CurrencyType.Money) {
-				if (UserJson.instance.useMoney (needValue)) {
-					UserJson.instance.addItem (ScriptableObject.Instantiate (item), UserJson.instance.inventoryName);
-				} else {
+				if (!UserJson.instance.useMoney (needValue)) {
 					BaseEventListener.onPublish ("NoMoney");
+					return false;
 				}
-
-			} else if (type == CurrencyType.Gem) {
-				if (UserJson.instance.useGem (needValue)) {
-					UserJson.instance.addItem (ScriptableObject.Instantiate (item), UserJson.instance.inventoryName);
-				} else {
+			} else {
+				if (!UserJson.instance.useGem (needValue)) {
 					BaseEventListener.onPublish ("NoGem");
+					return false;
 				}
 			}
+			return true;
 		}
-
 	}
 }
 

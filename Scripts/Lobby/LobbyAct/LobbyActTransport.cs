@@ -15,7 +15,9 @@ namespace BSS.LobbyItemSystem {
 				return;
 			}
 
-			UserJson.instance.changeContainer (_num, _containerName, item.containerName);
+			if (!UserJson.instance.changeContainer (_num, _containerName, item.containerName)) {
+				BaseEventListener.onPublish ("NoSpace");
+			}
 			if (isContainerShow) {
 				containerShow (_containerName);
 				containerShow (item.containerName);

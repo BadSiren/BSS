@@ -14,8 +14,6 @@ namespace BSS {
 		public string lobbyScene="LobbyScene";
 		public string playScene="PlayScene";
 		public string itemScene="ItemScene";
-		public int startMoney;
-		public int startFood;
 
 		public int selcectMode;
 		public int selcectLevel;

@@ -24,6 +24,7 @@ namespace BSS {
 		[Header("Don't Touch")]
 		public Dictionary<string,List<LobbyItem>> containers = new Dictionary<string,List<LobbyItem>> ();
 
+
 		void Awake() {
 			if (_instance == null) {
 				_instance = this;
@@ -36,10 +37,10 @@ namespace BSS {
 
 			intialize ();
 		}
-			
+
 		void intialize() {
 			if (!ES2.Exists (moneyName)) {
-				ES2.Save (0, moneyName);
+				ES2.Save (500, moneyName);
 			}
 
 			if (!ES2.Exists (gemName)) {

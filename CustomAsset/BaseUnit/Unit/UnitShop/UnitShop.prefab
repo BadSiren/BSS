@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4728979359034160}
   - component: {fileID: 114796533879068874}
   - component: {fileID: 114697073314515682}
-  - component: {fileID: 114442380611890328}
   - component: {fileID: 114967185507290078}
   - component: {fileID: 61167487635386074}
   m_Layer: 0
@@ -147,19 +146,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114442380611890328
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1168772283027086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dccd2f667d9f4bc8884d0c5c8f09287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  circleSpr: {fileID: 21300000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
-  scale: {x: 0.5, y: 0.5, z: 1}
 --- !u!114 &114528450032666948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,8 +175,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc1e540c46584bf7b100e4d637d8715, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   priority: -9
-  isSelected: 0
+  onClickState: []
+  onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onDoubleClickState: []
+  onDoubleClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onLongClickState: []
+  onLongClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  owner: {fileID: 0}
 --- !u!114 &114796533879068874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,13 +224,26 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: existActivable
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: existUpgradables
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
         mscorlib]], mscorlib
     - Name: 
       Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -233,6 +259,7 @@ MonoBehaviour:
       Data: 
   uIndex: UnitShop
   uName: "\uC720\uB2DB\uC0C1\uC810"
+  portrait: {fileID: 21300000, guid: e4284eeea69ce914d8012b94419490fe, type: 3}
   team: 0
   isInvincible: 1
   maxHealth: 10000
@@ -243,7 +270,6 @@ MonoBehaviour:
   changeArmor: 0
   activableList: []
   upgradableList: []
-  detectedUnits: []
 --- !u!114 &114967185507290078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 21300000, guid: e4284eeea69ce914d8012b94419490fe, type: 3}
 --- !u!212 &212672217542694100
 SpriteRenderer:
   m_ObjectHideFlags: 1

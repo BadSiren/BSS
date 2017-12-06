@@ -150,22 +150,24 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: -9
+  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isSelected: 0
 --- !u!114 &114621033462872926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,13 +188,58 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: existUpgradables
+    - Name: existActivable
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ID
+    - Name: 
+      Entry: 1
+      Data: Destroy
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: existUpgradables
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 4|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -208,13 +255,14 @@ MonoBehaviour:
       Data: 
   uIndex: School
   uName: "\uD559\uAD50"
+  portrait: {fileID: 21300000, guid: d7e504f647f22415f8b9bb8de9301706, type: 3}
   team: 0
   isInvincible: 0
   maxHealth: 1000
   health: 0
   maxMana: 0
   mana: 0
-  _initArmor: 50
+  _initArmor: 0
   changeArmor: 0
   activableList: []
   upgradableList: []
@@ -229,7 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 21300000, guid: d7e504f647f22415f8b9bb8de9301706, type: 3}
 --- !u!114 &114848697014648730
 MonoBehaviour:
   m_ObjectHideFlags: 1

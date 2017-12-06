@@ -13,6 +13,11 @@ namespace BSS.Unit {
 	public class ActUpgrade: Activable
 	{
 		[TextArea(0,0)]
+		[Header("AddFood : Optional")]
+		[Header("InitFood : Optional")]
+		[Header("AddMoney : Optional")]
+		[Header("InitMoney : Optional")]
+		[Header("MaxLevel : Mandatory")]
 		[Header("UpID : Mandatory")]
 		public readonly string tip="";
 
@@ -38,33 +43,26 @@ namespace BSS.Unit {
 		}
 		public override void initialize(Dictionary<string,string> args) {
 			ID = args ["UpID"];
+			maxLevel = int.Parse(args ["MaxLevel"]);
+			if (args.ContainsKey ("InitMoney")) {
+				useInitMoney=int.Parse(args ["InitMoney"]);
+			}
+			if (args.ContainsKey ("AddMoney")) {
+				useAddMoney=int.Parse(args ["AddMoney"]);
+			}
+			if (args.ContainsKey ("InitFood")) {
+				useInitFood=int.Parse(args ["InitFood"]);
+			}
+			if (args.ContainsKey ("AddFood")) {
+				useAddFood=int.Parse(args ["AddFood"]);
+			}
+
 			Upgradable up;
 			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (ID,out up);
 			titleContent = up.titleContent;
 			textContent=up.textContent;
 			buttonImage = up.icon;
 		}
-		/*
-		public override void onInit(string _ID) {
-			ID = _ID;
-			Upgradable up;
-			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (_ID,out up);
-			titleContent = up.titleContent;
-			textContent=up.textContent;
-			buttonImage = up.icon;
-		}
-		public override void onInit(List<string> properties) {
-			if (properties.Count < needProperty) {
-				return;
-			}
-			onInit (properties [0]);
-			maxLevel=int.Parse (properties [1]);
-			useInitMoney = int.Parse (properties [2]);
-			useAddMoney = int.Parse (properties [3]);
-			useInitFood = int.Parse (properties [4]);
-			useAddFood = int.Parse (properties [5]);
-		}
-		*/
 
 		public override void activate(BaseUnit selectUnit) {
 			upgrade ();

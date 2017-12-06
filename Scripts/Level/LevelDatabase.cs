@@ -6,9 +6,13 @@ using Sirenix.OdinInspector;
 namespace BSS.Level {
 	public class LevelDatabase : SerializedScriptableObject
 	{
-		
-		public Dictionary<int,string> difficulties=new Dictionary<int,string>();
-		public Dictionary<int,UnitSpawner> unitSpawners=new Dictionary<int,UnitSpawner>();
+		public struct LevelInfo {
+			public string title;
+			public int maxLevel;
+			public int clearMoney;
+			public UnitSpawner unitSpawner;
+		}
+		public Dictionary<string,LevelInfo> levelInfos=new Dictionary<string,LevelInfo>();
 	}
 }
 

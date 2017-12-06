@@ -15,7 +15,15 @@ namespace BSS.Unit {
 				ScriptableObjectUtility.CreateAsset<ActivableDatabase> (_path);
 			}
 		}
-
+		[MenuItem("Assets/BSS/Create/Acitvable/Destroy")]
+		public static void CreateDestroy ()
+		{
+			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
+			if( _path.Length != 0 )
+			{
+				ScriptableObjectUtility.CreateAsset<ActDestroy> (_path);
+			}
+		}
 		[MenuItem("Assets/BSS/Create/Acitvable/UnitBuy")]
 		public static void CreateUnitBuy ()
 		{

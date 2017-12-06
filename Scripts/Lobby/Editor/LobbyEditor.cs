@@ -67,6 +67,15 @@ namespace BSS.LobbyItemSystem {
 				ScriptableObjectUtility.CreateAsset<AddHealth> (_path);
 			}
 		}
+		[MenuItem("Assets/BSS/Create/EquipProperty/AddMoney")]
+		public static void CreateAddMoney ()
+		{
+			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
+			if( _path.Length != 0 )
+			{
+				ScriptableObjectUtility.CreateAsset<AddMoney> (_path);
+			}
+		}
 	}
 }
 

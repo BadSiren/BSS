@@ -17,14 +17,8 @@ namespace BSS.UI {
 				sendToReceiver ("Health", unit.health.ToString ("0") + "/" + unit.maxHealth.ToString ("0"));
 			}
 			sendToReceiver ("Mana", unit.mana.ToString ("0") + "/" + unit.maxMana.ToString ("0"));
+			sendToReceiver ("Portrait", unit.portrait);
 
-			Charactable charactable = unit.GetComponent<Charactable> ();
-			if (charactable == null) {
-				sendBoolToReceiver ("Portrait", false);
-			} else {
-				sendBoolToReceiver ("Portrait", true);
-				sendToReceiver ("Portrait", unit.GetComponent<Charactable> ().portrait);
-			}
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
 
 			Attackable attackable = unit.GetComponent<Attackable> ();

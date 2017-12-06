@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1372170707204260
 GameObject:
   m_ObjectHideFlags: 1
@@ -540,7 +540,6 @@ GameObject:
   - component: {fileID: 224354295388884062}
   - component: {fileID: 114617361303774932}
   - component: {fileID: 222096336995019448}
-  - component: {fileID: 114157949665268834}
   - component: {fileID: 225113347295533162}
   - component: {fileID: 114811505781806026}
   m_Layer: 5
@@ -847,7 +846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1616291581987738
 GameObject:
   m_ObjectHideFlags: 1
@@ -1220,7 +1219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1879655191206136
 GameObject:
   m_ObjectHideFlags: 1
@@ -2043,18 +2042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 1
   elementName: Icon1
---- !u!114 &114157949665268834
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1442035787466836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1184210157, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
 --- !u!114 &114168571947381820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2557,6 +2544,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d838099e7cf472ab509f8a3a663ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   boardName: EquipmentBoard
   isStartedShow: 0
   onShow:
@@ -4449,6 +4445,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d838099e7cf472ab509f8a3a663ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   boardName: EquipmentBoard
   isStartedShow: 0
   onShow:
@@ -4486,7 +4491,7 @@ MonoBehaviour:
   page: 0
   maxPage: 0
   containerName: UnitShop
-  viewSlot: 9
+  viewSlot: 6
 --- !u!114 &114581999116529432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4500,7 +4505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5364,6 +5369,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d941381a4314a1fa93b7f3fb45acac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   boardName: EquipMenu
   isStartedShow: 0
   onShow:
@@ -5449,6 +5463,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d941381a4314a1fa93b7f3fb45acac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   boardName: Equipment
   isStartedShow: 0
   onShow:
@@ -7613,7 +7636,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1800325177042594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 502, y: -24.944, z: 0}
+  m_LocalPosition: {x: 384, y: -24.944, z: 0}
   m_LocalScale: {x: 0.9999733, y: 0.9999733, z: 0.9999733}
   m_Children:
   - {fileID: 224354295388884062}
@@ -7625,7 +7648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 502, y: -24.944}
+  m_AnchoredPosition: {x: 384, y: -24.944}
   m_SizeDelta: {x: 500, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224508396723284004

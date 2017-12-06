@@ -3,101 +3,107 @@ using System.Collections;
 using BSS;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-
+using BSS.Unit;
 
 namespace BSS.Input {
 	public class BaseInput : MonoBehaviour
 	{
-		public Vector3 mousePoint;
-		public float longPressTime=0.6f;
+		public enum EInputState
+		{
+			Idle,AllySelect,EnemySelect,MultiSelect
+		}
+
+		public EInputState eInputState;
+		//public float longPressTime=0.6f;
 		public float doubleInterval=0.4f;
 
-		public bool canCameraControl = true;
-		public float cameraSpeed = 40f;
-
-
-		private CameraControl cameraControl;
-
-		private float pressTime=0f;
+		//private float pressTime=0f;
+		private bool isDrag;
+		private Vector3 preMousePoint;
 		private bool isLongPress;
 		private bool isTouching;
 
-		public void Awake()
-		{
-			if (canCameraControl) {
-				cameraControl = Camera.main.gameObject.AddComponent<CameraControl> ();
-				cameraControl.moveSpeed = cameraSpeed;
-				cameraControl.enabled = false;
+
+		void Update() {
+			if(UnityEngine.Input.touchCount > 1){
+				//CameraControl
+			} else {
+				if (UnityEngine.Input.GetMouseButtonDown (0)) {
+					if (EventSystem.current.IsPointerOverGameObject()) {
+						return;
+					}
+					Vector3 currentMouse = getMousePoint2D ();
+					Clickable click = getClickablePriority (currentMouse);
+
+					if (isTouching) {
+						if (click != null) {
+							//Double Click
+							click.onDoubleClick ();
+						}
+						isTouching = false;
+					} else {
+						if (click != null) {
+							//On Click
+							click.onClick ();
+							StartCoroutine (coWaitDoubleTouch ());
+						}
+					}
+				}
 			}
 		}
-		void Update() {
-			mouseInputWait ();
+			
+		void OnGUI() {
+			if (isDrag) {
+				Vector3 curMousePoint = UnityEngine.Input.mousePosition;
+				DrawUtils.DrawCustomRect (preMousePoint, curMousePoint);
+			}
 		}
 
-		public void CameraControlEnabled(bool _enabled) {
-			if (cameraControl == null) {
-				return;
-			}
-			cameraControl.enabled = _enabled;
-		}
+
 		public static Vector3 getMousePoint2D() {
 			var _mousePos=Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);
-			_mousePos=new Vector3 (_mousePos.x, _mousePos.y, 0f);
+			_mousePos = new Vector3 (_mousePos.x, _mousePos.y, 0f);
 			return _mousePos;
 		}
 
-
-		private void mouseInputWait() {
-			
-			if (EventSystem.current.IsPointerOverGameObject()==true || (cameraControl!=null&& cameraControl.enabled==true)) {
-				//Click UI or Camera Controling
+		public void setDrag() {
+			if (isDrag) {
 				return;
 			}
-			if (UnityEngine.Input.GetMouseButtonDown(0)) {
-				pressTime=0f;
-			}
-
-			if (UnityEngine.Input.GetMouseButton (0)) {
-				pressTime += Time.deltaTime;
-				if (!isLongPress && pressTime > longPressTime) {
-					currentMousePointSave ();
-					Clickable clickable = getClickPriority (mousePoint);
-					if (clickable!=null) {
-						clickable.onLongClick ();
+			isDrag = true;
+			preMousePoint = UnityEngine.Input.mousePosition;
+			StartCoroutine (coWaitDrag ());
+		}
+		IEnumerator coWaitDrag() {
+			while (isDrag) {
+				yield return null;
+				if (UnityEngine.Input.GetMouseButtonUp (0)) {
+					isDrag = false;
+					Vector3 curMousePoint = UnityEngine.Input.mousePosition;
+					var bounds=DrawUtils.GetViewportBounds (Camera.main, preMousePoint, curMousePoint);
+					List<GameObject> selectObjects = new List<GameObject> ();
+					foreach (var it in Selectable.selectableList) {
+						if (bounds.Contains (Camera.main.WorldToViewportPoint (it.gameObject.transform.position)) && it.owner.team==UnitTeam.Red ) {
+							selectObjects.Add (it.gameObject);
+						}
 					}
-					isLongPress = true;
-					pressTime = 0f;
-					return;
-				}
-			}
-			if (UnityEngine.Input.GetMouseButtonUp (0)) {
-				if (isLongPress) {
-					isLongPress = false;
-					return;
-				}
-				currentMousePointSave ();
-				Clickable click = getClickPriority (mousePoint);
-				if (click == null) {return;}
-				if (isTouching) {
-					click.onClick ();
-					click.onDoubleClick ();
-				} else {
-					StartCoroutine (waitTouch ());
-					click.onClick ();
+					if (selectObjects.Count == 1) {
+						BaseSelect.instance.allyUnitSelect (selectObjects [0]);
+					} else if (selectObjects.Count > 1) {
+						BaseSelect.instance.multiUnitSelect (selectObjects);
+					}
 				}
 			}
 		}
 
-		IEnumerator waitTouch() {
+		IEnumerator coWaitDoubleTouch() {
 			isTouching = true;
 			yield return new WaitForSeconds (doubleInterval);
 			isTouching = false;
 		}
 
-		private void currentMousePointSave() {
-			mousePoint = getMousePoint2D ();
-		}
-		private Clickable getClickPriority(Vector3 orgin) {
+
+		private Clickable getClickablePriority(Vector3 orgin) {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(orgin, Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {
@@ -115,6 +121,7 @@ namespace BSS.Input {
 			}
 			return null;
 		}
+
 
 	}
 }

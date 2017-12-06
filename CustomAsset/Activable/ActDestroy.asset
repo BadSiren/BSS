@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9cfb6304b48d416297f0c5008c0a2c4, type: 3}
+  m_Name: ActDestroy
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: Destroy
+  buttonImage: {fileID: 21300000, guid: d41fa26565358420db49aac78ca7fe78, type: 3}
+  titleContent: "\uD574\uB2F9\uC720\uB2DB \uD30C\uAD34\uD558\uAE30"
+  textContent: "\uD574\uB2F9\uC720\uB2DB\uC744 \uD30C\uAD34\uD569\uB2C8\uB2E4."

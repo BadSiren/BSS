@@ -32,7 +32,9 @@ namespace BSS.LobbyItemSystem {
 			var temp=lobbyItems.Find (x => x.ID == _ID);
 			T item = (ScriptableObject.Instantiate (temp) as T);
 			if (item is LobbyEquipItem) {
-				(item as LobbyEquipItem).propertiesRand ();
+				(item as LobbyEquipItem).propertiesRand ("Rand");
+				(item as LobbyEquipItem).propertiesRand ("Rand0");
+				(item as LobbyEquipItem).propertiesRand ("Rand1");
 			}
 			return item;
 		}

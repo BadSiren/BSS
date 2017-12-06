@@ -26,10 +26,8 @@ namespace BSS.Unit {
 			unit=unitPrefab.GetComponent<BaseUnit> ();
 			titleContent=unit.uName.ToString () + " 생산하기";
 			textContent=unit.uName.ToString () + " 생산합니다.";
-			character = unitPrefab.GetComponent<Charactable> ();
-			if (character != null) {
-				buttonImage = character.portrait;
-			}
+			buttonImage = unit.portrait;
+
 			if (args.ContainsKey ("UseMoney")) {
 				useMoney = int.Parse (args ["UseMoney"]);
 			}
@@ -37,29 +35,7 @@ namespace BSS.Unit {
 				useFood = int.Parse (args ["UseFood"]);
 			}
 		}
-		/*
-		public override void onInit(string _ID) {
-			ID = _ID;
-			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (_ID,out unitPrefab);
-			unit=unitPrefab.GetComponent<BaseUnit> ();
-			titleContent=unit.uName.ToString () + " 생산하기";
-			textContent=unit.uName.ToString () + " 생산합니다.";
-			character = unitPrefab.GetComponent<Charactable> ();
-			if (character != null) {
-				buttonImage = character.portrait;
-			}
-		}
-		public override void onInit(List<string> properties) {
-			if (properties.Count < needProperty) {
-				return;
-			}
-			onInit (properties [0]);
-			useMoney = int.Parse (properties [1]);
-			useFood = int.Parse (properties [2]);
-			addHealth = int.Parse (properties [3]);
-			addDamage = int.Parse (properties [4]);
-		}
-		*/
+
 			
 		public override void activate(BaseUnit selectUnit) {
 			base.activate (selectUnit);
@@ -72,6 +48,7 @@ namespace BSS.Unit {
 				GameObject obj=GameObject.Instantiate (unitPrefab, pos, Quaternion.identity);
 				BaseUnit _unit = obj.GetComponent<BaseUnit> ();
 				_unit.team = selectUnit.team;
+				BaseEventListener.onPublishGameObject ("UnitBuy", obj);
 			}
 		}
 

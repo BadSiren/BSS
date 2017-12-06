@@ -8,40 +8,38 @@ namespace BSS {
 	[RequireComponent(typeof(BaseUnit))]
 	public class Selectable : Clickable
 	{
-		public static UnitTeam selectTeam;
 		public static List<Selectable> selectableList = new List<Selectable>();
-		public static List<GameObject> selectedList = new List<GameObject> ();
-		public static GameObject lastSelected;
 
-		public bool isSelected;
-		private BaseUnit owner;
+		public BaseUnit owner;
 
 		public void Awake()
 		{
-			selectableList.Add (this);
 			owner = GetComponent<BaseUnit> ();
+			selectableList.Add(this);
 		}
-		public void OnDestroy()
+		void OnDestroy()
 		{
-			selectableList.Remove (this);
+			selectableList.Remove(this);
 		}
+			
 		public override void onClick() {
-			base.onClick();
-			selectedList.Clear ();
+			base.onClick ();
 			onSelect ();
 		}
-
 		public void onSelect() {
-			if (!selectedList.Contains (gameObject)) {
-				selectedList.Add (gameObject);
+			if (owner.team == UnitTeam.Red) {
+				BaseSelect.instance.allyUnitSelect (gameObject);
+			} else if  (owner.team == UnitTeam.Blue) {
+				BaseSelect.instance.enemyUnitSelect (gameObject);
 			}
-			lastSelected = gameObject;
-			selectTeam = owner.team;
-			isSelected = true;
-			unSelectAllExceptMe ();
-			SendMessage ("onSelectEvent", SendMessageOptions.DontRequireReceiver);
-			BaseEventListener.onPublishGameObject ("UnitSelect", gameObject);
 		}
+
+
+		private void onDieEvent()
+		{
+			BaseSelect.instance.unitUnSelect (gameObject);
+		}
+		/*
 		public void unSelect() {
 			if (selectedList.Contains (gameObject)) {
 				selectedList.Remove(gameObject);
@@ -51,12 +49,24 @@ namespace BSS {
 		}
 		public void unSelectAllExceptMe() {
 			foreach (var it in selectableList) {
-				if (gameObject.GetInstanceID () == it.gameObject.GetInstanceID ()) {
+				if (it ==null || gameObject.GetInstanceID () == it.gameObject.GetInstanceID ()) {
 					continue;
 				}
 				it.unSelect ();
 			}
 		}
+
+
+		private void onDieEvent()
+		{
+			selectableList.Remove (this);
+			selectedList.Remove (gameObject);
+			if (lastSelected!=null &&lastSelected.GetInstanceID () == gameObject.GetInstanceID ()) {
+				lastSelected = null;
+				BaseEventListener.onPublish ("SelectCancle");
+			}
+		}
+		*/
 	}
 }
 

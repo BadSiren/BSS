@@ -10,15 +10,15 @@ namespace BSS.LobbyItemSystem {
 		public string containerName;
 		public Dictionary<string,Dictionary<string,string>> properties=new Dictionary<string,Dictionary<string,string>>();
 
-		public void propertiesRand() {
+		public void propertiesRand(string randKey) {
 			foreach (var property in properties) {
-				if (!property.Value.ContainsKey ("Rand")) {
+				if (!property.Value.ContainsKey (randKey)) {
 					continue;
 				}
-				string[] randSplit = property.Value ["Rand"].Split ('/');
+				string[] randSplit = property.Value [randKey].Split ('/');
 				float randFloat = float.Parse (randSplit [1]) + Random.Range (int.Parse (randSplit [2]), int.Parse (randSplit [3])) * float.Parse (randSplit [4]);
 				property.Value [randSplit [0]] = randFloat.ToString ();
-				property.Value.Remove ("Rand");
+				property.Value.Remove (randKey);
 			}
 		}
 	}

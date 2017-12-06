@@ -79,7 +79,7 @@ namespace BSS.UI {
 			updateVariable (_text);
 		}
 		private void receiveBoolMessageEvent(ArgWithRecevier _messageArgs){
-			if (_messageArgs.receiverName != elementName) {return;}
+			if (_messageArgs.receiverName!="All" &&_messageArgs.receiverName != elementName) {return;}
 			bool _enabled = (bool)_messageArgs.parameter;
 			elementEnabled (_enabled);
 		}

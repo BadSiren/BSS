@@ -28,15 +28,12 @@ namespace BSS.Unit {
 				navAgent.maxSpeed=value;
 			}
 		}
-		public bool canInputing;
-
-		public bool isMoving;
-		private BaseUnit owner;
 		public Vector3 destination;
-		public bool isPause;
+		public bool isForce;
 
+		private BaseUnit owner;
 		private PolyNavAgent navAgent;
-		private bool isIgnore;
+
 
 
 		void Awake() {
@@ -52,52 +49,46 @@ namespace BSS.Unit {
 		}
 
 		public void toMove(Vector3 targetPos) {
-			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
-			navAgent.SetDestination (targetPos,(x)=> {
-				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
-			});
-			/*
-			if (isIgnore) {
+			if (isForce) {
 				return;
 			}
-			isPause = false;
-			destination = targetPos;
-			isMoving = true;
-			if (targetPos != Vector3.zero) {
-				SendMessage ("onAllMoveEvent", destination, SendMessageOptions.DontRequireReceiver);
-			}
-			*/
-		}
-		public void toMoveByForce(Vector3 targetPos) {
 			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
 			navAgent.SetDestination (targetPos,(x)=> {
-				SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
+				moveStop();
 			});
-			/*
-			isIgnore = true;
-			isPause = false;
-			destination = targetPos;
-			isMoving = true;
-			SendMessage ("onAllMoveEvent",destination, SendMessageOptions.DontRequireReceiver);
-			SendMessage ("onMoveByForceEvent",destination, SendMessageOptions.DontRequireReceiver);
-			*/
 		}
+		public void toMove(Vector3 targetPos,float stopDistance) {
+			if (isForce) {
+				return;
+			}
+			navAgent.stoppingDistance = stopDistance;
+			toMove (targetPos);
+		}
+
+		public void toMoveByForce(Vector3 targetPos) {
+			isForce = true;
+			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+			SendMessage ("onMoveByForceEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+			navAgent.SetDestination (targetPos,(x)=> {
+				moveStop();
+			});
+		}
+		public void toMoveByForce(Vector3 targetPos,float stopDistance) {
+			navAgent.stoppingDistance = stopDistance;
+			toMoveByForce (targetPos);
+		}
+
+
 		public void moveStop() {
 			navAgent.Stop ();
+			navAgent.stoppingDistance = 0.1f;
 			SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
 		}
 			
 			
 		//UnitEvent
-		private void onSelectEvent() {
-			if (owner.team == UnitTeam.Red) {
-				canInputing = true;
-			}
-		}
-		private void onUnSelectEvent() {
-			canInputing = false;
-		}
 		private void onAttackEvent(AttackInfo attackInfo) {
+			moveStop ();
 		}
 	}
 }

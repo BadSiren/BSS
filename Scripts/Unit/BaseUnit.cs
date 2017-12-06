@@ -18,6 +18,7 @@ namespace BSS.Unit {
 
 		public string uIndex;
 		public string uName;
+		public Sprite portrait;
 
 		public UnitTeam team;
 		public bool isInvincible;
@@ -39,6 +40,7 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
+		public List<Dictionary<string,string>> existActivable = new List<Dictionary<string,string>>();
 		public Dictionary<string,float> existUpgradables = new Dictionary<string,float> ();
 
 		public List<Activable> activableList = new List<Activable> ();
@@ -47,7 +49,7 @@ namespace BSS.Unit {
 		public virtual void die() {
 			tag = "Die";
 			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
-			BaseEventListener.onPublishString ("UnitDie", uIndex);
+			BaseEventListener.onPublishGameObject ("UnitDie", gameObject);
 			Destroy (gameObject);
 		}
 
@@ -75,6 +77,13 @@ namespace BSS.Unit {
 			upgradableList.Clear ();
 		}
 
+		public bool haveProperty<T>() {
+			if (GetComponent<T> () == null) {
+				return false;
+			}
+			return true;
+		}
+
 		protected virtual void OnEnable()
 		{
 			unitList.Add(this);
@@ -86,20 +95,26 @@ namespace BSS.Unit {
 			resetActivable ();
 			resetUpgradable ();
 		}
-		void Start() {
-			
-		}
 
 		protected virtual void initialize() {
 			health = maxHealth;
 			mana = maxMana;
 
+			activableInitialize ();
 			upgradeInitialize ();
 
 			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
 			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
 		}
 			
+		private void activableInitialize() {
+			foreach (var it in existActivable) {
+				Activable temp=BSDatabase.instance.activableDatabase.activables [it ["ID"]];
+				var activable=ScriptableObject.Instantiate (temp);
+				activable.initialize (it);
+				addActivable (activable);
+			}
+		}
 		private void upgradeInitialize() {
 			foreach (var it in existUpgradables) {
 				addUpgradable (it.Key, it.Value);

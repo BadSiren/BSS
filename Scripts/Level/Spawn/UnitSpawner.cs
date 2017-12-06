@@ -16,8 +16,7 @@ namespace BSS.Level {
 			public string uIndex;
 			public int number=1;
 		}
-		public class SpawnDatas {
-			
+		public class SpawnData {
 			public List<SpawnUnit> spawnUnits =new List<SpawnUnit>();
 			[TextArea()]
 			public string spawnText;
@@ -37,7 +36,7 @@ namespace BSS.Level {
 			}
 		}
 
-		public List<SpawnDatas> spawnDatas = new List<SpawnDatas> ();
+		public List<SpawnData> spawnDatas = new List<SpawnData> ();
 		public int maxLevel {
 			get {
 				return spawnDatas.Count;

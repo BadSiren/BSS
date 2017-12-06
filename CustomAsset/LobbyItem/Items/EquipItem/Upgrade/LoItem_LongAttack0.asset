@@ -53,7 +53,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 6
     - Name: 
       Entry: 7
       Data: 
@@ -71,7 +71,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: UnitID
+      Data: UpID
     - Name: 
       Entry: 1
       Data: LongAttack
@@ -87,6 +87,42 @@ MonoBehaviour:
     - Name: 
       Entry: 1
       Data: UpgradeCenter
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: MaxLevel
+    - Name: 
+      Entry: 1
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: InitMoney
+    - Name: 
+      Entry: 1
+      Data: 100
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: AddMoney
+    - Name: 
+      Entry: 1
+      Data: 100
     - Name: 
       Entry: 8
       Data: 
@@ -108,10 +144,9 @@ MonoBehaviour:
   ID: LongAttack0
   icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
   itemTitle: "\uC6D0\uAC70\uB9AC\uACF5\uACA9\uC5C5"
-  itemDescription: "[\uC5C5\uAE00\uC13C\uD130]\n\uC5C5\uAE00\uC13C\uD130\uC5D0\uC11C
-    \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744 \uC5C5\uADF8\uB808\uC774\uB4DC\uD560 \uC218
-    \uC788\uC2B5\uB2C8\uB2E4.\n\uCD5C\uB300\uB808\uBCA8 : [3]\n\uC5C5\uAE00\uAC00\uACA9
-    : [10+5/0+0]"
+  itemDescription: "\uC5C5\uAE00\uC13C\uD130\uC5D0\uC11C \uC6D0\uAC70\uB9AC \uACF5\uACA9\uC744
+    \uC5C5\uADF8\uB808\uC774\uB4DC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n[\uCD5C\uB300\uB808\uBCA8
+    : 3]\n[\uC5C5\uAE00\uAC00\uACA9 : 100+100/0+0]"
   buyCost: 0
   sellCost: 0
   rairity: 0

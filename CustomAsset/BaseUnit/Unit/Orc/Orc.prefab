@@ -84,14 +84,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4127667117923582}
   - component: {fileID: 114635905697874008}
+  - component: {fileID: 114527577472166940}
   - component: {fileID: 114747076965043512}
-  - component: {fileID: 114311289096673286}
   - component: {fileID: 114895850629466368}
+  - component: {fileID: 114581716507030210}
   - component: {fileID: 114321158588509904}
-  - component: {fileID: 114739193101987302}
   - component: {fileID: 114706510746624918}
   - component: {fileID: 114004498819211936}
-  - component: {fileID: 50460750255210458}
   - component: {fileID: 61118103153070438}
   - component: {fileID: 114660957622976828}
   m_Layer: 0
@@ -381,26 +380,6 @@ Transform:
   m_Father: {fileID: 4524655707465264}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50460750255210458
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331073601508468}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 0
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!61 &61118103153070438
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -537,19 +516,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
---- !u!114 &114311289096673286
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331073601508468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dccd2f667d9f4bc8884d0c5c8f09287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  circleSpr: {fileID: 21300000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
-  scale: {x: 0.5, y: 0.5, z: 1}
 --- !u!114 &114321158588509904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -561,7 +527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 21300000, guid: 8d0cc727a992844a0ba3b120f29ebcb9, type: 3}
 --- !u!114 &114468376956330898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -580,6 +545,50 @@ MonoBehaviour:
   attackAnimaionName: attack
   hitAnimaionName: 
   dieAnimaionName: 
+--- !u!114 &114527577472166940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331073601508468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c9598f271ce4eeeb2732a32ad20895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 1
+--- !u!114 &114581716507030210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331073601508468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf4ba032197e4631a020d7e8280ecc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  icon: {fileID: 21300000, guid: 172dfcf7f51e14b3f972ffe065a0fd6f, type: 3}
+  _initDamage: 6
+  _initAttackSpeed: 0.8
+  _initRange: 10
+  changeDamage: 0
+  changeAttackSpeed: 0
+  isChase: 1
+  isCounterattack: 1
+  outRange: 18
+  target: {fileID: 0}
+  detects: []
+  isIgnore: 0
 --- !u!114 &114635905697874008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -600,32 +609,33 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: existActivable
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: existUpgradables
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
         mscorlib]], mscorlib
     - Name: 
       Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: ShortAttack
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -634,9 +644,10 @@ MonoBehaviour:
       Data: 
   uIndex: Orc
   uName: "\uC624\uD06C"
+  portrait: {fileID: 21300000, guid: 8d0cc727a992844a0ba3b120f29ebcb9, type: 3}
   team: 0
   isInvincible: 0
-  maxHealth: 90
+  maxHealth: 80
   health: 0
   maxMana: 0
   mana: 0
@@ -686,36 +697,6 @@ MonoBehaviour:
   healthBarGUI: {fileID: 114004498819211936}
   refRelativeDist: 8
   targetOffset: {x: -1.2, y: -0.8, z: 0}
---- !u!114 &114739193101987302
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1331073601508468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf4ba032197e4631a020d7e8280ecc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  icon: {fileID: 21300000, guid: 39df0c9a552cc7c4f9e5f94ac7c1ff39, type: 3}
-  _initDamage: 10
-  _initAttackSpeed: 0.8
-  _initRange: 4
-  changeDamage: 0
-  changeAttackSpeed: 0
-  target: {fileID: 0}
-  targets: []
-  detects: []
-  state: 0
 --- !u!114 &114747076965043512
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,22 +718,25 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
+  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isSelected: 0
+  owner: {fileID: 0}
 --- !u!114 &114895850629466368
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -765,10 +749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initSpeed: 8
-  canInputing: 0
-  isMoving: 0
   destination: {x: 0, y: 0, z: 0}
-  isPause: 0
+  isForce: 0
 --- !u!212 &212022873910944036
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -15,67 +15,78 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114284630112225054, guid: e626aa123a4554146ab32ad1e619798b, type: 2}
+    - {fileID: 114905357988557550, guid: d383b990ecd2b446f92809e976adca48, type: 2}
+    - {fileID: 114097018813471734, guid: 3ee5bfe5ce90e44dc9c11e602f7f3b49, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: difficulties
+    - Name: levelInfos
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 3
-      Data: 0
-    - Name: 
-      Entry: 1
-      Data: "\uC26C\uC6C0"
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: unitSpawners
-      Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[System.Int32, mscorlib],[BSS.Level.UnitSpawner,
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Level.LevelDatabase+LevelInfo,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 7
-      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.Int32,
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
     - Name: 
-      Entry: 3
-      Data: 0
+      Entry: 1
+      Data: 0/0
     - Name: 
+      Entry: 7
+      Data: BSS.Level.LevelDatabase+LevelInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uCD08\uC2EC\uC790"
+    - Name: maxLevel
+      Entry: 3
+      Data: 10
+    - Name: clearMoney
+      Entry: 3
+      Data: 20
+    - Name: unitSpawner
       Entry: 10
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: 0/1
+    - Name: 
+      Entry: 7
+      Data: BSS.Level.LevelDatabase+LevelInfo, Assembly-CSharp
+    - Name: title
+      Entry: 1
+      Data: "\uC26C\uC6C0"
+    - Name: maxLevel
+      Entry: 3
+      Data: 10
+    - Name: clearMoney
+      Entry: 3
+      Data: 25
+    - Name: unitSpawner
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

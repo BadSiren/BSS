@@ -16,8 +16,6 @@ namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
 	public class Attackable : SerializedMonoBehaviour
 	{
-		private const float SIGHT=20f;
-
 		public static List<Attackable> attackableList = new List<Attackable>();
 
 		public Sprite icon;
@@ -85,35 +83,29 @@ namespace BSS.Unit {
 				return initRange+changeRange;
 			}
 		}
+
+		public bool isChase=true;
+		public bool isCounterattack = true;
+		public float outRange=15f;
 			
 		private BaseUnit owner;
 		[SerializeField]
 		private GameObject target;
 		[SerializeField]
-		private List<GameObject> targets =new List<GameObject> ();
-		[SerializeField]
 		private List<GameObject> detects =new List<GameObject> ();
+		[SerializeField]
+		private bool isIgnore;
 
-
-		public AttackState state;
-		public enum AttackState {
-			Idle,Detect,Attack,Ignore
-		}
-
-		private AttackCollider detectCollider;
-		private AttackCollider attackCollider;
 
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			attackableList.Add(this);
 
-			initDetectCollider ();
-			initAttackCollider ();
+			StartCoroutine (coDetectEnemy ());
+			StartCoroutine (coAttackLoop ());
 		}
-		void Start (){
-			setIdle ();
-		}
+
 		void OnDestroy()
 		{
 			attackableList.Remove(this);
@@ -130,122 +122,77 @@ namespace BSS.Unit {
 			enemyObject.SendMessage ("onHitEvent",attackInfo, SendMessageOptions.DontRequireReceiver);
 		}
 
-		public void setIgnore() {
-			state = AttackState.Ignore;
-			detectCollider.setDisable ();
-			attackCollider.setDisable ();
-			target = null;
-
-		}
-		public void setIdle() {
-			state = AttackState.Idle;
-			detectCollider.setEnable (SIGHT);
+		public void setTarget(GameObject enemyObject){
+			if (!UnitUtils.CheckHostile (gameObject, enemyObject)) {
+				return;
+			}
+			target = enemyObject;
 		}
 
-		IEnumerator attackLoop() {
+		IEnumerator coDetectEnemy() {
 			while (true) {
-				yield return new WaitForSeconds (1f/attackSpeed);
-				if (state == AttackState.Ignore) {
+				yield return new WaitForSeconds (0.1f);
+				if (isIgnore || target != null ) {
 					continue;
 				}
+				detects.Clear ();
+				var units = BaseUnit.unitList.FindAll (x => UnitUtils.CheckHostile (owner, x) && !x.isInvincible && checkRange (x.gameObject));
+				foreach (var it in units) {
+					detects.Add (it.gameObject);
+				}
+				if (detects.Count > 0) {
+					target=detects [0];
 
-				if (target == null) {
-					if (state != AttackState.Idle) {
-						state = AttackState.Idle;
-						detectCollider.setEnable (SIGHT);
-					}
-				} else {
+				}
+			}
+		}
+		IEnumerator coAttackLoop() {
+			while (true) {
+				yield return new WaitForSeconds (1f/attackSpeed);
+				if (isIgnore || target == null ) {
+					continue;
+				}
+				if (checkRange (target)) {
 					attack (target);
+				} else {
+					if (checkRange (target, outRange)) {
+						chaseTarget ();
+					} else {
+						target = null;
+					}
 				}
 			}
 		}
 
-
-		private void initAttackCollider() {
-			GameObject obj = new GameObject ("AttackRange");
-			obj.transform.SetParent (gameObject.transform,false);
-			attackCollider=obj.AddComponent <AttackCollider>();
-			attackCollider.attakable = this;
-			attackCollider.triggerEnter = "OnTriggerEnterTarget";
-			attackCollider.triggerExit = "OnTriggerExitTarget";
-			attackCollider.setDisable ();
-		}
-		private void initDetectCollider() {
-			GameObject obj = new GameObject ("DetectRange");
-			obj.transform.SetParent (gameObject.transform,false);
-			detectCollider=obj.AddComponent <AttackCollider>();
-			detectCollider.attakable = this;
-			detectCollider.triggerEnter = "OnTriggerEnterDetect";
-			detectCollider.triggerExit = "OnTriggerExitDetect";
-			detectCollider.setDisable ();
-		}
-		//Attack Collider Trigger
-		private void OnTriggerEnterDetect(Collider2D col) {
-			if (state == AttackState.Ignore) {return;}
-
-			if (state==AttackState.Idle && checkHostile (col.gameObject) ) {
-				detectCollider.setDisable ();
-				state = AttackState.Detect;
-				SendMessage("toMove",col.gameObject.transform.localPosition,SendMessageOptions.DontRequireReceiver);
-				attackCollider.setEnable (range);
+		private void chaseTarget() {
+			var movable=gameObject.GetComponent<Movable> ();
+			if (movable==null) {
+				return;
 			}
+			movable.toMove (target.transform.position,range*range*0.9f);
 		}
-		private void OnTriggerEnterTarget(Collider2D col) {
-			if (state == AttackState.Ignore) {return;}
-			if (target != null) {return;}
-
-			if (checkHostile (col.gameObject) && state==AttackState.Detect) {
-				state = AttackState.Attack;
-				target = col.gameObject;
-				SendMessage("moveStop",SendMessageOptions.DontRequireReceiver);
-			}
-		}
-		private void OnTriggerExitTarget(Collider2D col) {
-			if (state == AttackState.Ignore) {return;}
-			if (target == null) {return;}
-
-			if (target.gameObject.GetInstanceID () == col.gameObject.GetInstanceID ()) {
-				target = null;
-				state = AttackState.Idle;
-				attackCollider.setDisable ();
-				detectCollider.setEnable (SIGHT);
-			}
-		}
-			
-
 		private bool checkRange(Vector3 targetPos,float dis) {
-			return Vector3.Distance (transform.localPosition, targetPos) < dis;
+			var sqrLen = (targetPos - transform.position).sqrMagnitude;
+			return sqrLen< dis*dis;
 		}
 		private bool checkRange(GameObject obj,float dis) {
-			return Vector3.Distance (transform.localPosition, obj.transform.localPosition) < dis;
+			return checkRange (obj.transform.localPosition, dis);
 		}
-
-		private bool checkHostile(UnitTeam team,UnitTeam other) {
-			if ((team == UnitTeam.White || other == UnitTeam.White) || team == other) {
-				return false;
-			} 
-			return true;
-		}
-		private bool checkHostile(BaseUnit enemyUnit) {
-			return checkHostile (team, enemyUnit.team);
-		}
-		private bool checkHostile(GameObject enemy) {
-			BaseUnit unit = enemy.GetComponent<BaseUnit> ();
-			return checkHostile (team, unit.team);
+		private bool checkRange(GameObject obj) {
+			return checkRange (obj.transform.localPosition, range);
 		}
 
 		//UnitEvent
-		private void onInitialize() {
-			StartCoroutine(attackLoop());
-		}
-		private void onMoveByForceEvent() {
-			setIgnore ();
-		}
-		private void onMoveStopEvent() {
-			if (state == AttackState.Ignore) {
-				setIdle ();
+		private void onHitEvent(AttackInfo attackInfo) {
+			if (target == null && isCounterattack) {
+				setTarget (attackInfo.attacker);
 			}
 		}
-
+		private void onMoveByForceEvent() {
+			isIgnore=true;
+		}
+		private void onMoveStopEvent() {
+			isIgnore=false;
+		}
 	}
 }

@@ -364,14 +364,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4842121470552700}
   - component: {fileID: 114724311579513644}
+  - component: {fileID: 114838136018416672}
   - component: {fileID: 114376409880221978}
-  - component: {fileID: 114958148090892680}
   - component: {fileID: 114346459764053328}
   - component: {fileID: 114143948923424706}
   - component: {fileID: 114319566346945270}
   - component: {fileID: 114338303923676290}
   - component: {fileID: 114061592675696840}
-  - component: {fileID: 50701424814478580}
   - component: {fileID: 61501808466986536}
   - component: {fileID: 114171862426958480}
   m_Layer: 0
@@ -995,26 +994,6 @@ Transform:
   m_Father: {fileID: 4529718437185580}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50701424814478580
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675832131944250}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 0
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &61501808466986536
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -1162,7 +1141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 21300000, guid: 6e74439386cec4a9caa2a22d16a91cbd, type: 3}
 --- !u!114 &114171862426958480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1211,15 +1189,17 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   icon: {fileID: 21300000, guid: 39df0c9a552cc7c4f9e5f94ac7c1ff39, type: 3}
-  _initDamage: 15
-  _initAttackSpeed: 1.2
-  _initRange: 5
+  _initDamage: 20
+  _initAttackSpeed: 1
+  _initRange: 3.5
   changeDamage: 0
   changeAttackSpeed: 0
+  isChase: 1
+  isCounterattack: 1
+  outRange: 18
   target: {fileID: 0}
-  targets: []
   detects: []
-  state: 0
+  isIgnore: 0
 --- !u!114 &114338303923676290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1247,10 +1227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initSpeed: 10
-  canInputing: 0
-  isMoving: 0
   destination: {x: 0, y: 0, z: 0}
-  isPause: 0
+  isForce: 0
 --- !u!114 &114376409880221978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1272,22 +1250,25 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
+  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isSelected: 0
+  owner: {fileID: 0}
 --- !u!114 &114686869909484866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1326,17 +1307,10 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: existUpgradables
+    - Name: existActivable
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
     - Name: 
       Entry: 12
       Data: 0
@@ -1346,19 +1320,52 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: existUpgradables
+      Entry: 7
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ShortAttack
+    - Name: 
+      Entry: 4
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   uIndex: Medusa
   uName: "\uBA54\uB450\uC0AC"
+  portrait: {fileID: 21300000, guid: 6e74439386cec4a9caa2a22d16a91cbd, type: 3}
   team: 0
   isInvincible: 0
   maxHealth: 100
   health: 0
   maxMana: 0
   mana: 0
-  _initArmor: 0
+  _initArmor: 1
   changeArmor: 0
   activableList: []
   upgradableList: []
---- !u!114 &114958148090892680
+--- !u!114 &114838136018416672
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1366,11 +1373,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1675832131944250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dccd2f667d9f4bc8884d0c5c8f09287, type: 3}
+  m_Script: {fileID: 11500000, guid: d6c9598f271ce4eeeb2732a32ad20895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleSpr: {fileID: 21300000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
-  scale: {x: 0.5, y: 0.5, z: 1}
+  mass: 1
 --- !u!210 &210703202860417542
 SortingGroup:
   m_ObjectHideFlags: 1

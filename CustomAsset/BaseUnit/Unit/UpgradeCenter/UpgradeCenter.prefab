@@ -37,10 +37,8 @@ GameObject:
   - component: {fileID: 4717452828800462}
   - component: {fileID: 114028195714502988}
   - component: {fileID: 114226842067212730}
-  - component: {fileID: 114957544936256028}
   - component: {fileID: 114298441343184664}
   - component: {fileID: 61617193109226866}
-  - component: {fileID: 114680216549362598}
   m_Layer: 0
   m_Name: UpgradeCenter
   m_TagString: Untagged
@@ -98,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1731685947181740}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.03, y: 19.6, z: 0}
+  m_LocalPosition: {x: 19.2, y: 20.1, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4339963005581400}
@@ -150,13 +148,26 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
+    - Name: existActivable
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
+        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: existUpgradables
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
         mscorlib]], mscorlib
     - Name: 
       Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -172,6 +183,7 @@ MonoBehaviour:
       Data: 
   uIndex: UpgradeCenter
   uName: "\uC5C5\uAE00\uC13C\uD130"
+  portrait: {fileID: 21300008, guid: d7e504f647f22415f8b9bb8de9301706, type: 3}
   team: 0
   isInvincible: 1
   maxHealth: 10000
@@ -221,22 +233,24 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: -9
+  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  isSelected: 0
 --- !u!114 &114298441343184664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -248,34 +262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 21300008, guid: d7e504f647f22415f8b9bb8de9301706, type: 3}
---- !u!114 &114680216549362598
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1731685947181740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shapeType: 1
-  extraOffset: 0
-  invertPolygon: 0
---- !u!114 &114957544936256028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1731685947181740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dccd2f667d9f4bc8884d0c5c8f09287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  circleSpr: {fileID: 21300000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
-  scale: {x: 0.5, y: 0.5, z: 1}
 --- !u!212 &212793896381680932
 SpriteRenderer:
   m_ObjectHideFlags: 1

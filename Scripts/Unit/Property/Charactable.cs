@@ -5,7 +5,6 @@ namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
 	public class Charactable : MonoBehaviour
 	{
-		public Sprite portrait;
 		private Character character;
 
 		void Awake() {

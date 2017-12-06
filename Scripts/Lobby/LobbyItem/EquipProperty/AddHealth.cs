@@ -16,11 +16,6 @@ namespace BSS.LobbyItemSystem {
 		public override void initialize (Dictionary<string,string> args)
 		{
 			unitID = args ["ApplyUnitID"];
-			if (args.ContainsKey ("RandHealth")) {
-				string[] texts = args ["RandHealth"].Split ('/');
-				int randHelath=int.Parse (texts [0]) + Random.Range (int.Parse (texts [1]), int.Parse (texts [2])) * int.Parse (texts [3]);
-				args ["Health"] = randHelath.ToString ();
-			}
 			addHealth = float.Parse(args ["Health"]);
 		}
 		public override void onUnitCreateAct(GameObject target) {

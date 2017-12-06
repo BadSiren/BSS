@@ -53,7 +53,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 
@@ -86,7 +86,7 @@ MonoBehaviour:
       Data: UseMoney
     - Name: 
       Entry: 1
-      Data: 20
+      Data: 75
     - Name: 
       Entry: 8
       Data: 
@@ -99,6 +99,18 @@ MonoBehaviour:
     - Name: 
       Entry: 1
       Data: UnitShop
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: UseFood
+    - Name: 
+      Entry: 1
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -122,7 +134,7 @@ MonoBehaviour:
   itemTitle: "\uBA54\uB450\uC0AC"
   itemDescription: "\uC720\uB2DB\uC0C1\uC810\uC5D0\uC11C \uBA54\uB450\uC0AC\uB97C
     \uC0DD\uC0B0\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n[\uC0DD\uC0B0\uBE44\uC6A9:
-    20/0]"
+    75/1]"
   buyCost: 0
   sellCost: 0
   rairity: 1

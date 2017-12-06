@@ -60,99 +60,13 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: containers
+    - Name: containerMax
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyItem,
-        Assembly-CSharp]], mscorlib]], mscorlib
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
     - Name: 
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Inventory
-    - Name: 
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: UnitShop
-    - Name: 
-      Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: UpgradeCenter
-    - Name: 
-      Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyItem, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: containerMax
-      Entry: 7
-      Data: 5|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 6|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
     - Name: 
       Entry: 8
@@ -180,7 +94,7 @@ MonoBehaviour:
       Data: UnitShop
     - Name: 
       Entry: 3
-      Data: 9
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -202,9 +116,26 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: containers
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[BSS.LobbyItemSystem.LobbyItem,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   moneyName: Money
   gemName: Gem
   inventoryName: Inventory
-  equipContainers:
-  - UnitShop
-  - UpgradeCenter

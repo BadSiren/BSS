@@ -41,9 +41,11 @@ namespace BSS.UI {
 			acitvableList.Capacity = 9;
 			for (int i = 0; i < acitvableList.Capacity; i++) {
 				if (i < acitvableList.Count) {
-					sendToReceiver ("Button" + i.ToString (), acitvableList [i].buttonImage);
+					sendToReceiver ("Button" + i.ToString (), acitvableList [i].icon);
+					sendToReceiver ("ButtonInfo" + i.ToString (), acitvableList [i].infoContent);
 				} else {
 					sendBoolToReceiver ("Button" + i.ToString (), false);
+					sendBoolToReceiver ("ButtonInfo" + i.ToString (), false);
 				}
 			}
 		}
@@ -52,6 +54,7 @@ namespace BSS.UI {
 			acitvableList = emptyList;
 			for (int i = 0; i < acitvableList.Capacity; i++) {
 				sendBoolToReceiver ("Button" + i.ToString (), false);
+				sendBoolToReceiver ("ButtonInfo" + i.ToString (), false);
 			}
 		}
 		public void undoActivableList () {

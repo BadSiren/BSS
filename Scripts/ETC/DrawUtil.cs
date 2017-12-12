@@ -78,6 +78,17 @@ namespace BSS {
 			//CreateRect
 			return Rect.MinMaxRect(topLeft.x,topLeft.y,bottomRight.x,bottomRight.y);
 		}
+		public static Rect GetScreenRect(Vector2 screenPosition1,Vector2 screenPosition2)
+		{
+			//Moveoriginfrombottomlefttotopleft
+			screenPosition1.y=Screen.height-screenPosition1.y;
+			screenPosition2.y=Screen.height-screenPosition2.y;
+			//Calculatecorners
+			var topLeft=Vector2.Min(screenPosition1,screenPosition2);
+			var bottomRight=Vector2.Max(screenPosition1,screenPosition2);
+			//CreateRect
+			return Rect.MinMaxRect(topLeft.x,topLeft.y,bottomRight.x,bottomRight.y);
+		}
 		public static void DrawCustomRect(Vector3 screenPosition1,Vector3 screenPosition2){
 			var rect=GetScreenRect(screenPosition1,screenPosition2);
 			DrawScreenRect(rect,new Color(0.8f,0.8f,0.95f,0.25f));

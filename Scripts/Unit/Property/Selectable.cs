@@ -9,8 +9,13 @@ namespace BSS {
 	public class Selectable : Clickable
 	{
 		public static List<Selectable> selectableList = new List<Selectable>();
-
+		[HideInInspector]
 		public BaseUnit owner;
+		public bool isSelected {
+			get {
+				return BaseSelect.instance.selectObjects.Contains (gameObject);
+			}
+		}
 
 		public void Awake()
 		{
@@ -21,10 +26,21 @@ namespace BSS {
 		{
 			selectableList.Remove(this);
 		}
+		void OnGUI() {
+			if (isSelected) {
+				Vector2 screenPoint1 = Camera.main.WorldToScreenPoint (new Vector2(transform.position.x-1f, transform.position.y-0.2f-0.5f));
+				Vector2 screenPoint2 = Camera.main.WorldToScreenPoint (new Vector2(transform.position.x+1f, transform.position.y-0.2f+0.5f));
+				var rect=DrawUtils.GetScreenRect (screenPoint1, screenPoint2);
+				GUI.DrawTexture (rect, BaseSelect.instance.selectCircle);
+			}
+		}
 			
 		public override void onClick() {
 			base.onClick ();
 			onSelect ();
+		}
+		public override void onDoubleClick() {
+			base.onDoubleClick ();
 		}
 		public void onSelect() {
 			if (owner.team == UnitTeam.Red) {

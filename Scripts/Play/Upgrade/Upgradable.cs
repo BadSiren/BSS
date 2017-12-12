@@ -5,26 +5,40 @@ using Sirenix.OdinInspector;
 using BSS.Play;
 
 namespace BSS.Unit {
-	public abstract class Upgradable : ScriptableObject  {
+	public abstract class Upgradable : SerializedMonoBehaviour  {
 		public string ID;
-		public string titleContent;
-		[TextArea()]
-		public string textContent;
-		public Sprite icon;
+		public string listenName="UpID";
+		public BaseEventListener.ParameterType listenType=BaseEventListener.ParameterType.Int;
+
+		private BaseEventListener listener;
 
 		public int level {
 			get {
 				return GameDataBase.instance.getUpgradeLevel (ID);
 			}
 		}
-		protected GameObject owner;
-		
+		protected BaseUnit owner;
 
-		public abstract void onCreate (GameObject target, float argument);
-		public abstract void onUpgradeApply ();
-		void OnDestroy() {
-			GameDataBase.instance.removeUpListener (this);
+		void Start() {
+			initialize ();
 		}
+		public virtual void initialize() {
+			owner = GetComponent<BaseUnit> ();
+
+			listener=gameObject.AddComponent<BaseEventListener> ();
+			listener.listenName = listenName;
+			listener.listenType = listenType;
+			listener.sendMessage = "applyUpgrade";
+			listener.sendType = BaseEventListener.ParameterType.String;
+			listener.isDynamic = false;
+			listener.stringParameter = ID;
+		}
+		void OnDestroy() {
+			if (listener != null) {
+				Destroy (listener);
+			}
+		}
+		public abstract void applyUpgrade (string _ID);
 	}
 }
 

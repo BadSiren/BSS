@@ -6,6 +6,7 @@ namespace BSS {
 	public class ApplicationSetting : MonoBehaviour
 	{
 		public string sceneName;
+		public string urlName;
 
 		public void loadScene() {
 			SceneManager.LoadScene (sceneName);
@@ -13,6 +14,10 @@ namespace BSS {
 		public void applicationEnd() {
 			Application.Quit ();
 		}
+		public void openURL() {
+			Application.OpenURL (urlName);
+		}
+
 	}
 }
 

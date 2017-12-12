@@ -49,12 +49,12 @@ namespace BSS {
 			foreach (var it in containerMax) {
 				containers [it.Key] = new List<LobbyItem> ();
 				containers [it.Key].Capacity = it.Value;
+				ES2.Delete (it.Key);
 				if (!ES2.Exists (it.Key)) {
 					ES2.Save (new List<string>(), it.Key);
 				}
 				itemInitialize (it.Key);
 			}
-
 		}
 
 		//Monery Function
@@ -116,7 +116,7 @@ namespace BSS {
 				_container.Add (userItem.toJson ());
 				ES2.Save (_container, container);
 			}
-
+			BaseEventListener.onPublish (container+"Update");
 			return true;
 		}
 		public bool removeItem(int slot,string container) {
@@ -130,7 +130,7 @@ namespace BSS {
 			var _container=ES2.LoadList<string> (container);
 			_container.RemoveAt (slot);
 			ES2.Save (_container, container);
-
+			BaseEventListener.onPublish (container+"Update");
 			return true;
 		}
 		public bool changeSlot(int preSlot,int nowSlot,string container) {
@@ -148,6 +148,7 @@ namespace BSS {
 			_container [preSlot] = _container [nowSlot];
 			_container [nowSlot] = _temp;
 			ES2.Save (_container, container);
+			BaseEventListener.onPublish (container+"Update");
 
 			return true;
 		}
@@ -175,6 +176,12 @@ namespace BSS {
 				return null;
 			}
 			return containers [container] [slot];
+		}
+		public bool existsSlot(int slot,string container) {
+			if (slot>containers[container].Count-1) {
+				return false;
+			}
+			return true;
 		}
 
 		private void itemInitialize(string container) {

@@ -21,8 +21,14 @@ MonoBehaviour:
     - {fileID: 1168772283027086, guid: c8e1f52cf5198468ebb7f883d1a84da1, type: 2}
     - {fileID: 1731685947181740, guid: 6350d23ea6a1349be8e5c102e72c492e, type: 2}
     - {fileID: 1270072945703350, guid: d55b66c02efc34749b7034e507c98d16, type: 2}
-    - {fileID: 11400000, guid: cc26ec13bfe6e42dfb1fbf45fc57d45a, type: 2}
-    - {fileID: 11400000, guid: 4f75a45274fa945b7acff253c10c961f, type: 2}
+    - {fileID: 1464560430074236, guid: 535fa6b30730e46769836b2cf33f71ca, type: 2}
+    - {fileID: 1994483983143456, guid: e28258c11daf14b48969b26747db55ee, type: 2}
+    - {fileID: 1839686344519724, guid: 3794cc21ba6e6415abfb8bab55df0028, type: 2}
+    - {fileID: 1376795141587662, guid: 076a06f986a2347a4984740ef8e3ae42, type: 2}
+    - {fileID: 21300000, guid: c781ebfdd3fb84ec8bdfa10b6b7baae0, type: 3}
+    - {fileID: 21300000, guid: ef7b6e7146c734e15b5564ae6c62ddc7, type: 3}
+    - {fileID: 21300000, guid: bd3feadf53e31471a81e6d26b0eef0e1, type: 3}
+    - {fileID: 21300000, guid: 987aa78eb438340bb90fd2c5cb7102f3, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -41,7 +47,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 6
+      Data: 10
     - Name: 
       Entry: 7
       Data: 
@@ -115,31 +121,11 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: upgrades
-      Entry: 7
-      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Unit.Upgradable,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
       Entry: 7
       Data: 
     - Name: 
       Entry: 1
-      Data: ShortAttack
+      Data: School
     - Name: 
       Entry: 10
       Data: 6
@@ -151,10 +137,165 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: LongAttack
+      Data: Caveman
     - Name: 
       Entry: 10
       Data: 7
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: EvilEye
+    - Name: 
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Harpy
+    - Name: 
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: upgradeInfos
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Unit.ActivableInfo,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 3|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: EndMoney
+    - Name: 
+      Entry: 7
+      Data: 4|BSS.Unit.ActivableInfo, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: EndMoney
+    - Name: icon
+      Entry: 10
+      Data: 10
+    - Name: titleContent
+      Entry: 1
+      Data: "\uD074\uB9AC\uC5B4\uACE8\uB4DC \uC99D\uAC00"
+    - Name: textContent
+      Entry: 1
+      Data: "\uC2A4\uD14C\uC774\uC9C0\uAC00 \uB05D\uB0A0 \uB54C \uACE8\uB4DC 1\uC6D0\uC744
+        \uC5BB\uC2B5\uB2C8\uB2E4."
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Tier
+    - Name: 
+      Entry: 7
+      Data: 5|BSS.Unit.ActivableInfo, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: Tier
+    - Name: icon
+      Entry: 10
+      Data: 11
+    - Name: titleContent
+      Entry: 1
+      Data: "\uD2F0\uC5B4\uB808\uBCA8 \uC0C1\uC2B9"
+    - Name: textContent
+      Entry: 1
+      Data: "\uACE0\uAE09 \uC720\uB2DB\uC744 \uC0DD\uC0B0\uD558\uAC70\uB098 \uACE0\uAE09
+        \uC5C5\uADF8\uB808\uC774\uB4DC\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: MaxPopulation
+    - Name: 
+      Entry: 7
+      Data: 6|BSS.Unit.ActivableInfo, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: MaxPopulation
+    - Name: icon
+      Entry: 10
+      Data: 12
+    - Name: titleContent
+      Entry: 1
+      Data: "\uC778\uAD6C\uC218 \uC99D\uAC00"
+    - Name: textContent
+      Entry: 1
+      Data: "\uCD5C\uB300\uB85C \uC0DD\uC0B0 \uD560 \uC218 \uC788\uB294 \uC720\uB2DB
+        \uC218\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: SchoolHealth
+    - Name: 
+      Entry: 7
+      Data: 7|BSS.Unit.ActivableInfo, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: SchoolHealth
+    - Name: icon
+      Entry: 10
+      Data: 13
+    - Name: titleContent
+      Entry: 1
+      Data: "\uD559\uAD50 \uCCB4\uB825 \uC99D\uAC00"
+    - Name: textContent
+      Entry: 1
+      Data: "\uD559\uAD50\uC758 \uCCB4\uB825\uC774 100\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 8
       Data: 

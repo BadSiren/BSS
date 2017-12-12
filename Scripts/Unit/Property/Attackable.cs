@@ -83,23 +83,35 @@ namespace BSS.Unit {
 				return initRange+changeRange;
 			}
 		}
-
-		public bool isChase=true;
-		public bool isCounterattack = true;
-		public float outRange=15f;
 			
+		public bool isOffenssive=true;
+		public float offenseRange=15f;
+		public bool isCounterattack = true;
+		public float outRange=20f;
+			
+
 		private BaseUnit owner;
+		public BaseUnit target {
+			private set;
+			get;
+		}
+
+		private Movable movable;
 		[SerializeField]
-		private GameObject target;
-		[SerializeField]
-		private List<GameObject> detects =new List<GameObject> ();
-		[SerializeField]
-		private bool isIgnore;
+		private bool isMoving {
+			get{
+				if (movable == null) {
+					return false;
+				}
+				return movable.isMoving;
+			}
+		}
 
 
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
+			movable = GetComponent<Movable> ();
 			attackableList.Add(this);
 
 			StartCoroutine (coDetectEnemy ());
@@ -122,77 +134,68 @@ namespace BSS.Unit {
 			enemyObject.SendMessage ("onHitEvent",attackInfo, SendMessageOptions.DontRequireReceiver);
 		}
 
-		public void setTarget(GameObject enemyObject){
-			if (!UnitUtils.CheckHostile (gameObject, enemyObject)) {
-				return;
+		public void setTarget(BaseUnit enemy){
+			target = enemy;
+		}
+
+		public bool reFindTarget(float radius){
+			var targets = UnitUtils.GetUnitsInCircle (transform.position, radius).FindAll (x => UnitUtils.CheckHostile (owner, x)&& !x.isInvincible);
+			if (targets.Count == 0) {
+				return false;
 			}
-			target = enemyObject;
+			target = targets [0];
+			return true;
 		}
 
 		IEnumerator coDetectEnemy() {
 			while (true) {
 				yield return new WaitForSeconds (0.1f);
-				if (isIgnore || target != null ) {
+				if (isMoving || target!=null) {
 					continue;
 				}
-				detects.Clear ();
-				var units = BaseUnit.unitList.FindAll (x => UnitUtils.CheckHostile (owner, x) && !x.isInvincible && checkRange (x.gameObject));
-				foreach (var it in units) {
-					detects.Add (it.gameObject);
-				}
-				if (detects.Count > 0) {
-					target=detects [0];
-
+				if (!reFindTarget (range)) {
+					if (isOffenssive && reFindTarget (offenseRange)) {
+						SendMessage ("onDetectInOffenceRange", this, SendMessageOptions.DontRequireReceiver);
+					}
 				}
 			}
 		}
 		IEnumerator coAttackLoop() {
 			while (true) {
 				yield return new WaitForSeconds (1f/attackSpeed);
-				if (isIgnore || target == null ) {
+				if (isMoving  || target == null) {
 					continue;
 				}
 				if (checkRange (target)) {
-					attack (target);
-				} else {
-					if (checkRange (target, outRange)) {
-						chaseTarget ();
-					} else {
-						target = null;
-					}
+					attack (target.gameObject);
+				} else if (checkRange (target, outRange)) {
+					target = null;
 				}
 			}
 		}
+			
 
-		private void chaseTarget() {
-			var movable=gameObject.GetComponent<Movable> ();
-			if (movable==null) {
-				return;
-			}
-			movable.toMove (target.transform.position,range*range*0.9f);
+		private bool checkRange(BaseUnit unit,float dis) {
+			return UnitUtils.IsUnitInCircle (unit, transform.position, dis);
 		}
-		private bool checkRange(Vector3 targetPos,float dis) {
-			var sqrLen = (targetPos - transform.position).sqrMagnitude;
-			return sqrLen< dis*dis;
-		}
-		private bool checkRange(GameObject obj,float dis) {
-			return checkRange (obj.transform.localPosition, dis);
-		}
-		private bool checkRange(GameObject obj) {
-			return checkRange (obj.transform.localPosition, range);
+		private bool checkRange(BaseUnit unit) {
+			return UnitUtils.IsUnitInCircle (unit, transform.position, range);
 		}
 
 		//UnitEvent
+		/*
 		private void onHitEvent(AttackInfo attackInfo) {
 			if (target == null && isCounterattack) {
 				setTarget (attackInfo.attacker);
 			}
 		}
+
 		private void onMoveByForceEvent() {
 			isIgnore=true;
 		}
 		private void onMoveStopEvent() {
 			isIgnore=false;
 		}
+		*/
 	}
 }

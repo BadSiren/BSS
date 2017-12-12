@@ -16,17 +16,6 @@ namespace BSS.Unit {
 				ScriptableObjectUtility.CreateAsset<BaseUnitDatabase> (_path);
 			}
 		}
-
-		//Upgrade
-		[MenuItem("Assets/BSS/Create/Upgradable/UpAttack")]
-		public static void CreateUpAttack ()
-		{
-			string _path = EditorUtility.SaveFilePanel ("Create Asset", "Assets/BSS/", "", "asset");
-			if( _path.Length != 0 )
-			{
-				ScriptableObjectUtility.CreateAsset<UpAttack> (_path);
-			}
-		}
 	}
 }
 

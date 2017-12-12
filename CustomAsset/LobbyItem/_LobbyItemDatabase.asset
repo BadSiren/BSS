@@ -18,6 +18,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 94ca75d11221d426b8b3b117938aa993, type: 2}
     - {fileID: 11400000, guid: b32b5b98ba77a4f60870f0502281bdd4, type: 2}
     - {fileID: 11400000, guid: 296d0905d347643d6bb4230647d54eb6, type: 2}
+    - {fileID: 11400000, guid: ad725024514cc49c68466ed91f768cf6, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -272,7 +273,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -310,21 +311,22 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: AddDamage
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
   lobbyItems:
-  - {fileID: 11400000, guid: f6227a5dbe8eb454daef694e1d97dd39, type: 2}
-  - {fileID: 11400000, guid: e6f4bfc1c8bf54909818d8a4989fbb93, type: 2}
-  - {fileID: 11400000, guid: 4d19173a2f2b643f693995d957a4a79d, type: 2}
-  - {fileID: 11400000, guid: 5bea9e2096a834786a8b9cf45163fa90, type: 2}
-  - {fileID: 11400000, guid: c6d79981f954e4539901706f785e138f, type: 2}
-  - {fileID: 11400000, guid: 864d98774ae1f46b1b6a9de6c8939dbf, type: 2}
-  - {fileID: 11400000, guid: beb718f4a418443b3b27020068c869c1, type: 2}
-  - {fileID: 11400000, guid: acb608ad9c01f4cf4a0b743976337c05, type: 2}
-  - {fileID: 11400000, guid: bef385cffa84b4dcc8c06886ce74e76a, type: 2}
-  - {fileID: 11400000, guid: b36464e3502f840d68c386cafbaf1f79, type: 2}
-  - {fileID: 11400000, guid: a243dc796d291411d95b34912945491d, type: 2}
-  - {fileID: 11400000, guid: 34350e85c3caa4380af092459fb5105c, type: 2}
+  - {fileID: 11400000, guid: 53792e48aa9e5492fac679fd929728b2, type: 2}

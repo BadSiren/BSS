@@ -59,7 +59,7 @@ namespace BSS.UI {
 			string text1 = "공격력: " + valueToString (attackable.initDamage, attackable.damage);
 			string text2 = "공격속도: " + valueToString (attackable.initAttackSpeed, attackable.attackSpeed);
 			string text3 = "사거리: " + valueToString (attackable.initRange, attackable.range);
-			UIController.instance.showInform (selectUnit.uName + " 공격정보",text1+"\n"+text2+"\n"+text3);
+			UIController.instance.informBoard.Show (selectUnit.uName + " 공격정보",text1+"\n"+text2+"\n"+text3);
 		}
 		public void buttonDefenceInfo() {
 			if (selectUnit == null) {
@@ -67,7 +67,7 @@ namespace BSS.UI {
 			}
 			string text0 = "방어력: " + valueToString (selectUnit.initArmor, selectUnit.armor);
 			string text1 = "피해감소율: " + valueToStringFloor (BaseUnit.reductionArmor(selectUnit.initArmor)*100f, BaseUnit.reductionArmor(selectUnit.armor)*100f) +"%";
-			UIController.instance.showInform (selectUnit.uName + " 방어정보",text0+"\n"+text1);
+			UIController.instance.informBoard.Show (selectUnit.uName + " 방어정보",text0+"\n"+text1);
 		}
 
 

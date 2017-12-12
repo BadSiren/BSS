@@ -629,7 +629,7 @@ Transform:
   m_GameObject: {fileID: 1110412862698940}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
   m_Children:
   - {fileID: 4376914117369364}
   - {fileID: 4815451078520356}
@@ -902,7 +902,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.13147163}
+  m_Offset: {x: 0.19321871, y: 0.57892513}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -913,7 +913,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4470043, y: 2.2095423}
+  m_Size: {x: 1.9961522, y: 3.1044493}
   m_EdgeRadius: 0
 --- !u!95 &95249145195202422
 Animator:
@@ -943,9 +943,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4165a8f56ba404f14a0d7c1d98d73c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   _initSpeed: 8
-  destination: {x: 0, y: 0, z: 0}
-  isForce: 0
 --- !u!114 &114216718834056110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1018,43 +1025,12 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: existUpgradables
-      Entry: 7
-      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: LongAttack
-    - Name: 
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
   uIndex: GoblinArcher
   uName: "\uACE0\uBE14\uB9B0\uC544\uCC98"
   portrait: {fileID: 21300000, guid: df27b6b177ca34d4791a8d28ed8c376e, type: 3}
   team: 0
   isInvincible: 0
+  population: 1
   maxHealth: 50
   health: 0
   maxMana: 0
@@ -1062,7 +1038,6 @@ MonoBehaviour:
   _initArmor: 0
   changeArmor: 0
   activableList: []
-  upgradableList: []
 --- !u!114 &114459808528533420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1262,17 +1237,15 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
-  _initDamage: 7
-  _initAttackSpeed: 1.4
-  _initRange: 15
+  _initDamage: 10
+  _initAttackSpeed: 1
+  _initRange: 12
   changeDamage: 0
   changeAttackSpeed: 0
-  isChase: 1
+  isOffenssive: 1
+  offenseRange: 15
   isCounterattack: 1
   outRange: 18
-  target: {fileID: 0}
-  detects: []
-  isIgnore: 0
 --- !u!212 &212052457085203584
 SpriteRenderer:
   m_ObjectHideFlags: 1

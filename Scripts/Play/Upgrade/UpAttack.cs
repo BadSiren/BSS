@@ -5,29 +5,27 @@ using BSS.Play;
 
 namespace BSS.Unit {
 	public class UpAttack : Upgradable {
-		private float addDamage;
+		[Header("UpAttack")]
+		public float addDamage;
 		private float preChangeDamage=0f;
 		private Attackable attackable;
 
-		public override void onCreate (GameObject target,float argument)
+		public override void initialize ()
 		{
-			var upAttack = ScriptableObject.Instantiate (this);
-			upAttack.owner = target;
-			upAttack.addDamage = argument;
-			upAttack.attackable=target.GetComponent<Attackable> ();
-			if (upAttack.attackable == null) {
-				Destroy (upAttack);
+			base.initialize ();
+			attackable=GetComponent<Attackable> ();
+			if (attackable == null) {
+				Destroy (this);
 				return;
 			}
-			GameDataBase.instance.addUpListener (upAttack);
-			upAttack.onUpgradeApply ();
-			target.SendMessage ("addUpgradable", upAttack, SendMessageOptions.DontRequireReceiver);
 		}
-
-		public override void onUpgradeApply(){
-			attackable.changeDamage -= preChangeDamage;
+		 
+		public override void applyUpgrade(string _ID){
+			if (ID != _ID) {
+				return;
+			}
+			attackable.changeDamage += (level * addDamage)-preChangeDamage;
 			preChangeDamage=level * addDamage;
-			attackable.changeDamage += level * addDamage;
 		}
 	}
 }

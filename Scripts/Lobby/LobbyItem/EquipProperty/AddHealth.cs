@@ -6,35 +6,30 @@ using BSS.Unit;
 namespace BSS.LobbyItemSystem {
 	public class AddHealth : EquipProperty  {
 		[TextArea()]
-		[Header("Health : Mandatory")]
+		[Header("PlainHealth : Optional")]
 		[Header("ApplyUnitID : Mandatory")]
 		public string description="";
 
 		private string unitID;
-		private float addHealth;
+		private float addPlainHealth;
 
 		public override void initialize (Dictionary<string,string> args)
 		{
 			unitID = args ["ApplyUnitID"];
-			addHealth = float.Parse(args ["Health"]);
-		}
-		public override void onUnitCreateAct(GameObject target) {
-			BaseUnit unit = target.GetComponent<BaseUnit> ();
-			if (unit!=null && unit.uIndex == unitID ) {
-				unit.maxHealth += addHealth;
-				unit.health = unit.maxHealth;
+			if (args.ContainsKey ("PlainHealth")) {
+				addPlainHealth = int.Parse (args ["PlainHealth"]);
 			}
 		}
-		public override void onSetEnemyAct(GameObject target) {
+		public override void onAllyInitAct(GameObject target) {
 			BaseUnit unit = target.GetComponent<BaseUnit> ();
 			if (unit!=null && unit.uIndex == unitID ) {
-				unit.maxHealth -= addHealth;
-				unit.health -= addHealth;
+				unit.maxHealth += addPlainHealth;
+				unit.health = unit.maxHealth;
 			}
 		}
 		public override string getDescription(Dictionary<string,string> args) {
 			string revise = description;
-			revise=revise.Replace ("@Health", args["Health"]);
+			revise=revise.Replace ("@PlainHealth", args["PlainHealth"]);
 			revise=revise.Replace ("@ApplyUnitID", getUnitName(args["ApplyUnitID"]));
 			return revise;
 		}

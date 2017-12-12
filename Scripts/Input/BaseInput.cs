@@ -8,12 +8,7 @@ using BSS.Unit;
 namespace BSS.Input {
 	public class BaseInput : MonoBehaviour
 	{
-		public enum EInputState
-		{
-			Idle,AllySelect,EnemySelect,MultiSelect
-		}
-
-		public EInputState eInputState;
+		private const int MAX_MULTI_SELECT=9;
 		//public float longPressTime=0.6f;
 		public float doubleInterval=0.4f;
 
@@ -26,6 +21,7 @@ namespace BSS.Input {
 
 		void Update() {
 			if(UnityEngine.Input.touchCount > 1){
+				isDrag = false;
 				//CameraControl
 			} else {
 				if (UnityEngine.Input.GetMouseButtonDown (0)) {
@@ -84,7 +80,9 @@ namespace BSS.Input {
 					List<GameObject> selectObjects = new List<GameObject> ();
 					foreach (var it in Selectable.selectableList) {
 						if (bounds.Contains (Camera.main.WorldToViewportPoint (it.gameObject.transform.position)) && it.owner.team==UnitTeam.Red ) {
-							selectObjects.Add (it.gameObject);
+							if (selectObjects.Count < MAX_MULTI_SELECT) {
+								selectObjects.Add (it.gameObject);
+							}
 						}
 					}
 					if (selectObjects.Count == 1) {

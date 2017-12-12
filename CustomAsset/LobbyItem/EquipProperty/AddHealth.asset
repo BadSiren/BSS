@@ -20,4 +20,4 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  description: "[@ApplyUnitID \uCD94\uAC00\uCCB4\uB825 : +@Health]"
+  description: "[@ApplyUnitID \uCD94\uAC00\uCCB4\uB825 : +@PlainHealth]"

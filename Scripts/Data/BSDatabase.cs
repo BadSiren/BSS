@@ -15,7 +15,7 @@ namespace BSS {
 		public ActivableDatabase activableDatabase;
 		public BaseUnitDatabase baseUnitDatabase;
 		public LevelDatabase levelDatabase;
-
+		public Dictionary<string,Sprite> spriteDatabase;
 
 		void Awake() {
 			if (instance == null) {

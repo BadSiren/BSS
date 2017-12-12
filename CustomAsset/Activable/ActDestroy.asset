@@ -21,6 +21,6 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   ID: Destroy
-  buttonImage: {fileID: 21300000, guid: d41fa26565358420db49aac78ca7fe78, type: 3}
+  icon: {fileID: 21300000, guid: ec216e893fe9e40908c9a9562322ea26, type: 3}
   titleContent: "\uD574\uB2F9\uC720\uB2DB \uD30C\uAD34\uD558\uAE30"
   textContent: "\uD574\uB2F9\uC720\uB2DB\uC744 \uD30C\uAD34\uD569\uB2C8\uB2E4."

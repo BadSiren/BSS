@@ -7,12 +7,11 @@ using BSS.UI;
 
 
 namespace BSS.Unit {
-	//UpID : Mandatory
-
 	[System.Serializable]
 	public class ActUpgrade: Activable
 	{
 		[TextArea(0,0)]
+		[Header("NeedTier : Optional")]
 		[Header("AddFood : Optional")]
 		[Header("InitFood : Optional")]
 		[Header("AddMoney : Optional")]
@@ -21,12 +20,12 @@ namespace BSS.Unit {
 		[Header("UpID : Mandatory")]
 		public readonly string tip="";
 
-		public int maxLevel;
-		public int useInitMoney;
-		public int useAddMoney;
-		public int useInitFood;
-		public int useAddFood;
-
+		private Dictionary<string,int> needUpgrade=new Dictionary<string,int>();
+		private int maxLevel;
+		private int useInitMoney;
+		private int useAddMoney;
+		private int useInitFood;
+		private int useAddFood;
 
 		public int level {
 			get {
@@ -56,12 +55,16 @@ namespace BSS.Unit {
 			if (args.ContainsKey ("AddFood")) {
 				useAddFood=int.Parse(args ["AddFood"]);
 			}
-
-			Upgradable up;
-			BSDatabase.instance.baseUnitDatabase.upgrades.TryGetValue (ID,out up);
-			titleContent = up.titleContent;
-			textContent=up.textContent;
-			buttonImage = up.icon;
+			foreach (var key in args.Keys) {
+				if (key.StartsWith("NeedUp")) {
+					needUpgrade.Add(key.Replace("NeedUp",""),int.Parse(args[key]));
+				}
+			}
+			ActivableInfo actInfo;
+			BSDatabase.instance.baseUnitDatabase.upgradeInfos.TryGetValue (ID,out actInfo);
+			titleContent = actInfo.titleContent;
+			textContent=actInfo.textContent;
+			icon = actInfo.icon;
 		}
 
 		public override void activate(BaseUnit selectUnit) {
@@ -70,14 +73,40 @@ namespace BSS.Unit {
 		}
 
 		private void upgrade() {
-			if (level<maxLevel && GameDataBase.instance.useMoneyFood(getMoney(),getFood()) ) {
+			if (!validate ()) {
+				return;
+			}
+			if (GameDataBase.instance.useMoneyFood(getMoney(),getFood()) ) {
 				level++;
 			}
 		}
+		public override bool validate() {
+			if (level>=maxLevel) {
+				return false;
+			}
+			foreach (var it in needUpgrade) {
+				if (!GameDataBase.instance.isUpgrade (it.Key, it.Value)) {
+					return false;
+				}
+			}
+			return true;
+		}
 
 		protected override void showInformDynamic() {
-			string temp = "레벨 : " + level.ToString () + " / " + maxLevel.ToString () + "\n" + textContent;
-			UIController.instance.showInform (titleContent,temp,getMoney(),getFood());
+			string replace = "레벨 : " + level.ToString () + " / " + maxLevel.ToString () + "\n" + textContent;
+
+			if (needUpgrade.Count == 0) {
+				UIController.instance.informBoard.Show (titleContent, replace, getMoney (), getFood ());
+			} else if (needUpgrade.Count == 1) {
+				var keys = new List<string> (needUpgrade.Keys);
+				var upInfo = BSDatabase.instance.baseUnitDatabase.upgradeInfos [keys [0]];
+				UIController.instance.informBoard.Show (titleContent, replace, getMoney (), getFood (),upInfo.icon, needUpgrade [keys [0]]);
+			} else {
+				var keys = new List<string> (needUpgrade.Keys);
+				var upInfo0 = BSDatabase.instance.baseUnitDatabase.upgradeInfos [keys [0]];
+				var upInfo1 = BSDatabase.instance.baseUnitDatabase.upgradeInfos [keys [1]];
+				UIController.instance.informBoard.Show (titleContent, replace, getMoney (), getFood (),upInfo0.icon, needUpgrade [keys [0]],upInfo1.icon,needUpgrade[keys[1]]);
+			}
 		}
 
 		protected int getMoney() {
@@ -85,6 +114,11 @@ namespace BSS.Unit {
 		}
 		protected int getFood() {
 			return useInitFood+level*useAddFood;
+		}
+		public override string infoContent {
+			get {
+				return titleContent;
+			}
 		}
 
 	}

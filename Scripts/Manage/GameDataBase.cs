@@ -29,12 +29,20 @@ namespace BSS.Play {
 				BaseEventListener.onPublishInt ("Food", _food);
 			}
 		}
+		public int maxPopulation {
+			get {
+				return getUpgradeLevel ("MaxPopulation");
+			}
+		}
+
 		public Dictionary<string,int> upgrades=new Dictionary<string,int>();
 		public Dictionary<string,List<Upgradable>> upListeners=new Dictionary<string,List<Upgradable>>();
 
 
 		void Awake() {
 			instance = this;
+			money = 0;
+			food = 0;
 		}
 
 		public bool useMoneyFood(int useMoney,int useFood) {
@@ -45,6 +53,12 @@ namespace BSS.Play {
 			food -= useFood;
 			return true;
 		}
+		public bool isUpgrade(string upID,int needLevel) {
+			if (needLevel > getUpgradeLevel (upID)) {
+				return false;
+			}
+			return true;
+		}
 		public int getUpgradeLevel(string upID) {
 			if (!upgrades.ContainsKey (upID)) {
 				upgrades [upID] = 0;
@@ -53,11 +67,13 @@ namespace BSS.Play {
 		}
 		public void setUpgradeLevel(string upID,int _level) {
 			upgrades [upID] = _level;
-			if (upListeners.ContainsKey(upID)) {
-				foreach (var it in upListeners[upID]) {
-					it.onUpgradeApply ();
-				}
+			BaseEventListener.onPublishInt("Up"+upID,_level);
+		}
+		public bool isPopulation(int needPopulation) {
+			if (BaseUnit.totalPopulation + needPopulation > maxPopulation) {
+				return false;
 			}
+			return true;
 		}
 		public void addUpListener(Upgradable _up) {
 			if (!upListeners.ContainsKey (_up.ID)) {

@@ -27,8 +27,7 @@ namespace BSS.Level {
 				foreach (var it in spawnUnits) {
 					if (database.ContainsKey (it.uIndex)) {
 						for (int i = 0; i < it.number; i++) {
-							var obj = GameObject.Instantiate (database [it.uIndex]);
-							units.Add (obj);
+							units.Add (database [it.uIndex]);
 						}
 					}
 				}
@@ -56,18 +55,17 @@ namespace BSS.Level {
 				return null;
 			}
 
-			List<GameObject> units = spawnDatas [level].getSpawnUnits ();
-			foreach (var it in units) {
-				it.transform.localPosition = transform.localPosition+new Vector3(Random.Range(-1f,1f),Random.Range(-3f,3f),0f);
-				BaseUnit unit=it.GetComponent<BaseUnit> ();
+			List<GameObject> unitPrefabs = spawnDatas [level].getSpawnUnits ();
+			List<GameObject> units = new List<GameObject> ();
+			foreach (var it in unitPrefabs) {
+				var obj=UnitUtils.CreateUnit (it, transform.localPosition + new Vector3 (Random.Range (-1f, 1f), Random.Range (-3f, 3f), 0f), UnitTeam.Blue);
+				units.Add (obj);
+				BaseUnit unit=obj.GetComponent<BaseUnit> ();
 				unit.maxHealth = unit.maxHealth * (1f +addHeathMultiple);
 				unit.health = unit.maxHealth;
-				Attackable attackable=it.GetComponent<Attackable> ();
+				Attackable attackable=obj.GetComponent<Attackable> ();
 				if (attackable != null) {
 					attackable.changeDamage += attackable.initDamage * addDamageMultiple;
-				}
-				if (isEnemy) {
-					unit.setEnemy ();
 				}
 			}
 			return units;

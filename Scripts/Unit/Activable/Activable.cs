@@ -5,17 +5,27 @@ using BSS.UI;
 using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
+	public class ActivableInfo {
+		public string ID;
+		public Sprite icon;
+		public string titleContent;
+		[TextArea()]
+		public string textContent;
+	}
 	[System.Serializable]
 	public class Activable : SerializedScriptableObject
 	{
 		public string ID;
-		public Sprite buttonImage;
-		[SerializeField]
+		public Sprite icon;
 		[TextArea()]
 		public string titleContent;
-		[SerializeField]
 		[TextArea()]
 		public string textContent;
+		public virtual string infoContent {
+			get {
+				return "";
+			}
+		}
 
 
 		public virtual void initialize(Dictionary<string,string> args) {
@@ -30,12 +40,15 @@ namespace BSS.Unit {
 			showInformDynamic ();
 		}	
 
+		public virtual bool validate() {
+			return true;
+		}
 
 		protected virtual void showInformDynamic() {
 			if (string.IsNullOrEmpty (titleContent)) {
-				UIController.instance.clearInform ();
+				UIController.instance.informBoard.Close ();
 			}  else {
-				UIController.instance.showInform (titleContent,textContent);
+				UIController.instance.informBoard.Show (titleContent,textContent);
 			}
 		}
 

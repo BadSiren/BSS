@@ -8,10 +8,12 @@ namespace BSS.LobbyItemSystem {
 	{
 		public virtual void initialize(Dictionary<string,string> args) {
 		}
+		public virtual void onAllyInitAct(GameObject target) {
+		}
+		public virtual void onEnemyInitAct(GameObject target) {
+		}
 		public virtual void onUnitCreateAct(GameObject target) {
 		}	
-		public virtual void onSetEnemyAct(GameObject target) {
-		}
 		public virtual void onGameStartAct() {
 		}
 		public virtual void onLevelClearAct() {

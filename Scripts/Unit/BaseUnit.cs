@@ -12,9 +12,25 @@ namespace BSS.Unit {
 		Blue, //Enemy Team
 		White //Neutral Team
 	}
+	public enum UnitRelation
+	{
+		All, //Red,Blue,White
+		My, //Red
+		Enemy, //Blue
+	}
 	public class BaseUnit : SerializedMonoBehaviour
 	{
 		public static List<BaseUnit> unitList = new List<BaseUnit>();
+		public static int _totalPopulation=0;
+		public static int totalPopulation {
+			get {
+				return _totalPopulation;
+			}
+			set {
+				_totalPopulation = value;
+				BaseEventListener.onPublishInt ("TotalPopulation", _totalPopulation);
+			}
+		}
 
 		public string uIndex;
 		public string uName;
@@ -22,6 +38,7 @@ namespace BSS.Unit {
 
 		public UnitTeam team;
 		public bool isInvincible;
+		public int population;
 		public float maxHealth;
 		public float health;
 		public float maxMana;
@@ -41,24 +58,36 @@ namespace BSS.Unit {
 			}
 		}
 		public List<Dictionary<string,string>> existActivable = new List<Dictionary<string,string>>();
-		public Dictionary<string,float> existUpgradables = new Dictionary<string,float> ();
-
 		public List<Activable> activableList = new List<Activable> ();
-		public List<Upgradable> upgradableList= new List<Upgradable>();
 
-		public virtual void die() {
-			tag = "Die";
-			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
-			BaseEventListener.onPublishGameObject ("UnitDie", gameObject);
-			Destroy (gameObject);
+		protected virtual void OnEnable()
+		{
+			unitList.Add(this);
+
+			health = maxHealth;
+			mana = maxMana;
+			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
 		}
-
-		public virtual void setEnemy() {
-			team = UnitTeam.Blue;
+		protected virtual void OnDisable()
+		{
+			unitList.Remove(this);
+			if (team == UnitTeam.Red) {
+				totalPopulation -= population;
+			}
 			resetActivable ();
-			resetUpgradable ();
-			BaseEventListener.onPublishGameObject ("SetEnemy", gameObject);
 		}
+
+		public virtual void allyInit() {
+			team = UnitTeam.Red;
+			totalPopulation += population;
+			activableInitialize ();
+			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
+		}
+		public virtual void enemyInit() {
+			team = UnitTeam.Blue;
+			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
+		}
+			
 		public void addActivable(Activable _activable) {
 			activableList.Add (_activable);
 		}
@@ -66,16 +95,7 @@ namespace BSS.Unit {
 			foreach (var it in activableList) {Destroy (it);}
 			activableList.Clear ();
 		}
-		public void addUpgradable(Upgradable _upgradable) {
-			upgradableList.Add (_upgradable);
-		}
-		public void addUpgradable(string upID,float argument) {
-			BSDatabase.instance.baseUnitDatabase.upgrades [upID].onCreate (gameObject, argument);
-		}
-		public void resetUpgradable() {
-			foreach (var it in upgradableList) {Destroy (it);}
-			upgradableList.Clear ();
-		}
+
 
 		public bool haveProperty<T>() {
 			if (GetComponent<T> () == null) {
@@ -84,40 +104,20 @@ namespace BSS.Unit {
 			return true;
 		}
 
-		protected virtual void OnEnable()
-		{
-			unitList.Add(this);
-			initialize ();
-		}
-		protected virtual void OnDisable()
-		{
-			unitList.Remove(this);
-			resetActivable ();
-			resetUpgradable ();
+
+		public virtual void die() {
+			tag = "Die";
+			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
+			BaseEventListener.onPublishGameObject ("UnitDie", gameObject);
+			Destroy (gameObject);
 		}
 
-		protected virtual void initialize() {
-			health = maxHealth;
-			mana = maxMana;
-
-			activableInitialize ();
-			upgradeInitialize ();
-
-			SendMessage ("onInitialize", SendMessageOptions.DontRequireReceiver);
-			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
-		}
-			
 		private void activableInitialize() {
 			foreach (var it in existActivable) {
 				Activable temp=BSDatabase.instance.activableDatabase.activables [it ["ID"]];
 				var activable=ScriptableObject.Instantiate (temp);
 				activable.initialize (it);
 				addActivable (activable);
-			}
-		}
-		private void upgradeInitialize() {
-			foreach (var it in existUpgradables) {
-				addUpgradable (it.Key, it.Value);
 			}
 		}
 			

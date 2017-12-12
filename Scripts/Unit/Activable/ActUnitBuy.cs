@@ -9,6 +9,7 @@ namespace BSS.Unit {
 	public class ActUnitBuy : Activable
 	{
 		[TextArea(0,0)]
+		[Header("NeedTier : Optional")]
 		[Header("UseFood : Optional")]
 		[Header("UseMoney : Optional")]
 		[Header("UnitID : Mandatory")]
@@ -16,6 +17,7 @@ namespace BSS.Unit {
 
 		private int useMoney;
 		private int useFood;
+		private Dictionary<string,int> needUpgrade=new Dictionary<string,int>();
 		private GameObject unitPrefab;
 		private BaseUnit unit;
 		private Charactable character;
@@ -24,15 +26,28 @@ namespace BSS.Unit {
 			ID = args ["UnitID"];
 			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (ID,out unitPrefab);
 			unit=unitPrefab.GetComponent<BaseUnit> ();
-			titleContent=unit.uName.ToString () + " 생산하기";
-			textContent=unit.uName.ToString () + " 생산합니다.";
-			buttonImage = unit.portrait;
+			icon = unit.portrait;
+			titleContent=unit.uName.ToString () + " 생산";
+
+			textContent = "[" + unit.uName.ToString () + "]";
+			textContent += "\n체력 : " + unit.maxHealth;
+			var attackable = unit.GetComponent<Attackable> ();
+			if (attackable != null) {
+				textContent += "\n공격력 : " + attackable.initDamage;
+				textContent += "\n공격속도 : " + attackable.initAttackSpeed;
+				textContent += "\n사거리 : " + attackable.initRange;
+			}
 
 			if (args.ContainsKey ("UseMoney")) {
 				useMoney = int.Parse (args ["UseMoney"]);
 			}
 			if (args.ContainsKey ("UseFood")) {
 				useFood = int.Parse (args ["UseFood"]);
+			}
+			foreach (var key in args.Keys) {
+				if (key.StartsWith("NeedUp")) {
+					needUpgrade.Add(key.Replace("NeedUp",""),int.Parse(args[key]));
+				}
 			}
 		}
 
@@ -41,20 +56,44 @@ namespace BSS.Unit {
 			base.activate (selectUnit);
 			unitBuy (selectUnit.gameObject.transform.position+new Vector3(0f,-2f,0f),selectUnit);
 		}
+		public override bool validate() {
+			if (!GameDataBase.instance.isPopulation (unit.population)) {
+				return false;
+			}
+			foreach (var it in needUpgrade) {
+				if (!GameDataBase.instance.isUpgrade (it.Key, it.Value)) {
+					return false;
+				}
+			}
+			return true;
+		}
 			
 
 		private void unitBuy(Vector3 pos,BaseUnit selectUnit) {
+			if (!validate ()) {
+				return;
+			}
 			if (GameDataBase.instance.useMoneyFood(useMoney,useFood)) {
-				GameObject obj=GameObject.Instantiate (unitPrefab, pos, Quaternion.identity);
-				BaseUnit _unit = obj.GetComponent<BaseUnit> ();
-				_unit.team = selectUnit.team;
+				GameObject obj=UnitUtils.CreateUnit (unitPrefab, pos, selectUnit.team);
 				BaseEventListener.onPublishGameObject ("UnitBuy", obj);
 			}
 		}
-
+		public override string infoContent {
+			get {
+				return titleContent;
+			}
+		}
 
 		protected override void showInformDynamic() {
-			UIController.instance.showInform (titleContent,textContent,useMoney,useFood);
+			var popInfo=BSDatabase.instance.baseUnitDatabase.upgradeInfos ["MaxPopulation"];
+			if (needUpgrade.Count == 0) {
+				UIController.instance.informBoard.Show (titleContent, textContent, useMoney, useFood,popInfo.icon,unit.population);
+			} else if (needUpgrade.Count == 1) {
+				var keys = new List<string> (needUpgrade.Keys);
+				var upInfo=BSDatabase.instance.baseUnitDatabase.upgradeInfos [keys[0]];
+				UIController.instance.informBoard.Show (titleContent, textContent, useMoney, useFood,popInfo.icon,unit.population,upInfo.icon,needUpgrade[keys[0]]);
+			}
+
 		}
 
 		private string typeToString(string _type) {

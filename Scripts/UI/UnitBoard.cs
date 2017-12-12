@@ -7,13 +7,6 @@ namespace BSS.UI {
 	{
 		public BaseUnit selectUnit;
 
-		protected override void initailze() {
-			base.initailze ();
-		}
-		protected override void deInitailze() {
-			base.deInitailze ();
-		}
-
 		public void Show(GameObject obj) {
 			base.Show ();
 			if (obj.GetComponent<BaseUnit> () != null) {

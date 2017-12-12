@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4101234544857264}
   - component: {fileID: 114370923645554026}
+  - component: {fileID: 114249799546561920}
   m_Layer: 0
   m_Name: UserJson
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114249799546561920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1098980552339392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc81e52bfde44036afe2ecc0789d0c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114370923645554026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +85,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -91,10 +103,10 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: UnitShop
+      Data: Armor
     - Name: 
       Entry: 3
-      Data: 6
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -103,10 +115,22 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: UpgradeCenter
+      Data: Weapon
     - Name: 
       Entry: 3
-      Data: 9
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Acc
+    - Name: 
+      Entry: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 

@@ -23,14 +23,14 @@ namespace BSS.UI {
 		{
 			canvasGroup=GetComponent<CanvasGroup> ();
 
-			initailze ();
+			initialize ();
 		}
 		void Start() {
 			if (isStartedShow) {
 				Show ();
 			} 
 		}
-		protected virtual void initailze() {
+		protected virtual void initialize() {
 			boardList.Add (this);
 		}
 		public void OnDestroy()

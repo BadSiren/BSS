@@ -15,7 +15,7 @@ namespace BSS {
 		}
 		public ESelectState eSelectState;
 		public List<GameObject> selectObjects=new List<GameObject> ();
-
+		public bool isAttack=true;
 
 		void Awake() {
 			instance = this;
@@ -29,6 +29,19 @@ namespace BSS {
 			BaseEventListener.onPublishGameObject ("AllyUnitSelect", obj);
 		}
 		public void enemyUnitSelect(GameObject obj) {
+			if ((eSelectState==ESelectState.AllySelect ||eSelectState==ESelectState.MultiSelect) && isAttack) {
+				foreach (var it in selectObjects) {
+					var attakable = it.GetComponent<Attackable> ();
+					if (attakable == null) {
+						continue;
+					}
+					var movable=it.GetComponent<Movable> ();
+					if (movable != null) {
+						movable.toMoveTarget (obj, attakable.range);
+					}
+				}
+				return;
+			}
 			selectObjects.Clear ();
 			selectObjects.Add(obj);
 			eSelectState = ESelectState.EnemySelect;
@@ -56,19 +69,6 @@ namespace BSS {
 			eSelectState = ESelectState.None;
 			selectObjects.Clear ();
 			BaseEventListener.onPublish ("SelectCancle");
-		}
-
-		void OnGUI() {
-			switch (eSelectState) {
-			case ESelectState.AllySelect:
-			case ESelectState.EnemySelect:
-			case ESelectState.MultiSelect:
-				for (int i = 0; i < selectObjects.Count; i++) {
-					Vector3 screenPoint = Camera.main.WorldToScreenPoint (new Vector3 (selectObjects [i].transform.position.x, -selectObjects [i].transform.position.y, 0f));
-					GUI.DrawTexture (new Rect (screenPoint.x - 30f, screenPoint.y - 20f, 60f, 40f), selectCircle, ScaleMode.ScaleToFit);
-				}
-				break;
-			}
 		}
 
 

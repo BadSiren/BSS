@@ -21,14 +21,10 @@ namespace BSS.UI {
 
 			sendToReceiver ("Page", page.ToString ());
 		}
-		public void enterGame() {
-			if (validate ()) {
-				LoadBase.instance.selcectMode = 0;
-				LoadBase.instance.selcectLevel = page;
-				LoadBase.instance.loadPlayScene ();
-			} else {
-				Close ();
-			}
+		public override void pageUpdate ()
+		{
+			base.pageUpdate ();
+			PlayManager.difficulty = page;
 		}
 
 		private bool validate() {

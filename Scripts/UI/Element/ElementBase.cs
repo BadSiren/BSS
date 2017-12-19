@@ -115,10 +115,6 @@ namespace BSS.UI {
 		public void updateVariable(float resultText) {
 			updateVariable (resultText.ToString ());
 		}
-
-
-
-		public virtual void BoardShowEvent() {}
 	}
 
 }

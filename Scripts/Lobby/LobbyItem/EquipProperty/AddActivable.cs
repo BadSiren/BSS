@@ -5,6 +5,7 @@ using BSS.Unit;
 
 namespace BSS.LobbyItemSystem {
 	public class AddActivable : EquipProperty  {
+		/*
 		[TextArea()]
 		[Header("ActID : Mandatory")]
 		[Header("ApplyUnitID : Mandatory")]
@@ -29,6 +30,7 @@ namespace BSS.LobbyItemSystem {
 		public override string getDescription(Dictionary<string,string> args) {
 			return description;
 		}
+		*/
 
 	}
 }

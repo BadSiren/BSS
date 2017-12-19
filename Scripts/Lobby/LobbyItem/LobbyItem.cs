@@ -15,8 +15,11 @@ namespace BSS.LobbyItemSystem {
 		public int sellCost;
 		[Range(0,5)]
 		public int rairity;
+		public Dictionary<string,string> properties=new Dictionary<string,string>();
+		public Dictionary<string,string> indexProperties=new Dictionary<string,string>();
 
 		public List<LobbyAct> lobbyActs;
+
 	}
 
 

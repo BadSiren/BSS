@@ -5,6 +5,7 @@ using BSS.Unit;
 
 namespace BSS.LobbyItemSystem {
 	public class AddDamage : EquipProperty  {
+		/*
 		[TextArea()]
 		[Header("PlainDamage : Optional")]
 		[Header("ApplyUnitID : Mandatory")]
@@ -41,6 +42,7 @@ namespace BSS.LobbyItemSystem {
 			var unit =BSDatabase.instance.baseUnitDatabase.getBaseUnit (_ID);
 			return unit.uName;
 		}
+		*/
 	}
 }
 

@@ -14,7 +14,8 @@ namespace BSS.LobbyItemSystem {
 
 		public List<LobbyItem> lobbyItems = new List<LobbyItem> ();
 		public Dictionary<int,RairityInfo> rairityInfos=new Dictionary<int,RairityInfo>();
-		public Dictionary<string,EquipProperty> equipProperties=new Dictionary<string,EquipProperty>();
+		public Dictionary<string,List<string>> itemIndexProperties=new Dictionary<string,List<string>>();
+		//public Dictionary<string,EquipProperty> equipProperties=new Dictionary<string,EquipProperty>();
 
 		public List<T> getLobbyItems<T>() where T : LobbyItem{
 			List<T> items = new List<T> ();
@@ -31,14 +32,26 @@ namespace BSS.LobbyItemSystem {
 		public T createLobbyItem<T>(string _ID) where T : LobbyItem   {
 			var temp=lobbyItems.Find (x => x.ID == _ID);
 			T item = (ScriptableObject.Instantiate (temp) as T);
-			if (item is LobbyEquipItem) {
-				(item as LobbyEquipItem).propertiesRand ("Rand");
-				(item as LobbyEquipItem).propertiesRand ("Rand0");
-				(item as LobbyEquipItem).propertiesRand ("Rand1");
-			}
+			indexDicToValueDic (_ID,item.indexProperties, item.properties);
 			return item;
 		}
-
+		public T createLobbyItem<T>(string _ID,Dictionary<string,string> indexDic) where T : LobbyItem   {
+			var temp=lobbyItems.Find (x => x.ID == _ID);
+			T item = (ScriptableObject.Instantiate (temp) as T);
+			item.indexProperties.Clear ();
+			foreach (var it in indexDic) {
+				item.indexProperties.Add (it.Key, it.Value);
+			}
+			indexDicToValueDic (_ID,item.indexProperties, item.properties);
+			return item;
+		}
+		
+		public void indexDicToValueDic(string _ID,Dictionary<string,string> indexDic,Dictionary<string,string> valueDic) {
+			foreach (var it in indexDic) {
+				valueDic[it.Key]=itemIndexProperties [_ID +"/"+ it.Key] [int.Parse(it.Value)];
+			}
+		}
+		/*
 		public T getEquipProperty<T>(string _ID) where T : EquipProperty{
 			if (!equipProperties.ContainsKey (_ID)) {
 				Debug.LogError ("No Property");
@@ -53,6 +66,7 @@ namespace BSS.LobbyItemSystem {
 			property.initialize (args);
 			return property;
 		}
+		*/
 
 	}
 }

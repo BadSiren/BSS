@@ -5,6 +5,7 @@ using BSS.Unit;
 
 namespace BSS.LobbyItemSystem {
 	public class AddHealth : EquipProperty  {
+		/*
 		[TextArea()]
 		[Header("PlainHealth : Optional")]
 		[Header("ApplyUnitID : Mandatory")]
@@ -37,5 +38,6 @@ namespace BSS.LobbyItemSystem {
 			var unit =BSDatabase.instance.baseUnitDatabase.getBaseUnit (_ID);
 			return unit.uName;
 		}
+		*/
 	}
 }

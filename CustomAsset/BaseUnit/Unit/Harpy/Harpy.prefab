@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1045629838111714
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4129356498479932}
+  - component: {fileID: 114674650901458808}
+  m_Layer: 0
+  m_Name: Upgradable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1094687123019156
 GameObject:
   m_ObjectHideFlags: 1
@@ -1058,6 +1074,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1993265151124580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4241602283382216}
+  m_Layer: 0
+  m_Name: Activable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1996902517933784
 GameObject:
   m_ObjectHideFlags: 1
@@ -1175,6 +1206,19 @@ Transform:
   m_Father: {fileID: 4768138848749856}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4129356498479932
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045629838111714}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4722741199868452}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4141223655205394
 Transform:
   m_ObjectHideFlags: 1
@@ -1283,6 +1327,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4560783556113978}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4241602283382216
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1993265151124580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4722741199868452}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4269567587764702
 Transform:
@@ -1715,6 +1772,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4390383478063452}
+  - {fileID: 4129356498479932}
+  - {fileID: 4241602283382216}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2099,19 +2158,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2157,9 +2213,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   icon: {fileID: 21300056, guid: 8d1709fb052ca45e2bcfc3c81dcf3bf5, type: 3}
-  _initDamage: 15
+  _initDamage: 20
   _initAttackSpeed: 1
-  _initRange: 10
+  _initRange: 12
   changeDamage: 0
   changeAttackSpeed: 0
   isOffenssive: 1
@@ -2275,6 +2331,31 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+--- !u!114 &114674650901458808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045629838111714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb674aece454c75a6640a49c4659f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: LongAttack
+  listenName: UpLongAttack
+  listenType: 2
+  startedApply: 1
+  addDamage: 2
 --- !u!114 &114765190844415412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2294,23 +2375,11 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: Harpy
   uName: "\uD558\uD53C"
   portrait: {fileID: 21300000, guid: 696414570f37449a9888273a8fb5e64d, type: 3}
+  isMine: 0
   team: 0
   isInvincible: 0
   population: 2

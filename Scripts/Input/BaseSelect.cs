@@ -15,7 +15,9 @@ namespace BSS {
 		}
 		public ESelectState eSelectState;
 		public List<GameObject> selectObjects=new List<GameObject> ();
-		public bool isAttack=true;
+		public bool isAttack {
+			get;set;
+		}
 
 		void Awake() {
 			instance = this;

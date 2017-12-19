@@ -27,6 +27,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1185543506487786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4266962779416326}
+  m_Layer: 0
+  m_Name: Activable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1319154865836920
 GameObject:
   m_ObjectHideFlags: 1
@@ -99,6 +114,22 @@ GameObject:
   - component: {fileID: 4312468659482870}
   m_Layer: 0
   m_Name: evilEye_shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1457259101118094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4784638319610874}
+  - component: {fileID: 114941717061241318}
+  m_Layer: 0
+  m_Name: Upgradable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -292,6 +323,19 @@ Transform:
   m_Father: {fileID: 4160066826189606}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4266962779416326
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185543506487786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4279854488063968}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4279854488063968
 Transform:
   m_ObjectHideFlags: 1
@@ -303,6 +347,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4605392057696936}
+  - {fileID: 4784638319610874}
+  - {fileID: 4266962779416326}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -405,6 +451,19 @@ Transform:
   m_Father: {fileID: 4605392057696936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4784638319610874
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457259101118094}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4279854488063968}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &61552075285122346
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -466,27 +525,15 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: EvilEye
   uName: "\uC545\uB9C8\uB208"
   portrait: {fileID: 21300000, guid: 4e0faf101ef424137b9c19d5a309b934, type: 3}
+  isMine: 0
   team: 0
   isInvincible: 0
   population: 1
-  maxHealth: 40
+  maxHealth: 45
   health: 0
   maxMana: 0
   mana: 0
@@ -586,7 +633,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   icon: {fileID: 21300000, guid: be2c72cd3e3ca4c68a0598baaaf2090e, type: 3}
-  _initDamage: 5
+  _initDamage: 6
   _initAttackSpeed: 2
   _initRange: 5
   changeDamage: 0
@@ -710,19 +757,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -740,6 +784,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f10331ecb7f9345bfb741184b309e021, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114941717061241318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457259101118094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb674aece454c75a6640a49c4659f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: ShortAttack
+  listenName: UpShortAttack
+  listenType: 2
+  startedApply: 1
+  addDamage: 1
 --- !u!114 &114953017377537022
 MonoBehaviour:
   m_ObjectHideFlags: 1

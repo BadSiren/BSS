@@ -6,6 +6,7 @@ using BSS;
 
 public class Purchaser : MonoBehaviour, IStoreListener
 {
+	
 	private static IStoreController storeController;
 	private static IExtensionProvider extensionProvider;
 
@@ -202,4 +203,6 @@ public class Purchaser : MonoBehaviour, IStoreListener
 		
 		Debug.Log(string.Format("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailureReason: {1}", product.definition.storeSpecificId, failureReason));
 	}
+
+
 }

@@ -8,8 +8,8 @@ namespace BSS.LobbyItemSystem {
 	public class LobbyEquipItem : LobbyItem
 	{
 		public string containerName;
-		public Dictionary<string,Dictionary<string,string>> properties=new Dictionary<string,Dictionary<string,string>>();
 
+		/*
 		public void propertiesRand(string randKey) {
 			foreach (var property in properties) {
 				if (!property.Value.ContainsKey (randKey)) {
@@ -21,6 +21,7 @@ namespace BSS.LobbyItemSystem {
 				property.Value.Remove (randKey);
 			}
 		}
+		*/
 	}
 }
 

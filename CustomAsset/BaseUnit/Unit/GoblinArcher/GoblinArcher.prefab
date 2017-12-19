@@ -341,6 +341,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1602333018534254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4611828437432608}
+  - component: {fileID: 114406269418051790}
+  m_Layer: 0
+  m_Name: Upgradable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1664897745814972
 GameObject:
   m_ObjectHideFlags: 1
@@ -416,6 +432,21 @@ GameObject:
   - component: {fileID: 212243836449491844}
   m_Layer: 0
   m_Name: goblin_arrow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1859718449301992
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4756600956328140}
+  m_Layer: 0
+  m_Name: Activable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -509,6 +540,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4393222066366482}
+  - {fileID: 4611828437432608}
+  - {fileID: 4756600956328140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -668,6 +701,19 @@ Transform:
   m_Father: {fileID: 4376914117369364}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4611828437432608
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602333018534254}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4110688454355822}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4671893047376168
 Transform:
   m_ObjectHideFlags: 1
@@ -774,6 +820,19 @@ Transform:
   - {fileID: 4388754353043042}
   m_Father: {fileID: 4913204023681480}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4756600956328140
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1859718449301992}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4110688454355822}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4760089869562478
 Transform:
@@ -1011,23 +1070,11 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: GoblinArcher
   uName: "\uACE0\uBE14\uB9B0\uC544\uCC98"
   portrait: {fileID: 21300000, guid: df27b6b177ca34d4791a8d28ed8c376e, type: 3}
+  isMine: 0
   team: 0
   isInvincible: 0
   population: 1
@@ -1038,6 +1085,31 @@ MonoBehaviour:
   _initArmor: 0
   changeArmor: 0
   activableList: []
+--- !u!114 &114406269418051790
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1602333018534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35bb674aece454c75a6640a49c4659f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  ID: LongAttack
+  listenName: UpLongAttack
+  listenType: 2
+  startedApply: 1
+  addDamage: 1
 --- !u!114 &114459808528533420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1059,19 +1131,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1238,7 +1307,7 @@ MonoBehaviour:
     SerializationNodes: []
   icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
   _initDamage: 10
-  _initAttackSpeed: 1
+  _initAttackSpeed: 0.8
   _initRange: 12
   changeDamage: 0
   changeAttackSpeed: 0

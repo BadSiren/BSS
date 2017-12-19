@@ -12,7 +12,9 @@ namespace BSS.UI {
 		public string boardName;
 		public bool isStartedShow;
 		public static List<Board> boardList = new List<Board>();
+		[FoldoutGroup("Event")]
 		public UnityEvent onShow = new UnityEvent();
+		[FoldoutGroup("Event")]
 		public UnityEvent onClose = new UnityEvent();
 
 		protected CanvasGroup canvasGroup;

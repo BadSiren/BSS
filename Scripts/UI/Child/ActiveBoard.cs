@@ -65,7 +65,7 @@ namespace BSS.UI {
 			if (acitvableList == null || acitvableList.Count - 1 < _num) {
 				return;
 			}
-			acitvableList [_num].activate (selectUnit);
+			acitvableList [_num].activate ();
 
 		}
 
@@ -73,7 +73,7 @@ namespace BSS.UI {
 			if (acitvableList == null || acitvableList.Count - 1 < _num) {
 				return;
 			}
-			acitvableList [_num].activateLongPress (selectUnit);
+			acitvableList [_num].activateLongPress ();
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace BSS.UI {
 
 		public override void Show() {
 			base.Show ();
-			pageViewUpdate ();
+			pageUpdate ();
 		}
 
 		public void pageUp() {
@@ -17,17 +17,20 @@ namespace BSS.UI {
 				return;
 			}
 			page++;
-			Show ();
+			pageUpdate ();
 		}
 		public void pageDown() {
 			if (0 >= page) {
 				return;
 			}
 			page--;
-			Show ();
+			pageUpdate ();
 		}
 		public virtual void pageViewUpdate() {
 			sendToReceiver ("Page", page.ToString ());
+		}
+		public virtual void pageUpdate() {
+			pageViewUpdate ();
 		}
 	}
 }

@@ -25,11 +25,12 @@ namespace BSS.Input {
 				//CameraControl
 			} else {
 				if (UnityEngine.Input.GetMouseButtonDown (0)) {
+					//Cancle in UI Click
 					if (EventSystem.current.IsPointerOverGameObject()) {
 						return;
 					}
 					Vector3 currentMouse = getMousePoint2D ();
-					Clickable click = getClickablePriority (currentMouse);
+					Clickable click = getClickablePriorityOrNull (currentMouse);
 
 					if (isTouching) {
 						if (click != null) {
@@ -101,7 +102,7 @@ namespace BSS.Input {
 		}
 
 
-		private Clickable getClickablePriority(Vector3 orgin) {
+		private Clickable getClickablePriorityOrNull(Vector3 orgin) {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(orgin, Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {

@@ -33,14 +33,13 @@ namespace BSS {
 				return;
 			}
 			DontDestroyOnLoad (gameObject);
-
-
+			
 			intialize ();
 		}
 
 		void intialize() {
 			if (!ES2.Exists (moneyName)) {
-				ES2.Save (500, moneyName);
+				ES2.Save (0, moneyName);
 			}
 
 			if (!ES2.Exists (gemName)) {
@@ -49,10 +48,12 @@ namespace BSS {
 			foreach (var it in containerMax) {
 				containers [it.Key] = new List<LobbyItem> ();
 				containers [it.Key].Capacity = it.Value;
-				ES2.Delete (it.Key);
+				//ES2.Delete (it.Key);
 				if (!ES2.Exists (it.Key)) {
 					ES2.Save (new List<string>(), it.Key);
 				}
+			}
+			foreach (var it in containers) {
 				itemInitialize (it.Key);
 			}
 		}

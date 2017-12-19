@@ -6,6 +6,7 @@ using BSS.Play;
 
 namespace BSS.LobbyItemSystem {
 	public class AddMoney : EquipProperty  {
+		/*
 		[TextArea()]
 		[Header("AddMoney : Optional")]
 		[Header("StartMoney : Optional")]
@@ -43,6 +44,7 @@ namespace BSS.LobbyItemSystem {
 			revise = revise.Replace ("@AddMoney", nextString);
 			return revise;
 		}
+		*/
 	}
 }
 

@@ -18,7 +18,7 @@ namespace BSS.LobbyItemSystem {
 		}
 		public virtual void onLevelClearAct() {
 		}
-		public virtual string getDescription(Dictionary<string,string> args) {
+		public virtual string getDescription(string args) {
 			return "";
 		}
 	}

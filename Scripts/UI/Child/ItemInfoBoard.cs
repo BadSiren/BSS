@@ -45,11 +45,11 @@ namespace BSS.UI {
 		}
 
 		private string getPropertyText(string orgin,LobbyItem item) {
-			if (item is LobbyEquipItem) {
-				foreach (var it in (item as LobbyEquipItem).properties) {
-					orgin=orgin+BSDatabase.instance.lobbyItemDatabase.getEquipProperty<EquipProperty> (it.Key).getDescription (it.Value)+"\n";
-				}
-			}
+			// (item is LobbyEquipItem) {
+				//foreach (var it in (item as LobbyEquipItem).properties) {
+					//orgin=orgin+BSDatabase.instance.lobbyItemDatabase.getEquipProperty<EquipProperty> (it.Key).getDescription (it.Value)+"\n";
+				//}
+			//}
 			return orgin;
 		}
 	}

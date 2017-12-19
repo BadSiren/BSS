@@ -85,6 +85,7 @@ namespace BSS.Unit {
 		}
 			
 		public bool isOffenssive=true;
+		[ShowIf("isOffenssive")]
 		public float offenseRange=15f;
 		public bool isCounterattack = true;
 		public float outRange=20f;

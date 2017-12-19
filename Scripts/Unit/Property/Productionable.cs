@@ -24,8 +24,8 @@ namespace BSS.Unit {
 		}
 
 		private void addActivable(string ID,Dictionary<string,string> product) {
-			var activable=BSDatabase.instance.activableDatabase.createActivable<Activable> (ID, product);
-			owner.addActivable (activable);
+			//var activable=BSDatabase.instance.activableDatabase.createActivable<Activable> (ID, product);
+			//owner.addActivable (activable);
 		}
 	}
 }

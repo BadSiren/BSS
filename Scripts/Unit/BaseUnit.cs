@@ -36,6 +36,7 @@ namespace BSS.Unit {
 		public string uName;
 		public Sprite portrait;
 
+		public bool isMine;
 		public UnitTeam team;
 		public bool isInvincible;
 		public int population;
@@ -57,8 +58,8 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
-		public List<Dictionary<string,string>> existActivable = new List<Dictionary<string,string>>();
 		public List<Activable> activableList = new List<Activable> ();
+
 
 		protected virtual void OnEnable()
 		{
@@ -74,28 +75,19 @@ namespace BSS.Unit {
 			if (team == UnitTeam.Red) {
 				totalPopulation -= population;
 			}
-			resetActivable ();
 		}
 
 		public virtual void allyInit() {
 			team = UnitTeam.Red;
+			isMine = true;
 			totalPopulation += population;
-			activableInitialize ();
 			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
 		}
 		public virtual void enemyInit() {
 			team = UnitTeam.Blue;
+			isMine = false;
 			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
 		}
-			
-		public void addActivable(Activable _activable) {
-			activableList.Add (_activable);
-		}
-		public void resetActivable() {
-			foreach (var it in activableList) {Destroy (it);}
-			activableList.Clear ();
-		}
-
 
 		public bool haveProperty<T>() {
 			if (GetComponent<T> () == null) {
@@ -112,6 +104,7 @@ namespace BSS.Unit {
 			Destroy (gameObject);
 		}
 
+		/*
 		private void activableInitialize() {
 			foreach (var it in existActivable) {
 				Activable temp=BSDatabase.instance.activableDatabase.activables [it ["ID"]];
@@ -120,6 +113,7 @@ namespace BSS.Unit {
 				addActivable (activable);
 			}
 		}
+		*/
 			
 		private void hitDamage(AttackInfo attackInfo) {
 			float _damage = attackInfo.damage * (1f - reductionArmor (armor));

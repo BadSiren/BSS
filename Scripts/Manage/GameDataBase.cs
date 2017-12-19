@@ -36,7 +36,6 @@ namespace BSS.Play {
 		}
 
 		public Dictionary<string,int> upgrades=new Dictionary<string,int>();
-		public Dictionary<string,List<Upgradable>> upListeners=new Dictionary<string,List<Upgradable>>();
 
 
 		void Awake() {
@@ -74,21 +73,6 @@ namespace BSS.Play {
 				return false;
 			}
 			return true;
-		}
-		public void addUpListener(Upgradable _up) {
-			if (!upListeners.ContainsKey (_up.ID)) {
-				upListeners [_up.ID] = new List<Upgradable> ();
-			}
-			if (!upListeners [_up.ID].Contains (_up)) {
-				upListeners [_up.ID].Add (_up);
-			}
-		}
-		public void removeUpListener(Upgradable _up) {
-			if (upListeners.ContainsKey (_up.ID)) {
-				if (upListeners [_up.ID].Contains(_up)) {
-					upListeners [_up.ID].Remove (_up);
-				}
-			}
 		}
 
 	}

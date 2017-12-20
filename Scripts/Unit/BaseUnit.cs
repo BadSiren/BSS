@@ -2,8 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Input;
-using BSS.Skill;
 using Sirenix.OdinInspector;
+using System.Linq;
 
 namespace BSS.Unit {
 	public enum UnitTeam
@@ -21,14 +21,9 @@ namespace BSS.Unit {
 	public class BaseUnit : SerializedMonoBehaviour
 	{
 		public static List<BaseUnit> unitList = new List<BaseUnit>();
-		public static int _totalPopulation=0;
 		public static int totalPopulation {
 			get {
-				return _totalPopulation;
-			}
-			set {
-				_totalPopulation = value;
-				BaseEventListener.onPublishInt ("TotalPopulation", _totalPopulation);
+				return unitList.FindAll (x => x.isMine).ConvertAll (x => x.population).Sum ();
 			}
 		}
 
@@ -72,15 +67,11 @@ namespace BSS.Unit {
 		protected virtual void OnDisable()
 		{
 			unitList.Remove(this);
-			if (team == UnitTeam.Red) {
-				totalPopulation -= population;
-			}
 		}
 
 		public virtual void allyInit() {
 			team = UnitTeam.Red;
 			isMine = true;
-			totalPopulation += population;
 			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
 		}
 		public virtual void enemyInit() {

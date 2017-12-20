@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using BSS.Play;
 
 namespace BSS.Unit {
 	public abstract class Upgradable : SerializedMonoBehaviour  {
@@ -15,14 +14,19 @@ namespace BSS.Unit {
 		[BoxGroup("Upgradable")]
 		public bool startedApply = true;
 
-		private BaseEventListener listener;
+		public static Dictionary<string,List<string>> dynamicApplyUnits = new Dictionary<string,List<string>> ();
 
 		public int level {
 			get {
+				if (!owner.isMine) {
+					return 0;
+				}
 				return GameDataBase.instance.getUpgradeLevel (ID);
 			}
 		}
+
 		protected BaseUnit owner;
+		private BaseEventListener listener;
 
 		void Start() {
 			initialize ();
@@ -30,6 +34,11 @@ namespace BSS.Unit {
 				applyUpgrade (ID);
 			}
 		}
+
+		public static T addComponent<T>(BaseUnit target) where T : Upgradable  {
+			return target.gameObject.transform.Find ("Upgradable").gameObject.AddComponent <T>() ;
+		}
+
 		public virtual void initialize() {
 			owner=GetComponentInParent<BaseUnit> ();
 

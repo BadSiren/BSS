@@ -7,10 +7,11 @@ namespace BSS {
 	public class DicSelector : SerializedMonoBehaviour
 	{
 		[Header("DicProb(DefineKey)")]
+		[InlineProperty()]
 		public List<Dictionary<string,string>> orginDics;
 
-		[SerializeField]
 		private List<Dictionary<string,string>> dics;
+
 
 		void Awake() {
 			dics = new List<Dictionary<string,string>> (orginDics);

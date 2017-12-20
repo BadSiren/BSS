@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.UI;
-using BSS.Play;
 
 namespace BSS.Unit {
 	[System.Serializable]
@@ -16,9 +15,6 @@ namespace BSS.Unit {
 		private BaseUnit unit;
 		private Charactable character;
 
-		public static ActUnitBuy addComponent(BaseUnit target) {
-			return target.gameObject.transform.Find ("Activable").gameObject.AddComponent <ActUnitBuy>();
-		}
 
 		public override void initialize() {
 			BSDatabase.instance.baseUnitDatabase.unitPrefabs.TryGetValue (unitID,out unitPrefab);

@@ -50,7 +50,7 @@ MonoBehaviour:
       Data: "\uCD08\uC2EC\uC790"
     - Name: maxLevel
       Entry: 3
-      Data: 10
+      Data: 20
     - Name: clearMoney
       Entry: 3
       Data: 20

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Unit;
-using BSS.Play;
 
 namespace BSS.LobbyItemSystem {
 	public class AddMoney : EquipProperty  {

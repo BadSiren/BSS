@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Security;
-using BSS;
 
+namespace BSS {
 public class Purchaser : MonoBehaviour, IStoreListener
 {
 	
@@ -205,4 +205,5 @@ public class Purchaser : MonoBehaviour, IStoreListener
 	}
 
 
+}
 }

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BSS.Play;
 
 namespace BSS.Unit {
 	public class UpAttack : Upgradable {
@@ -21,7 +20,7 @@ namespace BSS.Unit {
 		}
 		 
 		public override void applyUpgrade(string _ID){
-			if (owner.team!=UnitTeam.Red || ID != _ID) {
+			if (ID != _ID) {
 				return;
 			}
 			attackable.changeDamage += (level * addDamage)-preChangeDamage;

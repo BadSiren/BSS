@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
-using BSS.Play;
 
 namespace BSS.LobbyItemSystem {
 	public class LobbyEditor : MonoBehaviour

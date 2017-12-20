@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using BSS.Unit;
 using Sirenix.OdinInspector;
 
-namespace BSS.Play {
+namespace BSS{
 	public class GameDataBase : SerializedMonoBehaviour
 	{
 		public static GameDataBase instance;

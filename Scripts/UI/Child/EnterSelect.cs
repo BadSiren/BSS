@@ -6,6 +6,7 @@ namespace BSS.UI {
 	public class EnterSelect : PageBoard {
 
 		public int mode=0;
+		public DicSelector dicSelector;
 
 		public override void Show() {
 			base.Show ();
@@ -13,11 +14,12 @@ namespace BSS.UI {
 		}
 
 		public override void pageViewUpdate() {
-			var levelInfo=BSDatabase.instance.levelDatabase.levelInfos [mode.ToString () + "/" + page.ToString ()];
+			var levelInfo = dicSelector.getDic (page);
 
-			sendToReceiver ("Title", page.ToString()+"단계 ["+levelInfo.title+"]");
-			sendToReceiver ("MaxLevel", levelInfo.maxLevel.ToString());
-			sendToReceiver ("ClearMoney", levelInfo.clearMoney.ToString());
+			sendToReceiver ("Title", levelInfo ["Title"]);
+			sendToReceiver ("BossName", levelInfo ["BossName"]);
+			sendToReceiver ("Stage", levelInfo ["Stage"]);
+			sendToReceiver ("BossSpr", dicSelector.convertSprite(levelInfo ["BossSpr"]));
 
 			sendToReceiver ("Page", page.ToString ());
 		}

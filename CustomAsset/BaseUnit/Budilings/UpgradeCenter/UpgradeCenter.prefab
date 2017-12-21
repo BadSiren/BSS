@@ -19,9 +19,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4821366890810944}
+  - component: {fileID: 114989521551145228}
+  - component: {fileID: 114864982648673158}
   - component: {fileID: 114244641216504698}
-  - component: {fileID: 114877924168780926}
   - component: {fileID: 114414884619425380}
+  - component: {fileID: 114585562056778718}
   m_Layer: 0
   m_Name: Activable
   m_TagString: Untagged
@@ -208,23 +210,11 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: UpgradeCenter
   uName: "\uC5C5\uAE00\uC13C\uD130"
   portrait: {fileID: 21300004, guid: ff3eb1e514f78424e8221507a1b22aed, type: 3}
+  isMine: 1
   team: 0
   isInvincible: 1
   population: 0
@@ -274,19 +264,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: -9
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -334,6 +321,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   ID: 
+  _icon: {fileID: 0}
   _titleContent: 
   _textContent: 
   upID: Tier
@@ -341,7 +329,7 @@ MonoBehaviour:
   useInitMoney: 0
   useAddMoney: 0
   useInitFood: 1
-  useAddFood: 2
+  useAddFood: 0
 --- !u!114 &114298441343184664
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -394,15 +382,16 @@ MonoBehaviour:
       Entry: 8
       Data: 
   ID: 
+  _icon: {fileID: 0}
   _titleContent: 
   _textContent: 
   upID: MaxPopulation
-  maxLevel: 10
+  maxLevel: 5
   useInitMoney: 0
   useAddMoney: 0
-  useInitFood: 0
-  useAddFood: 1
---- !u!114 &114877924168780926
+  useInitFood: 1
+  useAddFood: 0
+--- !u!114 &114585562056778718
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -410,7 +399,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127541306863386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b308e454fbc4e06b90382e6c035584, type: 3}
+  m_Script: {fileID: 11500000, guid: d7d0cf0380a114771b72baeea4eaf75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -442,15 +431,153 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  ID: 
-  _titleContent: 
-  _textContent: 
-  upID: EndMoney
-  maxLevel: 10
-  useInitMoney: 0
-  useAddMoney: 0
-  useInitFood: 1
-  useAddFood: 1
+  ID: ChangeFood
+  _icon: {fileID: 21300000, guid: 5d0dd9f93b16e4482ac0fb6c6a6c970f, type: 3}
+  _titleContent: "\uD478\uB4DC\n\uAD50\uD658\uD558\uAE30"
+  _textContent: "\uACE8\uB4DC 10\uAC1C\uC640 \uD478\uB4DC 1\uAC1C\uB97C \uAD50\uD658\uD569\uB2C8\uB2E4."
+  useMoney: 10
+  useFood: 0
+  actEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: addFood
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114864982648673158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127541306863386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d0cf0380a114771b72baeea4eaf75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: needUpgrade
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  ID: NewUpFind
+  _icon: {fileID: 21300000, guid: ba53d8ca803c34539a6599c30b353069, type: 3}
+  _titleContent: "\uC0C8\uB85C\uC6B4\n\uB2A5\uB825\uCC3E\uAE30"
+  _textContent: "\uD2B9\uBCC4\uD55C \uB2A5\uB825\uC744 \uB79C\uB364\uC73C\uB85C \uBF51\uC2B5\uB2C8\uB2E4."
+  useMoney: 0
+  useFood: 2
+  actEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: showSelectBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &114989521551145228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1127541306863386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d0cf0380a114771b72baeea4eaf75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: needUpgrade
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  ID: NewUnitFind
+  _icon: {fileID: 21300000, guid: 0c4e6425573d148059fd6a7fbb60cf36, type: 3}
+  _titleContent: "\uC0C8\uB85C\uC6B4\n\uC720\uB2DB\uCC3E\uAE30"
+  _textContent: "\uC720\uB2DB\uC0C1\uC810\uC758 \uC0DD\uC0B0\uAC00\uB2A5\uD55C \uC720\uB2DB\uC744
+    \uB79C\uB364\uC73C\uB85C \uBF51\uC2B5\uB2C8\uB2E4."
+  useMoney: 0
+  useFood: 2
+  actEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: showSelectBoard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212793896381680932
 SpriteRenderer:
   m_ObjectHideFlags: 1

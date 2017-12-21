@@ -467,53 +467,21 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: existUpgradables
-      Entry: 7
-      Data: 1|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 2|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: BigOrc
-  uName: "\uAC70\uB300\uC624\uD06C"
+  uName: "\uC624\uD06C\uB300\uC7A5"
   portrait: {fileID: 21300000, guid: 8d0cc727a992844a0ba3b120f29ebcb9, type: 3}
+  isMine: 0
   team: 0
   isInvincible: 0
-  maxHealth: 500
+  population: 0
+  maxHealth: 800
   health: 0
   maxMana: 0
   mana: 0
   _initArmor: 10
   changeArmor: 0
   activableList: []
-  upgradableList: []
 --- !u!114 &114547563836310306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,19 +503,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: 0
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []

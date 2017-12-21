@@ -44,6 +44,13 @@ namespace BSS{
 			food = 0;
 		}
 
+
+		public void addMoney(int addValue) {
+			money += addValue;
+		}
+		public void addFood(int addValue) {
+			food += addValue;
+		}
 		public bool useMoneyFood(int useMoney,int useFood) {
 			if (money < useMoney || food<useFood) {
 				return false;
@@ -67,6 +74,10 @@ namespace BSS{
 		public void setUpgradeLevel(string upID,int _level) {
 			upgrades [upID] = _level;
 			BaseEventListener.onPublishInt("Up"+upID,_level);
+		}
+		public void addUpgradeLevel(string upID,int _addLevel) {
+			upgrades [upID] = getUpgradeLevel (upID) + _addLevel;
+			BaseEventListener.onPublishInt("Up"+upID,getUpgradeLevel(upID));
 		}
 		public bool isPopulation(int needPopulation) {
 			if (BaseUnit.totalPopulation + needPopulation > maxPopulation) {

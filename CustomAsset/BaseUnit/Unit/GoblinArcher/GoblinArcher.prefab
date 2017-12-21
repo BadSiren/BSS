@@ -1012,6 +1012,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _initSpeed: 8
+  owner: {fileID: 0}
 --- !u!114 &114216718834056110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1078,7 +1079,7 @@ MonoBehaviour:
   team: 0
   isInvincible: 0
   population: 1
-  maxHealth: 50
+  maxHealth: 30
   health: 0
   maxMana: 0
   mana: 0
@@ -1306,9 +1307,9 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   icon: {fileID: 21300000, guid: 068df38c84231af4685690c067a16827, type: 3}
-  _initDamage: 10
+  _initDamage: 6
   _initAttackSpeed: 0.8
-  _initRange: 12
+  _initRange: 10
   changeDamage: 0
   changeAttackSpeed: 0
   isOffenssive: 1

@@ -6,9 +6,15 @@ using Sirenix.OdinInspector;
 namespace BSS {
 	public class DicSelector : SerializedMonoBehaviour
 	{
+		public string ID = "";
+
 		[Header("DicProb(DefineKey)")]
 		[InlineProperty()]
 		public List<Dictionary<string,string>> orginDics;
+
+		public bool isCustomDic=false;
+		[ShowIf("isCustomDic")]
+		public CustomDictionary customDic;
 
 		private List<Dictionary<string,string>> dics;
 
@@ -19,6 +25,13 @@ namespace BSS {
 
 		public void resetDics() {
 			dics=new List<Dictionary<string,string>> (orginDics);
+		}
+
+		public Dictionary<string,string> getDic(int num) {
+			return dics [num];
+		}
+		public Dictionary<string,string> getDicWithRand() {
+			return dics [Random.Range (0, dics.Count)];
 		}
 
 		public Dictionary<string,string> popDicWithRand() {
@@ -40,6 +53,13 @@ namespace BSS {
 		public Dictionary<string,string> copyDicWithProb() {
 			int randomInt=chooseNum (dics.ConvertAll (x => float.Parse (x ["DicProb"])));
 			return new Dictionary<string,string> (dics [randomInt]);
+		}
+
+		public Sprite convertSprite(string value) {
+			return customDic.getSprite (value);
+		}
+		public string convertText(string value) {
+			return customDic.getText (value);
 		}
 
 

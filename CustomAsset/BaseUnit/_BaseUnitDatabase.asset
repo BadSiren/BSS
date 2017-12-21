@@ -25,12 +25,9 @@ MonoBehaviour:
     - {fileID: 1994483983143456, guid: e28258c11daf14b48969b26747db55ee, type: 2}
     - {fileID: 1839686344519724, guid: 3794cc21ba6e6415abfb8bab55df0028, type: 2}
     - {fileID: 1376795141587662, guid: 076a06f986a2347a4984740ef8e3ae42, type: 2}
-    - {fileID: 21300000, guid: c781ebfdd3fb84ec8bdfa10b6b7baae0, type: 3}
+    - {fileID: 1927480122215002, guid: e9b6c822038f54faaad66da0bd403855, type: 2}
     - {fileID: 21300000, guid: 62bf0a2206c224ffd82c51af6a8c5fdc, type: 3}
     - {fileID: 21300000, guid: 87218cb1fc35d4835b0284e8a68e3353, type: 3}
-    - {fileID: 21300000, guid: 987aa78eb438340bb90fd2c5cb7102f3, type: 3}
-    - {fileID: 21300000, guid: 83413642a6b7b48429edec507b131ed3, type: 3}
-    - {fileID: 21300000, guid: be69a344eeb0f4a2a9a1a9e8a6894755, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -49,7 +46,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 10
+      Data: 11
     - Name: 
       Entry: 7
       Data: 
@@ -171,6 +168,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: MiniOrc
+    - Name: 
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -189,35 +198,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 6
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: EndMoney
-    - Name: 
-      Entry: 7
-      Data: 4|BSS.Unit.ActivableInfo, Assembly-CSharp
-    - Name: ID
-      Entry: 1
-      Data: EndMoney
-    - Name: icon
-      Entry: 10
-      Data: 10
-    - Name: titleContent
-      Entry: 1
-      Data: "\uD074\uB9AC\uC5B4\uACE8\uB4DC \uC99D\uAC00"
-    - Name: textContent
-      Entry: 1
-      Data: "\uC2A4\uD14C\uC774\uC9C0\uAC00 \uB05D\uB0A0 \uB54C \uACE8\uB4DC 1\uC6D0\uC744
-        \uC5BB\uC2B5\uB2C8\uB2E4."
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -226,7 +207,7 @@ MonoBehaviour:
       Data: Tier
     - Name: 
       Entry: 7
-      Data: 5|BSS.Unit.ActivableInfo, Assembly-CSharp
+      Data: 4|BSS.Unit.ActivableInfo, Assembly-CSharp
     - Name: ID
       Entry: 1
       Data: Tier
@@ -254,7 +235,7 @@ MonoBehaviour:
       Data: MaxPopulation
     - Name: 
       Entry: 7
-      Data: 6|BSS.Unit.ActivableInfo, Assembly-CSharp
+      Data: 5|BSS.Unit.ActivableInfo, Assembly-CSharp
     - Name: ID
       Entry: 1
       Data: MaxPopulation
@@ -268,89 +249,6 @@ MonoBehaviour:
       Entry: 1
       Data: "\uCD5C\uB300\uB85C \uC0DD\uC0B0 \uD560 \uC218 \uC788\uB294 \uC720\uB2DB
         \uC218\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: SchoolHealth
-    - Name: 
-      Entry: 7
-      Data: 7|BSS.Unit.ActivableInfo, Assembly-CSharp
-    - Name: ID
-      Entry: 1
-      Data: SchoolHealth
-    - Name: icon
-      Entry: 10
-      Data: 13
-    - Name: titleContent
-      Entry: 1
-      Data: "\uD559\uAD50 \uCCB4\uB825 \uC99D\uAC00"
-    - Name: textContent
-      Entry: 1
-      Data: "\uD559\uAD50\uC758 \uCCB4\uB825\uC774 100\uB9CC\uD07C \uC99D\uAC00\uD569\uB2C8\uB2E4."
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: ShortAttack
-    - Name: 
-      Entry: 7
-      Data: 8|BSS.Unit.ActivableInfo, Assembly-CSharp
-    - Name: ID
-      Entry: 1
-      Data: ShortAttack
-    - Name: icon
-      Entry: 10
-      Data: 14
-    - Name: titleContent
-      Entry: 1
-      Data: "\uADFC\uC811\uACF5\uACA9\uB825 \uC99D\uAC00"
-    - Name: textContent
-      Entry: 1
-      Data: "\uC0AC\uAC70\uB9AC\uAC00 \uADFC\uC811\uC778 \uC720\uB2DB\uB4E4\uC758
-        \uACF5\uACA9\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: LongAttack
-    - Name: 
-      Entry: 7
-      Data: 9|BSS.Unit.ActivableInfo, Assembly-CSharp
-    - Name: ID
-      Entry: 1
-      Data: LongAttack
-    - Name: icon
-      Entry: 10
-      Data: 15
-    - Name: titleContent
-      Entry: 1
-      Data: "\uC6D0\uAC70\uB9AC\uACF5\uACA9\uB825 \uC99D\uAC00"
-    - Name: textContent
-      Entry: 1
-      Data: "\uC0AC\uAC70\uB9AC\uAC00 \uC6D0\uAC70\uB9AC\uC778 \uC720\uB2DB\uB4E4\uC758
-        \uACF5\uACA9\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
     - Name: 
       Entry: 8
       Data: 

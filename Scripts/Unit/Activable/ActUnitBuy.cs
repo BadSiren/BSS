@@ -40,7 +40,7 @@ namespace BSS.Unit {
 			}
 			if (GameDataBase.instance.useMoneyFood(useMoney,useFood)) {
 				GameObject obj=UnitUtils.CreateUnit (unitPrefab, owner.transform.position+new Vector3(0f,-3f,0f), owner.team);
-				BaseEventListener.onPublishGameObject ("UnitBuy", obj);
+				BaseEventListener.onPublishGameObject ("BuyUnit", obj);
 			}
 		}
 

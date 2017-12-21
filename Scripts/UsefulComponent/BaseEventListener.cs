@@ -17,7 +17,9 @@ namespace BSS {
 		public string listenName;
 		[FoldoutGroup("Listen")]
 		public ParameterType listenType;
-
+		[FoldoutGroup("Send")]
+		public bool isSelf=true;
+		[HideIf("isSelf")]
 		[FoldoutGroup("Send")]
 		public GameObject sender;
 		[FoldoutGroup("Send")]

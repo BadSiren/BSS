@@ -36,7 +36,8 @@ namespace BSS.Unit {
 				return navAgent.hasPath;
 			}
 		}
-		private BaseUnit owner;
+		[HideInInspector]
+		public BaseUnit owner;
 		private PolyNavAgent navAgent;
 		private bool isChase;
 

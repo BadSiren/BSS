@@ -533,7 +533,7 @@ MonoBehaviour:
   team: 0
   isInvincible: 0
   population: 1
-  maxHealth: 45
+  maxHealth: 50
   health: 0
   maxMana: 0
   mana: 0
@@ -830,6 +830,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   _initSpeed: 10
+  owner: {fileID: 0}
 --- !u!210 &210449216904636652
 SortingGroup:
   m_ObjectHideFlags: 1

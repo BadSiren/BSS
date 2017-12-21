@@ -20,7 +20,7 @@ namespace BSS.Unit {
 	}
 	public class BaseUnit : SerializedMonoBehaviour
 	{
-		public static List<BaseUnit> unitList = new List<BaseUnit>();
+		public static List<BaseUnit> unitList=new List<BaseUnit>();
 		public static int totalPopulation {
 			get {
 				return unitList.FindAll (x => x.isMine).ConvertAll (x => x.population).Sum ();
@@ -67,12 +67,16 @@ namespace BSS.Unit {
 		protected virtual void OnDisable()
 		{
 			unitList.Remove(this);
+			if (isMine) {
+				BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
+			}
 		}
 
 		public virtual void allyInit() {
 			team = UnitTeam.Red;
 			isMine = true;
 			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
+			BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
 		}
 		public virtual void enemyInit() {
 			team = UnitTeam.Blue;

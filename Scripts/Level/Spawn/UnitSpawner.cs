@@ -10,71 +10,46 @@ namespace BSS.Level {
 		public bool isEnemy = true;
 		public float addHeathMultiple=0f;
 		public float addDamageMultiple=0f;
-		[System.Serializable]
-		public class SpawnUnit
-		{
-			public string uIndex;
-			public int number=1;
-		}
-		public class SpawnData {
-			public List<SpawnUnit> spawnUnits =new List<SpawnUnit>();
-			[TextArea()]
-			public string spawnText;
 
-			public List<GameObject> getSpawnUnits() {
-				var units = new List<GameObject> ();
-				var database = BSDatabase.instance.baseUnitDatabase.unitPrefabs;
-				foreach (var it in spawnUnits) {
-					if (database.ContainsKey (it.uIndex)) {
-						for (int i = 0; i < it.number; i++) {
-							units.Add (database [it.uIndex]);
-						}
+		public DicSelector dicSelector;
+			
+		public void spawnOnce(int level) {
+			var levelInfo = dicSelector.getDic (level);
+			var spawnKeys=DictionaryUtil.getKeyListInStartWith (levelInfo, "SpawnUnit");
+			List<GameObject> spawnUnits = new List<GameObject> ();
+			foreach (var key in spawnKeys) {
+				string unitID = levelInfo [key].Split ('/') [0];
+				int count = int.Parse (levelInfo [key].Split ('/') [1]);
+				GameObject unitPrefab = BSDatabase.instance.baseUnitDatabase.unitPrefabs [unitID];
+
+				for (int i = 0; i < count; i++) {
+					GameObject copyObj = UnitUtils.CreateUnit (unitPrefab, transform.localPosition + new Vector3 (Random.Range (-1f, 1f), Random.Range (-3f, 3f), 0f), UnitTeam.Blue);
+					BaseEventListener.onPublishGameObject ("SpawnUnit", copyObj);
+					spawnUnits.Add (copyObj);
+					BaseUnit unit = copyObj.GetComponent<BaseUnit> ();
+					unit.maxHealth = unit.maxHealth * (1f + addHeathMultiple);
+					unit.health = unit.maxHealth;
+					Attackable attackable = copyObj.GetComponent<Attackable> ();
+					if (attackable != null) {
+						attackable.changeDamage += attackable.initDamage * addDamageMultiple;
 					}
 				}
-				return units;
 			}
-		}
-
-		public List<SpawnData> spawnDatas = new List<SpawnData> ();
-		public int maxLevel {
-			get {
-				return spawnDatas.Count;
-			}
-		}
-
-
-		void Awake() {
-			if (maxLevel == 0) {
-				Destroy (gameObject);
-				return;
-			}
-		}
-
-		public List<GameObject> spawnOnce(int level) {
-			if (maxLevel - 1 < level) {
-				return null;
-			}
-
-			List<GameObject> unitPrefabs = spawnDatas [level].getSpawnUnits ();
-			List<GameObject> units = new List<GameObject> ();
-			foreach (var it in unitPrefabs) {
-				var obj=UnitUtils.CreateUnit (it, transform.localPosition + new Vector3 (Random.Range (-1f, 1f), Random.Range (-3f, 3f), 0f), UnitTeam.Blue);
-				units.Add (obj);
-				BaseUnit unit=obj.GetComponent<BaseUnit> ();
-				unit.maxHealth = unit.maxHealth * (1f +addHeathMultiple);
-				unit.health = unit.maxHealth;
-				Attackable attackable=obj.GetComponent<Attackable> ();
-				if (attackable != null) {
-					attackable.changeDamage += attackable.initDamage * addDamageMultiple;
-				}
-			}
-			return units;
+			StartCoroutine (checkDestroyUnits (spawnUnits));
 		}
 		public string getSpawnText(int level) {
-			if (maxLevel - 1 < level) {
-				return "";
+			var levelInfo = dicSelector.getDic (level);
+			return levelInfo ["Text"];
+		}
+
+		IEnumerator checkDestroyUnits(List<GameObject> units) {
+			while (true) {
+				if (units.Count == units.FindAll (x => x == null).Count) {
+					BaseEventListener.onPublish ("NothingSpawnUnit");
+					break;
+				}
+				yield return new WaitForSeconds (2f);
 			}
-			return spawnDatas [level].spawnText;
 		}
 	}
 }

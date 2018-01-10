@@ -2,18 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using BSS.Unit;
+using Sirenix.OdinInspector;
+using BSS.UI;
 
 namespace BSS {
 	[RequireComponent(typeof(BaseUnit))]
-	public class Selectable : Clickable
+	public class Selectable : MonoBehaviour
 	{
 		public static List<Selectable> selectableList = new List<Selectable>();
+
 		[HideInInspector]
 		public BaseUnit owner;
 		public bool isSelected {
 			get {
-				return BaseSelect.instance.selectObjects.Contains (gameObject);
+				return BaseSelect.instance.selectableList.Contains (this);
 			}
 		}
 
@@ -24,6 +29,7 @@ namespace BSS {
 		}
 		void OnDestroy()
 		{
+			BaseSelect.instance.selectRemove (this);
 			selectableList.Remove(this);
 		}
 		void OnGUI() {
@@ -34,27 +40,14 @@ namespace BSS {
 				GUI.DrawTexture (rect, BaseSelect.instance.selectCircle);
 			}
 		}
-			
-		public override void onClick() {
-			base.onClick ();
-			onSelect ();
-		}
-		public override void onDoubleClick() {
-			base.onDoubleClick ();
-		}
 		public void onSelect() {
-			if (owner.team == UnitTeam.Red) {
-				BaseSelect.instance.allyUnitSelect (gameObject);
-			} else if  (owner.team == UnitTeam.Blue) {
-				BaseSelect.instance.enemyUnitSelect (gameObject);
-			}
+			BaseSelect.instance.unitSelect (this);
+		}
+		public void deSelect() {
+			BaseSelect.instance.selectRemove (this);
 		}
 
 
-		private void onDieEvent()
-		{
-			BaseSelect.instance.unitUnSelect (gameObject);
-		}
 		/*
 		public void unSelect() {
 			if (selectedList.Contains (gameObject)) {

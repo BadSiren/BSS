@@ -858,7 +858,9 @@ MonoBehaviour:
     SerializationNodes: []
   listenName: UnitSelect
   listenType: 1
-  sendMessage: setSelectUnit
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: setSelectUnitInMine
   isDynamic: 1
   sendType: 0
   gameObjectParameter: {fileID: 0}
@@ -2220,6 +2222,8 @@ MonoBehaviour:
     SerializationNodes: []
   listenName: SelectCancle
   listenType: 0
+  isSelf: 1
+  sender: {fileID: 0}
   sendMessage: clearSelectUnit
   isDynamic: 1
   sendType: 0

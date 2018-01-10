@@ -7,8 +7,13 @@ namespace BSS.UI {
 	{
 		public override void setSelectUnit(BaseUnit unit) {
 			base.setSelectUnit (unit);
-			sendToReceiver ("Team", teamToString(unit.team.ToString()));
-			sendToReceiver ("Team", teamToColor(unit.team.ToString()));
+			if (unit.isSceneObject) {
+				sendToReceiver ("Team", "중립");
+				sendToReceiver ("Team", Color.white);
+			} else {
+				sendToReceiver ("Team", "Player" + unit.photonView.ownerId.ToString ());
+				sendToReceiver ("Team", teamToColor (unit.photonView.ownerId));
+			}
 			sendToReceiver ("UName", unit.uName);
 			if (unit.isInvincible) {
 				sendToReceiver ("Health", "-공격불가-");
@@ -19,6 +24,7 @@ namespace BSS.UI {
 			sendToReceiver ("Portrait", unit.portrait);
 
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
+			sendBoolToReceiver ("ArmorIcon", true);
 
 			Attackable attackable = unit.GetComponent<Attackable> ();
 			if (attackable == null) {
@@ -28,17 +34,9 @@ namespace BSS.UI {
 				sendToReceiver ("Attack", valueToString(attackable.initDamage,attackable.damage));
 				sendBoolToReceiver ("Attack", true);
 				sendToReceiver ("AttackIcon", attackable.icon);
-				sendBoolToReceiver ("AttackUp", false);
 			}
 		}
 
-		public void setSelectUnit(GameObject obj) {
-			var _unit=obj.GetComponent<BaseUnit> ();
-			if (_unit == null) {
-				return;
-			}
-			setSelectUnit (_unit);
-		}
 		public void lookAtUnit() {
 			if (selectUnit == null) {
 				return;
@@ -79,25 +77,15 @@ namespace BSS.UI {
 			string addText = string.Format ("{0:0}", allValue - initValue);
 			return initText +" (+"+ addText+")";
 		}
-		private string teamToString(string team) {
-			switch (team) {
-			case "Red":
-				return "아군";
-			case "Blue":
-				return "적군";
-			case "White":
-				return "중립";
-			}
-			return "";
-		}
-		private Color teamToColor(string team) {
-			switch (team) {
-			case "Red":
-				return Color.green;
-			case "Blue":
+
+		private Color teamToColor(int playerID) {
+			switch (playerID) {
+			case 1:
 				return Color.red;
-			case "White":
-				return Color.white;
+			case 2:
+				return Color.blue;
+			case 3:
+				return Color.green;
 			}
 			return Color.white;
 		}

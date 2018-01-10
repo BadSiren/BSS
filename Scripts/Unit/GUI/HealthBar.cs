@@ -26,6 +26,8 @@ namespace BSS.Unit {
 		private Transform cameraTracker;
 
 		// todo make all private
+		//public HealthBarGUI GUIPrefab;
+		//[HideInInspector]
 		public HealthBarGUI healthBarGUI;
 
 		[SerializeField]
@@ -93,7 +95,7 @@ namespace BSS.Unit {
 		}
 		void Awake() {
 			cameraTracker = Camera.main.transform;
-			healthBarGUI = gameObject.GetComponent<HealthBarGUI> ();
+			//healthBarGUI = gameObject.GetComponent<HealthBarGUI> ();
 		}
 
 		void Start() {

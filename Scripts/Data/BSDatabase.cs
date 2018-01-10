@@ -9,10 +9,10 @@ using Sirenix.OdinInspector;
 namespace BSS {
 	public class BSDatabase : SerializedMonoBehaviour
 	{
-
 		public static BSDatabase instance;
 		public LobbyItemDatabase lobbyItemDatabase;
 		public BaseUnitDatabase baseUnitDatabase;
+		public Items items;
 
 		void Awake() {
 			if (instance == null) {

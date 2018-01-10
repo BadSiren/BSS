@@ -1,41 +1,83 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
-	public class Charactable : MonoBehaviour
+	public class Charactable : SerializedMonoBehaviour
 	{
-		private Character character;
+		public enum AnimType
+		{
+			Idle,Move,Attack,Hit,Die
+		}
+
+		public bool isLookRight;
+		public Dictionary<AnimType,string> animationDics=new Dictionary<AnimType,string>();
+
+		private PhotonView photonView;
+		private BaseUnit owner;
+		private Animator anim;
+
 
 		void Awake() {
-			character=transform.Find("Character").GetComponent<Character> ();
+			owner = GetComponent<BaseUnit> ();
+			photonView = GetComponent<PhotonView>();
+			anim=transform.Find("Character").GetComponent<Animator> ();
+		}
+		void Start() {
+			playAnimMotion (AnimType.Idle,false);
 		}
 			
 		public void lookAtTarget(float targetX) {
-			character.lookAtTarget (targetX);
-		}
-		public void lookAtTarget(Vector3 target) {
-			lookAtTarget (target.x);
+			if (targetX > transform.position.x && !isLookRight) {
+				setMirror ();
+			}
+			if (targetX < transform.position.x && isLookRight) {
+				setMirror ();
+			}
 		}
 
-		public void idleMotion() {
-			character.idleMotion ();
+		public void playAnimMotion(AnimType animType,bool reset,float speed=1f) {
+			if (!owner.isMine) { 
+				return;
+			}
+			photonView.RPC ("recvPlayAnimMotion", PhotonTargets.All,animType.ToString(),reset,speed);
 		}
-		public void moveMotion(float speed=1f) {
-			character.moveMotion (speed);
+		[PunRPC]
+		void recvPlayAnimMotion(string animTypeString,bool reset,float speed,PhotonMessageInfo mi) {
+			AnimType animType = (AnimType)System.Enum.Parse (typeof(AnimType), animTypeString);
+			setAnimationSpeed(speed);
+			playAnimation(animationDics [animType],reset);
 		}
-		public void attackMotion(float speed=1f) {
-			character.attackMotion (speed);
+
+		private void playAnimation(string _anim, bool _reset)
+		{
+			if (anim == null) {
+				return;
+			}
+			if (_reset) {	
+				anim.Play(_anim, -1, 0f);
+			} else {
+				anim.CrossFade(_anim, 0.1f);
+			}
 		}
-		public void hitMotion(float speed=1f) {
-			character.hitMotion (speed);
+		private void setAnimationSpeed(float _value)
+		{
+			if (anim == null) {
+				return;
+			}
+			anim.speed = _value;
 		}
-		public void dieMotion(float speed=1f) {
-			character.dieMotion (speed);
+
+		private void setMirror(){
+			transform.localScale=new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
+			isLookRight = !isLookRight;
 		}
 
 		//UnitEvent
-		private void onAllMoveEvent(Vector3 targetPos) {
+		/*
+		private void onAllMoveEvent(Vector2 targetPos) {
 			lookAtTarget (targetPos);
 			moveMotion ();
 		}
@@ -49,6 +91,7 @@ namespace BSS.Unit {
 		private void onDieEvent() {
 			dieMotion ();
 		}
+		*/
 	}
 }
 

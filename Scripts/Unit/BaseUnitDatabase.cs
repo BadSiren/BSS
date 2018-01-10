@@ -8,6 +8,7 @@ namespace BSS.Unit {
 	{
 		public Dictionary<string,GameObject> unitPrefabs=new Dictionary<string,GameObject>();
 		public Dictionary<string,ActivableInfo> upgradeInfos=new Dictionary<string,ActivableInfo>();
+		public Items items;
 
 		public BaseUnit getBaseUnit(string _ID) {
 			if (!unitPrefabs.ContainsKey (_ID)) {

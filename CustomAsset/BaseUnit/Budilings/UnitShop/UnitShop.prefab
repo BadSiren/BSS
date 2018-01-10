@@ -244,19 +244,16 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   priority: -9
-  onClickState: []
   onClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onDoubleClickState: []
   onDoubleClickEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onLongClickState: []
   onLongClickEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -304,11 +301,14 @@ MonoBehaviour:
       Entry: 8
       Data: 
   ID: 
+  _icon: {fileID: 0}
   _titleContent: 
   _textContent: 
   unitID: Orc
   useMoney: 1
   useFood: 0
+  isPublishObj: 0
+  publishName: 
 --- !u!114 &114796533879068874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -328,24 +328,11 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: existActivable
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[System.Collections.Generic.Dictionary`2[[System.String,
-        mscorlib],[System.String, mscorlib]], mscorlib]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   uIndex: UnitShop
   uName: "\uC720\uB2DB\uC0C1\uC810"
   portrait: {fileID: 21300006, guid: 923c340821610478eb25b0ece09e6033, type: 3}
-  isMine: 0
+  isMine: 1
   team: 0
   isInvincible: 1
   population: 0

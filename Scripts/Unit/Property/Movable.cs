@@ -55,15 +55,16 @@ namespace BSS.Unit {
 
 
 
-		public void toMove(Vector3 targetPos) {
-			if (isMoving) {
-				return;
-			}
-			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+		public void toMove(Vector2 targetPos) {
+			navAgent.SetDestination (targetPos);
+		}
+		public void toMove(Vector2 targetPos,System.Action stopAct) {
 			navAgent.SetDestination (targetPos,(x)=> {
-				moveStop();
+				stopAct();
 			});
 		}
+
+
 		public void toMoveTarget(GameObject target,float distance) {
 			if (isMoving) {
 				return;
@@ -73,8 +74,7 @@ namespace BSS.Unit {
 		}
 
 
-		public void toMoveByForce(Vector3 targetPos) {
-			SendMessage ("onAllMoveEvent",targetPos, SendMessageOptions.DontRequireReceiver);
+		public void toMoveByForce(Vector2 targetPos) {
 			navAgent.SetDestination (targetPos,(x)=> {
 				moveStop();
 			});
@@ -84,7 +84,7 @@ namespace BSS.Unit {
 			StartCoroutine (coChaseTarget (target, distance));
 		}
 
-		public void toPatrol(Vector3 targetPos,float distance) {
+		public void toPatrol(Vector2 targetPos,float distance) {
 			if (isMoving) {
 				return;
 			}
@@ -95,7 +95,6 @@ namespace BSS.Unit {
 		public void moveStop() {
 			isChase = false;
 			navAgent.Stop ();
-			SendMessage ("onMoveStopEvent", SendMessageOptions.DontRequireReceiver);
 		}
 
 		IEnumerator coChaseTarget(GameObject target,float distance) {

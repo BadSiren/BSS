@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 namespace BSS {
 	public class DicSelector : SerializedMonoBehaviour
 	{
+		public static List<DicSelector> dicSelectorList = new List<DicSelector> ();
 		public string ID = "";
 
 		[Header("DicProb(DefineKey)")]
@@ -20,7 +21,11 @@ namespace BSS {
 
 
 		void Awake() {
+			dicSelectorList.Add (this);
 			dics = new List<Dictionary<string,string>> (orginDics);
+		}
+		void OnDestroy() {
+			dicSelectorList.Remove (this);
 		}
 
 		public void resetDics() {

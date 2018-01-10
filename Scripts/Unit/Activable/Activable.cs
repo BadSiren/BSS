@@ -19,7 +19,7 @@ namespace BSS.Unit {
 		public string ID;
 		[SerializeField]
 		[FoldoutGroup("ActBase(Mandatory)")]
-		private Sprite _icon;
+		protected Sprite _icon;
 		public virtual Sprite icon {
 			get {
 				return _icon;
@@ -28,7 +28,7 @@ namespace BSS.Unit {
 		[FoldoutGroup("ActBase(Mandatory)")]
 		[SerializeField]
 		[TextArea()]
-		private string _titleContent;
+		protected string _titleContent;
 		public virtual string titleContent {
 			get {
 				return _titleContent;
@@ -37,7 +37,7 @@ namespace BSS.Unit {
 		[FoldoutGroup("ActBase(Mandatory)")]
 		[SerializeField]
 		[TextArea()]
-		private string _textContent;
+		protected string _textContent;
 		public virtual string textContent {
 			get {
 				return _textContent;

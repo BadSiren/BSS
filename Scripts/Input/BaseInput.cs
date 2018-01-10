@@ -10,7 +10,7 @@ namespace BSS.Input {
 	{
 		private const int MAX_MULTI_SELECT=9;
 		//public float longPressTime=0.6f;
-		public float doubleInterval=0.4f;
+		private const float doubleInterval=0.2f;
 
 		//private float pressTime=0f;
 		private bool isDrag;
@@ -18,6 +18,10 @@ namespace BSS.Input {
 		private bool isLongPress;
 		private bool isTouching;
 
+		public static Vector2 getMousePoint() {
+			var _mousePos=(Vector2)Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);
+			return _mousePos;
+		}
 
 		void Update() {
 			if(UnityEngine.Input.touchCount > 1){
@@ -26,25 +30,12 @@ namespace BSS.Input {
 			} else {
 				if (UnityEngine.Input.GetMouseButtonDown (0)) {
 					//Cancle in UI Click
-					if (EventSystem.current.IsPointerOverGameObject()) {
+					if (EventSystem.current.IsPointerOverGameObject () || isTouching) {
 						return;
 					}
-					Vector3 currentMouse = getMousePoint2D ();
-					Clickable click = getClickablePriorityOrNull (currentMouse);
-
-					if (isTouching) {
-						if (click != null) {
-							//Double Click
-							click.onDoubleClick ();
-						}
-						isTouching = false;
-					} else {
-						if (click != null) {
-							//On Click
-							click.onClick ();
-							StartCoroutine (coWaitDoubleTouch ());
-						}
-					}
+					setDrag ();
+					isTouching = true;
+					StartCoroutine (coWaitDoubleTouch ());
 				}
 			}
 		}
@@ -56,12 +47,15 @@ namespace BSS.Input {
 			}
 		}
 
+		public void onClickInMousePoint(Clickable.EClickType eClickType) {
+			var clickableList = getClickableList ().FindAll (x => x.eClickType == eClickType);
+			clickableList.Sort ((t1, t2) => t2.priority - t1.priority);
 
-		public static Vector3 getMousePoint2D() {
-			var _mousePos=Camera.main.ScreenToWorldPoint (UnityEngine.Input.mousePosition);
-			_mousePos = new Vector3 (_mousePos.x, _mousePos.y, 0f);
-			return _mousePos;
+			foreach (var it in clickableList) {
+				it.onClick ();
+			}
 		}
+	
 
 		public void setDrag() {
 			if (isDrag) {
@@ -74,51 +68,60 @@ namespace BSS.Input {
 		IEnumerator coWaitDrag() {
 			while (isDrag) {
 				yield return null;
-				if (UnityEngine.Input.GetMouseButtonUp (0)) {
+				if (!UnityEngine.Input.GetMouseButton (0)) {
 					isDrag = false;
 					Vector3 curMousePoint = UnityEngine.Input.mousePosition;
 					var bounds=DrawUtils.GetViewportBounds (Camera.main, preMousePoint, curMousePoint);
-					List<GameObject> selectObjects = new List<GameObject> ();
+					List<Selectable> selectableList = new List<Selectable> ();
 					foreach (var it in Selectable.selectableList) {
-						if (bounds.Contains (Camera.main.WorldToViewportPoint (it.gameObject.transform.position)) && it.owner.team==UnitTeam.Red ) {
-							if (selectObjects.Count < MAX_MULTI_SELECT) {
-								selectObjects.Add (it.gameObject);
+						if (bounds.Contains (Camera.main.WorldToViewportPoint (it.gameObject.transform.position)) && it.owner.isMine) {
+							if (selectableList.Count < MAX_MULTI_SELECT) {
+								selectableList.Add (it);
 							}
 						}
 					}
-					if (selectObjects.Count == 1) {
-						BaseSelect.instance.allyUnitSelect (selectObjects [0]);
-					} else if (selectObjects.Count > 1) {
-						BaseSelect.instance.multiUnitSelect (selectObjects);
+					if (selectableList.Count == 1) {
+						BaseSelect.instance.unitSelect (selectableList [0]);
+					} else if (selectableList.Count > 1) {
+						BaseSelect.instance.multiUnitSelect (selectableList);
 					}
 				}
 			}
 		}
 
 		IEnumerator coWaitDoubleTouch() {
-			isTouching = true;
-			yield return new WaitForSeconds (doubleInterval);
-			isTouching = false;
+			yield return null;
+			float lastTime = Time.time;
+			while (isTouching) {
+				if (UnityEngine.Input.GetMouseButtonDown (0)) {
+					isTouching = false;
+					onClickInMousePoint (Clickable.EClickType.Double);
+					break;
+				}
+				if (Time.time - lastTime > doubleInterval) {
+					isTouching = false;
+					onClickInMousePoint (Clickable.EClickType.Once);
+					break;
+				}
+				yield return null;
+			}
 		}
 
 
-		private Clickable getClickablePriorityOrNull(Vector3 orgin) {
-			RaycastHit2D[] hits = Physics2D.RaycastAll(orgin, Vector2.zero, 0f);
+		private List<Clickable> getClickableList() {
+			RaycastHit2D[] hits = Physics2D.RaycastAll(getMousePoint(), Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {
 				if (it.collider.GetType()==typeof(CircleCollider2D)) {
 					continue;
 				}
-				Clickable temp=it.collider.GetComponent<Clickable> ();
-				if (temp != null) {
-					clickableList.Add (temp);
+				var clickables=it.collider.GetComponents<Clickable> ();
+				for (int i=0; i<clickables.Length;i++) {
+					clickableList.Add (clickables[i]);
 				}
-				clickableList.Sort ((t1, t2) => t2.priority - t1.priority);
+				//clickableList.Sort ((t1, t2) => t2.priority - t1.priority);
 			}
-			if (clickableList.Count > 0) {
-				return clickableList [0];
-			}
-			return null;
+			return clickableList;
 		}
 
 

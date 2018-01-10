@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4944921296471864}
   - component: {fileID: 114934467501134058}
+  - component: {fileID: 114721587281446776}
   m_Layer: 0
   m_Name: BSDatabase
   m_TagString: Untagged
@@ -40,6 +41,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114721587281446776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843881142821692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0242e1a714230475193d00ad92730754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: items
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Item,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114934467501134058
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,85 +95,12 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 21300000, guid: 28d5b426d06a35540abee8be921f2d86, type: 3}
-    - {fileID: 21300000, guid: 7a4af12f25b88ad4f98da64b192e4d1c, type: 3}
-    - {fileID: 21300000, guid: ef7b6e7146c734e15b5564ae6c62ddc7, type: 3}
-    - {fileID: 21300000, guid: bd3feadf53e31471a81e6d26b0eef0e1, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: spriteDatabase
-      Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[UnityEngine.Sprite,
-        UnityEngine.CoreModule]], mscorlib
-    - Name: 
-      Entry: 7
-      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
-        mscorlib]], mscorlib
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Gold
-    - Name: 
-      Entry: 10
-      Data: 0
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Food
-    - Name: 
-      Entry: 10
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Tier
-    - Name: 
-      Entry: 10
-      Data: 2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Population
-    - Name: 
-      Entry: 10
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   lobbyItemDatabase: {fileID: 11400000, guid: fb43a25278ec0455abe21e560b6a8a2a, type: 2}
-  activableDatabase: {fileID: 11400000, guid: 19d9b8af18f064728999431a90af034d, type: 2}
   baseUnitDatabase: {fileID: 11400000, guid: 7864518c7b9ae40e5999baacc8d58919, type: 2}
-  levelDatabase: {fileID: 11400000, guid: de14cee08c9ae4bc387fb24eb83b58c6, type: 2}
+  items: {fileID: 114721587281446776}

@@ -27,6 +27,10 @@ namespace BSS.UI {
 		public virtual void setSelectUnit(BaseUnit unit) {
 			selectUnit = unit;
 		}
+		public void setSelectUnit(GameObject obj) {
+			var _unit=obj.GetComponent<BaseUnit> ();
+			setSelectUnit (_unit);
+		}
 		public virtual void clearSelectUnit() {
 			selectUnit = null;
 			sendBoolToReceiver ("All", false);

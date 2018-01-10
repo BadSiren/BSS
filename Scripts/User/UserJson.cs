@@ -15,7 +15,7 @@ namespace BSS {
 				return _instance;
 			}
 		}
-
+		public string nickName="";
 		public string moneyName="Money";
 		public string gemName="Gem";
 		public string inventoryName="Inventory";
@@ -38,6 +38,9 @@ namespace BSS {
 		}
 
 		void intialize() {
+			if (!ES2.Exists (nickName)) {
+				ES2.Save ("", nickName);
+			}
 			if (!ES2.Exists (moneyName)) {
 				ES2.Save (0, moneyName);
 			}

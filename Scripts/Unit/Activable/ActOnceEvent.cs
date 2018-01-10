@@ -14,6 +14,7 @@ namespace BSS.Unit {
 		public int useFood;
 		public Dictionary<string,int> needUpgrade=new Dictionary<string,int>();
 
+
 		public UnityEvent actEvent;
 
 

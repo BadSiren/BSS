@@ -58,28 +58,25 @@ namespace BSS.Unit {
 			BaseUnit enemyUnit = enemy.GetComponent<BaseUnit> ();
 			return CheckHostile (allyUnit.team, enemyUnit.team);
 		}
-
-		public static GameObject CreateUnit(BaseUnit unit,Vector3 pos,UnitTeam _team) {
-			GameObject obj=GameObject.Instantiate (unit.gameObject, pos, Quaternion.identity);
-			BaseUnit _unit = obj.GetComponent<BaseUnit> ();
-			_unit.team = _team;
-			if (_unit.team == UnitTeam.Red) {
-				_unit.allyInit ();
-			} else if (_unit.team == UnitTeam.Blue) {
-				_unit.enemyInit ();
-			}
+		public static GameObject CreateUnit(string uName,Vector2 pos) {
+			var obj=PhotonNetwork.Instantiate (uName, pos, Quaternion.identity, 0);
 			return obj;
 		}
-		public static GameObject CreateUnit(GameObject unitObject,Vector3 pos,UnitTeam _team) {
-			GameObject obj=GameObject.Instantiate (unitObject, pos, Quaternion.identity);
-			BaseUnit _unit = obj.GetComponent<BaseUnit> ();
-			_unit.team = _team;
-			if (_unit.team == UnitTeam.Red) {
-				_unit.allyInit ();
-			} else if (_unit.team == UnitTeam.Blue) {
-				_unit.enemyInit ();
+		public static void ToMove(BaseUnit unit,Vector2 pos) {
+			var movable=unit.GetComponent<Movable> ();
+			if (movable == null) {
+				return;
 			}
-			return obj;
+			var charactable=unit.GetComponent<Charactable> ();
+			if (charactable == null) {
+				movable.toMove (pos);
+			} else {
+				charactable.lookAtTarget (pos.x);
+				charactable.playAnimMotion (Charactable.AnimType.Move, false);
+				movable.toMove (pos,()=>{
+					charactable.playAnimMotion (Charactable.AnimType.Idle, false);
+				});
+			}
 		}
 	}
 }

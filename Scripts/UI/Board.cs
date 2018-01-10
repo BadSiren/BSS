@@ -60,10 +60,6 @@ namespace BSS.UI {
 
 			onClose.Invoke ();
 		}
-		public static Board find(string _name) {
-			Board temp=boardList.Find (x => x.boardName == _name);
-			return temp;
-		}
 
 		public void sendBoolToReceiver(string receiverName,bool _enabled) {
 			messageArgs.receiverName = receiverName;

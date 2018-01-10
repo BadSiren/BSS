@@ -2,8 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.UI;
-
-
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[System.Serializable]
@@ -16,6 +15,9 @@ namespace BSS.Unit {
 		public int useInitFood;
 		public int useAddFood;
 		public Dictionary<string,int> needUpgrade=new Dictionary<string,int>();
+		public bool isPublishInt=false;
+		[ShowIf("isPublishInt")]
+		public string publishName="";
 
 		private ActivableInfo upInfo;
 
@@ -55,6 +57,9 @@ namespace BSS.Unit {
 			}
 			if (GameDataBase.instance.useMoneyFood(needMoney(),needFood()) ) {
 				level++;
+				if (isPublishInt) {
+					BaseEventListener.onPublishInt (publishName, level);
+				}
 			}
 
 			showInformDynamic ();

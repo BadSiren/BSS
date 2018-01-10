@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using BSS.UI;
+using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[System.Serializable]
@@ -11,6 +12,10 @@ namespace BSS.Unit {
 		public int useMoney;
 		public int useFood;
 		public Dictionary<string,int> needUpgrade=new Dictionary<string,int>();
+		public bool isPublishObj=false;
+		[ShowIf("isPublishObj")]
+		public string publishName="";
+
 		private GameObject unitPrefab;
 		private BaseUnit unit;
 		private Charactable character;
@@ -39,8 +44,12 @@ namespace BSS.Unit {
 				return;
 			}
 			if (GameDataBase.instance.useMoneyFood(useMoney,useFood)) {
+				/* Todo
 				GameObject obj=UnitUtils.CreateUnit (unitPrefab, owner.transform.position+new Vector3(0f,-3f,0f), owner.team);
-				BaseEventListener.onPublishGameObject ("BuyUnit", obj);
+				if (isPublishObj) {
+					BaseEventListener.onPublishGameObject (publishName, obj);
+				}
+				*/
 			}
 		}
 

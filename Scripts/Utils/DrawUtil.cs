@@ -67,6 +67,18 @@ namespace BSS {
 			//Bottom
 			DrawScreenRect(new Rect(rect.xMin,rect.yMax-thickness,rect.width,thickness),color);
 		}
+		static public Rect GetWorldRect (RectTransform rt, Vector2 scale) {
+			// Convert the rectangle to world corners and grab the top left
+			Vector3[] corners = new Vector3[4];
+			rt.GetWorldCorners(corners);
+			Vector3 topLeft = corners[0];
+
+			// Rescale the size appropriately based on the current Canvas scale
+			Vector2 scaledSize = new Vector2(scale.x * rt.rect.size.x, scale.y * rt.rect.size.y);
+
+			return new Rect(topLeft, scaledSize);
+		}
+	
 		public static Rect GetScreenRect(Vector3 screenPosition1,Vector3 screenPosition2)
 		{
 			//Moveoriginfrombottomlefttotopleft
@@ -94,6 +106,7 @@ namespace BSS {
 			DrawScreenRect(rect,new Color(0.8f,0.8f,0.95f,0.25f));
 			DrawScreenRectBorder(rect,2,new Color(0.8f,0.8f,0.95f));
 		}
+
 	}
 }
 

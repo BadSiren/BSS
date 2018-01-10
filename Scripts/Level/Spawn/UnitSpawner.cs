@@ -23,6 +23,7 @@ namespace BSS.Level {
 				GameObject unitPrefab = BSDatabase.instance.baseUnitDatabase.unitPrefabs [unitID];
 
 				for (int i = 0; i < count; i++) {
+					/* Todo
 					GameObject copyObj = UnitUtils.CreateUnit (unitPrefab, transform.localPosition + new Vector3 (Random.Range (-1f, 1f), Random.Range (-3f, 3f), 0f), UnitTeam.Blue);
 					BaseEventListener.onPublishGameObject ("SpawnUnit", copyObj);
 					spawnUnits.Add (copyObj);
@@ -33,6 +34,7 @@ namespace BSS.Level {
 					if (attackable != null) {
 						attackable.changeDamage += attackable.initDamage * addDamageMultiple;
 					}
+					*/
 				}
 			}
 			StartCoroutine (checkDestroyUnits (spawnUnits));

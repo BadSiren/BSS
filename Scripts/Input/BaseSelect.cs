@@ -4,17 +4,13 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using BSS.Unit;
 
-namespace BSS {
+namespace BSS {	
 	public class BaseSelect : SerializedMonoBehaviour
 	{
 		public Texture2D selectCircle;
 		public static BaseSelect instance;
-		public enum ESelectState
-		{
-			None,AllySelect,EnemySelect,MultiSelect
-		}
-		public ESelectState eSelectState;
-		public List<GameObject> selectObjects=new List<GameObject> ();
+		public ESelectState eSelectState=ESelectState.None;
+		public List<Selectable> selectableList=new List<Selectable> ();
 		public bool isAttack {
 			get;set;
 		}
@@ -22,55 +18,38 @@ namespace BSS {
 		void Awake() {
 			instance = this;
 		}
-
-		public void allyUnitSelect(GameObject obj) {
-			selectObjects.Clear ();
-			selectObjects.Add(obj);
-			eSelectState = ESelectState.AllySelect;
-			BaseEventListener.onPublishGameObject ("UnitSelect", obj);
-			BaseEventListener.onPublishGameObject ("AllyUnitSelect", obj);
-		}
-		public void enemyUnitSelect(GameObject obj) {
-			if ((eSelectState==ESelectState.AllySelect ||eSelectState==ESelectState.MultiSelect) && isAttack) {
-				foreach (var it in selectObjects) {
-					var attakable = it.GetComponent<Attackable> ();
-					if (attakable == null) {
-						continue;
-					}
-					var movable=it.GetComponent<Movable> ();
-					if (movable != null) {
-						movable.toMoveTarget (obj, attakable.range);
-					}
-				}
-				return;
+		public void unitSelect(Selectable selectable) {
+			if (selectable.owner.isMine) {
+				eSelectState = ESelectState.Mine;
+			} else {
+				eSelectState = ESelectState.NotMine;
 			}
-			selectObjects.Clear ();
-			selectObjects.Add(obj);
-			eSelectState = ESelectState.EnemySelect;
-			BaseEventListener.onPublishGameObject ("UnitSelect", obj);
-			BaseEventListener.onPublishGameObject ("EnemyUnitSelect", obj);
+			selectableList.Clear ();
+			selectableList.Add(selectable);
+			BaseEventListener.onPublishGameObject ("UnitSelect", selectable.gameObject);
 		}
-		public void multiUnitSelect(List<GameObject> objs) {
-			selectObjects.Clear ();
-			selectObjects = objs;
-			eSelectState = ESelectState.MultiSelect;
+		public void multiUnitSelect(List<Selectable> selectables) {
+			eSelectState = ESelectState.Multi;
+			selectableList.Clear ();
+			selectableList = selectables;
 			BaseEventListener.onPublish ("SelectCancle");
-		}
-		public void unitUnSelect(GameObject obj) {
-			if (!selectObjects.Contains(obj)) {
-				return;
-			}
-			selectObjects.Remove (obj);
-			if (selectObjects.Count == 0) {
-				selectCancle ();
-			} else if (selectObjects.Count == 1) {
-				allyUnitSelect (selectObjects [0]);
-			}
 		}
 		public void selectCancle() {
 			eSelectState = ESelectState.None;
-			selectObjects.Clear ();
+			selectableList.Clear ();
 			BaseEventListener.onPublish ("SelectCancle");
+		}
+
+		public void selectRemove(Selectable selectable) {
+			if (!selectableList.Contains(selectable)) {
+				return;
+			}
+			selectableList.Remove (selectable);
+			if (selectableList.Count == 0) {
+				selectCancle ();
+			} else if (selectableList.Count == 1) {
+				unitSelect (selectableList [0]);
+			}
 		}
 
 

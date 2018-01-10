@@ -23,11 +23,6 @@ namespace BSS.UI {
 
 			sendToReceiver ("Page", page.ToString ());
 		}
-		public override void pageUpdate ()
-		{
-			base.pageUpdate ();
-			PlayManager.difficulty = page;
-		}
 
 		private bool validate() {
 			return true;

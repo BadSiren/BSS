@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BSS.Input;
 using Sirenix.OdinInspector;
 using System.Linq;
+using Photon;
 
 namespace BSS.Unit {
 	public enum UnitTeam
@@ -23,7 +24,7 @@ namespace BSS.Unit {
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 		public static int totalPopulation {
 			get {
-				return unitList.FindAll (x => x.isMine).ConvertAll (x => x.population).Sum ();
+				return unitList.FindAll (x => x.photonView.isMine).ConvertAll (x => x.population).Sum ();
 			}
 		}
 
@@ -31,7 +32,6 @@ namespace BSS.Unit {
 		public string uName;
 		public Sprite portrait;
 
-		public bool isMine;
 		public UnitTeam team;
 		public bool isInvincible;
 		public int population;
@@ -54,11 +54,31 @@ namespace BSS.Unit {
 			}
 		}
 		public List<Activable> activableList = new List<Activable> ();
+		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
+		public bool isMine {
+			get {
+				return photonView.ownerId == PhotonNetwork.player.ID;
+			}
+		}
+		public bool isSceneObject {
+			get {
+				return photonView.owner == null;
+			}
+		}
+			
+		public PhotonView photonView {
+			get;
+			private set;
+		}
 
+		void Awake() {
+			photonView = GetComponent<PhotonView> ();
+		}
 		protected virtual void OnEnable()
 		{
 			unitList.Add(this);
+
 
 			health = maxHealth;
 			mana = maxMana;
@@ -67,28 +87,21 @@ namespace BSS.Unit {
 		protected virtual void OnDisable()
 		{
 			unitList.Remove(this);
-			if (isMine) {
+			//if (isMine) {
 				BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
-			}
+			//}
 		}
 
 		public virtual void allyInit() {
 			team = UnitTeam.Red;
-			isMine = true;
+			//isMine = true;
 			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
 			BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
 		}
 		public virtual void enemyInit() {
 			team = UnitTeam.Blue;
-			isMine = false;
+			//isMine = false;
 			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
-		}
-
-		public bool haveProperty<T>() {
-			if (GetComponent<T> () == null) {
-				return false;
-			}
-			return true;
 		}
 
 
@@ -98,17 +111,7 @@ namespace BSS.Unit {
 			BaseEventListener.onPublishGameObject ("UnitDie", gameObject);
 			Destroy (gameObject);
 		}
-
-		/*
-		private void activableInitialize() {
-			foreach (var it in existActivable) {
-				Activable temp=BSDatabase.instance.activableDatabase.activables [it ["ID"]];
-				var activable=ScriptableObject.Instantiate (temp);
-				activable.initialize (it);
-				addActivable (activable);
-			}
-		}
-		*/
+			
 			
 		private void hitDamage(AttackInfo attackInfo) {
 			float _damage = attackInfo.damage * (1f - reductionArmor (armor));
@@ -122,7 +125,7 @@ namespace BSS.Unit {
 		public static float reductionArmor(float _armor) {
 			return 1f-(50f / (_armor + 50f));
 		}
-
+			
 
 		//Unit Event
 		private void onHitEvent(AttackInfo attackInfo) {

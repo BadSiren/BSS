@@ -1,39 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using BSS.Unit;
 
 namespace BSS.UI {
-	public class UnitBoard : Board
+	public abstract class UnitBoard : Board
 	{
+		public static List<UnitBoard> unitBoardList = new List<UnitBoard>();
 		public BaseUnit selectUnit;
 
-		public void Show(GameObject obj) {
-			base.Show ();
-			if (obj.GetComponent<BaseUnit> () != null) {
-				setSelectUnit (obj.GetComponent<BaseUnit>());
-			}
+		protected override void initialize() {
+			base.initialize ();
+			unitBoardList.Add (this);
 		}
+		protected override void deInitailze() {
+			base.deInitailze ();
+			unitBoardList.Remove (this);
+		}
+			
+		public abstract void changeSelectUnit (BaseUnit unit);
+		public abstract void clearSelectUnit ();
 
-		public void Show(BaseUnit unit) {
-			base.Show ();
-			setSelectUnit (unit);
-		}
-		public void CloseCheck(GameObject obj) {
-			if (selectUnit != null && selectUnit.gameObject.GetInstanceID () == obj.GetInstanceID ()) {
-				Close ();
-			}
-		}
 
-		public virtual void setSelectUnit(BaseUnit unit) {
-			selectUnit = unit;
-		}
-		public void setSelectUnit(GameObject obj) {
+		public void changeSelectUnit(GameObject obj) {
 			var _unit=obj.GetComponent<BaseUnit> ();
-			setSelectUnit (_unit);
-		}
-		public virtual void clearSelectUnit() {
-			selectUnit = null;
-			sendBoolToReceiver ("All", false);
+			changeSelectUnit (_unit);
 		}
 	}
 }

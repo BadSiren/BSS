@@ -13,6 +13,7 @@ namespace BSS {
 		public LobbyItemDatabase lobbyItemDatabase;
 		public BaseUnitDatabase baseUnitDatabase;
 		public Items items;
+		public Activables activables;
 
 		void Awake() {
 			if (instance == null) {

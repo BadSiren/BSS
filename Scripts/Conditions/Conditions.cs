@@ -4,7 +4,7 @@ using BSS.Input;
 
 namespace BSS {
 	public enum Condition {
-		MineSelect,IsSelected
+		MineSelect,IsSelected,MineOrMultiSelect
 	}
 	public class Conditions : MonoBehaviour
 	{
@@ -19,6 +19,8 @@ namespace BSS {
 				return mineSelectValidate();
 			case Condition.IsSelected:
 				return isSelectedValidate(clickObj);
+			case Condition.MineOrMultiSelect:
+				return mineOrMultiSelectValidate();
 			}
 
 			return false;
@@ -33,6 +35,9 @@ namespace BSS {
 				return false;
 			}
 			return (BaseSelect.instance.selectableList.Contains(selectable));
+		}
+		private bool mineOrMultiSelectValidate() {
+			return (BaseSelect.instance.eSelectState == ESelectState.Mine || BaseSelect.instance.eSelectState == ESelectState.Multi);
 		}
 	}
 }

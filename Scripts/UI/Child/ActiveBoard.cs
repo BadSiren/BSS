@@ -6,15 +6,52 @@ using BSS.Unit;
 namespace BSS.UI {
 	public class ActiveBoard : UnitBoard
 	{
-		public List<Activable> acitvableList;
+		public const int MAX_COUNT = 9;
+		public List<Activable> acitvableList=new List<Activable> ();
 
-		private List<Activable> preActivableList = new List<Activable> ();
-		private List<Activable> emptyList=new List<Activable> ();
-
-		void Start() {
-			emptyList.Capacity = 9;
+		public override void changeSelectUnit (BaseUnit unit)
+		{
+			selectUnit = unit;
+			changeCategory ("Base");
+		}
+		public override void clearSelectUnit ()
+		{
+			selectUnit = null;
+			for (int i = 0; i < MAX_COUNT; i++) {
+				clearActButtonImage (i);
+			}
+		}
+		public void changeCategory(string category) {
+			acitvableList=selectUnit.getActivableList ().FindAll (x => x.category == category);
+			for (int i=0;i<acitvableList.Count;i++){
+				setActButtonImage (i, acitvableList [i].icon, acitvableList [i].titleContent);
+			}
 		}
 
+		public void activeButton(int _num) {
+			if (acitvableList == null || acitvableList.Count - 1 < _num) {
+				return;
+			}
+			acitvableList [_num].activate ();
+		}
+
+		public void activeButtonLongPress(int _num) {
+			if (acitvableList == null || acitvableList.Count - 1 < _num) {
+				return;
+			}
+			acitvableList [_num].activateLongPress ();
+		}
+
+		private void setActButtonImage(int index,Sprite icon,string title) {
+			sendToReceiver ("ButtonTitle" + index.ToString (), title);
+			sendToReceiver ("ButtonIcon" + index.ToString (), icon);
+		}
+		private void clearActButtonImage(int index) {
+			sendBoolToReceiver ("ButtonTitle" + index.ToString (), false);
+			sendBoolToReceiver ("ButtonIcon" + index.ToString (), false);
+		}
+
+		/*
 		public override void setSelectUnit(BaseUnit unit) {
 			base.setSelectUnit (unit);
 			if (selectUnit != null) {
@@ -78,6 +115,7 @@ namespace BSS.UI {
 			}
 			acitvableList [_num].activateLongPress ();
 		}
+		*/
 	}
 }
 

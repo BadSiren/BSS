@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using BSS.Unit;
+using BSS.UI;
 
 namespace BSS {	
 	public class BaseSelect : SerializedMonoBehaviour
@@ -26,17 +27,27 @@ namespace BSS {
 			}
 			selectableList.Clear ();
 			selectableList.Add(selectable);
+			foreach (var it in UnitBoard.unitBoardList) {
+				it.clearSelectUnit ();
+				it.changeSelectUnit (selectable.gameObject);
+			}
 			BaseEventListener.onPublishGameObject ("UnitSelect", selectable.gameObject);
 		}
 		public void multiUnitSelect(List<Selectable> selectables) {
 			eSelectState = ESelectState.Multi;
 			selectableList.Clear ();
 			selectableList = selectables;
+			foreach (var it in UnitBoard.unitBoardList) {
+				it.clearSelectUnit ();
+			}
 			BaseEventListener.onPublish ("SelectCancle");
 		}
 		public void selectCancle() {
 			eSelectState = ESelectState.None;
 			selectableList.Clear ();
+			foreach (var it in UnitBoard.unitBoardList) {
+				it.clearSelectUnit ();
+			}
 			BaseEventListener.onPublish ("SelectCancle");
 		}
 

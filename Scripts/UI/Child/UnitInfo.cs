@@ -5,8 +5,17 @@ using BSS.Unit;
 namespace BSS.UI {
 	public class UnitInfo : UnitBoard
 	{
-		public override void setSelectUnit(BaseUnit unit) {
-			base.setSelectUnit (unit);
+		public override void changeSelectUnit (BaseUnit unit)
+		{
+			selectUnit = unit;
+			updateInfomation (selectUnit);
+		}
+		public override void clearSelectUnit ()
+		{
+			selectUnit = null;
+			sendBoolToReceiver ("All", false);
+		}
+		private void updateInfomation(BaseUnit unit) {
 			if (unit.isSceneObject) {
 				sendToReceiver ("Team", "중립");
 				sendToReceiver ("Team", Color.white);
@@ -44,6 +53,7 @@ namespace BSS.UI {
 			Camera.main.transform.position = selectUnit.transform.position;
 			Camera.main.transform.position = new Vector3 (Camera.main.transform.position.x, Camera.main.transform.position.y, -10f);
 		}
+
 		public void buttonAttackInfo() {
 			if (selectUnit == null) {
 				return;

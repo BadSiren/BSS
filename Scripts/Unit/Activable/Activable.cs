@@ -5,21 +5,14 @@ using BSS.UI;
 using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
-	public class ActivableInfo {
-		public string ID;
-		public Sprite icon;
-		public string titleContent;
-		[TextArea()]
-		public string textContent;
-	}
 	[System.Serializable]
 	public abstract class Activable : SerializedMonoBehaviour
-	{
+	{	
 		[FoldoutGroup("ActBase(Mandatory)")]
-		public string ID;
+		public string category="Base";
 		[SerializeField]
 		[FoldoutGroup("ActBase(Mandatory)")]
-		protected Sprite _icon;
+		public Sprite _icon;
 		public virtual Sprite icon {
 			get {
 				return _icon;
@@ -28,7 +21,7 @@ namespace BSS.Unit {
 		[FoldoutGroup("ActBase(Mandatory)")]
 		[SerializeField]
 		[TextArea()]
-		protected string _titleContent;
+		public string _titleContent;
 		public virtual string titleContent {
 			get {
 				return _titleContent;
@@ -37,30 +30,27 @@ namespace BSS.Unit {
 		[FoldoutGroup("ActBase(Mandatory)")]
 		[SerializeField]
 		[TextArea()]
-		protected string _textContent;
+		public string _textContent;
 		public virtual string textContent {
 			get {
 				return _textContent;
 			}
 		}
+		[FoldoutGroup("ActBase(Mandatory)")]
+		public bool isPrivate;
+
 		public virtual string infoContent {
 			get {
-				return "";
+				return titleContent;
 			}
 		}
 		protected BaseUnit owner;
 
 		void Awake() {
 			owner = GetComponentInParent<BaseUnit> ();
-			owner.activableList.Add (this);
 		}
 		void Start() {
 			initialize ();
-		}
-		void OnDestroy() {
-			if (owner != null && owner.activableList.Contains (this)) {
-				owner.activableList.Remove (this);
-			}
 		}
 
 		public static T addComponent<T>(BaseUnit target) where T : Activable  {

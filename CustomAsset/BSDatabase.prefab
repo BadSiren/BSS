@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4944921296471864}
   - component: {fileID: 114934467501134058}
   - component: {fileID: 114721587281446776}
+  - component: {fileID: 114833029005315958}
   m_Layer: 0
   m_Name: BSDatabase
   m_TagString: Untagged
@@ -55,13 +56,14 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 813a02a32a830485aab22d420a20db35, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: items
+    - Name: database
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Item,
         Assembly-CSharp]], mscorlib
@@ -74,7 +76,119 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Sword
+    - Name: 
+      Entry: 7
+      Data: 2|BSS.Item, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: Sword
+    - Name: itemName
+      Entry: 1
+      Data: "\uB2E8\uAC80"
+    - Name: itemDescription
+      Entry: 1
+      Data: "\uACF5\uACA9\uB825+1"
+    - Name: icon
+      Entry: 10
       Data: 0
+    - Name: properties
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 4|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &114833029005315958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843881142821692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6812077b9545647388f6974fe559252c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 21300000, guid: 25f983f46b860460b8d7ac0cafcc4f93, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: database
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.ActivableInfo,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: ActCancle
+    - Name: 
+      Entry: 7
+      Data: 2|BSS.ActivableInfo, Assembly-CSharp
+    - Name: icon
+      Entry: 10
+      Data: 0
+    - Name: titleContent
+      Entry: 6
+      Data: 
+    - Name: textContent
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -104,3 +218,4 @@ MonoBehaviour:
   lobbyItemDatabase: {fileID: 11400000, guid: fb43a25278ec0455abe21e560b6a8a2a, type: 2}
   baseUnitDatabase: {fileID: 11400000, guid: 7864518c7b9ae40e5999baacc8d58919, type: 2}
   items: {fileID: 114721587281446776}
+  activables: {fileID: 114833029005315958}

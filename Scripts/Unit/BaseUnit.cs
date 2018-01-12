@@ -53,7 +53,6 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
-		public List<Activable> activableList = new List<Activable> ();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
 		public bool isMine {
@@ -103,7 +102,13 @@ namespace BSS.Unit {
 			//isMine = false;
 			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
 		}
-
+		public List<Activable> getActivableList() {
+			var actList=new List<Activable>(GetComponentsInChildren<Activable> ());
+			if (!isMine) {
+				actList = actList.FindAll (x => !x.isPrivate);
+			}
+			return actList;
+		}
 
 		public virtual void die() {
 			tag = "Die";

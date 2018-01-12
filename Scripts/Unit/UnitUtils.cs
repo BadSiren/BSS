@@ -78,6 +78,13 @@ namespace BSS.Unit {
 				});
 			}
 		}
+		public static void AddItem(BaseUnit unit,string itemID) {
+			var itemable = unit.GetComponent<Itemable> ();
+			if (itemable == null) {
+				return;
+			}
+			itemable.owner.photonView.RPC ("recvAddItem", PhotonTargets.All,itemID);
+		}
 	}
 }
 

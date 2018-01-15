@@ -9,25 +9,33 @@ namespace BSS.Unit {
 		[Range(0,8)]
 		public int maxCount;
 		public List<Item> items=new List<Item>();
-		public List<ActItem> actItemList=new List<ActItem>();
 
 		public BaseUnit owner;
-		private GameObject actContainer;
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
-			actContainer = transform.Find ("Activable").gameObject;
 		}
 		[PunRPC]
-		public void recvAddItem(string ID) {
+		private void recvAddItem(string ID) {
 			if (items.Count >= maxCount) {
 				return;
 			}
-			var actItem=actContainer.AddComponent<ActItem> ();
+			var container=owner.activables.getContainerOrCreate ("Item");
+			var actItem=container.AddComponent<ActItem> ();
 			actItem.category = "Item";
+			actItem.index = items.Count;
 			actItem.ID = ID;
-			actItemList.Add (actItem);
+			owner.activables.registActivable (actItem);
 			items.Add (BSDatabase.instance.items.database [ID]);
+		}
+		[PunRPC]
+		private void recvThrowItem(int index) {
+			if (items.Count-1 < index) {
+				return;
+			}
+			owner.activables.unregistActivable ("Item",index);
+			PickUpItem.Create (items [index].ID, owner.transform.position);
+			items.RemoveAt (index);
 		}
 	}
 }

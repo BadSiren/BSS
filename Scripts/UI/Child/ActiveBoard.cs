@@ -7,7 +7,7 @@ namespace BSS.UI {
 	public class ActiveBoard : UnitBoard
 	{
 		public const int MAX_COUNT = 9;
-		public List<Activable> acitvableList=new List<Activable> ();
+		public string selectCategory="Base";
 
 		public override void changeSelectUnit (BaseUnit unit)
 		{
@@ -22,33 +22,43 @@ namespace BSS.UI {
 			}
 		}
 		public void changeCategory(string category) {
-			acitvableList=selectUnit.getActivableList ().FindAll (x => x.category == category);
-			for (int i=0;i<acitvableList.Count;i++){
-				setActButtonImage (i, acitvableList [i].icon, acitvableList [i].titleContent);
+			selectCategory = category;
+			for (int i=0;i<MAX_COUNT;i++) {
+				clearActButtonImage (i);
+				var act=selectUnit.activables.getActivableOrNull (category, i);
+				if (act != null) {
+					setActButtonImage (i, act.icon, act.titleContent);
+				}
 			}
 		}
+		public void changeCategory() {
+			changeCategory (selectCategory);
+		}
 
-		public void activeButton(int _num) {
-			if (acitvableList == null || acitvableList.Count - 1 < _num) {
+		public void activeButton(int num) {
+			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
 				return;
 			}
-			acitvableList [_num].activate ();
+			selectUnit.activables.getActivableOrNull (selectCategory, num).activate ();
 		}
 
-		public void activeButtonLongPress(int _num) {
-			if (acitvableList == null || acitvableList.Count - 1 < _num) {
+		public void activeButtonLongPress(int num) {
+			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
 				return;
 			}
-			acitvableList [_num].activateLongPress ();
+			selectUnit.activables.getActivableOrNull (selectCategory, num).activateLongPress ();
 		}
 
-		private void setActButtonImage(int index,Sprite icon,string title) {
+		public void setActButtonImage(int index,Sprite icon,string title) {
 			sendToReceiver ("ButtonTitle" + index.ToString (), title);
 			sendToReceiver ("ButtonIcon" + index.ToString (), icon);
 		}
-		private void clearActButtonImage(int index) {
+		public void clearActButtonImage(int index) {
 			sendBoolToReceiver ("ButtonTitle" + index.ToString (), false);
 			sendBoolToReceiver ("ButtonIcon" + index.ToString (), false);
+		}
+		public bool isObserved(BaseUnit unit,string category) {
+			return (selectUnit == unit && selectCategory == category);
 		}
 
 		/*

@@ -12,9 +12,7 @@ namespace BSS {
 		public static BaseSelect instance;
 		public ESelectState eSelectState=ESelectState.None;
 		public List<Selectable> selectableList=new List<Selectable> ();
-		public bool isAttack {
-			get;set;
-		}
+	
 
 		void Awake() {
 			instance = this;

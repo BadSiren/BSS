@@ -58,8 +58,8 @@ namespace BSS.Unit {
 			BaseUnit enemyUnit = enemy.GetComponent<BaseUnit> ();
 			return CheckHostile (allyUnit.team, enemyUnit.team);
 		}
-		public static GameObject CreateUnit(string uName,Vector2 pos) {
-			var obj=PhotonNetwork.Instantiate (uName, pos, Quaternion.identity, 0);
+		public static GameObject CreatePunObject(string _name,Vector2 pos) {
+			var obj=PhotonNetwork.Instantiate (_name, pos, Quaternion.identity, 0);
 			return obj;
 		}
 		public static void ToMove(BaseUnit unit,Vector2 pos) {
@@ -77,13 +77,6 @@ namespace BSS.Unit {
 					charactable.playAnimMotion (Charactable.AnimType.Idle, false);
 				});
 			}
-		}
-		public static void AddItem(BaseUnit unit,string itemID) {
-			var itemable = unit.GetComponent<Itemable> ();
-			if (itemable == null) {
-				return;
-			}
-			itemable.owner.photonView.RPC ("recvAddItem", PhotonTargets.All,itemID);
 		}
 	}
 }

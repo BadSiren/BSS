@@ -4,58 +4,47 @@ using System.Collections;
 namespace BSS.UI {
 	public class InformBoard : Board
 	{
-		public override void Show() {
+		private System.Action buttonAct=null;
+		private GameObject actObject;
+
+		public void Show(string title,string content) {
 			base.Show ();
 
+			Clear ();
+			sendToReceiver ("Title", title);
+			sendToReceiver ("Content", content);
+		}
+		public void Show(string title,string content,Sprite icon) {
+			base.Show ();
+
+			Clear ();
+			sendToReceiver ("Title", title);
+			sendToReceiver ("Content", content);
+			sendToReceiver ("Icon", icon);
+			sendBoolToReceiver ("IconFrame", true);
+		}
+		public void setAction(GameObject target,string actName,System.Action action) {
+			actObject = target;
+			sendToReceiver ("Button", actName);
+			sendBoolToReceiver ("Button", true);
+			buttonAct = action;
+		}
+		public void activate() {
+			if (actObject != null && buttonAct!=null) {
+				buttonAct.Invoke ();
+			}
+			Close ();
+		}
+
+
+		public void Clear(){
 			sendBoolToReceiver ("Title", false);
-			sendBoolToReceiver ("Text", false);
-			sendBoolToReceiver ("Money", false);
-			sendBoolToReceiver ("Food", false);
-			sendBoolToReceiver ("Upgrade0", false);
-			sendBoolToReceiver ("Upgrade1", false);
-		}
-		public void Show(string _title,string _text) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			sendBoolToReceiver ("Money", false);
-			sendBoolToReceiver ("Food", false);
-			sendBoolToReceiver ("Upgrade0", false);
-			sendBoolToReceiver ("Upgrade1", false);
-		}
-		public void Show(string _title,string _text,int _money,int _food) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			sendToReceiver ("Money", _money.ToString());
-			sendToReceiver ("Food", _food.ToString());
-			sendBoolToReceiver ("Upgrade0", false);
-			sendBoolToReceiver ("Upgrade1", false);
-		}
-		public void Show(string _title,string _text,int _money,int _food,Sprite _icon,int _need) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			sendToReceiver ("Money", _money.ToString());
-			sendToReceiver ("Food", _food.ToString());
-			sendToReceiver ("Upgrade0", _icon);
-			sendToReceiver ("Upgrade0", _need.ToString());
-			sendBoolToReceiver ("Upgrade1", false);
-		}
-		public void Show(string _title,string _text,int _money,int _food,Sprite _icon0,int _need0,Sprite _icon1,int _need1) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			sendToReceiver ("Money", _money.ToString());
-			sendToReceiver ("Food", _food.ToString());
-			sendToReceiver ("Upgrade0", _icon0);
-			sendToReceiver ("Upgrade0", _need0.ToString());
-			sendToReceiver ("Upgrade1", _icon1);
-			sendToReceiver ("Upgrade1", _need1.ToString());
+			sendBoolToReceiver ("Content", false);
+			sendBoolToReceiver ("Icon", false);
+			sendBoolToReceiver ("IconFrame", false);
+			sendBoolToReceiver ("Button", false);
+			actObject = null;
+			buttonAct = null;
 		}
 	}
 }

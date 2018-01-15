@@ -70,9 +70,14 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
+		public Activables activables {
+			get;
+			private set;
+		}
 
 		void Awake() {
 			photonView = GetComponent<PhotonView> ();
+			activables = GetComponentInChildren<Activables> ();
 		}
 		protected virtual void OnEnable()
 		{
@@ -101,13 +106,6 @@ namespace BSS.Unit {
 			team = UnitTeam.Blue;
 			//isMine = false;
 			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
-		}
-		public List<Activable> getActivableList() {
-			var actList=new List<Activable>(GetComponentsInChildren<Activable> ());
-			if (!isMine) {
-				actList = actList.FindAll (x => !x.isPrivate);
-			}
-			return actList;
 		}
 
 		public virtual void die() {

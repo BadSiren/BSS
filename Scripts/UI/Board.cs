@@ -42,6 +42,10 @@ namespace BSS.UI {
 		protected virtual void deInitailze() {
 			boardList.Remove (this);
 		}
+		public static Board Get<T>() {
+			return boardList.Find (x => x is T);
+		}
+
 
 		public virtual void Show() {
 			canvasGroup.alpha = 1f;

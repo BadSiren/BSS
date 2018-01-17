@@ -9,6 +9,13 @@ namespace BSS.UI {
 		public static List<UnitBoard> unitBoardList = new List<UnitBoard>();
 		public BaseUnit selectUnit;
 
+		public void changeSelectUnit (GameObject obj) {
+			var unit=obj.GetComponent<BaseUnit> ();
+			changeSelectUnit (unit);
+		}
+		public abstract void changeSelectUnit (BaseUnit unit);
+		public abstract void clearSelectUnit ();
+
 		protected override void initialize() {
 			base.initialize ();
 			unitBoardList.Add (this);
@@ -16,15 +23,6 @@ namespace BSS.UI {
 		protected override void deInitailze() {
 			base.deInitailze ();
 			unitBoardList.Remove (this);
-		}
-			
-		public abstract void changeSelectUnit (BaseUnit unit);
-		public abstract void clearSelectUnit ();
-
-
-		public void changeSelectUnit(GameObject obj) {
-			var _unit=obj.GetComponent<BaseUnit> ();
-			changeSelectUnit (_unit);
 		}
 	}
 }

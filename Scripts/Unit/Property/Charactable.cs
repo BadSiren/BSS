@@ -23,7 +23,7 @@ namespace BSS.Unit {
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			photonView = GetComponent<PhotonView>();
-			anim=transform.Find("Character").GetComponent<Animator> ();
+			anim=GetComponentInChildren<Animator> ();
 		}
 		void Start() {
 			playAnimMotion (AnimType.Idle,false);
@@ -74,24 +74,6 @@ namespace BSS.Unit {
 			transform.localScale=new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
 			isLookRight = !isLookRight;
 		}
-
-		//UnitEvent
-		/*
-		private void onAllMoveEvent(Vector2 targetPos) {
-			lookAtTarget (targetPos);
-			moveMotion ();
-		}
-		private void onMoveStopEvent() {
-			idleMotion ();
-		}
-		private void onAttackEvent(AttackInfo attackInfo) {
-			lookAtTarget (attackInfo.hitter.transform.position);
-			attackMotion (attackInfo.attackSpeed);
-		}
-		private void onDieEvent() {
-			dieMotion ();
-		}
-		*/
 	}
 }
 

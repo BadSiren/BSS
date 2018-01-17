@@ -5,25 +5,43 @@ using BSS.UI;
 namespace BSS.Unit {
 	public class ActItem : Activable
 	{
-		public string ID;
-
-		private Item item;
 		private Itemable itemable;
 
 		public override void initialize ()
 		{
-			itemable = owner.GetComponent<Itemable> ();
-			item=BSDatabase.instance.items.database [ID];
-			titleContent = item.itemName;
-			textContent = item.itemDescription;
-			icon = item.icon;
+			itemable = GetComponentInParent<Itemable> ();
 		}
 		public override void activate() {
+			if (itemable.getItemOrNull (index) == null) {
+				return;
+			}
 			var informBoard = Board.boardList.Find (x => x is InformBoard) as InformBoard;
-			informBoard.Show (titleContent,textContent,icon);
+			informBoard.Show (getTitle(),getText(),getIcon());
 			informBoard.setAction (gameObject,"버리기",() => {
-				owner.photonView.RPC("recvThrowItem",PhotonTargets.All,index);
+				itemable.throwItem(index);
 			});
+		}
+
+		public override Sprite getIcon ()
+		{
+			if (itemable.getItemOrNull (index) == null) {
+				return null;
+			}
+			return itemable.getItemOrNull (index).icon;
+		}
+		public override string getTitle ()
+		{
+			if (itemable.getItemOrNull (index) == null) {
+				return "";
+			}
+			return itemable.getItemOrNull (index).itemName;
+		}
+		public override string getText ()
+		{
+			if (itemable.getItemOrNull (index) == null) {
+				return "";
+			}
+			return itemable.getItemOrNull (index).itemDescription;
 		}
 
 	}

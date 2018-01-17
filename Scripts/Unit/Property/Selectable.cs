@@ -13,6 +13,9 @@ namespace BSS {
 	public class Selectable : MonoBehaviour
 	{
 		public static List<Selectable> selectableList = new List<Selectable>();
+		[BoxGroup("Event")]
+		[Tooltip("GameObject")]
+		public string selectEvent="UnitSelect";
 
 		[HideInInspector]
 		public BaseUnit owner;
@@ -40,8 +43,10 @@ namespace BSS {
 				GUI.DrawTexture (rect, BaseSelect.instance.selectCircle);
 			}
 		}
+
 		public void onSelect() {
 			BaseSelect.instance.unitSelect (this);
+			BaseEventListener.onPublishGameObject (selectEvent, owner.gameObject, owner.gameObject);
 		}
 		public void deSelect() {
 			BaseSelect.instance.selectRemove (this);

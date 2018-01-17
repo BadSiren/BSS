@@ -5,16 +5,17 @@ using BSS.Unit;
 namespace BSS.UI {
 	public class UnitInfo : UnitBoard
 	{
+
 		public override void changeSelectUnit (BaseUnit unit)
 		{
 			selectUnit = unit;
-			updateInfomation (selectUnit);
+			updateInfomation (unit);
 		}
 		public override void clearSelectUnit ()
 		{
-			selectUnit = null;
 			sendBoolToReceiver ("All", false);
 		}
+
 		private void updateInfomation(BaseUnit unit) {
 			if (unit.isSceneObject) {
 				sendToReceiver ("Team", "중립");
@@ -26,10 +27,13 @@ namespace BSS.UI {
 			sendToReceiver ("UName", unit.uName);
 			if (unit.isInvincible) {
 				sendToReceiver ("Health", "-공격불가-");
+				sendBoolToReceiver ("MaxHealth",false);
 			} else {
-				sendToReceiver ("Health", unit.health.ToString ("0") + "/" + unit.maxHealth.ToString ("0"));
+				sendToReceiver ("Health", unit.health.ToString ("0") );
+				sendToReceiver ("MaxHealth", unit.maxHealth.ToString ("0"));
 			}
-			sendToReceiver ("Mana", unit.mana.ToString ("0") + "/" + unit.maxMana.ToString ("0"));
+			sendToReceiver ("Mana", unit.health.ToString ("0") );
+			sendToReceiver ("MaxMana", unit.maxHealth.ToString ("0"));
 			sendToReceiver ("Portrait", unit.portrait);
 
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
@@ -71,7 +75,12 @@ namespace BSS.UI {
 			}
 			string text0 = "방어력: " + valueToString (selectUnit.initArmor, selectUnit.armor);
 			string text1 = "피해감소율: " + valueToStringFloor (BaseUnit.reductionArmor(selectUnit.initArmor)*100f, BaseUnit.reductionArmor(selectUnit.armor)*100f) +"%";
-			(Board.boardList.Find (x => x is InformBoard) as InformBoard).Show (selectUnit.uName + " 방어정보",text0+"\n"+text1);
+			string text2 = "";
+			var movable=selectUnit.GetComponent<Movable> ();
+			if (movable!=null){
+				text2="이동속도 : " + valueToString (movable.initSpeed, movable.speed);
+			}
+			(Board.boardList.Find (x => x is InformBoard) as InformBoard).Show (selectUnit.uName + " 방어정보",text0+"\n"+text1+"\n"+text2);
 		}
 
 

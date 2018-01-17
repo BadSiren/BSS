@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 namespace BSS.Unit {
 	[RequireComponent (typeof (PolyNavAgent))]
 	[RequireComponent (typeof (BaseUnit))]
-	public class Movable : SerializedMonoBehaviour
+	public class Movable : SerializedMonoBehaviour,IItemPropertyApply
 	{
 		
 		public static List<Movable> movableList = new List<Movable>();
@@ -20,14 +20,22 @@ namespace BSS.Unit {
 			}
 			private set {
 				_initSpeed = value;
+				navAgent.maxSpeed = speed;
+			}
+		}
+		private float _changeSpeed=0f;
+		public float changeSpeed {
+			get {
+				return _changeSpeed;
+			}
+			private set {
+				_changeSpeed = value;
+				navAgent.maxSpeed = speed;
 			}
 		}
 		public float speed {
 			get {
-				return navAgent.maxSpeed;
-			}
-			set {
-				navAgent.maxSpeed=value;
+				return initSpeed + changeSpeed;
 			}
 		}
 
@@ -45,8 +53,7 @@ namespace BSS.Unit {
 			owner = GetComponent<BaseUnit> ();
 			navAgent=GetComponent<PolyNavAgent> ();
 			movableList.Add(this);
-
-			speed = initSpeed;
+			navAgent.maxSpeed = speed;
 		}
 		void OnDestroy()
 		{
@@ -123,16 +130,20 @@ namespace BSS.Unit {
 				yield return new WaitForSeconds (0.1f);
 			}
 		}
+
+		public void addProperty(string ID,float value) {
+			if (ID != "MoveSpeed") {
+				return;
+			}
+			changeSpeed += value;
+		}
+		public void removeProperty(string ID,float value) {
+			if (ID != "MoveSpeed") {
+				return;
+			}
+			changeSpeed -= value;
+		}
 			
-		//UnitEvent
-		/*
-		private void onAttackEvent(AttackInfo attackInfo) {
-			moveStop ();
-		}
-		*/
-		private void onDetectInOffenceRange(Attackable attakable) {
-			toMoveTarget (attakable.target.gameObject, attakable.range);
-		}
 
 	}
 }

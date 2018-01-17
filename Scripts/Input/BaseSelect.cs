@@ -11,8 +11,10 @@ namespace BSS {
 		public Texture2D selectCircle;
 		public static BaseSelect instance;
 		public ESelectState eSelectState=ESelectState.None;
+		public Selectable mainSelectable;
 		public List<Selectable> selectableList=new List<Selectable> ();
-	
+
+
 
 		void Awake() {
 			instance = this;
@@ -25,28 +27,18 @@ namespace BSS {
 			}
 			selectableList.Clear ();
 			selectableList.Add(selectable);
-			foreach (var it in UnitBoard.unitBoardList) {
-				it.clearSelectUnit ();
-				it.changeSelectUnit (selectable.gameObject);
-			}
-			BaseEventListener.onPublishGameObject ("UnitSelect", selectable.gameObject);
+			mainSelectable = selectable;
 		}
 		public void multiUnitSelect(List<Selectable> selectables) {
 			eSelectState = ESelectState.Multi;
 			selectableList.Clear ();
 			selectableList = selectables;
-			foreach (var it in UnitBoard.unitBoardList) {
-				it.clearSelectUnit ();
-			}
-			BaseEventListener.onPublish ("SelectCancle");
+			mainSelectable = null;
 		}
 		public void selectCancle() {
 			eSelectState = ESelectState.None;
 			selectableList.Clear ();
-			foreach (var it in UnitBoard.unitBoardList) {
-				it.clearSelectUnit ();
-			}
-			BaseEventListener.onPublish ("SelectCancle");
+			mainSelectable = null;
 		}
 
 		public void selectRemove(Selectable selectable) {
@@ -59,6 +51,13 @@ namespace BSS {
 			} else if (selectableList.Count == 1) {
 				unitSelect (selectableList [0]);
 			}
+		}
+
+		public bool isSelect(BaseUnit unit) {
+			if (mainSelectable == null) {
+				return false;
+			}
+			return mainSelectable.owner == unit;
 		}
 
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using BSS.Unit;
 
 namespace BSS {
 
@@ -13,6 +14,11 @@ namespace BSS {
 		}
 
 		public static List<BaseEventListener> eventListeners = new List<BaseEventListener> ();
+		public string eventName="";
+		[FoldoutGroup("Condition")]
+		public Condition thisCondition;
+		[FoldoutGroup("Condition")]
+		public Condition publisherCondition;
 		[FoldoutGroup("Listen")]
 		public string listenName;
 		[FoldoutGroup("Listen")]
@@ -53,9 +59,15 @@ namespace BSS {
 			}
 		}
 
-		public static void onPublish(string _listenType) {
+		public static void onPublish(string _listenType,GameObject publisher=null) {
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.Void);
 			foreach (var it in listeners) {
+				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
+					continue;
+				}
+				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
+					continue;
+				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -67,9 +79,16 @@ namespace BSS {
 				}
 			}
 		}
-		public static void onPublishGameObject(string _listenType,GameObject param) {
+
+		public static void onPublishGameObject(string _listenType,GameObject param,GameObject publisher=null) {
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.GameObject);
 			foreach (var it in listeners) {
+				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
+					continue;
+				}
+				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
+					continue;
+				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -81,9 +100,15 @@ namespace BSS {
 				}
 			}
 		}
-		public static void onPublishInt(string _listenType,int param) {
+		public static void onPublishInt(string _listenType,int param,GameObject publisher=null) {
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.Int);
 			foreach (var it in listeners) {
+				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
+					continue;
+				}
+				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
+					continue;
+				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -95,9 +120,15 @@ namespace BSS {
 				}
 			}
 		}
-		public static void onPublishString(string _listenType,string param) {
+		public static void onPublishString(string _listenType,string param,GameObject publisher=null) {
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.String);
 			foreach (var it in listeners) {
+				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
+					continue;
+				}
+				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
+					continue;
+				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -109,6 +140,7 @@ namespace BSS {
 				}
 			}
 		}
+	
 
 		public static void sendStaticEvent(BaseEventListener _listener,GameObject _sender){
 			switch (_listener.sendType) {
@@ -126,6 +158,7 @@ namespace BSS {
 				break;
 			}
 		}
+
 
 	}
 }

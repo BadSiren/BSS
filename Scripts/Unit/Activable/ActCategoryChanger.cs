@@ -10,7 +10,6 @@ namespace BSS.Unit {
 
 		public override void initialize ()
 		{
-			
 		}
 		public override void activate() {
 			var activeBoard = Board.boardList.Find (x => x is ActiveBoard) as ActiveBoard;

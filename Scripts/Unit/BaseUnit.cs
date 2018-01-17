@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using BSS.Input;
@@ -22,11 +23,6 @@ namespace BSS.Unit {
 	public class BaseUnit : SerializedMonoBehaviour
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
-		public static int totalPopulation {
-			get {
-				return unitList.FindAll (x => x.photonView.isMine).ConvertAll (x => x.population).Sum ();
-			}
-		}
 
 		public string uIndex;
 		public string uName;
@@ -34,7 +30,6 @@ namespace BSS.Unit {
 
 		public UnitTeam team;
 		public bool isInvincible;
-		public int population;
 		public float maxHealth;
 		public float health;
 		public float maxMana;
@@ -53,8 +48,6 @@ namespace BSS.Unit {
 				return initArmor+changeArmor;
 			}
 		}
-		public Dictionary<string,float> properties=new Dictionary<string,float>();
-
 		public bool isMine {
 			get {
 				return photonView.ownerId == PhotonNetwork.player.ID;
@@ -74,6 +67,12 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
+		[BoxGroup("Event")]
+		[Tooltip("GameObject")]
+		public string enableEvent="UnitEnable";
+		[BoxGroup("Event")]
+		[Tooltip("GameObject")]
+		public string destroyEvent="UnitDestroy";
 
 		void Awake() {
 			photonView = GetComponent<PhotonView> ();
@@ -86,32 +85,17 @@ namespace BSS.Unit {
 
 			health = maxHealth;
 			mana = maxMana;
-			BaseEventListener.onPublishGameObject ("UnitCreate", gameObject);
+			BaseEventListener.onPublishGameObject (enableEvent, gameObject, gameObject);
 		}
 		protected virtual void OnDisable()
 		{
+			BaseEventListener.onPublishGameObject (destroyEvent, gameObject, gameObject);
 			unitList.Remove(this);
-			//if (isMine) {
-				BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
-			//}
-		}
-
-		public virtual void allyInit() {
-			team = UnitTeam.Red;
-			//isMine = true;
-			BaseEventListener.onPublishGameObject ("AllyInit", gameObject);
-			BaseEventListener.onPublishInt ("TotalPopulation", totalPopulation);
-		}
-		public virtual void enemyInit() {
-			team = UnitTeam.Blue;
-			//isMine = false;
-			BaseEventListener.onPublishGameObject ("EnemyInit", gameObject);
 		}
 
 		public virtual void die() {
 			tag = "Die";
 			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
-			BaseEventListener.onPublishGameObject ("UnitDie", gameObject);
 			Destroy (gameObject);
 		}
 			
@@ -124,6 +108,7 @@ namespace BSS.Unit {
 				die ();
 			}
 			SendMessage ("AssignHealthValue", health, SendMessageOptions.DontRequireReceiver);
+
 		}
 		public static float reductionArmor(float _armor) {
 			return 1f-(50f / (_armor + 50f));

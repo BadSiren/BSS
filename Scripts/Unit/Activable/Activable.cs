@@ -9,10 +9,6 @@ namespace BSS.Unit {
 	{	
 		[FoldoutGroup("ActBase(Mandatory)")]
 		public bool isPrivate;
-		[FoldoutGroup("ActBase(Mandatory)")]
-		public string category="Base";
-		[FoldoutGroup("ActBase(Mandatory)")]
-		public int index;
 		[SerializeField]
 		[FoldoutGroup("ActBase(Mandatory)")]
 		public Sprite icon;
@@ -25,22 +21,22 @@ namespace BSS.Unit {
 		[SerializeField]
 		[TextArea()]
 		public string textContent;
-
-
-		protected BaseUnit owner;
-
-		void Awake() {
-			owner = GetComponentInParent<BaseUnit> ();
+		public string category {
+			get {
+				return activables.getCategory (this);
+			}
 		}
+		public int index {
+			get {
+				return activables.getIndex (this);
+			}
+		}
+		public Activables activables;
+			
 		void Start() {
 			initialize ();
 		}
 		public abstract void initialize ();
-
-
-		public virtual bool validate() {
-			return true;
-		}
 
 		public abstract void activate ();
 
@@ -48,7 +44,15 @@ namespace BSS.Unit {
 			activate ();
 		}	
 
-
+		public virtual Sprite getIcon() {
+			return icon;
+		}
+		public virtual string getTitle() {
+			return titleContent;
+		}
+		public virtual string getText() {
+			return textContent;
+		}
 
 
 

@@ -7,6 +7,7 @@ namespace BSS {
 	public class Item {
 		public string ID;
 		public string itemName;
+		[TextArea()]
 		public string itemDescription;
 		public Sprite icon;
 		public Dictionary<string,float> properties=new Dictionary<string,float>();

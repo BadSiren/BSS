@@ -29,11 +29,6 @@ namespace BSS{
 				BaseEventListener.onPublishInt ("Food", _food);
 			}
 		}
-		public int maxPopulation {
-			get {
-				return getUpgradeLevel ("MaxPopulation");
-			}
-		}
 
 		public Dictionary<string,int> upgrades=new Dictionary<string,int>();
 
@@ -78,12 +73,6 @@ namespace BSS{
 		public void addUpgradeLevel(string upID,int _addLevel) {
 			upgrades [upID] = getUpgradeLevel (upID) + _addLevel;
 			BaseEventListener.onPublishInt("Up"+upID,getUpgradeLevel(upID));
-		}
-		public bool isPopulation(int needPopulation) {
-			if (BaseUnit.totalPopulation + needPopulation > maxPopulation) {
-				return false;
-			}
-			return true;
 		}
 
 	}

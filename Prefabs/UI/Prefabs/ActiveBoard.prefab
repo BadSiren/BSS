@@ -620,6 +620,10 @@ GameObject:
   - component: {fileID: 222093719358886806}
   - component: {fileID: 225480972129590440}
   - component: {fileID: 114527293090749156}
+  - component: {fileID: 114510961172446322}
+  - component: {fileID: 114581904694572826}
+  - component: {fileID: 114391213837392414}
+  - component: {fileID: 114968228705715536}
   m_Layer: 5
   m_Name: ActiveBoard
   m_TagString: Untagged
@@ -1301,6 +1305,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 0
   elementName: ButtonTitle8
+--- !u!114 &114391213837392414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811031148914810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405f18d77e22a4db1b780493142c2cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParameterType: GameObject
 --- !u!114 &114401830703053674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1488,6 +1504,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 1
   elementName: ButtonIcon6
+--- !u!114 &114510961172446322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811031148914810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: SelectShow
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 0}
+  listenName: UnitSelect
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: changeSelectUnit
+  isDynamic: 1
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
 --- !u!114 &114512665503869678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1568,7 +1617,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   selectUnit: {fileID: 0}
-  acitvableList: []
+  selectCategory: Base
 --- !u!114 &114544695764810366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1741,6 +1790,39 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114581904694572826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811031148914810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: DestroyClear
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 114391213837392414}
+  listenName: UnitDestroy
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: clearSelectUnit
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
 --- !u!114 &114608020263549088
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2639,6 +2721,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 1
   elementName: ButtonIcon7
+--- !u!114 &114968228705715536
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1811031148914810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: ItemUpdate
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 114391213837392414}
+  listenName: ItemUpdate
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: updateActivable
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
 --- !u!114 &114969111924070654
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -16,10 +16,10 @@ namespace BSS {
 		public bool hasParent;
 		public int priority;
 
-		[FoldoutGroup("ClickEvent")]
-		public List<Condition> needConditions=new List<Condition>();
-		[FoldoutGroup("ClickEvent")]
-		public List<Condition> unlessConditions=new List<Condition>();
+		[FoldoutGroup("Condition(GameObject)")]
+		public List<Condition> trueConditions=new List<Condition>();
+		[FoldoutGroup("Condition(GameObject)")]
+		public List<Condition> falseConditions=new List<Condition>();
 
 		[FoldoutGroup("ClickEvent")]
 		public EClickType eClickType;
@@ -33,14 +33,14 @@ namespace BSS {
 			if (hasParent) {
 				obj=transform.parent.gameObject;
 			}
-			foreach (var it in needConditions) {
-				if (!Conditions.instance.validate (it,obj)) {
+			foreach (var it in trueConditions) {
+				if (!it.validate (obj)) {
 					onClickFalseEvent.Invoke ();
 					return;
 				}
 			}
-			foreach (var it in unlessConditions) {
-				if (Conditions.instance.validate (it,obj)) {
+			foreach (var it in falseConditions) {
+				if (!it.validate (obj)) {
 					onClickFalseEvent.Invoke ();
 					return;
 				}

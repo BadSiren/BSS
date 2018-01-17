@@ -9,6 +9,7 @@ namespace BSS.UI {
 		public const int MAX_COUNT = 9;
 		public string selectCategory="Base";
 
+
 		public override void changeSelectUnit (BaseUnit unit)
 		{
 			selectUnit = unit;
@@ -16,27 +17,32 @@ namespace BSS.UI {
 		}
 		public override void clearSelectUnit ()
 		{
-			selectUnit = null;
-			for (int i = 0; i < MAX_COUNT; i++) {
-				clearActButtonImage (i);
-			}
+			sendBoolToReceiver ("All", false);
 		}
 		public void changeCategory(string category) {
+			if (selectUnit == null) {
+				return;
+			}
 			selectCategory = category;
+
 			for (int i=0;i<MAX_COUNT;i++) {
 				clearActButtonImage (i);
 				var act=selectUnit.activables.getActivableOrNull (category, i);
-				if (act != null) {
-					setActButtonImage (i, act.icon, act.titleContent);
+
+				if (act != null && act.getIcon()!=null) {
+					setActButtonImage (i, act.getIcon(), act.getTitle());
 				}
 			}
 		}
-		public void changeCategory() {
+		public void updateActivable() {
 			changeCategory (selectCategory);
 		}
 
 		public void activeButton(int num) {
 			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
+				return;
+			}
+			if (selectUnit.activables.getActivableOrNull (selectCategory, num).isPrivate && !selectUnit.isMine ) {
 				return;
 			}
 			selectUnit.activables.getActivableOrNull (selectCategory, num).activate ();
@@ -46,86 +52,20 @@ namespace BSS.UI {
 			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
 				return;
 			}
+			if (selectUnit.activables.getActivableOrNull (selectCategory, num).isPrivate && !selectUnit.isMine) {
+				return;
+			}
 			selectUnit.activables.getActivableOrNull (selectCategory, num).activateLongPress ();
 		}
 
-		public void setActButtonImage(int index,Sprite icon,string title) {
+		private void setActButtonImage(int index,Sprite icon,string title) {
 			sendToReceiver ("ButtonTitle" + index.ToString (), title);
 			sendToReceiver ("ButtonIcon" + index.ToString (), icon);
 		}
-		public void clearActButtonImage(int index) {
+		private void clearActButtonImage(int index) {
 			sendBoolToReceiver ("ButtonTitle" + index.ToString (), false);
 			sendBoolToReceiver ("ButtonIcon" + index.ToString (), false);
 		}
-		public bool isObserved(BaseUnit unit,string category) {
-			return (selectUnit == unit && selectCategory == category);
-		}
-
-		/*
-		public override void setSelectUnit(BaseUnit unit) {
-			base.setSelectUnit (unit);
-			if (selectUnit != null) {
-				if (selectUnit.team == BSS.Unit.UnitTeam.Red) {
-					setActivableList (selectUnit.activableList);
-				} else {
-					resetActivableList ();
-				}
-			} else {
-				resetActivableList ();
-			}
-		}
-		public void setSelectUnit(GameObject obj) {
-			var _unit=obj.GetComponent<BaseUnit> ();
-			setSelectUnit (_unit);
-		}
-		public void setSelectUnitInMine(GameObject obj) {
-			var _unit=obj.GetComponent<BaseUnit> ();
-			if (_unit.isMine) {
-				setSelectUnit (_unit);
-			}
-		}
-
-		public void setActivableList (List<Activable> _acitvableList) {
-			preActivableList = acitvableList;
-			acitvableList = _acitvableList;
-			acitvableList.Capacity = 9;
-			for (int i = 0; i < acitvableList.Capacity; i++) {
-				if (i < acitvableList.Count) {
-					sendToReceiver ("Button" + i.ToString (), acitvableList [i].icon);
-					sendToReceiver ("ButtonInfo" + i.ToString (), acitvableList [i].infoContent);
-				} else {
-					sendBoolToReceiver ("Button" + i.ToString (), false);
-					sendBoolToReceiver ("ButtonInfo" + i.ToString (), false);
-				}
-			}
-		}
-		public void resetActivableList () {
-			preActivableList = emptyList;
-			acitvableList = emptyList;
-			for (int i = 0; i < acitvableList.Capacity; i++) {
-				sendBoolToReceiver ("Button" + i.ToString (), false);
-				sendBoolToReceiver ("ButtonInfo" + i.ToString (), false);
-			}
-		}
-		public void undoActivableList () {
-			setActivableList (preActivableList);
-		}
-
-		public virtual void activeButton(int _num) {
-			if (acitvableList == null || acitvableList.Count - 1 < _num) {
-				return;
-			}
-			acitvableList [_num].activate ();
-
-		}
-
-		public virtual void activeButtonLongPress(int _num) {
-			if (acitvableList == null || acitvableList.Count - 1 < _num) {
-				return;
-			}
-			acitvableList [_num].activateLongPress ();
-		}
-		*/
 	}
 }
 

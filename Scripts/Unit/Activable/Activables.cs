@@ -67,10 +67,10 @@ namespace BSS.Unit {
 			activableList [category][index]= act;
 		}
 		public void unregistActivable(string category,int index) {
-			if (!activableList.ContainsKey (category)) {
-				return;
-			}
-			GameObject.Destroy (activableList [category] [index]);
+            if (!activableList.ContainsKey(category)) {
+                return;
+            }
+			Destroy (activableList [category] [index]);
 			activableList [category] [index] = null;
 		}
 

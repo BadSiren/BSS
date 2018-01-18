@@ -4,8 +4,8 @@ using System.Collections;
 namespace BSS {
 	public class DistanceCondition : Condition
 	{
-		[Sirenix.OdinInspector.BoxGroup("NeedParameter")]
-		public string ParameterType="GameObject";
+		[Sirenix.OdinInspector.BoxGroup()]
+		public string NeedParameterType="GameObject";
 		public GameObject comparisonObj;
 		public float distance;
 

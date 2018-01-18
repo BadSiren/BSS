@@ -27,10 +27,10 @@ namespace BSS.Unit {
 			}
 		}
 		public int index {
-			get {
-				return activables.getIndex (this);
-			}
-		}
+            get {
+                return activables.getIndex(this);
+            }
+        }
 		public Activables activables;
 			
 		void Start() {

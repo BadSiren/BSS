@@ -14,6 +14,10 @@ namespace BSS {
 		public string receiverName;
 		public object parameter;
 	}
+	[System.Serializable]
+	public class Vector2Event : UnityEvent<Vector2>{}
+	[System.Serializable]
+	public class GameObjectEvent : UnityEvent<GameObject>{}
 
 	public class Define : MonoBehaviour 
 	{

@@ -5,8 +5,8 @@ using Sirenix.OdinInspector;
 namespace BSS {
 	public class SelectStateCondition : Condition
 	{
-		[BoxGroup("NeedParameter")]
-		public string ParameterType="Void";
+		[Sirenix.OdinInspector.BoxGroup()]
+		public string NeedParameterType="Void";
 		public ESelectState selectState;
 
 		public override bool validate (object target) {

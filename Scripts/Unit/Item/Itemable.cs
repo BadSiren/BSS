@@ -14,8 +14,7 @@ namespace BSS.Unit {
 		public List<Item> items=new List<Item>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
-		[BoxGroup("Event")]
-		[Tooltip("GameObject")]
+		[BoxGroup("Event(GameObject)")]
 		public string itemChangeEvent="ItemUpdate";
 
 		[HideInInspector()]

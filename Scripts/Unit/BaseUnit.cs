@@ -67,11 +67,9 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
-		[BoxGroup("Event")]
-		[Tooltip("GameObject")]
+		[BoxGroup("Event(GameObject)")]
 		public string enableEvent="UnitEnable";
-		[BoxGroup("Event")]
-		[Tooltip("GameObject")]
+		[BoxGroup("Event(GameObject)")]
 		public string destroyEvent="UnitDestroy";
 
 		void Awake() {

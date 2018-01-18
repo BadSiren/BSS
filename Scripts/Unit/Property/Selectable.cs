@@ -6,15 +6,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using BSS.Unit;
 using Sirenix.OdinInspector;
-using BSS.UI;
 
 namespace BSS {
 	[RequireComponent(typeof(BaseUnit))]
 	public class Selectable : MonoBehaviour
 	{
-		public static List<Selectable> selectableList = new List<Selectable>();
-		[BoxGroup("Event")]
-		[Tooltip("GameObject")]
+        public static List<Selectable> selectableList = new List<Selectable>();
+		[BoxGroup("Event(GameObject)")]
 		public string selectEvent="UnitSelect";
 
 		[HideInInspector]

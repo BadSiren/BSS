@@ -10,19 +10,12 @@ namespace BSS.Unit {
 		public float damage;
 		public float attackSpeed;
 	}
-	public enum AttackType {
-		Short,Long
-	}
 	[RequireComponent (typeof (BaseUnit))]
 	public class Attackable : SerializedMonoBehaviour
 	{
 		public static List<Attackable> attackableList = new List<Attackable>();
 
 		public Sprite icon;
-		public UnitTeam team {
-			get {return owner.team;}
-		}
-
 		[SerializeField]
 		private float _initDamage;
 		public float initDamage {
@@ -87,7 +80,6 @@ namespace BSS.Unit {
 		public bool isOffenssive=true;
 		[ShowIf("isOffenssive")]
 		public float offenseRange=15f;
-		public bool isCounterattack = true;
 		public float outRange=20f;
 			
 
@@ -113,10 +105,7 @@ namespace BSS.Unit {
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			movable = GetComponent<Movable> ();
-			attackableList.Add(this);
-
-			StartCoroutine (coDetectEnemy ());
-			StartCoroutine (coAttackLoop ());
+            attackableList.Add(this);
 		}
 
 		void OnDestroy()

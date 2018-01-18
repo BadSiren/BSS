@@ -15,7 +15,6 @@ namespace BSS.Input {
 		//private float pressTime=0f;
 		private bool isDrag;
 		private Vector3 preMousePoint;
-		private bool isLongPress;
 		private bool isTouching;
 
 		public static Vector2 getMousePoint() {
@@ -81,7 +80,7 @@ namespace BSS.Input {
 						}
 					}
 					if (selectableList.Count == 1) {
-						BaseSelect.instance.unitSelect (selectableList [0]);
+                        selectableList[0].onSelect();
 					} else if (selectableList.Count > 1) {
 						BaseSelect.instance.multiUnitSelect (selectableList);
 					}
@@ -112,9 +111,6 @@ namespace BSS.Input {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(getMousePoint(), Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {
-				if (it.collider.GetType()==typeof(CircleCollider2D)) {
-					continue;
-				}
 				var clickables=it.collider.GetComponents<Clickable> ();
 				for (int i=0; i<clickables.Length;i++) {
 					clickableList.Add (clickables[i]);

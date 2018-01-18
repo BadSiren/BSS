@@ -2,7 +2,6 @@
 using System.Collections;
 
 namespace BSS.Unit {
-	[RequireComponent (typeof (HealthBarGUI))]
 	public class HealthBar : MonoBehaviour {
 		#region FIELDS
 
@@ -96,14 +95,6 @@ namespace BSS.Unit {
 		void Awake() {
 			cameraTracker = Camera.main.transform;
 			//healthBarGUI = gameObject.GetComponent<HealthBarGUI> ();
-		}
-
-		void Start() {
-			owner = GetComponent<BaseUnit> ();
-
-			currentValue = owner.health;
-			maxHealth = owner.maxHealth;;
-
 		}
 
 		private void Update() {

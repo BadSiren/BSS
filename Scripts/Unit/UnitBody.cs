@@ -2,7 +2,6 @@
 using System.Collections;
 
 namespace BSS.Unit {
-	[RequireComponent (typeof (BaseUnit))]
 	public class UnitBody : MonoBehaviour
 	{
 		public float mass = 1f;

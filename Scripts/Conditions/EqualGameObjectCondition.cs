@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Sirenix.OdinInspector;
 
 namespace BSS {
 	public class EqualGameObjectCondition : Condition
 	{
-		[BoxGroup("NeedParameter")]
-		public string ParameterType="GameObject";
+		[Sirenix.OdinInspector.BoxGroup()]
+		public string NeedParameterType="GameObject";
 		public GameObject comparisonObj;
 
 		public override bool validate (object target) {

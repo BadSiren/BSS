@@ -6,8 +6,6 @@ public class SelectObjWithGID : EditorWindow
 {
 	string myString = "";
 	bool groupEnabled;
-	bool myBool = true;
-	float myFloat = 1.23f;
 
 	// Add menu named "My Window" to the Window menu
 	[MenuItem("Window/Select Object With Instance ID")]
@@ -15,7 +13,6 @@ public class SelectObjWithGID : EditorWindow
 	{
 		// Get existing open window or if none, make a new one:
 		SelectObjWithGID window = (SelectObjWithGID)EditorWindow.GetWindow(typeof(SelectObjWithGID));
-		window.Show();
 	}
 
 	void OnGUI()

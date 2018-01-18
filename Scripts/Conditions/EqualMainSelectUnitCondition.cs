@@ -5,8 +5,8 @@ using Sirenix.OdinInspector;
 namespace BSS {
 	public class EqualMainSelectUnitCondition : Condition
 	{
-		[BoxGroup("NeedParameter")]
-		public string ParameterType="GameObject";
+		[Sirenix.OdinInspector.BoxGroup()]
+		public string NeedParameterType="GameObject";
 		public override bool validate (object target) {
 			if (BaseSelect.instance.mainSelectable == null) {
 				return false;

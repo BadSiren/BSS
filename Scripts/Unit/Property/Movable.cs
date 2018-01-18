@@ -131,6 +131,7 @@ namespace BSS.Unit {
 			}
 		}
 
+		//IItemPropertyApply
 		public void addProperty(string ID,float value) {
 			if (ID != "MoveSpeed") {
 				return;

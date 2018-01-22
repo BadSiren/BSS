@@ -9,6 +9,8 @@ namespace BSS.Unit {
 	{	
 		[FoldoutGroup("ActBase(Mandatory)")]
 		public bool isPrivate;
+        [FoldoutGroup("ActBase(Mandatory)")]
+        public bool isIgnore;
 		[SerializeField]
 		[FoldoutGroup("ActBase(Mandatory)")]
 		public Sprite icon;
@@ -31,11 +33,28 @@ namespace BSS.Unit {
                 return activables.getIndex(this);
             }
         }
-		public Activables activables;
-			
-		void Start() {
-			initialize ();
-		}
+        private BaseUnit _owner;
+        public BaseUnit owner {
+            get {
+                if (_owner == null) {
+                    _owner = GetComponentInParent<BaseUnit>();
+                }
+                return _owner;
+            }
+        }
+        private Activables _activables;
+        public Activables activables {
+            get {
+                if (_activables == null) {
+                    _activables = GetComponentInParent<Activables>();
+                }
+                return _activables;
+            }
+        }
+        void Start() {
+            initialize();
+        }
+
 		public abstract void initialize ();
 
 		public abstract void activate ();
@@ -54,6 +73,18 @@ namespace BSS.Unit {
 			return textContent;
 		}
 
+        public bool checkDisplayable() {
+            if (!isPrivate) {
+                return true;
+            }
+            return owner.isMine;
+        }
+        public bool checkInteractable() {
+            if (!isIgnore) {
+                return true;
+            }
+            return owner.isMine;
+        }
 
 
 	}

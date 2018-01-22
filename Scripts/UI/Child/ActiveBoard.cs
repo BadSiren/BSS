@@ -29,7 +29,7 @@ namespace BSS.UI {
 				clearActButtonImage (i);
 				var act=selectUnit.activables.getActivableOrNull (category, i);
 
-				if (act != null && act.getIcon()!=null) {
+                if (act != null && act.checkDisplayable() && act.getIcon()!=null) {
 					setActButtonImage (i, act.getIcon(), act.getTitle());
 				}
 			}
@@ -39,23 +39,25 @@ namespace BSS.UI {
 		}
 
 		public void activeButton(int num) {
-			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
+			if (selectUnit == null) {
 				return;
 			}
-			if (selectUnit.activables.getActivableOrNull (selectCategory, num).isPrivate && !selectUnit.isMine ) {
+            var act=selectUnit.activables.getActivableOrNull(selectCategory, num);
+            if (act==null || !act.checkInteractable() ) {
 				return;
 			}
-			selectUnit.activables.getActivableOrNull (selectCategory, num).activate ();
+            act.activate ();
 		}
 
 		public void activeButtonLongPress(int num) {
-			if (selectUnit == null || selectUnit.activables.getActivableOrNull (selectCategory, num) == null) {
-				return;
-			}
-			if (selectUnit.activables.getActivableOrNull (selectCategory, num).isPrivate && !selectUnit.isMine) {
-				return;
-			}
-			selectUnit.activables.getActivableOrNull (selectCategory, num).activateLongPress ();
+            if (selectUnit == null) {
+                return;
+            }
+            var act = selectUnit.activables.getActivableOrNull(selectCategory, num);
+            if (act == null || !act.checkInteractable()) {
+                return;
+            }
+            act.activateLongPress();
 		}
 
 		private void setActButtonImage(int index,Sprite icon,string title) {

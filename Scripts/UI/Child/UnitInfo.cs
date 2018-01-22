@@ -32,8 +32,8 @@ namespace BSS.UI {
 				sendToReceiver ("Health", unit.health.ToString ("0") );
 				sendToReceiver ("MaxHealth", unit.maxHealth.ToString ("0"));
 			}
-			sendToReceiver ("Mana", unit.health.ToString ("0") );
-			sendToReceiver ("MaxMana", unit.maxHealth.ToString ("0"));
+            sendToReceiver ("Mana", unit.mana.ToString ("0") );
+            sendToReceiver ("MaxMana", unit.maxMana.ToString ("0"));
 			sendToReceiver ("Portrait", unit.portrait);
 
 			sendToReceiver ("Armor", valueToString(unit.initArmor,unit.armor));
@@ -74,7 +74,7 @@ namespace BSS.UI {
 				return;
 			}
 			string text0 = "방어력: " + valueToString (selectUnit.initArmor, selectUnit.armor);
-			string text1 = "피해감소율: " + valueToStringFloor (BaseUnit.reductionArmor(selectUnit.initArmor)*100f, BaseUnit.reductionArmor(selectUnit.armor)*100f) +"%";
+            string text1 = "피해감소율: " + valueToStringFloor (UnitUtils.GetDamageReduction(selectUnit.initArmor)*100f, UnitUtils.GetDamageReduction(selectUnit.armor)*100f) +"%";
 			string text2 = "";
 			var movable=selectUnit.GetComponent<Movable> ();
 			if (movable!=null){

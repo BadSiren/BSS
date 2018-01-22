@@ -8,7 +8,7 @@ namespace BSS {
 	[RequireComponent(typeof(PhotonView))]
 	public class InRoomCustomChat : Photon.MonoBehaviour
 	{
-		public const int MESSAGE_MAX = 5;
+		public const int MESSAGE_MAX = 4;
 		public Text ChatText;
 		public InputField inputField;
 		public bool IsVisible = true;

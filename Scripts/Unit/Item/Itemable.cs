@@ -26,8 +26,8 @@ namespace BSS.Unit {
 		void Start() {
 			var container=owner.activables.getContainerOrCreate ("Item");
 			for (int i = 0; i < maxCount; i++) {
-				var actItem = container.AddComponent<ActItem> ();
-				actItem.isPrivate = true;
+                var actItem = container.AddComponent<ActItem>();
+                actItem.isIgnore = true;
 				owner.activables.registActivable ("Item",i,actItem);
 			}
 		}

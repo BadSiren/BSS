@@ -76,20 +76,20 @@ namespace BSS.Unit {
 				return initRange+changeRange;
 			}
 		}
-			
-		public bool isOffenssive=true;
-		[ShowIf("isOffenssive")]
-		public float offenseRange=15f;
-		public float outRange=20f;
-			
 
+        private GameObject huntTarget;
+        private GameObject target;
+		
+
+        private bool canAttack = true;
 		private BaseUnit owner;
-		public BaseUnit target {
-			private set;
-			get;
-		}
 
-		private Movable movable;
+        private Movable _movable;
+        private Movable movable {
+            get {
+                return _movable == null ? GetComponent<Movable>() : _movable;
+            }
+        }
 		[SerializeField]
 		private bool isMoving {
 			get{
@@ -104,8 +104,8 @@ namespace BSS.Unit {
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
-			movable = GetComponent<Movable> ();
             attackableList.Add(this);
+            StartCoroutine(coHuntTarget());
 		}
 
 		void OnDestroy()
@@ -113,17 +113,48 @@ namespace BSS.Unit {
 			attackableList.Remove(this);
 		}
 
-		public void attack(GameObject enemyObject) {
-			AttackInfo attackInfo=new AttackInfo ();
-			attackInfo.attacker = gameObject;
-			attackInfo.hitter = enemyObject;
-			attackInfo.damage = damage;
-			attackInfo.attackSpeed = attackSpeed;
+ 
+        public void toAttack(GameObject enemyObj) {
+            if (!canAttack || isMoving) {
+                return;
+            }
+            canAttack = false;
+            Invoke("enableAttack", 1f / attackSpeed);
 
-			SendMessage ("onAttackEvent", attackInfo,SendMessageOptions.DontRequireReceiver);
-			enemyObject.SendMessage ("onHitEvent",attackInfo, SendMessageOptions.DontRequireReceiver);
+            var reacts = GetComponents<IAttackReact>();
+            foreach (var it in reacts) {
+                it.onAttack((enemyObj));
+            }
+            enemyObj.GetComponent<BaseUnit>().hitDamage(damage);
 		}
 
+        public void toHunt(GameObject enemyObj) {
+            huntTarget = enemyObj;
+        }
+        public void huntStop() {
+            huntTarget = null;
+        }
+        IEnumerator coHuntTarget() {
+            while (true) {
+                yield return new WaitForSeconds(0.1f);
+                if (huntTarget == null) {
+                    continue;
+                }
+                if (UnitUtils.InDistance(gameObject, huntTarget, range)) {
+                    toAttack(huntTarget);
+                } 
+            }
+        }
+
+        private void enableAttack() {
+            canAttack = true;
+        }
+
+
+
+        //TODO change
+
+        /*
 		public void setTarget(BaseUnit enemy){
 			target = enemy;
 		}
@@ -164,28 +195,24 @@ namespace BSS.Unit {
 			}
 		}
 			
-
+        private bool targetInRange() {
+            if (target!=null) {
+                Vector2 targetLocation = target.transform.position;
+                Vector2 direction = targetLocation - (Vector2)transform.position;
+                if (direction.sqrMagnitude < range * range) {
+                    return true;
+                }
+            }
+            return false;
+        }
 		private bool checkRange(BaseUnit unit,float dis) {
 			return UnitUtils.IsUnitInCircle (unit, transform.position, dis);
 		}
 		private bool checkRange(BaseUnit unit) {
 			return UnitUtils.IsUnitInCircle (unit, transform.position, range);
 		}
+        */
 
-		//UnitEvent
-		/*
-		private void onHitEvent(AttackInfo attackInfo) {
-			if (target == null && isCounterattack) {
-				setTarget (attackInfo.attacker);
-			}
-		}
 
-		private void onMoveByForceEvent() {
-			isIgnore=true;
-		}
-		private void onMoveStopEvent() {
-			isIgnore=false;
-		}
-		*/
 	}
 }

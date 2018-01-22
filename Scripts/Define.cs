@@ -9,6 +9,9 @@ namespace BSS {
 		None,Mine,NotMine,Multi,
 		All
 	}
+    public enum ESelectUnitState {
+        None,Attack,Follow
+    }
 	public struct ArgWithRecevier
 	{
 		public string receiverName;
@@ -18,10 +21,7 @@ namespace BSS {
 	public class Vector2Event : UnityEvent<Vector2>{}
 	[System.Serializable]
 	public class GameObjectEvent : UnityEvent<GameObject>{}
-
-	public class Define : MonoBehaviour 
-	{
-
-	}
+    [System.Serializable]
+    public class FloatEvent : UnityEvent<float> {}
 }
 

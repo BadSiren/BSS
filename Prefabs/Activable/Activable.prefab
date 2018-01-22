@@ -1,0 +1,310 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1347383534886838}
+  m_IsPrefabParent: 1
+--- !u!1 &1347383534886838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4283998901026026}
+  - component: {fileID: 114939824200892508}
+  - component: {fileID: 114305343710147238}
+  - component: {fileID: 114304642725160796}
+  - component: {fileID: 114561112304602612}
+  - component: {fileID: 114787225798824740}
+  - component: {fileID: 114341205757944426}
+  m_Layer: 0
+  m_Name: Activable
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4283998901026026
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114304642725160796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6cf7b06b0b542df8d6c1b0240f8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isPrivate: 0
+  isIgnore: 0
+  icon: {fileID: 21300000, guid: 25f983f46b860460b8d7ac0cafcc4f93, type: 3}
+  titleContent: "\uCDE8\uC18C"
+  textContent: 
+  changeCategory: Base
+--- !u!114 &114305343710147238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6cf7b06b0b542df8d6c1b0240f8939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isPrivate: 0
+  isIgnore: 0
+  icon: {fileID: 21300000, guid: 2339bd8a4850f41479a1abb810d7ee0e, type: 3}
+  titleContent: "\uAC00\uBC29"
+  textContent: 
+  changeCategory: Item
+--- !u!114 &114341205757944426
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77766d59377b54e269d50f3f4dd57fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isPrivate: 1
+  isIgnore: 0
+  icon: {fileID: 21300000, guid: 7495c127fc4754732bb9c6118f1875bc, type: 3}
+  titleContent: "\uACF5\uACA9"
+  textContent: 
+  eSelectUnitState: 1
+--- !u!114 &114561112304602612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77766d59377b54e269d50f3f4dd57fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isPrivate: 1
+  isIgnore: 0
+  icon: {fileID: 21300000, guid: 553fb0df37afc484b932653c84b3ee47, type: 3}
+  titleContent: "\uC774\uB3D9"
+  textContent: 
+  eSelectUnitState: 2
+--- !u!114 &114787225798824740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd3df92ddbdc42aa836f6b435571aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  isPrivate: 1
+  isIgnore: 0
+  icon: {fileID: 21300000, guid: d7d00a7774f92417683cab341ab08d80, type: 3}
+  titleContent: "\uC815\uC9C0"
+  textContent: 
+--- !u!114 &114939824200892508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1347383534886838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6812077b9545647388f6974fe559252c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114561112304602612}
+    - {fileID: 114787225798824740}
+    - {fileID: 114341205757944426}
+    - {fileID: 114305343710147238}
+    - {fileID: 114304642725160796}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: initActivableList
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[BSS.Unit.Activables+InitActivable,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 5
+    - Name: 
+      Entry: 7
+      Data: 1|BSS.Unit.Activables+InitActivable, Assembly-CSharp
+    - Name: category
+      Entry: 1
+      Data: Base
+    - Name: index
+      Entry: 3
+      Data: 0
+    - Name: activable
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|BSS.Unit.Activables+InitActivable, Assembly-CSharp
+    - Name: category
+      Entry: 1
+      Data: Base
+    - Name: index
+      Entry: 3
+      Data: 1
+    - Name: activable
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|BSS.Unit.Activables+InitActivable, Assembly-CSharp
+    - Name: category
+      Entry: 1
+      Data: Base
+    - Name: index
+      Entry: 3
+      Data: 2
+    - Name: activable
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|BSS.Unit.Activables+InitActivable, Assembly-CSharp
+    - Name: category
+      Entry: 1
+      Data: Base
+    - Name: index
+      Entry: 3
+      Data: 3
+    - Name: activable
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|BSS.Unit.Activables+InitActivable, Assembly-CSharp
+    - Name: category
+      Entry: 1
+      Data: Item
+    - Name: index
+      Entry: 3
+      Data: 8
+    - Name: activable
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: activableList
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Collections.Generic.List`1[[BSS.Unit.Activable,
+        Assembly-CSharp]], mscorlib]], mscorlib
+    - Name: 
+      Entry: 7
+      Data: 7|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  initPage: Base

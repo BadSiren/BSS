@@ -8,19 +8,7 @@ using System.Linq;
 using Photon;
 
 namespace BSS.Unit {
-	public enum UnitTeam
-	{
-		Red, //Ally Team(include mine)
-		Blue, //Enemy Team
-		White //Neutral Team
-	}
-	public enum UnitRelation
-	{
-		All, //Red,Blue,White
-		My, //Red
-		Enemy, //Blue
-	}
-	public class BaseUnit : SerializedMonoBehaviour
+    public class BaseUnit : SerializedMonoBehaviour,IPunObservable
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 
@@ -28,10 +16,28 @@ namespace BSS.Unit {
 		public string uName;
 		public Sprite portrait;
 
-		public UnitTeam team;
 		public bool isInvincible;
-		public float maxHealth;
-		public float health;
+        [SerializeField]
+        private float _maxHealth;
+        public float maxHealth {
+            get {
+                return _maxHealth;
+            }
+            set {
+                _maxHealth = value;
+                maxHealthEvent.Invoke(_maxHealth);
+            }
+        }
+        private float _health;
+        public float health {
+            get {
+                return _health;
+            }
+            set {
+                _health = value;
+                healthEvent.Invoke(_health);
+            }
+        }
 		public float maxMana;
 		public float mana;
 		[SerializeField]
@@ -67,10 +73,17 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
+        [FoldoutGroup("HealthEvent")]
+        public FloatEvent maxHealthEvent;
+        [FoldoutGroup("HealthEvent")]
+        public FloatEvent healthEvent;
+
 		[BoxGroup("Event(GameObject)")]
 		public string enableEvent="UnitEnable";
 		[BoxGroup("Event(GameObject)")]
 		public string destroyEvent="UnitDestroy";
+        [BoxGroup("Event(GameObject)")]
+        public string hitEvent = "UnitHit";
 
 		void Awake() {
 			photonView = GetComponent<PhotonView> ();
@@ -80,7 +93,7 @@ namespace BSS.Unit {
 		{
 			unitList.Add(this);
 
-
+            maxHealth = _maxHealth;
 			health = maxHealth;
 			mana = maxMana;
 			BaseEventListener.onPublishGameObject (enableEvent, gameObject, gameObject);
@@ -96,28 +109,35 @@ namespace BSS.Unit {
 			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
 			Destroy (gameObject);
 		}
-			
-			
-		private void hitDamage(AttackInfo attackInfo) {
-			float _damage = attackInfo.damage * (1f - reductionArmor (armor));
-			health -= _damage;
-			if (health < 0.1f) {
-				attackInfo.attacker.SendMessage ("onKillEvent",gameObject, SendMessageOptions.DontRequireReceiver);
-				die ();
-			}
-			SendMessage ("AssignHealthValue", health, SendMessageOptions.DontRequireReceiver);
 
-		}
-		public static float reductionArmor(float _armor) {
-			return 1f-(50f / (_armor + 50f));
-		}
-			
+        public void hitDamage(float damage) {
+            photonView.RPC("recvHitDamage",PhotonTargets.All,damage);
+        }
 
-		//Unit Event
-		private void onHitEvent(AttackInfo attackInfo) {
-			hitDamage (attackInfo);
-		}
+        [PunRPC]
+        void recvHitDamage(float _damage,PhotonMessageInfo mi) {
+            if (isMine) {
+                float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
+                health -= damage;
+            }
+            var hitReacts = GetComponents<IHitReact>();
+            foreach (var it in hitReacts) {
+                it.onHit();
+            }
+            BaseEventListener.onPublishGameObject(hitEvent, gameObject, gameObject);
+        }
 
-	}
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+            if (stream.isWriting && isMine) {
+                // We own this player: send the others our data
+                stream.SendNext(health);
+            } else {
+                // Network player, receive data
+                health = (float)stream.ReceiveNext();
+            }
+        }
+
+    }
 }
 

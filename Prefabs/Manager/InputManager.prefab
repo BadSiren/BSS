@@ -9,17 +9,18 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1664589912470510}
+  m_RootGameObject: {fileID: 1309393597286708}
   m_IsPrefabParent: 1
---- !u!1 &1664589912470510
+--- !u!1 &1309393597286708
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4364976939005122}
-  - component: {fileID: 114672285552211546}
+  - component: {fileID: 4491250521820896}
+  - component: {fileID: 114454755162433788}
+  - component: {fileID: 114873662631962932}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -27,12 +28,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4364976939005122
+--- !u!4 &4491250521820896
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664589912470510}
+  m_GameObject: {fileID: 1309393597286708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -40,21 +41,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114672285552211546
+--- !u!114 &114454755162433788
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664589912470510}
+  m_GameObject: {fileID: 1309393597286708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76de17654319e47fc9338a2213de9af5, type: 3}
+  m_Script: {fileID: 11500000, guid: c4028e4f785094c099ab5f98ee30d696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePoint: {x: 0, y: 0, z: 0}
-  pOneTap:
-    _channel: -1
-    _rawSubscriptions: []
-  pDoubleTap:
-    _channel: -1
-    _rawSubscriptions: []
+--- !u!114 &114873662631962932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1309393597286708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b39b34d5e834d3996c923d27d1e742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  selectCircle: {fileID: 2800000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
+  eSelectState: 0
+  eSelectUnitState: 0
+  mainSelectable: {fileID: 0}
+  selectableList: []
+  selectEvent: UnitSelect
+  deselectEvent: UnitDeselect

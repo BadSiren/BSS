@@ -7,11 +7,12 @@ using Sirenix.OdinInspector;
 namespace BSS.Unit {
 	[RequireComponent (typeof (PolyNavAgent))]
 	[RequireComponent (typeof (BaseUnit))]
-	public class Movable : SerializedMonoBehaviour,IItemPropertyApply
+    public class Movable : SerializedMonoBehaviour,IItemPropertyApply
 	{
 		
 		public static List<Movable> movableList = new List<Movable>();
-
+        [HideInInspector]
+        public BaseUnit owner;
 		[SerializeField]
 		private float _initSpeed;
 		public float initSpeed {
@@ -44,16 +45,19 @@ namespace BSS.Unit {
 				return navAgent.hasPath;
 			}
 		}
-		[HideInInspector]
-		public BaseUnit owner;
-		private PolyNavAgent navAgent;
-		private bool isChase;
+
+        private PolyNavAgent navAgent;
+
+        private GameObject followTarget;
+        private float followDistance;
+	
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
 			navAgent=GetComponent<PolyNavAgent> ();
 			movableList.Add(this);
 			navAgent.maxSpeed = speed;
+            StartCoroutine(coFollowTarget());
 		}
 		void OnDestroy()
 		{
@@ -63,87 +67,69 @@ namespace BSS.Unit {
 
 
 		public void toMove(Vector2 targetPos) {
-			navAgent.SetDestination (targetPos);
+            var moveReacts=GetComponents<IMoveReact>();
+            foreach (var it in moveReacts) {
+                it.onMove(targetPos,speed);
+            }
+            navAgent.SetDestination(targetPos, (x) => {
+                moveStop();
+            });
 		}
 		public void toMove(Vector2 targetPos,System.Action stopAct) {
-			navAgent.SetDestination (targetPos,(x)=> {
-				stopAct();
+            var moveReacts = GetComponents<IMoveReact>();
+            foreach (var it in moveReacts) {
+                it.onMove(targetPos,speed);
+            }
+            navAgent.SetDestination (targetPos,(x)=> {
+                if (stopAct != null) {
+                    stopAct.Invoke();
+                }
+                moveStop();
 			});
 		}
+        public void moveStop() {
+            navAgent.Stop();
+            var moveReacts = GetComponents<IMoveReact>();
+            foreach (var it in moveReacts) {
+                it.onStop();
+            }
+        }
+
+		public void toFollow(GameObject target,float distance) {
+            followTarget = target;
+            followDistance = distance;
+		}
+        public void followStop() {
+            followTarget = null;
+        }
+
+        IEnumerator coFollowTarget() {
+            while (true) {
+                yield return new WaitForSeconds(0.5f);
+                if (followTarget == null) {
+                    continue;
+                }
+                if (!UnitUtils.InDistance(gameObject, followTarget, followDistance)) {
+                    toMove(followTarget.transform.position);
+                } else {
+                    moveStop();
+                }
+            } 
+        }
 
 
-		public void toMoveTarget(GameObject target,float distance) {
-			if (isMoving) {
-				return;
-			}
-			toMove (target.transform.position);
-			StartCoroutine (coChaseTarget (target, distance));
-		}
-
-
-		public void toMoveByForce(Vector2 targetPos) {
-			navAgent.SetDestination (targetPos,(x)=> {
-				moveStop();
-			});
-		}
-		public void toMoveTargetByForce(GameObject target,float distance) {
-			toMoveByForce (target.transform.position);
-			StartCoroutine (coChaseTarget (target, distance));
-		}
-
-		public void toPatrol(Vector2 targetPos,float distance) {
-			if (isMoving) {
-				return;
-			}
-			toMove (targetPos);
-			StartCoroutine (coFindTarget (distance));
-		}
-
-		public void moveStop() {
-			isChase = false;
-			navAgent.Stop ();
-		}
-
-		IEnumerator coChaseTarget(GameObject target,float distance) {
-			isChase = true;
-			while (isChase) {
-				if (target == null) {
-					moveStop ();
-					continue;
-				}
-				if (UnitUtils.IsObjectInCircle (target,transform.position,distance)) {
-					moveStop ();
-					continue;
-				}
-				yield return new WaitForSeconds (0.1f);
-			}
-		}
-		IEnumerator coFindTarget(float distance) {
-			var isFind = true;
-			while (isFind) {
-				var enemies = UnitUtils.GetEnemiesInCircle (transform.position, distance, owner.team).FindAll (x => !x.isInvincible);
-				if (enemies.Count>0) {
-					isFind = false;
-					moveStop ();
-					continue;
-				}
-				yield return new WaitForSeconds (0.1f);
-			}
-		}
-
-		//IItemPropertyApply
-		public void addProperty(string ID,float value) {
-			if (ID != "MoveSpeed") {
-				return;
-			}
-			changeSpeed += value;
-		}
-		public void removeProperty(string ID,float value) {
-			if (ID != "MoveSpeed") {
-				return;
-			}
-			changeSpeed -= value;
-		}
+        public void addProperty(string ID,float value) {
+            if (ID != "MoveSpeed") {
+                return;
+            }
+            changeSpeed += value;
+        }
+        public void removeProperty(string ID,float value) {
+            if (ID != "MoveSpeed") {
+                return;
+            }
+            changeSpeed -= value;
+        }
 			
 
 	}

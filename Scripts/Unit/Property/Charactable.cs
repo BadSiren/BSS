@@ -5,28 +5,23 @@ using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
-	public class Charactable : SerializedMonoBehaviour
+    public class Charactable : SerializedMonoBehaviour,IMoveReact,IAttackReact
 	{
-		public enum AnimType
-		{
-			Idle,Move,Attack,Hit,Die
-		}
-
 		public bool isLookRight;
-		public Dictionary<AnimType,string> animationDics=new Dictionary<AnimType,string>();
+        public string moveFloat = "speed";
+        public string attackTrigger = "attack";
 
-		private PhotonView photonView;
 		private BaseUnit owner;
 		private Animator anim;
 
 
 		void Awake() {
 			owner = GetComponent<BaseUnit> ();
-			photonView = GetComponent<PhotonView>();
 			anim=GetComponentInChildren<Animator> ();
+
 		}
 		void Start() {
-			playAnimMotion (AnimType.Idle,false);
+            anim.SetFloat(moveFloat,0f);
 		}
 			
 		public void lookAtTarget(float targetX) {
@@ -38,42 +33,47 @@ namespace BSS.Unit {
 			}
 		}
 
-		public void playAnimMotion(AnimType animType,bool reset,float speed=1f) {
-			if (!owner.isMine) { 
-				return;
-			}
-			photonView.RPC ("recvPlayAnimMotion", PhotonTargets.All,animType.ToString(),reset,speed);
-		}
-		[PunRPC]
-		void recvPlayAnimMotion(string animTypeString,bool reset,float speed,PhotonMessageInfo mi) {
-			AnimType animType = (AnimType)System.Enum.Parse (typeof(AnimType), animTypeString);
-			setAnimationSpeed(speed);
-			playAnimation(animationDics [animType],reset);
-		}
+        public void setFloat(string _name,float _value) {
+            if (!owner.isMine) {
+                return;
+            }
+            owner.photonView.RPC("recvSetFloat", PhotonTargets.All, _name, _value);
+        }
+        [PunRPC]
+        void recvSetFloat(string _name, float _value) {
+            anim.SetFloat(_name, _value);
+        }
+        public void setTrigger(string _name) {
+            if (!owner.isMine) {
+                return;
+            }
+            owner.photonView.RPC("recvSetTrigger", PhotonTargets.All, _name);
+        }
+        [PunRPC]
+        void recvSetTrigger(string _name) {
+            anim.SetTrigger(_name);
+        }
 
-		private void playAnimation(string _anim, bool _reset)
-		{
-			if (anim == null) {
-				return;
-			}
-			if (_reset) {	
-				anim.Play(_anim, -1, 0f);
-			} else {
-				anim.CrossFade(_anim, 0.1f);
-			}
-		}
-		private void setAnimationSpeed(float _value)
-		{
-			if (anim == null) {
-				return;
-			}
-			anim.speed = _value;
-		}
 
 		private void setMirror(){
 			transform.localScale=new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
 			isLookRight = !isLookRight;
 		}
+
+
+
+        //Interface
+        public void onMove(Vector2 pos,float speed) {
+            lookAtTarget(pos.x);
+            setFloat(moveFloat, speed);
+        }
+        public void onStop() {
+            setFloat(moveFloat, 0f);
+        }
+        public void onAttack(GameObject obj) {
+            lookAtTarget(obj.transform.position.x);
+            setTrigger(attackTrigger);
+        }
 	}
 }
 

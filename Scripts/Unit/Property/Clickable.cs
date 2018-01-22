@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using Sirenix.OdinInspector;
 
 namespace BSS {
-	[RequireComponent(typeof(Collider2D))]
 	public class Clickable : SerializedMonoBehaviour
 	{
 		public enum EClickType
@@ -14,7 +13,8 @@ namespace BSS {
 			Once,Double
 		}
 		public bool hasParent;
-		public int priority;
+        [ShowIf("hasParent")]
+        public GameObject parent;
 		public EClickType eClickType;
 
 		[FoldoutGroup("Condition(GameObject)")]
@@ -36,11 +36,11 @@ namespace BSS {
 		public Vector2Event onVector2FalseEvent;
 
 
-		public virtual void onClick() {
+		public void onClick() {
 			GameObject obj = gameObject;
 			Vector2 mp=BSS.Input.BaseInput.getMousePoint ();
 			if (hasParent) {
-				obj=transform.parent.gameObject;
+                obj=parent;
 			}
 			foreach (var it in trueConditions) {
 				if (!it.validate (obj)) {
@@ -51,7 +51,7 @@ namespace BSS {
 				}
 			}
 			foreach (var it in falseConditions) {
-				if (!it.validate (obj)) {
+				if (it.validate (obj)) {
 					onClickFalseEvent.Invoke ();
 					onVector2FalseEvent.Invoke (mp);
 					onGameObjectFalseEvent.Invoke (obj);

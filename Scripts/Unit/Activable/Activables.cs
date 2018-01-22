@@ -63,7 +63,6 @@ namespace BSS.Unit {
 					activableList[category].Add(null);
 				}
 			}
-			act.activables = this;
 			activableList [category][index]= act;
 		}
 		public void unregistActivable(string category,int index) {

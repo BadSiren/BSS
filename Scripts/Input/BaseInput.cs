@@ -48,7 +48,6 @@ namespace BSS.Input {
 
 		public void onClickInMousePoint(Clickable.EClickType eClickType) {
 			var clickableList = getClickableList ().FindAll (x => x.eClickType == eClickType);
-			clickableList.Sort ((t1, t2) => t2.priority - t1.priority);
 
 			foreach (var it in clickableList) {
 				it.onClick ();
@@ -111,11 +110,10 @@ namespace BSS.Input {
 			RaycastHit2D[] hits = Physics2D.RaycastAll(getMousePoint(), Vector2.zero, 0f);
 			List<Clickable> clickableList = new List<Clickable> ();
 			foreach (var it in hits) {
-				var clickables=it.collider.GetComponents<Clickable> ();
+				var clickables=it.collider.GetComponentsInChildren<Clickable> ();
 				for (int i=0; i<clickables.Length;i++) {
 					clickableList.Add (clickables[i]);
 				}
-				//clickableList.Sort ((t1, t2) => t2.priority - t1.priority);
 			}
 			return clickableList;
 		}

@@ -12,8 +12,7 @@ namespace BSS.Unit {
 		{
 		}
 		public override void activate() {
-			var activeBoard = Board.boardList.Find (x => x is ActiveBoard) as ActiveBoard;
-			activeBoard.changeCategory (changeCategory);
+            activables.setCategory(changeCategory);
 		}
 
 	}

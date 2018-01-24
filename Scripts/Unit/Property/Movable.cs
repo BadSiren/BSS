@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 namespace BSS.Unit {
 	[RequireComponent (typeof (PolyNavAgent))]
 	[RequireComponent (typeof (BaseUnit))]
-    public class Movable : SerializedMonoBehaviour,IItemPropertyApply
+    public class Movable : SerializedMonoBehaviour,IItemPropertyApply,IPunObservable
 	{
 		
 		public static List<Movable> movableList = new List<Movable>();
@@ -39,15 +39,16 @@ namespace BSS.Unit {
 				return initSpeed + changeSpeed;
 			}
 		}
-
 		public bool isMoving { 
 			get {
 				return navAgent.hasPath;
 			}
 		}
 
-        private PolyNavAgent navAgent;
+        [FoldoutGroup("ItemProperty")]
+        public string speedProperty = "MoveSpeed";
 
+        private PolyNavAgent navAgent;
         private GameObject followTarget;
         private float followDistance;
 	
@@ -105,7 +106,7 @@ namespace BSS.Unit {
 
         IEnumerator coFollowTarget() {
             while (true) {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.25f);
                 if (followTarget == null) {
                     continue;
                 }
@@ -114,24 +115,32 @@ namespace BSS.Unit {
                 } else {
                     moveStop();
                 }
-            } 
+            }
         }
 
-
-        public void addProperty(string ID,float value) {
-            if (ID != "MoveSpeed") {
+        //Interface
+        public void applyProperty(string ID,float value) {
+            if (ID != speedProperty) {
                 return;
             }
             changeSpeed += value;
         }
-        public void removeProperty(string ID,float value) {
-            if (ID != "MoveSpeed") {
+        public void cancleProperty(string ID,float value) {
+            if (ID != speedProperty) {
                 return;
             }
             changeSpeed -= value;
         }
 			
-
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+            if (stream.isWriting && owner.isMine) {
+                // We own this player: send the others our data
+                stream.SendNext(changeSpeed);
+            } else {
+                // Network player, receive data
+                changeSpeed = (float)stream.ReceiveNext();
+            }
+        }
 	}
 }
 

@@ -25,7 +25,6 @@ namespace BSS.Unit {
             }
             set {
                 _maxHealth = value;
-                maxHealthEvent.Invoke(_maxHealth);
             }
         }
         private float _health;
@@ -35,25 +34,20 @@ namespace BSS.Unit {
             }
             set {
                 _health = value;
-                healthEvent.Invoke(_health);
             }
         }
 		public float maxMana;
 		public float mana;
-		[SerializeField]
-		private float _initArmor;
-		public float initArmor {
-			get { 
-				return _initArmor;
-			}
-		}
-		[HideInInspector]
-		public float changeArmor=0f;
-		public float armor {
-			get {
-				return initArmor+changeArmor;
-			}
-		}
+
+        public float initArmor;
+        [HideInInspector]
+        public float changeArmor = 0f;
+        public float armor {
+            get {
+                return initArmor + changeArmor;
+            }
+        }
+		
 		public bool isMine {
 			get {
 				return photonView.ownerId == PhotonNetwork.player.ID;
@@ -64,7 +58,8 @@ namespace BSS.Unit {
 				return photonView.owner == null;
 			}
 		}
-			
+		
+        [SerializeField]
 		public PhotonView photonView {
 			get;
 			private set;
@@ -73,20 +68,18 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
-        [FoldoutGroup("HealthEvent")]
-        public FloatEvent maxHealthEvent;
-        [FoldoutGroup("HealthEvent")]
-        public FloatEvent healthEvent;
 
-		[BoxGroup("Event(GameObject)")]
-		public string enableEvent="UnitEnable";
-		[BoxGroup("Event(GameObject)")]
-		public string destroyEvent="UnitDestroy";
-        [BoxGroup("Event(GameObject)")]
+
+        [Header("GaemObject")]
+        [FoldoutGroup("BaseEvent")]
+        public string enableEvent = "UnitEnable";
+        [FoldoutGroup("BaseEvent")]
+        public string destroyEvent = "UnitDestroy";
+        [FoldoutGroup("BaseEvent")]
         public string hitEvent = "UnitHit";
 
+
 		void Awake() {
-			photonView = GetComponent<PhotonView> ();
 			activables = GetComponentInChildren<Activables> ();
 		}
 		protected virtual void OnEnable()
@@ -104,12 +97,6 @@ namespace BSS.Unit {
 			unitList.Remove(this);
 		}
 
-		public virtual void die() {
-			tag = "Die";
-			SendMessage ("onDieEvent", SendMessageOptions.DontRequireReceiver);
-			Destroy (gameObject);
-		}
-
         public void hitDamage(float damage) {
             photonView.RPC("recvHitDamage",PhotonTargets.All,damage);
         }
@@ -119,12 +106,25 @@ namespace BSS.Unit {
             if (isMine) {
                 float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
                 health -= damage;
+                if (health < 0.01f) {
+                    destroy();
+                    return;
+                } 
             }
+
             var hitReacts = GetComponents<IHitReact>();
             foreach (var it in hitReacts) {
                 it.onHit();
             }
             BaseEventListener.onPublishGameObject(hitEvent, gameObject, gameObject);
+        }
+        public void destroy() {
+            photonView.RPC("recvDestroy", PhotonTargets.All);
+        }
+        [PunRPC]
+        void recvDestroy(PhotonMessageInfo mi) {
+            BaseEventListener.onPublishGameObject(destroyEvent, gameObject, gameObject);
+            Destroy(gameObject);
         }
 
 

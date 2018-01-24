@@ -24,6 +24,7 @@ namespace BSS.UI {
 		public void Awake()
 		{
 			canvasGroup=GetComponent<CanvasGroup> ();
+            boardList.Add(this);
 
 			initialize ();
 		}
@@ -33,7 +34,7 @@ namespace BSS.UI {
 			} 
 		}
 		protected virtual void initialize() {
-			boardList.Add (this);
+			
 		}
 		public void OnDestroy()
 		{
@@ -55,7 +56,7 @@ namespace BSS.UI {
 			onShow.Invoke ();
 		}
 		public virtual void Close() {
-			if (canvasGroup.alpha == 0f) {
+			if (canvasGroup.alpha < 0.01f) {
 				return;
 			}
 			canvasGroup.alpha = 0f;

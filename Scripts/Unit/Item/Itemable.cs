@@ -7,14 +7,13 @@ using Sirenix.OdinInspector;
 namespace BSS.Unit {
 	public class Itemable : SerializedMonoBehaviour
 	{
-
-
 		[Range(0,8)]
 		public int maxCount;
 		public List<Item> items=new List<Item>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
-		[BoxGroup("Event(GameObject)")]
+        [Header("GameObject")]
+        [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
 
 		[HideInInspector()]
@@ -32,53 +31,85 @@ namespace BSS.Unit {
 			}
 		}
 
+        public Item getItemOrNull(int index) {
+            if (items.Count - 1 < index) {
+                return null;
+            }
+            return items[index];
+        }
+
 		public void addItem(string ID) {
-			if (items.Count >= maxCount) {
+            if (!owner.photonView.isMine|| items.Count >= maxCount) {
 				return;
 			}
 			owner.photonView.RPC ("recvAddItem", PhotonTargets.All, ID);
 		}
+        [PunRPC]
+        private void recvAddItem(string ID) {
+            items.Add(BSDatabase.instance.items.database[ID]);
+            canclePropetiesOnlyMine();
+            setThisProperties();
+            applyPropetiesOnlyMine();
+            BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
+        }
+
 		public void throwItem(int index) {
+            if (!owner.photonView.isMine) {
+                return;
+            }
 			owner.photonView.RPC ("recvThrowItem", PhotonTargets.All, index);
 		}
-		public Item getItemOrNull(int index) {
-			if (items.Count-1<index) {
-				return null;
-			}
-			return items [index];
-		}
+        [PunRPC]
+        private void recvThrowItem(int index) {
+            items.RemoveAt(index);
+            canclePropetiesOnlyMine();
+            setThisProperties();
+            applyPropetiesOnlyMine();
+            BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
+        }
+        public void swapItem(int index1,int index2) {
+            if (!owner.photonView.isMine || index1==index2) {
+                return;
+            }
+            owner.photonView.RPC("recvSwapItem", PhotonTargets.All, index1,index2);
+        }
+        [PunRPC]
+        private void recvSwapItem(int index1, int index2) {
+            var temp = items[index1];
+            items[index1] = items[index2];
+            items[index2] = temp;
+            BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
+        }
 
-		[PunRPC]
-		private void recvAddItem(string ID) {
-			items.Add (BSDatabase.instance.items.database [ID]);
-			updateItem ();
-		}
-		[PunRPC]
-		private void recvThrowItem(int index) {
-			items.RemoveAt (index);
-			updateItem ();
-		}
-		private void updateItem() {
-			//Remove Property
-			var applyComponents=GetComponents<IItemPropertyApply> ();
-			foreach (var comp in applyComponents) {
-				foreach (var property in properties) {
-					comp.removeProperty (property.Key, property.Value);
-				}
-			}
-			//Update Property
-			updateProperties ();
-			//Add Property
-			foreach (var comp in applyComponents) {
-				foreach (var property in properties) {
-					comp.addProperty (property.Key, property.Value);
-				}
-			}
 
-			BaseEventListener.onPublishGameObject (itemChangeEvent, gameObject, gameObject);
-		}
+		
 
-		private void updateProperties() {
+		
+
+        private void applyPropetiesOnlyMine() {
+            if (!owner.isMine) {
+                return;
+            }
+            var applyComponents = GetComponents<IItemPropertyApply>();
+            foreach (var comp in applyComponents) {
+                foreach (var property in properties) {
+                    comp.applyProperty(property.Key, property.Value);
+                }
+            }
+        }
+        private void canclePropetiesOnlyMine() {
+            if (!owner.isMine) {
+                return;
+            }
+            var applyComponents = GetComponents<IItemPropertyApply>();
+            foreach (var comp in applyComponents) {
+                foreach (var property in properties) {
+                    comp.cancleProperty(property.Key, property.Value);
+                }
+            }
+        }
+
+		private void setThisProperties() {
 			properties.Clear ();
 			foreach (var item in items) {
 				foreach (var property in item.properties) {

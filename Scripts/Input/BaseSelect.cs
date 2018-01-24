@@ -32,33 +32,34 @@ namespace BSS {
 				eSelectState = ESelectState.Mine;
 			}
             eSelectUnitState = ESelectUnitState.None;
+            mainSelectable = selectable;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);
             }
-                
 			selectableList.Clear ();
-			selectableList.Add(selectable);
+            selectableList.Add(selectable);
             BaseEventListener.onPublishGameObject(selectEvent, selectable.gameObject, selectable.gameObject);
-			mainSelectable = selectable;
+			
 		}
         public void multiUnitSelect(List<Selectable> selectables) {
 			eSelectState = ESelectState.Multi;
             eSelectUnitState = ESelectUnitState.None;
+            mainSelectable = null;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);
             }
 			selectableList.Clear ();
 			selectableList = selectables;
-			mainSelectable = null;
+			
 		}
         public void selectCancle() {
 			eSelectState = ESelectState.None;
             eSelectUnitState = ESelectUnitState.None;
+            mainSelectable = null;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);
             }
-			selectableList.Clear ();
-			mainSelectable = null;
+            selectableList.Clear();
 		}
 
 		public void selectRemove(Selectable selectable) {

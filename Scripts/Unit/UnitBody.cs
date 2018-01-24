@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace BSS.Unit {
-	public class UnitBody : MonoBehaviour
+    public class UnitBody : MonoBehaviour,IMoveReact
 	{
 		public float mass = 1f;
 		private Rigidbody2D rigid;
@@ -14,12 +14,13 @@ namespace BSS.Unit {
 			rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
 		}
 
-		private void onAllMoveEvent() {
-			rigid.mass = mass+10f;
-		}
-		private void onMoveStopEvent() {
-			rigid.mass = mass;
-		}
+        //Interface
+        public void onMove(Vector2 pos, float speed) {
+            rigid.mass = mass + 10f;
+        }
+        public void onStop() {
+            rigid.mass = mass ;
+        }
 	}
 }
 

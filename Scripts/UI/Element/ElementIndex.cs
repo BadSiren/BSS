@@ -2,34 +2,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 namespace BSS.UI {
-	public class ElementIndex : ElementBase
-	{
-		public List<string> textList;
-		public List<Sprite> spriteList;
+    public class ElementIndex : SerializedMonoBehaviour {
+        public int index;
+        public System.Func<int,bool> boolFunc;
+        public System.Func<int,string> stringFunc;
+        public System.Func<int,Sprite> spriteFunc;
+        public bool clearIgnore = false;
 
-		private void receiveIndexMessageEvent(ArgWithRecevier _messageArgs){
-			if (_messageArgs.receiverName != elementName) {return;}
-			int _index = (int)_messageArgs.parameter;
-			updateIndexVariable (_index);
-		}
+        private UpdateBoard updateBoard;
+        private Text textComp;
+        private Image imageComp;
 
-		public void updateIndexVariable(int _index) {
-			if (contentType == ContentType.Text) {
-				if (textList.Count - 1 < _index) {
-					return;
-				}
-				elementEnabled (true);
-				updateVariable (textList [_index]);
-			}
-			if (contentType == ContentType.Image) {
-				if (spriteList.Count - 1 < _index) {
-					return;
-				}
-				elementEnabled (true);
-				updateVariable (spriteList [_index]);
-			}
-		}
-	}
+        void Awake() {
+            updateBoard = GetComponentInParent<UpdateBoard>();
+            textComp = GetComponent<Text>();
+            imageComp = GetComponent<Image>();
+        }
+
+        public void updaing() {
+            if (textComp != null && stringFunc != null) {
+                textComp.text = stringFunc.Invoke(index);
+            }
+            if (imageComp != null && spriteFunc != null) {
+                if (spriteFunc.Invoke(index) == null) {
+                    imageComp.enabled = false;
+                } else {
+                    imageComp.enabled = true;
+                    imageComp.sprite = spriteFunc.Invoke(index);
+                }
+            }
+            if (boolFunc != null) {
+                if (textComp != null) {
+                    textComp.enabled = boolFunc(index);
+                }
+                if (imageComp != null) {
+                    imageComp.enabled = boolFunc(index);
+                }
+            }
+        }
+        public void clear() {
+            if (clearIgnore) {
+                return;
+            }
+            if (textComp != null) {
+                textComp.text = "";
+            }
+            if (imageComp != null) {
+                imageComp.enabled = false;
+            }
+        }
+
+    }
 }
+

@@ -15,6 +15,12 @@ namespace BSS.UI {
 		{
 			sendBoolToReceiver ("All", false);
 		}
+        public void updating() {
+            if (selectUnit==null){
+                return;
+            }
+            updateInfomation(selectUnit);
+        }
 
 		private void updateInfomation(BaseUnit unit) {
 			if (unit.isSceneObject) {

@@ -57,6 +57,7 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 21300000, guid: 5469f336678f241528bdff6c48dbf26f, type: 3}
+    - {fileID: 21300000, guid: 813a02a32a830485aab22d420a20db35, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -66,7 +67,7 @@ MonoBehaviour:
       Entry: 7
       Data: 0|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[BSS.Item,
         Assembly-CSharp]], mscorlib
-    - Name: 
+    - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
@@ -75,7 +76,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -93,7 +94,7 @@ MonoBehaviour:
       Data: "\uAC12\uBE44\uC2FC\uC2E0\uBC1C"
     - Name: itemDescription
       Entry: 1
-      Data: "\uC774\uB3D9\uC18D\uB3C4+3"
+      Data: "\uC774\uB3D9\uC18D\uB3C4+3 \uC0AC\uAC70\uB9AC+5"
     - Name: icon
       Entry: 10
       Data: 0
@@ -101,7 +102,7 @@ MonoBehaviour:
       Entry: 7
       Data: 3|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
         mscorlib]], mscorlib
-    - Name: 
+    - Name: comparer
       Entry: 7
       Data: 4|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
         mscorlib]], mscorlib
@@ -110,7 +111,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -120,6 +121,89 @@ MonoBehaviour:
     - Name: 
       Entry: 4
       Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Range
+    - Name: 
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Sword
+    - Name: 
+      Entry: 7
+      Data: 5|BSS.Item, Assembly-CSharp
+    - Name: ID
+      Entry: 1
+      Data: Sword
+    - Name: itemName
+      Entry: 1
+      Data: "\uC5D1\uC2A4\uCE7C\uB9AC\uBC84"
+    - Name: itemDescription
+      Entry: 1
+      Data: "\uACF5\uACA9\uB825 +300 \uACF5\uACA9\uC18D\uB3C4+1"
+    - Name: icon
+      Entry: 10
+      Data: 1
+    - Name: properties
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Single,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 7|System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+        mscorlib]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: Damage
+    - Name: 
+      Entry: 4
+      Data: 300
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: 
+      Entry: 1
+      Data: AttackSpeed
+    - Name: 
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 

@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 224849244685272294}
   - component: {fileID: 222938332214000144}
   - component: {fileID: 114805473768047594}
-  - component: {fileID: 114545652298069084}
+  - component: {fileID: 114763474323153996}
+  - component: {fileID: 114693726314441732}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -40,8 +41,8 @@ GameObject:
   - component: {fileID: 222691915606983170}
   - component: {fileID: 114490705939805176}
   - component: {fileID: 114886783405428428}
-  - component: {fileID: 114452858549389728}
-  - component: {fileID: 114778341669669528}
+  - component: {fileID: 114416064446946128}
+  - component: {fileID: 114229208204951798}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -60,11 +61,13 @@ GameObject:
   - component: {fileID: 222124123157763056}
   - component: {fileID: 114871156518959234}
   - component: {fileID: 225209517531868296}
-  - component: {fileID: 114270834820733712}
-  - component: {fileID: 114379017981789316}
-  - component: {fileID: 114608672053871326}
-  - component: {fileID: 114662622220350496}
-  - component: {fileID: 114561569690108808}
+  - component: {fileID: 114380420101797104}
+  - component: {fileID: 114763348382203142}
+  - component: {fileID: 114219567641422818}
+  - component: {fileID: 114099784990824062}
+  - component: {fileID: 114317356223946992}
+  - component: {fileID: 114297448329467538}
+  - component: {fileID: 114604012681841142}
   m_Layer: 5
   m_Name: UnitInfo
   m_TagString: Untagged
@@ -100,7 +103,8 @@ GameObject:
   - component: {fileID: 224618042628208184}
   - component: {fileID: 222632141517216408}
   - component: {fileID: 114639031329689074}
-  - component: {fileID: 114464091782359462}
+  - component: {fileID: 114841313705274560}
+  - component: {fileID: 114044507539708034}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -119,7 +123,8 @@ GameObject:
   - component: {fileID: 222783571635798336}
   - component: {fileID: 114659935969195610}
   - component: {fileID: 114271088139226362}
-  - component: {fileID: 114994428731487326}
+  - component: {fileID: 114071380147561654}
+  - component: {fileID: 114218405152339310}
   m_Layer: 5
   m_Name: health
   m_TagString: Untagged
@@ -137,7 +142,6 @@ GameObject:
   - component: {fileID: 224528224020748492}
   - component: {fileID: 222118981622888044}
   - component: {fileID: 114692708100288152}
-  - component: {fileID: 114092605394129308}
   m_Layer: 5
   m_Name: teamName
   m_TagString: Untagged
@@ -155,7 +159,8 @@ GameObject:
   - component: {fileID: 224039518499170194}
   - component: {fileID: 222093584313739494}
   - component: {fileID: 114186746182564074}
-  - component: {fileID: 114486273377246058}
+  - component: {fileID: 114391914552193268}
+  - component: {fileID: 114109115092866244}
   m_Layer: 5
   m_Name: UnitName
   m_TagString: Untagged
@@ -193,7 +198,8 @@ GameObject:
   - component: {fileID: 222529366224091534}
   - component: {fileID: 114716619165872990}
   - component: {fileID: 114785331720851222}
-  - component: {fileID: 114418911334398766}
+  - component: {fileID: 114745778128753000}
+  - component: {fileID: 114072049326407934}
   m_Layer: 5
   m_Name: Armor
   m_TagString: Untagged
@@ -211,7 +217,8 @@ GameObject:
   - component: {fileID: 224467446692185672}
   - component: {fileID: 222369938893665432}
   - component: {fileID: 114768579298181142}
-  - component: {fileID: 114908655910429348}
+  - component: {fileID: 114281086310162554}
+  - component: {fileID: 114210424410191888}
   m_Layer: 5
   m_Name: UnitImage
   m_TagString: Untagged
@@ -247,7 +254,8 @@ GameObject:
   - component: {fileID: 224772288226138426}
   - component: {fileID: 222694507552526370}
   - component: {fileID: 114558204284241520}
-  - component: {fileID: 114227278610459252}
+  - component: {fileID: 114411369370048688}
+  - component: {fileID: 114661945371438246}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -284,7 +292,8 @@ GameObject:
   - component: {fileID: 222734612745757804}
   - component: {fileID: 114729869519822936}
   - component: {fileID: 114452714609657626}
-  - component: {fileID: 114871753054840800}
+  - component: {fileID: 114936811268359342}
+  - component: {fileID: 114372646788717576}
   m_Layer: 5
   m_Name: maxhealth
   m_TagString: Untagged
@@ -303,7 +312,6 @@ GameObject:
   - component: {fileID: 222700912554143022}
   - component: {fileID: 114466474061547736}
   - component: {fileID: 114290832334199544}
-  - component: {fileID: 114406352282607820}
   m_Layer: 5
   m_Name: Portrait
   m_TagString: Untagged
@@ -322,7 +330,8 @@ GameObject:
   - component: {fileID: 222996849398204532}
   - component: {fileID: 114372833641614010}
   - component: {fileID: 114452899120753074}
-  - component: {fileID: 114635583738189702}
+  - component: {fileID: 114136556802404640}
+  - component: {fileID: 114595781408493620}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -341,7 +350,6 @@ GameObject:
   - component: {fileID: 222757340228719630}
   - component: {fileID: 114848888351778184}
   - component: {fileID: 114380628836305372}
-  - component: {fileID: 114467631259933872}
   m_Layer: 5
   m_Name: mana
   m_TagString: Untagged
@@ -358,10 +366,10 @@ GameObject:
   m_Component:
   - component: {fileID: 224221353034332230}
   - component: {fileID: 222416544468857302}
-  - component: {fileID: 114222178624306550}
   - component: {fileID: 114735289864301254}
-  - component: {fileID: 114789804060718232}
-  - component: {fileID: 114742996898653292}
+  - component: {fileID: 114222178624306550}
+  - component: {fileID: 114893923712175254}
+  - component: {fileID: 114797609994722100}
   m_Layer: 5
   m_Name: ArmorButton
   m_TagString: Untagged
@@ -369,26 +377,337 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114092605394129308
+--- !u!114 &114044507539708034
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1309574641094252}
+  m_GameObject: {fileID: 1256465084202856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: Team
+--- !u!114 &114071380147561654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269367863533796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114218405152339310}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getHealth
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
+--- !u!114 &114072049326407934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466012812461648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114745778128753000}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getArmorInfo
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
+--- !u!114 &114099784990824062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243552905754826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: 
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 0}
+  listenName: UnitDeselect
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: clear
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
+--- !u!114 &114109115092866244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377508811340708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114391914552193268}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getName
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
+--- !u!114 &114136556802404640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873854563664116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114595781408493620}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getAttackInfo
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114186746182564074
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1377508811340708}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -415,6 +734,120 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114210424410191888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534265893023822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114281086310162554}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getPortrait
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  clearIgnore: 0
+--- !u!114 &114218405152339310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269367863533796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114219567641422818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243552905754826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: 
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 0}
+  listenName: UnitSelect
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: updating
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
 --- !u!114 &114222178624306550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,26 +875,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114227278610459252
+--- !u!114 &114229208204951798
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675602301083188}
+  m_GameObject: {fileID: 1167333579519960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: ArmorIcon
 --- !u!114 &114231571918385174
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1403577569031200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -502,39 +933,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114270834820733712
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e03a6f208e59a4b688c55a2ece60ab44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  boardName: UnitInfo
-  isStartedShow: 1
-  onShow:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onClose:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  selectUnit: {fileID: 0}
 --- !u!114 &114271088139226362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -549,6 +947,17 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &114281086310162554
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1534265893023822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114290832334199544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,13 +999,90 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114297448329467538
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243552905754826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: 
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 114763348382203142}
+  listenName: UnitHit
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: updating
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
+--- !u!114 &114317356223946992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243552905754826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  eventName: 
+  thisCondition: {fileID: 0}
+  publisherCondition: {fileID: 114763348382203142}
+  listenName: UnitDestroy
+  listenType: 1
+  isSelf: 1
+  sender: {fileID: 0}
+  sendMessage: clear
+  isDynamic: 0
+  sendType: 0
+  gameObjectParameter: {fileID: 0}
+  intParameter: 0
+  stringParameter: 
+--- !u!114 &114372646788717576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702746137424832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114372833641614010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873854563664116}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -623,7 +1109,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114379017981789316
+--- !u!114 &114380420101797104
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -631,7 +1117,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1243552905754826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Script: {fileID: 11500000, guid: fbe94a6e89d014941aa17a85849d053d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serializationData:
@@ -643,19 +1129,18 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  eventName: SelectShow
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 0}
-  listenName: UnitSelect
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: changeSelectUnit
-  isDynamic: 1
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
+  boardName: 
+  isStartedShow: 0
+  onShow:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onClose:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114380628836305372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -670,32 +1155,157 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114406352282607820
+--- !u!114 &114391914552193268
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865413716104264}
+  m_GameObject: {fileID: 1377508811340708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 2
-  elementName: Portrait
---- !u!114 &114418911334398766
+--- !u!114 &114411369370048688
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466012812461648}
+  m_GameObject: {fileID: 1675602301083188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: Armor
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114661945371438246}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: existSelectUnit
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
+--- !u!114 &114416064446946128
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167333579519960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114229208204951798}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: existAttackable
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114452714609657626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -710,19 +1320,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114452858549389728
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1167333579519960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: Attack
 --- !u!114 &114452899120753074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -737,19 +1334,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
---- !u!114 &114464091782359462
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1256465084202856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: UName
 --- !u!114 &114466474061547736
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -777,32 +1361,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114467631259933872
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1883151283749808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: Mana
---- !u!114 &114486273377246058
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377508811340708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: UName
 --- !u!114 &114490705939805176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -830,19 +1388,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114545652298069084
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064917810246330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: AttackIcon
 --- !u!114 &114558204284241520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -870,19 +1415,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114561569690108808
+--- !u!114 &114595781408493620
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
+  m_GameObject: {fileID: 1873854563664116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405f18d77e22a4db1b780493142c2cea, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NeedParameterType: GameObject
---- !u!114 &114608672053871326
+--- !u!114 &114604012681841142
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -902,32 +1446,19 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  eventName: HitUpdate
+  eventName: 
   thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 114561569690108808}
-  listenName: UnitHit
+  publisherCondition: {fileID: 114763348382203142}
+  listenName: ItemUpdate
   listenType: 1
   isSelf: 1
   sender: {fileID: 0}
-  sendMessage: changeSelectUnit
-  isDynamic: 1
+  sendMessage: updating
+  isDynamic: 0
   sendType: 0
   gameObjectParameter: {fileID: 0}
   intParameter: 0
   stringParameter: 
---- !u!114 &114635583738189702
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1873854563664116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: Attack
 --- !u!114 &114639031329689074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,46 +1554,24 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114662622220350496
+--- !u!114 &114661945371438246
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
+  m_GameObject: {fileID: 1675602301083188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: DestroyClear
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 114561569690108808}
-  listenName: UnitDeselect
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: clearSelectUnit
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
 --- !u!114 &114692708100288152
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309574641094252}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1089,6 +1598,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114693726314441732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064917810246330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114705564619157324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1136,7 +1656,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1466012812461648}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1202,7 +1722,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1887174985531374}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1234,40 +1754,27 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114222178624306550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114270834820733712}
-        m_MethodName: buttonDefenceInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114742996898653292
+--- !u!114 &114745778128753000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887174985531374}
+  m_GameObject: {fileID: 1466012812461648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 2
-  elementName: Armor
 --- !u!114 &114749098044580210
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649585573868834}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1308,6 +1815,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &114763348382203142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1243552905754826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 405f18d77e22a4db1b780493142c2cea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NeedParameterType: GameObject
+--- !u!114 &114763474323153996
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064917810246330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114693726314441732}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: existAttackable
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114768579298181142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1335,19 +1924,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114778341669669528
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1167333579519960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 2
-  elementName: Attack
 --- !u!114 &114783785432857458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1376,7 +1952,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
---- !u!114 &114789804060718232
+--- !u!114 &114797609994722100
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1384,11 +1960,68 @@ MonoBehaviour:
   m_GameObject: {fileID: 1887174985531374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: Armor
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114893923712175254}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: existSelectUnit
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114805473768047594
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1416,13 +2049,83 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114841313705274560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256465084202856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114044507539708034}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: existSelectUnit
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: stringFunc
+      Entry: 6
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114848888351778184
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883151283749808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1476,26 +2179,13 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114871753054840800
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1702746137424832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: MaxHealth
 --- !u!114 &114886783405428428
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1167333579519960}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -1527,33 +2217,90 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114490705939805176}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114270834820733712}
-        m_MethodName: buttonAttackInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114908655910429348
+--- !u!114 &114893923712175254
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534265893023822}
+  m_GameObject: {fileID: 1887174985531374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
+  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contentType: 1
-  elementName: Portrait
+--- !u!114 &114936811268359342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1702746137424832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8022166dfc948440d880b72ebb76e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114372646788717576}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: boolFunc
+      Entry: 6
+      Data: 
+    - Name: stringFunc
+      Entry: 7
+      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMaxHealth
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.MonoType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[System.String, mscorlib]], System.Core
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: spriteFunc
+      Entry: 6
+      Data: 
+  clearIgnore: 0
 --- !u!114 &114941265067867196
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1567,19 +2314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 0
   elementName: MaxMana
---- !u!114 &114994428731487326
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1269367863533796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4465aadf80db649fa89107ad41014710, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentType: 0
-  elementName: Health
 --- !u!222 &222087338422699712
 CanvasRenderer:
   m_ObjectHideFlags: 1

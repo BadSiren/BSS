@@ -3,8 +3,9 @@ using System.Collections;
 using BSS.UI;
 
 namespace BSS.Unit {
-	public class ActItem : Activable
-	{
+    public class ActItem : Activable {
+
+        private static int dragedItem=-1;
 		private Itemable itemable;
 
 		public override void initialize ()
@@ -21,6 +22,13 @@ namespace BSS.Unit {
 				itemable.throwItem(index);
 			});
 		}
+
+        public override void activateLongPress() {
+            if (itemable.getItemOrNull(index) == null) {
+                return;
+            }
+            dragedItem = index;
+        }
 
 		public override Sprite getIcon ()
 		{

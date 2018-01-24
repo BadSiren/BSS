@@ -14,10 +14,17 @@ namespace BSS.Unit {
 			public int index;
 			public Activable activable;
 		}
-		public string initPage="Base";
+		public string initCategory="Base";
+        public string nowCategory {
+            private set;
+            get;
+        }
 		public List<InitActivable> initActivableList=new List<InitActivable>();
-
 		public Dictionary<string,List<Activable>> activableList;
+
+        [Header("GameObject")]
+        [FoldoutGroup("BaseEvent")]
+        public string actChangeEvent = "ActivableUpdate";
 
 		private const int MAX_COUNT=9;
 
@@ -25,12 +32,19 @@ namespace BSS.Unit {
 
 		void Awake() {
 			owner = GetComponentInParent<BaseUnit> ();
+            setCategory(initCategory);
 		}
 		void Start() {
 			foreach (var it in initActivableList) {
 				registActivable (it.category, it.index, it.activable);
 			}
 		}
+
+        public void setCategory(string category) {
+            nowCategory = category;
+            BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
+
+        }
 			
 		public string getCategory(Activable activable) {
 			foreach (var it in activableList) {
@@ -50,11 +64,11 @@ namespace BSS.Unit {
 			}
 			return -1;
 		}
-		public Activable getActivableOrNull(string category,int index) {
-			if (!activableList.ContainsKey (category)) {
+		public Activable getActivableOrNull(int index) {
+            if (!activableList.ContainsKey (nowCategory)) {
 				return null;
 			}
-			return activableList [category] [index];
+            return activableList [nowCategory] [index];
 		}
 		public void registActivable(string category,int index,Activable act) {
 			if (!activableList.ContainsKey (category)) {
@@ -64,6 +78,7 @@ namespace BSS.Unit {
 				}
 			}
 			activableList [category][index]= act;
+            BaseEventListener.onPublishGameObject(actChangeEvent,owner.gameObject,owner.gameObject);
 		}
 		public void unregistActivable(string category,int index) {
             if (!activableList.ContainsKey(category)) {
@@ -71,6 +86,7 @@ namespace BSS.Unit {
             }
 			Destroy (activableList [category] [index]);
 			activableList [category] [index] = null;
+            BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
 		}
 
 		public GameObject getContainerOrCreate(string category){

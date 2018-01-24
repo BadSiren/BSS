@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
 namespace BSS {
-	public class Item {
+    public class Item {
 		public string ID;
+        public string category;
 		public string itemName;
 		[TextArea()]
 		public string itemDescription;

@@ -5,11 +5,12 @@ using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	[RequireComponent (typeof (BaseUnit))]
-    public class Charactable : SerializedMonoBehaviour,IMoveReact,IAttackReact
+    public class Charactable : SerializedMonoBehaviour,IMoveReact,IAttackReact,IHitReact
 	{
 		public bool isLookRight;
         public string moveFloat = "speed";
         public string attackTrigger = "attack";
+        public string hitTrigger = "hit";
 
 		private BaseUnit owner;
 		private Animator anim;
@@ -73,6 +74,9 @@ namespace BSS.Unit {
         public void onAttack(GameObject obj) {
             lookAtTarget(obj.transform.position.x);
             setTrigger(attackTrigger);
+        }
+        public void onHit() {
+            setTrigger(hitTrigger);
         }
 	}
 }

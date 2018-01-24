@@ -13,12 +13,13 @@ namespace BSS.UI {
 		public override void changeSelectUnit (BaseUnit unit)
 		{
 			selectUnit = unit;
-			changeCategory ("Base");
+			//changeCategory ("Base");
 		}
 		public override void clearSelectUnit ()
 		{
 			sendBoolToReceiver ("All", false);
 		}
+        /*
 		public void changeCategory(string category) {
 			if (selectUnit == null) {
 				return;
@@ -68,6 +69,7 @@ namespace BSS.UI {
 			sendBoolToReceiver ("ButtonTitle" + index.ToString (), false);
 			sendBoolToReceiver ("ButtonIcon" + index.ToString (), false);
 		}
+		*/
 	}
 }
 

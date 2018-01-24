@@ -11,11 +11,12 @@ namespace BSS.Unit {
 		public float attackSpeed;
 	}
 	[RequireComponent (typeof (BaseUnit))]
-	public class Attackable : SerializedMonoBehaviour
+    public class Attackable : SerializedMonoBehaviour,IItemPropertyApply,IPunObservable
 	{
 		public static List<Attackable> attackableList = new List<Attackable>();
 
 		public Sprite icon;
+
 		[SerializeField]
 		private float _initDamage;
 		public float initDamage {
@@ -24,8 +25,26 @@ namespace BSS.Unit {
 			}
 			private set {
 				_initDamage = value;
+                BaseEventListener.onPublishInt(damageEvent,(int)damage,gameObject);
 			}
 		}
+        [HideInInspector]
+        private float _changeDamage;
+        public float changeDamage {
+            get {
+                return _changeDamage;
+            }
+            set {
+                _changeDamage = value;
+                BaseEventListener.onPublishInt(damageEvent, (int)damage, gameObject);
+            }
+        }
+        public float damage {
+            get {
+                return initDamage + changeDamage;
+            }
+        }
+
 		[SerializeField]
 		private float _initAttackSpeed;
 		public float initAttackSpeed {
@@ -36,6 +55,23 @@ namespace BSS.Unit {
 				_initAttackSpeed = value;
 			}
 		}
+        [HideInInspector]
+        private float _changeAttackSpeed;
+        public float changeAttackSpeed {
+            get {
+                return _changeAttackSpeed;
+            }
+            set {
+                _changeAttackSpeed = value;
+            }
+        }
+        public float attackSpeed {
+            get {
+                return initAttackSpeed + changeAttackSpeed;
+            }
+        }
+
+
 		[SerializeField]
 		private float _initRange;
 		public float initRange {
@@ -44,21 +80,6 @@ namespace BSS.Unit {
 			}
 			private set {
 				_initRange = value;
-			}
-		}
-
-		[HideInInspector]
-		public float changeDamage=0f;
-		public float damage {
-			get {
-				return initDamage+changeDamage;
-			}
-		}
-		[HideInInspector]
-		public float changeAttackSpeed=0f;
-		public float attackSpeed {
-			get {
-				return initAttackSpeed+changeAttackSpeed;
 			}
 		}
 		[HideInInspector]
@@ -76,6 +97,18 @@ namespace BSS.Unit {
 				return initRange+changeRange;
 			}
 		}
+
+        [Header("Int")]
+        [FoldoutGroup("BaseEvent")]
+        public string damageEvent = "Damage";
+
+        [FoldoutGroup("ItemProperty")]
+        public string damageProperty = "Damage";
+        [FoldoutGroup("ItemProperty")]
+        public string attackSpeedProperty = "AttackSpeed";
+        [FoldoutGroup("ItemProperty")]
+        public string rangeProperty = "Range";
+
 
         private GameObject huntTarget;
         private GameObject target;
@@ -150,7 +183,43 @@ namespace BSS.Unit {
             canAttack = true;
         }
 
+        //Interface
+        public void applyProperty(string ID, float value) {
+            if (ID==damageProperty) {
+                changeDamage += value;
+            }
+            if (ID == attackSpeedProperty) {
+                changeAttackSpeed += value;
+            }
+            if (ID == rangeProperty) {
+                changeRange += value;
+            }
+        }
+        public void cancleProperty(string ID, float value) {
+            if (ID == damageProperty) {
+                changeDamage -= value;
+            }
+            if (ID == attackSpeedProperty) {
+                changeAttackSpeed -= value;
+            }
+            if (ID == rangeProperty) {
+                changeRange -= value;
+            }
+        }
 
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+            if (stream.isWriting && owner.isMine) {
+                // We own this player: send the others our data
+                stream.SendNext(changeDamage);
+                stream.SendNext(changeAttackSpeed);
+                stream.SendNext(changeRange);
+            } else {
+                // Network player, receive data
+                changeDamage = (float)stream.ReceiveNext();
+                changeAttackSpeed = (float)stream.ReceiveNext();
+                changeRange = (float)stream.ReceiveNext();
+            }
+        }
 
         //TODO change
 

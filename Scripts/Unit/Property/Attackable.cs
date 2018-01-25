@@ -15,8 +15,6 @@ namespace BSS.Unit {
 	{
 		public static List<Attackable> attackableList = new List<Attackable>();
 
-		public Sprite icon;
-
 		[SerializeField]
 		private float _initDamage;
 		public float initDamage {
@@ -220,68 +218,5 @@ namespace BSS.Unit {
                 changeRange = (float)stream.ReceiveNext();
             }
         }
-
-        //TODO change
-
-        /*
-		public void setTarget(BaseUnit enemy){
-			target = enemy;
-		}
-
-		public bool reFindTarget(float radius){
-			var targets = UnitUtils.GetUnitsInCircle (transform.position, radius).FindAll (x => UnitUtils.CheckHostile (owner, x)&& !x.isInvincible);
-			if (targets.Count == 0) {
-				return false;
-			}
-			target = targets [0];
-			return true;
-		}
-
-		IEnumerator coDetectEnemy() {
-			while (true) {
-				yield return new WaitForSeconds (0.1f);
-				if (isMoving || target!=null) {
-					continue;
-				}
-				if (!reFindTarget (range)) {
-					if (isOffenssive && reFindTarget (offenseRange)) {
-						SendMessage ("onDetectInOffenceRange", this, SendMessageOptions.DontRequireReceiver);
-					}
-				}
-			}
-		}
-		IEnumerator coAttackLoop() {
-			while (true) {
-				yield return new WaitForSeconds (1f/attackSpeed);
-				if (isMoving  || target == null) {
-					continue;
-				}
-				if (checkRange (target)) {
-					attack (target.gameObject);
-				} else if (checkRange (target, outRange)) {
-					target = null;
-				}
-			}
-		}
-			
-        private bool targetInRange() {
-            if (target!=null) {
-                Vector2 targetLocation = target.transform.position;
-                Vector2 direction = targetLocation - (Vector2)transform.position;
-                if (direction.sqrMagnitude < range * range) {
-                    return true;
-                }
-            }
-            return false;
-        }
-		private bool checkRange(BaseUnit unit,float dis) {
-			return UnitUtils.IsUnitInCircle (unit, transform.position, dis);
-		}
-		private bool checkRange(BaseUnit unit) {
-			return UnitUtils.IsUnitInCircle (unit, transform.position, range);
-		}
-        */
-
-
 	}
 }

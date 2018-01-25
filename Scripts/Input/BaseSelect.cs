@@ -8,6 +8,7 @@ using BSS.UI;
 namespace BSS {
     public class BaseSelect : SerializedMonoBehaviour {
         public Texture2D selectCircle;
+        public Texture2D enemySelectCircle;
         public static BaseSelect instance;
         public ESelectState eSelectState = ESelectState.None;
         public ESelectUnitState eSelectUnitState = ESelectUnitState.None;

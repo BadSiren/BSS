@@ -5,8 +5,9 @@ using BSS.Input;
 using Sirenix.OdinInspector;
 
 namespace BSS {
-	public abstract class Condition : MonoBehaviour
+    public abstract class Condition : SerializedMonoBehaviour
 	{
+
 		public abstract bool validate (object target);
 	}
 }

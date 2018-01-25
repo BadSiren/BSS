@@ -36,7 +36,7 @@ namespace BSS.Unit {
 		}
 		void Start() {
 			foreach (var it in initActivableList) {
-				registActivable (it.category, it.index, it.activable);
+                registActivable(it.category, it.index, it.activable);
 			}
 		}
 
@@ -71,6 +71,9 @@ namespace BSS.Unit {
             return activableList [nowCategory] [index];
 		}
 		public void registActivable(string category,int index,Activable act) {
+            if (!act.checkDisplayable()) {
+                return;
+            }
 			if (!activableList.ContainsKey (category)) {
 				activableList [category] = new List<Activable> ();
 				for (int i = 0; i < MAX_COUNT; i++) {

@@ -4,6 +4,7 @@ using System.Collections;
 namespace BSS.UI {
 	public class InformBoard : Board
 	{
+        private GameObject sender;
 		private System.Action buttonAct=null;
 		private GameObject actObject;
 
@@ -23,6 +24,10 @@ namespace BSS.UI {
 			sendToReceiver ("Icon", icon);
 			sendBoolToReceiver ("IconFrame", true);
 		}
+        public void setSender(GameObject obj) {
+            sender = obj;
+        }
+
 		public void setAction(GameObject target,string actName,System.Action action) {
 			actObject = target;
 			sendToReceiver ("Button", actName);

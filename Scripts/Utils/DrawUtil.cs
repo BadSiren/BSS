@@ -34,22 +34,21 @@ namespace BSS {
 
 					tex.SetPixel(px, ny, col);
 					tex.SetPixel(nx, ny, col);
-
 				}
 			}    
 		}
-		public   static   Bounds  GetViewportBounds (   Camera  camera ,   Vector3  screenPosition1 ,   Vector3  screenPosition2   ) 
+		public static Bounds GetViewportBounds (Camera camera,Vector3 screenPosition1,Vector3 screenPosition2) 
 		{ 
-			var   v1   =   Camera . main . ScreenToViewportPoint (   screenPosition1   ) ; 
-			var   v2   =   Camera . main . ScreenToViewportPoint (   screenPosition2   ) ; 
-			var   min   =   Vector3 . Min (   v1 ,   v2   ) ; 
-			var   max   =   Vector3 . Max (   v1 ,   v2   ) ; 
-			min . z   =   camera . nearClipPlane ; 
-			max . z   =   camera . farClipPlane ; 
+			var v1 = Camera . main . ScreenToViewportPoint (screenPosition1); 
+			var v2 = Camera . main . ScreenToViewportPoint (screenPosition2); 
+			var min = Vector3 . Min (v1 ,v2); 
+			var max = Vector3 . Max (v1 ,v2); 
+			min.z = camera.nearClipPlane; 
+			max.z = camera.farClipPlane;
 
-			var   bounds   =   new   Bounds ( ) ; 
-			bounds . SetMinMax (   min ,   max   ) ; 
-			return   bounds ; 
+            var bounds = new Bounds(); 
+			bounds.SetMinMax(min,max);
+			return bounds ; 
 		}
 		public static void DrawScreenRect(Rect rect,Color color) { 
 			GUI.color = color; 

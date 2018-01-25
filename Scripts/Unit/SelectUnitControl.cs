@@ -2,21 +2,35 @@
 using System.Collections;
 
 namespace BSS.Unit {
-	public class UnitControl : MonoBehaviour
+	public class SelectUnitControl : MonoBehaviour
 	{
-        public BaseUnit targetUnit;
-
-        private Movable movable;
-        private Attackable attackable;
-
-		public void setTargetUnit(GameObject obj) {
-			targetUnit=obj.GetComponent<BaseUnit> ();
-            movable = targetUnit.GetComponent<Movable>();
-            attackable = targetUnit.GetComponent<Attackable>();
-		}
+        public BaseUnit selectUnit {
+            get {
+                if (BaseSelect.instance.mainSelectable == null) {
+                    return null;
+                }
+                return BaseSelect.instance.mainSelectable.owner;
+            }
+        }
+        public Attackable attackable {
+            get {
+                if (BaseSelect.instance.mainSelectable == null) {
+                    return null;
+                }
+                return BaseSelect.instance.mainSelectable.owner.GetComponent<Attackable>();
+            }
+        }
+        public Movable movable {
+            get {
+                if (BaseSelect.instance.mainSelectable == null) {
+                    return null;
+                }
+                return BaseSelect.instance.mainSelectable.owner.GetComponent<Movable>();
+            }
+        }
 
         public void toMove(Vector2 pos) {
-            if (targetUnit == null || movable == null) {
+            if (selectUnit == null || movable == null) {
                 return;
             }
             if (attackable != null) {
@@ -28,7 +42,7 @@ namespace BSS.Unit {
 
         public void toFollow(GameObject enemyObj) {
             BaseUnit enemy = enemyObj.GetComponent<BaseUnit>();
-            if (targetUnit == null || movable == null) {
+            if (selectUnit == null || movable == null) {
                 return;
             }
             if (attackable != null) {
@@ -39,7 +53,7 @@ namespace BSS.Unit {
         }
         public void toAttack(GameObject enemyObj) {
             BaseUnit enemy = enemyObj.GetComponent<BaseUnit>();
-            if (targetUnit == null || attackable == null) {
+            if (selectUnit == null || attackable == null) {
                 return;
             }
             if (movable != null) {

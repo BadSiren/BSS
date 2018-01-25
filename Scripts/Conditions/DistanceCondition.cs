@@ -6,19 +6,19 @@ namespace BSS {
 	{
 		[Sirenix.OdinInspector.BoxGroup()]
 		public string NeedParameterType="GameObject";
-		public GameObject comparisonObj;
 		public float distance;
+        public System.Func<GameObject> comparisonFunc;
+
+        private GameObject comparisonObj;
+        private GameObject targetObj;
 
 		public override bool validate (object target) {
-			if (comparisonObj == null) {
-				return false;
-			}
-			GameObject targetObj = (target as GameObject);
+            if (comparisonFunc == null || comparisonFunc()==null) {
+                return false;
+            }
+            comparisonObj = comparisonFunc();
+	        targetObj = (target as GameObject);
 			return Vector2.Distance (targetObj.transform.position, comparisonObj.transform.position) < distance;
-		}
-
-		public void setComparisonObj(GameObject obj) {
-			comparisonObj = obj;
 		}
 
 	}

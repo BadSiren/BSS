@@ -73,6 +73,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   selectCircle: {fileID: 2800000, guid: fddd2cf31981d4d048222ea94449d47b, type: 3}
+  enemySelectCircle: {fileID: 2800000, guid: 2bc11ddf5f5404603882adcd4797b31d, type: 3}
   eSelectState: 0
   eSelectUnitState: 0
   mainSelectable: {fileID: 0}

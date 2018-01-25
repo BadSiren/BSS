@@ -32,19 +32,13 @@ namespace BSS {
             onDeselect();
 			selectableList.Remove(this);
 		}
-		void OnGUI() {
-			if (isSelected) {
-				Vector2 screenPoint1 = Camera.main.WorldToScreenPoint (new Vector2(transform.position.x-1f, transform.position.y-0.2f-0.5f));
-				Vector2 screenPoint2 = Camera.main.WorldToScreenPoint (new Vector2(transform.position.x+1f, transform.position.y-0.2f+0.5f));
-				var rect=DrawUtils.GetScreenRect (screenPoint1, screenPoint2);
-				GUI.DrawTexture (rect, BaseSelect.instance.selectCircle);
-			}
-		}
 
 		public void onSelect() {
+            var selectReacts = GetComponentsInChildren<ISelectReact>();
 			BaseSelect.instance.unitSelect (this);
 		}
 		public void onDeselect() {
+            var selectReacts = GetComponentsInChildren<ISelectReact>();
 			BaseSelect.instance.selectRemove (this);
 		}
 	}

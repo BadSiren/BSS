@@ -11,7 +11,7 @@ namespace BSS.Unit {
 		public float attackSpeed;
 	}
 	[RequireComponent (typeof (BaseUnit))]
-    public class Attackable : SerializedMonoBehaviour,IItemPropertyApply,IPunObservable
+    public class Attackable : SerializedMonoBehaviour,IItemPropertyApply
 	{
 		public static List<Attackable> attackableList = new List<Attackable>();
 
@@ -202,20 +202,6 @@ namespace BSS.Unit {
             }
             if (ID == rangeProperty) {
                 changeRange -= value;
-            }
-        }
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-            if (stream.isWriting && owner.isMine) {
-                // We own this player: send the others our data
-                stream.SendNext(changeDamage);
-                stream.SendNext(changeAttackSpeed);
-                stream.SendNext(changeRange);
-            } else {
-                // Network player, receive data
-                changeDamage = (float)stream.ReceiveNext();
-                changeAttackSpeed = (float)stream.ReceiveNext();
-                changeRange = (float)stream.ReceiveNext();
             }
         }
 	}

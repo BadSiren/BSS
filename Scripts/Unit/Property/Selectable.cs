@@ -34,11 +34,9 @@ namespace BSS {
 		}
 
 		public void onSelect() {
-            var selectReacts = GetComponentsInChildren<ISelectReact>();
 			BaseSelect.instance.unitSelect (this);
 		}
 		public void onDeselect() {
-            var selectReacts = GetComponentsInChildren<ISelectReact>();
 			BaseSelect.instance.selectRemove (this);
 		}
 	}

@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace BSS.Unit {
 	[System.Serializable]
@@ -51,6 +53,13 @@ namespace BSS.Unit {
                 return _activables;
             }
         }
+        public bool isSelected {
+            get {
+                return activables.selectedAct == index;
+            }
+        }
+        private Vector2 prePos;
+
         void Start() {
             initialize();
         }
@@ -77,15 +86,14 @@ namespace BSS.Unit {
             if (!isPrivate) {
                 return true;
             }
-            return owner.isMine;
+            return owner.onlyMine;
         }
         public bool checkInteractable() {
             if (!isIgnore) {
                 return true;
             }
-            return owner.isMine;
+            return owner.onlyMine;
         }
-
 
 	}
 }

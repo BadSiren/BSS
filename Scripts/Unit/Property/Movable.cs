@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 namespace BSS.Unit {
 	[RequireComponent (typeof (PolyNavAgent))]
 	[RequireComponent (typeof (BaseUnit))]
-    public class Movable : SerializedMonoBehaviour,IItemPropertyApply,IPunObservable
+    public class Movable : SerializedMonoBehaviour,IItemPropertyApply
 	{
 		
 		public static List<Movable> movableList = new List<Movable>();
@@ -130,16 +130,6 @@ namespace BSS.Unit {
                 return;
             }
             changeSpeed -= value;
-        }
-			
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-            if (stream.isWriting && owner.isMine) {
-                // We own this player: send the others our data
-                stream.SendNext(changeSpeed);
-            } else {
-                // Network player, receive data
-                changeSpeed = (float)stream.ReceiveNext();
-            }
         }
 	}
 }

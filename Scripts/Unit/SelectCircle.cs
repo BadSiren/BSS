@@ -17,7 +17,7 @@ namespace BSS.Unit {
                 Destroy(gameObject);
                 return;
             }
-            if (!selectable.owner.photonView.isMine) {
+            if (!selectable.owner.onlyMine) {
                 spriteRenderer.sprite = notMineSprite;
             }
         }

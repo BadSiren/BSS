@@ -28,12 +28,7 @@ namespace BSS {
 		void Awake() {
 			if (_instance == null) {
 				_instance = this;
-			} else {
-				Destroy (gameObject);
-				return;
 			}
-			DontDestroyOnLoad (gameObject);
-			
 			intialize ();
 		}
 

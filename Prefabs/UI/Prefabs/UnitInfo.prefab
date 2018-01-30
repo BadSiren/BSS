@@ -420,13 +420,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -438,10 +438,10 @@ MonoBehaviour:
       Data: getHealth
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -490,13 +490,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -508,10 +508,10 @@ MonoBehaviour:
       Data: getArmorInfo
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -560,13 +560,13 @@ MonoBehaviour:
       Data: 
     - Name: contentFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -578,10 +578,10 @@ MonoBehaviour:
       Data: getArmorContent
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -661,13 +661,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -679,10 +679,10 @@ MonoBehaviour:
       Data: getName
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -731,13 +731,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
@@ -749,10 +749,10 @@ MonoBehaviour:
       Data: getAttackInfo
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -837,13 +837,13 @@ MonoBehaviour:
       Data: 
     - Name: spriteFunc
       Entry: 7
-      Data: 0|System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], System.Core
+      Data: 0|System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -855,10 +855,10 @@ MonoBehaviour:
       Data: getPortrait
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], System.Core
+      Data: System.Func`1[[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -1033,13 +1033,13 @@ MonoBehaviour:
       Data: 
     - Name: contentFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
@@ -1051,10 +1051,10 @@ MonoBehaviour:
       Data: getAttackContent
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -1342,13 +1342,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: boolFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -1360,10 +1360,10 @@ MonoBehaviour:
       Data: existSelectUnit
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -1412,13 +1412,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: boolFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
@@ -1430,10 +1430,10 @@ MonoBehaviour:
       Data: existAttackable
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -1540,13 +1540,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -1558,10 +1558,10 @@ MonoBehaviour:
       Data: getPlayerInfo
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2104,13 +2104,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: boolFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
@@ -2122,10 +2122,10 @@ MonoBehaviour:
       Data: existAttackable
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2229,13 +2229,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: boolFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -2247,10 +2247,10 @@ MonoBehaviour:
       Data: existSelectUnit
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2326,13 +2326,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: boolFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -2344,10 +2344,10 @@ MonoBehaviour:
       Data: existSelectUnit
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.Boolean, mscorlib]], System.Core
+      Data: System.Func`1[[System.Boolean, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2429,13 +2429,13 @@ MonoBehaviour:
     SerializationNodes:
     - Name: targetFunc
       Entry: 7
-      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], System.Core
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -2447,10 +2447,10 @@ MonoBehaviour:
       Data: getSelectGameObject
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], System.Core
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2586,13 +2586,13 @@ MonoBehaviour:
       Data: 
     - Name: stringFunc
       Entry: 7
-      Data: 0|System.Func`1[[System.String, mscorlib]], System.Core
+      Data: 0|System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: target
       Entry: 10
       Data: 0
     - Name: declaringType
       Entry: 7
-      Data: 1|System.MonoType, mscorlib
+      Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
@@ -2604,10 +2604,10 @@ MonoBehaviour:
       Data: getMaxHealth
     - Name: delegateType
       Entry: 7
-      Data: 2|System.MonoType, mscorlib
+      Data: 2|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: System.Func`1[[System.String, mscorlib]], System.Core
+      Data: System.Func`1[[System.String, mscorlib]], mscorlib
     - Name: 
       Entry: 8
       Data: 
@@ -2887,7 +2887,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1534265893023822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.79998, z: 0}
+  m_LocalPosition: {x: 0.0000076293945, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224990227068224326}
@@ -2895,8 +2895,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8.79998}
-  m_SizeDelta: {x: 124.12012, y: 113.11}
+  m_AnchoredPosition: {x: 0.0000085831, y: -0.00000023842}
+  m_SizeDelta: {x: 99.36, y: 101.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224528224020748492
 RectTransform:
@@ -2986,7 +2986,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1873854563664116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 107, y: 0.0000038146973, z: 0}
+  m_LocalPosition: {x: 112, y: 0.0000038146973, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224225252368647520}
@@ -2994,7 +2994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 107, y: 0.000003887}
+  m_AnchoredPosition: {x: 112, y: 0.000003887}
   m_SizeDelta: {x: 150.28, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224772288226138426
@@ -3098,7 +3098,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1250670457492292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45000076, y: 16.43, z: 0}
+  m_LocalPosition: {x: 0.45000076, y: 20.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224467446692185672}
@@ -3107,8 +3107,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.45, y: 16.43}
-  m_SizeDelta: {x: 99.36, y: 110.26}
+  m_AnchoredPosition: {x: 0.45, y: 20.93}
+  m_SizeDelta: {x: 99.36, y: 101.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224991245532936862
 RectTransform:

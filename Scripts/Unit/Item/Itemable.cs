@@ -3,18 +3,39 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using BSS.UI;
 
 namespace BSS.Unit {
-	public class Itemable : SerializedMonoBehaviour
+    [System.Serializable]
+    public class Itemable : SerializedMonoBehaviour,ISelectReact
 	{
 		[Range(0,8)]
 		public int maxCount;
-		public List<Item> items=new List<Item>();
+		public List<string> items=new List<string>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
+
+        private int _selectedItem = -1;
+        public int selectedItem {
+            get {
+                return _selectedItem;
+            }
+            set {
+                _selectedItem = value;
+                if (_selectedItem == -1) {
+                    BaseEventListener.onPublishGameObject(itemDeselectedEvent, gameObject, gameObject);
+                } else {
+                    BaseEventListener.onPublishGameObject(itemSelectedEvent, gameObject, gameObject);
+                }
+            }
+        }
 
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
+        [FoldoutGroup("BaseEvent")]
+        public string itemSelectedEvent = "ItemSelected";
+        [FoldoutGroup("BaseEvent")]
+        public string itemDeselectedEvent = "ItemDeselected";
 
 		[HideInInspector()]
 		public BaseUnit owner;
@@ -31,65 +52,61 @@ namespace BSS.Unit {
 			}
 		}
 
+
         public Item getItemOrNull(int index) {
             if (items.Count - 1 < index) {
                 return null;
             }
-            return items[index];
+            return Items.instance.database[items[index]];
+        }
+        public Item getItem(string ID) {
+            return Items.instance.database[ID];
         }
 
 		public void addItem(string ID) {
             if (!owner.photonView.isMine|| items.Count >= maxCount) {
 				return;
 			}
-			owner.photonView.RPC ("recvAddItem", PhotonTargets.All, ID);
+            items.Add(ID);
+            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
 		}
-        [PunRPC]
-        private void recvAddItem(string ID) {
-            items.Add(BSDatabase.instance.items.database[ID]);
-            canclePropetiesOnlyMine();
-            setThisProperties();
-            applyPropetiesOnlyMine();
-            BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
-        }
-
-		public void throwItem(int index) {
+		public void removeItem(int index) {
             if (!owner.photonView.isMine) {
                 return;
             }
-			owner.photonView.RPC ("recvThrowItem", PhotonTargets.All, index);
-		}
-        [PunRPC]
-        private void recvThrowItem(int index) {
             items.RemoveAt(index);
-            canclePropetiesOnlyMine();
-            setThisProperties();
-            applyPropetiesOnlyMine();
-            BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
+            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
+		}
+        public void throwItem(int index) {
+            if (!owner.photonView.isMine || items.Count >= maxCount) {
+                return;
+            }
+            PickUpItemCreator.Create(items[index], transform.position);
+            items.RemoveAt(index);
+            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
         }
         public void swapItem(int index1,int index2) {
             if (!owner.photonView.isMine || index1==index2) {
                 return;
             }
-            owner.photonView.RPC("recvSwapItem", PhotonTargets.All, index1,index2);
-        }
-        [PunRPC]
-        private void recvSwapItem(int index1, int index2) {
             var temp = items[index1];
             items[index1] = items[index2];
             items[index2] = temp;
+            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
+        }
+
+        [PunRPC]
+        void recvUpdateItems(string code,PhotonMessageInfo mi) {
+            selectedItem = -1;
+            itemDeserialize(code);
+            canclePropeties();
+            setThisProperties();
+            applyPropeties();
             BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
         }
 
-
 		
-
-		
-
-        private void applyPropetiesOnlyMine() {
-            if (!owner.isMine) {
-                return;
-            }
+        private void applyPropeties() {
             var applyComponents = GetComponents<IItemPropertyApply>();
             foreach (var comp in applyComponents) {
                 foreach (var property in properties) {
@@ -97,10 +114,7 @@ namespace BSS.Unit {
                 }
             }
         }
-        private void canclePropetiesOnlyMine() {
-            if (!owner.isMine) {
-                return;
-            }
+        private void canclePropeties() {
             var applyComponents = GetComponents<IItemPropertyApply>();
             foreach (var comp in applyComponents) {
                 foreach (var property in properties) {
@@ -108,10 +122,10 @@ namespace BSS.Unit {
                 }
             }
         }
-
 		private void setThisProperties() {
 			properties.Clear ();
-			foreach (var item in items) {
+			foreach (var it in items) {
+                var item = getItem(it);
 				foreach (var property in item.properties) {
 					if (properties.ContainsKey (property.Key)) {
 						properties [property.Key] = properties [property.Key] + property.Value;
@@ -121,7 +135,28 @@ namespace BSS.Unit {
 				}
 			}
 		}
+        private string itemSerialize() {
+            string text = items.Count.ToString()+"/";
+            foreach (var it in items) {
+                text += it+"/";
+            }
+            return text;
+        }
+        private void itemDeserialize(string code) {
+            items.Clear();
+            var codes=code.Split('/');
+            int num=int.Parse(codes[0]);
+            for (int i = 0; i < num; i++) {
+                items.Add(codes[i + 1]);
+            }
+        }
 
+        //Interface
+        public void onSelect() {
+        }
+        public void onDeselect() {
+            selectedItem = -1;
+        }
 	}
 }
 

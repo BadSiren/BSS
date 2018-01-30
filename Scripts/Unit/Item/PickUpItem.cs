@@ -20,7 +20,7 @@ namespace BSS {
 		private Item item;
 
 		void Start() {
-			item=BSDatabase.instance.items.database [ID];
+            item=Items.instance.database [ID];
 		}
 
         public void pickUp() {

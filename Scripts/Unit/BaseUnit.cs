@@ -8,7 +8,7 @@ using System.Linq;
 using Photon;
 
 namespace BSS.Unit {
-    public class BaseUnit : SerializedMonoBehaviour,IPunObservable
+    public class BaseUnit : SerializedMonoBehaviour
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 
@@ -34,6 +34,11 @@ namespace BSS.Unit {
             }
             set {
                 _health = value;
+
+                if (photonView.isMine && _health < 0.01f) {
+                    die();
+                    return;
+                }
             }
         }
 		public float maxMana;
@@ -47,19 +52,13 @@ namespace BSS.Unit {
                 return initArmor + changeArmor;
             }
         }
-		
-		public bool isMine {
-			get {
-				return photonView.ownerId == PhotonNetwork.player.ID;
-			}
-		}
-		public bool isSceneObject {
-			get {
-				return photonView.owner == null;
-			}
-		}
-		
-        [SerializeField]
+
+        public bool onlyMine {
+            get {
+                return (photonView.isMine && !photonView.isSceneView);
+            }
+        }
+
 		public PhotonView photonView {
 			get;
 			private set;
@@ -68,6 +67,7 @@ namespace BSS.Unit {
 			get;
 			private set;
 		}
+
 
 
         [Header("GaemObject")]
@@ -81,6 +81,7 @@ namespace BSS.Unit {
 
 		void Awake() {
 			activables = GetComponentInChildren<Activables> ();
+            photonView = GetComponent<PhotonView>();
 		}
 		protected virtual void OnEnable()
 		{
@@ -103,39 +104,26 @@ namespace BSS.Unit {
 
         [PunRPC]
         void recvHitDamage(float _damage,PhotonMessageInfo mi) {
-            if (isMine) {
-                float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
-                health -= damage;
-                if (health < 0.01f) {
-                    destroy();
-                    return;
-                } 
-            }
+            float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
+            health -= damage;
 
-            var hitReacts = GetComponents<IHitReact>();
+            var hitReacts = GetComponentsInChildren<IHitReact>();
             foreach (var it in hitReacts) {
                 it.onHit();
             }
             BaseEventListener.onPublishGameObject(hitEvent, gameObject, gameObject);
         }
-        public void destroy() {
-            photonView.RPC("recvDestroy", PhotonTargets.All);
+        public void die() {
+            photonView.RPC("recvDie", PhotonTargets.All);
         }
         [PunRPC]
-        void recvDestroy(PhotonMessageInfo mi) {
+        void recvDie(PhotonMessageInfo mi) {
+            var dieReacts = GetComponentsInChildren<IDieReact>();
+            foreach (var it in dieReacts) {
+                it.onDie();
+            }
             BaseEventListener.onPublishGameObject(destroyEvent, gameObject, gameObject);
             Destroy(gameObject);
-        }
-
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-            if (stream.isWriting && isMine) {
-                // We own this player: send the others our data
-                stream.SendNext(health);
-            } else {
-                // Network player, receive data
-                health = (float)stream.ReceiveNext();
-            }
         }
 
     }

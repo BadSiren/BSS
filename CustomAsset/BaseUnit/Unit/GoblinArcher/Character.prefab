@@ -228,7 +228,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4602420223081148}
   - component: {fileID: 95927518629297458}
-  - component: {fileID: 114555247999950068}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -868,24 +867,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114555247999950068
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1468958150954332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a5bd7f34c2b4b2aa197e5e53f1e146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLookRight: 1
-  idleAnimationSpeed: 1
-  idleAnimaionName: goblin_idle
-  moveAnimaionName: goblin_walk
-  attackAnimaionName: goblin_attack
-  hitAnimaionName: 
-  dieAnimaionName: 
 --- !u!212 &212006077881140400
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -15,7 +15,15 @@ namespace BSS {
 	}
 	public class Items : SerializedMonoBehaviour
 	{
+        public static Items instance;
 		public Dictionary<string,Item> database=new Dictionary<string,Item>();
+
+
+        void Awake() {
+            if (instance == null) {
+                instance = this;
+            }
+        }
 	}
 }
 

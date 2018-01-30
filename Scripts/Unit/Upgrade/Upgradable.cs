@@ -18,7 +18,7 @@ namespace BSS.Unit {
 
 		public int level {
 			get {
-				if (!owner.isMine) {
+                if (!owner.onlyMine) {
 					return 0;
 				}
 				return GameDataBase.instance.getUpgradeLevel (ID);

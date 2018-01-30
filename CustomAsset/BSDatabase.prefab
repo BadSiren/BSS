@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4944921296471864}
+  - component: {fileID: 114271032220404416}
   - component: {fileID: 114934467501134058}
   - component: {fileID: 114721587281446776}
   m_Layer: 0
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114271032220404416
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843881142821692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 277417076691846c98f81a04bb408578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114721587281446776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,7 +68,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 21300000, guid: 5469f336678f241528bdff6c48dbf26f, type: 3}
+    - {fileID: 21300000, guid: a950b054e04d741cc899bc8a999a4e3e, type: 3}
     - {fileID: 21300000, guid: 813a02a32a830485aab22d420a20db35, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -82,19 +94,22 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 1
-      Data: Shoes
+      Data: Meat
     - Name: 
       Entry: 7
       Data: 2|BSS.Item, Assembly-CSharp
     - Name: ID
       Entry: 1
-      Data: Shoes
+      Data: Meat
+    - Name: category
+      Entry: 6
+      Data: 
     - Name: itemName
       Entry: 1
-      Data: "\uAC12\uBE44\uC2FC\uC2E0\uBC1C"
+      Data: "\uACE0\uAE30"
     - Name: itemDescription
       Entry: 1
-      Data: "\uC774\uB3D9\uC18D\uB3C4+3 \uC0AC\uAC70\uB9AC+5"
+      Data: "\uC0AC\uC6A9\uC2DC \uCCB4\uB825 \uD68C\uBCF5+10"
     - Name: icon
       Entry: 10
       Data: 0
@@ -111,31 +126,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: MoveSpeed
-    - Name: 
-      Entry: 4
-      Data: 3
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: Range
-    - Name: 
-      Entry: 4
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -160,12 +151,15 @@ MonoBehaviour:
     - Name: ID
       Entry: 1
       Data: Sword
+    - Name: category
+      Entry: 6
+      Data: 
     - Name: itemName
       Entry: 1
-      Data: "\uC5D1\uC2A4\uCE7C\uB9AC\uBC84"
+      Data: "\uB2E8\uAC80"
     - Name: itemDescription
       Entry: 1
-      Data: "\uACF5\uACA9\uB825 +300 \uACF5\uACA9\uC18D\uB3C4+1"
+      Data: "\uACF5\uACA9\uB825+3"
     - Name: icon
       Entry: 10
       Data: 1
@@ -182,7 +176,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 7
       Data: 
@@ -191,19 +185,7 @@ MonoBehaviour:
       Data: Damage
     - Name: 
       Entry: 4
-      Data: 300
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: 
-      Entry: 1
-      Data: AttackSpeed
-    - Name: 
-      Entry: 4
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -247,4 +229,3 @@ MonoBehaviour:
     SerializationNodes: []
   lobbyItemDatabase: {fileID: 11400000, guid: fb43a25278ec0455abe21e560b6a8a2a, type: 2}
   baseUnitDatabase: {fileID: 11400000, guid: 7864518c7b9ae40e5999baacc8d58919, type: 2}
-  items: {fileID: 114721587281446776}

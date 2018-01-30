@@ -35,7 +35,7 @@ namespace BSS.Unit {
 		}
 
         public void setFloat(string _name,float _value) {
-            if (!owner.isMine) {
+            if (!owner.photonView.isMine) {
                 return;
             }
             owner.photonView.RPC("recvSetFloat", PhotonTargets.All, _name, _value);
@@ -45,7 +45,7 @@ namespace BSS.Unit {
             anim.SetFloat(_name, _value);
         }
         public void setTrigger(string _name) {
-            if (!owner.isMine) {
+            if (!owner.photonView.isMine) {
                 return;
             }
             owner.photonView.RPC("recvSetTrigger", PhotonTargets.All, _name);

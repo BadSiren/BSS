@@ -23,5 +23,6 @@ namespace BSS {
 	public class GameObjectEvent : UnityEvent<GameObject>{}
     [System.Serializable]
     public class FloatEvent : UnityEvent<float> {}
+
 }
 

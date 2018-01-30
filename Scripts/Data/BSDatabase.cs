@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using BSS.LobbyItemSystem;
 using BSS.Unit;
-using BSS.Level;
 using Sirenix.OdinInspector;
 
 namespace BSS {
@@ -12,16 +11,11 @@ namespace BSS {
 		public static BSDatabase instance;
 		public LobbyItemDatabase lobbyItemDatabase;
 		public BaseUnitDatabase baseUnitDatabase;
-		public Items items;
 
 		void Awake() {
 			if (instance == null) {
 				instance = this;
-			} else {
-				Destroy (gameObject);
-				return;
 			}
-			DontDestroyOnLoad (gameObject);
 		}
 	}
 }

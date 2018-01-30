@@ -20,7 +20,7 @@ namespace BSS {
         private Item _item;
         private Item item {
             get {
-                if (BSDatabase.instance.items.database.TryGetValue(_ID,out _item)) {
+                if (Items.instance.database.TryGetValue(_ID,out _item)) {
                     return _item;
                 }
                 return null;

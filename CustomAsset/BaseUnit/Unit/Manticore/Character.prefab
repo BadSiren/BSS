@@ -235,7 +235,6 @@ GameObject:
   - component: {fileID: 4281023060731882}
   - component: {fileID: 95562668781118046}
   - component: {fileID: 210368273124384478}
-  - component: {fileID: 114439583491628448}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -1497,24 +1496,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114439583491628448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1417401464466362}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16a5bd7f34c2b4b2aa197e5e53f1e146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isLookRight: 1
-  idleAnimationSpeed: 1
-  idleAnimaionName: idle
-  moveAnimaionName: run
-  attackAnimaionName: attack1
-  hitAnimaionName: 
-  dieAnimaionName: 
 --- !u!210 &210368273124384478
 SortingGroup:
   m_ObjectHideFlags: 1

@@ -10,11 +10,11 @@ namespace BSS {
 		{
 			if (instance == null) {
 				instance = gameObject;
+                DontDestroyOnLoad(gameObject);
 			} else {
 				Destroy (gameObject);
 				return;
 			}
-			DontDestroyOnLoad (gameObject);
 		}
 
 	}

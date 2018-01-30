@@ -19,8 +19,10 @@ namespace BSS.Unit {
             private set;
             get;
         }
+        public int selectedAct = -1;
 		public List<InitActivable> initActivableList=new List<InitActivable>();
 		public Dictionary<string,List<Activable>> activableList;
+
 
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
@@ -42,6 +44,7 @@ namespace BSS.Unit {
 
         public void setCategory(string category) {
             nowCategory = category;
+            selectedAct = -1;
             BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
 
         }

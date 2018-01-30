@@ -17,7 +17,7 @@ namespace BSS {
 			get;set;
 		}
 		private Vector2 scrollPos = Vector2.zero;
-		private Rect GuiRect;
+        private Rect GuiRect=new Rect();
 
 		public static readonly string ChatRPC = "Chat";
 
@@ -30,7 +30,7 @@ namespace BSS {
 			}
 				
 			GUI.SetNextControlName("");
-			GUILayout.BeginArea(this.GuiRect);
+			GUILayout.BeginArea(GuiRect);
 
 			scrollPos = GUILayout.BeginScrollView(scrollPos);
 			GUILayout.FlexibleSpace();

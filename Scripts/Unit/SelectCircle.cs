@@ -23,7 +23,7 @@ namespace BSS.Unit {
         }
 
         public void updateRender() {
-            spriteRenderer.enabled = selectable.isSelected;
+            spriteRenderer.enabled = selectable.isSelect;
         }
     }
 }

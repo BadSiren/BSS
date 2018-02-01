@@ -38,10 +38,10 @@ namespace BSS.UI {
 		}
 		public void OnDestroy()
 		{
-			deInitailze ();
+            boardList.Remove(this);
+            deInitialize ();
 		}
-		protected virtual void deInitailze() {
-			boardList.Remove (this);
+		protected virtual void deInitialize() {
 		}
 		public static Board Get<T>() {
 			return boardList.Find (x => x is T);

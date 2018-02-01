@@ -28,14 +28,27 @@ namespace BSS {
 			}
 		}
 
+        public void SingleJoin() {
+            PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = 1 }, null);
+            StartCoroutine(coRoomMaxCheck());
+        }
 
 		public void RandomJoin()
 		{
 			PhotonNetwork.JoinRandomRoom ();
+            var enterBoard = (Board.boardList.Find(x => x is EnterSelect) as EnterSelect);
+            enterBoard.Close();
+            (Board.boardList.Find(x => x is NoticeBoard) as NoticeBoard).Show(waitText, () => {
+                PhotonNetwork.LeaveRoom();
+                enterBoard.Show();
+            });
 		}
 		public override void OnPhotonRandomJoinFailed (object[] codeAndMsg)
 		{
-			PhotonNetwork.CreateRoom(null, new RoomOptions() { MaxPlayers = maxCount}, null);
+            var roomOption = new RoomOptions {
+                MaxPlayers = maxCount
+            };
+            PhotonNetwork.CreateRoom(null, roomOption, null);
 			StartCoroutine (coRoomMaxCheck ());
 			//Room Wait UI
 			var enterBoard = (Board.boardList.Find (x => x is EnterSelect) as EnterSelect);
@@ -54,6 +67,7 @@ namespace BSS {
 					break;
 				}
 				if (PhotonNetwork.room.PlayerCount==PhotonNetwork.room.MaxPlayers) {
+                    PhotonNetwork.room.IsOpen = false;
 					photonView.RPC ("recvLoadLevel", PhotonTargets.All);
 					break;
 				}

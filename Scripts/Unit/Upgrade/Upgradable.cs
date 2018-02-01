@@ -10,7 +10,7 @@ namespace BSS.Unit {
 		[BoxGroup("Upgradable")]
 		public string listenName="UpID";
 		[BoxGroup("Upgradable")]
-		public BaseEventListener.ParameterType listenType=BaseEventListener.ParameterType.Int;
+		public ParameterType listenType=ParameterType.Int;
 		[BoxGroup("Upgradable")]
 		public bool startedApply = true;
 
@@ -46,7 +46,7 @@ namespace BSS.Unit {
 			listener.listenName = listenName;
 			listener.listenType = listenType;
 			listener.sendMessage = "applyUpgrade";
-			listener.sendType = BaseEventListener.ParameterType.String;
+			listener.sendType = ParameterType.String;
 			listener.isDynamic = false;
 			listener.stringParameter = ID;
 		}

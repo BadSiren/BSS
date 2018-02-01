@@ -63,12 +63,6 @@ GameObject:
   - component: {fileID: 114871156518959234}
   - component: {fileID: 225209517531868296}
   - component: {fileID: 114380420101797104}
-  - component: {fileID: 114763348382203142}
-  - component: {fileID: 114219567641422818}
-  - component: {fileID: 114099784990824062}
-  - component: {fileID: 114317356223946992}
-  - component: {fileID: 114297448329467538}
-  - component: {fileID: 114604012681841142}
   m_Layer: 5
   m_Name: UnitInfo
   m_TagString: Untagged
@@ -602,39 +596,6 @@ MonoBehaviour:
       Data: 
   title: "\uBC29\uC5B4\uC815\uBCF4"
   content: 
---- !u!114 &114099784990824062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: 
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 0}
-  listenName: UnitDeselect
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: clear
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
 --- !u!114 &114109115092866244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -889,39 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114219567641422818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: 
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 0}
-  listenName: UnitSelect
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: updating
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
 --- !u!114 &114222178624306550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1152,72 +1080,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114297448329467538
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: 
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 114763348382203142}
-  listenName: UnitHit
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: updating
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
---- !u!114 &114317356223946992
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: 
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 114763348382203142}
-  listenName: UnitDestroy
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: clear
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
 --- !u!114 &114372646788717576
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1294,6 +1156,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  updatingEventList:
+  - UnitSelect
+  - SelectUnitHit
+  - SelectItemUpdate
+  clearEventList:
+  - UnitDeselect
+  - SelectUnitDestroy
 --- !u!114 &114380628836305372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1660,39 +1529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114604012681841142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 081e58fba6ff64d0ab63cef8b79401bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  eventName: 
-  thisCondition: {fileID: 0}
-  publisherCondition: {fileID: 114763348382203142}
-  listenName: ItemUpdate
-  listenType: 1
-  isSelf: 1
-  sender: {fileID: 0}
-  sendMessage: updating
-  isDynamic: 0
-  sendType: 0
-  gameObjectParameter: {fileID: 0}
-  intParameter: 0
-  stringParameter: 
 --- !u!114 &114639031329689074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2060,27 +1896,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
---- !u!114 &114763348382203142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1243552905754826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 405f18d77e22a4db1b780493142c2cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes: []
-  NeedParameterType: GameObject
 --- !u!114 &114763474323153996
 MonoBehaviour:
   m_ObjectHideFlags: 1

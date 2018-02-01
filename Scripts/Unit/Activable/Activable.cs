@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 
 namespace BSS.Unit {
 	[System.Serializable]
-	public abstract class Activable : SerializedMonoBehaviour
+    public abstract class Activable : SerializedMonoBehaviour
 	{	
 		[FoldoutGroup("ActBase(Mandatory)")]
 		public bool isPrivate;
@@ -58,13 +58,16 @@ namespace BSS.Unit {
                 return activables.selectedAct == index;
             }
         }
-        private Vector2 prePos;
 
         void Start() {
             initialize();
         }
+        void OnDestroy() {
+            deInitialize();
+        }
 
-		public abstract void initialize ();
+        public abstract void initialize ();
+        public virtual void deInitialize() { }
 
 		public abstract void activate ();
 
@@ -95,6 +98,7 @@ namespace BSS.Unit {
             return owner.onlyMine;
         }
 
-	}
+
+    }
 }
 

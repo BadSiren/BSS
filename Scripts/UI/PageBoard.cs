@@ -26,11 +26,8 @@ namespace BSS.UI {
 			page--;
 			pageUpdate ();
 		}
-		public virtual void pageViewUpdate() {
-			sendToReceiver ("Page", page.ToString ());
-		}
 		public virtual void pageUpdate() {
-			pageViewUpdate ();
+            sendToReceiver("Page", page.ToString());
 		}
 	}
 }

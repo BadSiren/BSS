@@ -20,8 +20,8 @@ namespace BSS.UI {
 			base.initialize ();
 			unitBoardList.Add (this);
 		}
-		protected override void deInitailze() {
-			base.deInitailze ();
+		protected override void deInitialize() {
+            base.deInitialize ();
 			unitBoardList.Remove (this);
 		}
 	}

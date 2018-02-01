@@ -15,7 +15,7 @@ namespace BSS.Event {
             if (vectorFunc != null) {
                 vec = vectorFunc();
             }
-            if (isSceneObject) {
+            if (isSceneObject && PhotonNetwork.isMasterClient) {
                 return PhotonNetwork.InstantiateSceneObject(prefabPath, vec, Quaternion.identity, 0, null);
             } 
             return PhotonNetwork.Instantiate(prefabPath, vec, Quaternion.identity, 0);

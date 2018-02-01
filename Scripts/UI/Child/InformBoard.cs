@@ -4,10 +4,6 @@ using System.Collections;
 namespace BSS.UI {
 	public class InformBoard : Board
 	{
-        private GameObject sender;
-		private System.Action buttonAct=null;
-		private GameObject actObject;
-
 		public void Show(string title,string content) {
 			base.Show ();
 
@@ -24,22 +20,6 @@ namespace BSS.UI {
 			sendToReceiver ("Icon", icon);
 			sendBoolToReceiver ("IconFrame", true);
 		}
-        public void setSender(GameObject obj) {
-            sender = obj;
-        }
-
-		public void setAction(GameObject target,string actName,System.Action action) {
-			actObject = target;
-			sendToReceiver ("Button", actName);
-			sendBoolToReceiver ("Button", true);
-			buttonAct = action;
-		}
-		public void activate() {
-			if (actObject != null && buttonAct!=null) {
-				buttonAct.Invoke ();
-			}
-			Close ();
-		}
 
 
 		public void Clear(){
@@ -48,8 +28,6 @@ namespace BSS.UI {
 			sendBoolToReceiver ("Icon", false);
 			sendBoolToReceiver ("IconFrame", false);
 			sendBoolToReceiver ("Button", false);
-			actObject = null;
-			buttonAct = null;
 		}
 	}
 }

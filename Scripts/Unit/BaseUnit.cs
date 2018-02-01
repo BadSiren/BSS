@@ -35,7 +35,7 @@ namespace BSS.Unit {
             set {
                 _health = value;
 
-                if (photonView.isMine && _health < 0.01f) {
+                if (isMine && _health < 0.01f) {
                     die();
                     return;
                 }
@@ -53,9 +53,14 @@ namespace BSS.Unit {
             }
         }
 
+        public bool isMine {
+            get {
+                return (photonView.ownerId==PhotonNetwork.player.ID || (photonView.isSceneView && PhotonNetwork.isMasterClient));
+            }
+        }
         public bool onlyMine {
             get {
-                return (photonView.isMine && !photonView.isSceneView);
+                return (photonView.ownerId == PhotonNetwork.player.ID);
             }
         }
 
@@ -94,12 +99,20 @@ namespace BSS.Unit {
 		}
 		protected virtual void OnDisable()
 		{
-			BaseEventListener.onPublishGameObject (destroyEvent, gameObject, gameObject);
 			unitList.Remove(this);
 		}
 
-        public void hitDamage(float damage) {
-            photonView.RPC("recvHitDamage",PhotonTargets.All,damage);
+        [PunRPC]
+        public void hitDamage(float _damage) {
+            if (!isMine) {
+                return;
+            }
+
+            if (health > _damage) {
+                photonView.RPC("recvHitDamage", PhotonTargets.All,_damage);
+            } else {
+                photonView.RPC("die", PhotonTargets.All);
+            }
         }
 
         [PunRPC]
@@ -113,7 +126,11 @@ namespace BSS.Unit {
             }
             BaseEventListener.onPublishGameObject(hitEvent, gameObject, gameObject);
         }
+        [PunRPC]
         public void die() {
+            if (!isMine) {
+                return;
+            }
             photonView.RPC("recvDie", PhotonTargets.All);
         }
         [PunRPC]

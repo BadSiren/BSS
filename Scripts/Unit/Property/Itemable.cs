@@ -14,21 +14,6 @@ namespace BSS.Unit {
 		public List<string> items=new List<string>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
-        private int _selectedItem = -1;
-        public int selectedItem {
-            get {
-                return _selectedItem;
-            }
-            set {
-                _selectedItem = value;
-                if (_selectedItem == -1) {
-                    BaseEventListener.onPublishGameObject(itemDeselectedEvent, gameObject, gameObject);
-                } else {
-                    BaseEventListener.onPublishGameObject(itemSelectedEvent, gameObject, gameObject);
-                }
-            }
-        }
-
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
@@ -64,29 +49,21 @@ namespace BSS.Unit {
         }
 
 		public void addItem(string ID) {
-            if (!owner.photonView.isMine|| items.Count >= maxCount) {
+            if (!owner.isMine|| items.Count >= maxCount) {
 				return;
 			}
             items.Add(ID);
             owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
 		}
 		public void removeItem(int index) {
-            if (!owner.photonView.isMine) {
+            if (!owner.isMine) {
                 return;
             }
             items.RemoveAt(index);
             owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
 		}
-        public void throwItem(int index) {
-            if (!owner.photonView.isMine || items.Count >= maxCount) {
-                return;
-            }
-            PickUpItemCreator.Create(items[index], transform.position);
-            items.RemoveAt(index);
-            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
-        }
         public void swapItem(int index1,int index2) {
-            if (!owner.photonView.isMine || index1==index2) {
+            if (!owner.isMine || index1==index2) {
                 return;
             }
             var temp = items[index1];
@@ -97,11 +74,14 @@ namespace BSS.Unit {
 
         [PunRPC]
         void recvUpdateItems(string code,PhotonMessageInfo mi) {
-            selectedItem = -1;
             itemDeserialize(code);
             canclePropeties();
             setThisProperties();
             applyPropeties();
+            var updateReacts = GetComponentsInChildren<IItemUpdateReact>();
+            foreach (var it in updateReacts) {
+                it.onItemUpdate();
+            }
             BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
         }
 
@@ -155,7 +135,6 @@ namespace BSS.Unit {
         public void onSelect() {
         }
         public void onDeselect() {
-            selectedItem = -1;
         }
 	}
 }

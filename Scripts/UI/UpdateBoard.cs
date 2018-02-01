@@ -5,6 +5,9 @@ using System.Collections.Generic;
 namespace BSS.UI {
     public class UpdateBoard : Board
     {
+        public List<string> updatingEventList = new List<string>();
+        public List<string> clearEventList = new List<string>();
+
         private List<ElementVoid> elementVoidList = new List<ElementVoid>();
         private List<ElementIndex> elementIndexList = new List<ElementIndex>();
 
@@ -16,6 +19,16 @@ namespace BSS.UI {
             foreach (var it in GetComponentsInChildren<ElementIndex>()) {
                 elementIndexList.Add(it);
             }
+            foreach (var it in updatingEventList) {
+                BaseEventListener.registEventer(it, gameObject, "updating");
+            }
+            foreach (var it in clearEventList) {
+                BaseEventListener.registEventer(it, gameObject, "clear");
+            }
+        }
+        protected override void deInitialize() {
+            base.deInitialize();
+            BaseEventListener.unregistEventer(gameObject);
         }
 
         public void updating() {

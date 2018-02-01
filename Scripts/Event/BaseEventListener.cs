@@ -5,20 +5,24 @@ using Sirenix.OdinInspector;
 using BSS.Unit;
 
 namespace BSS {
+    public class BaseEventer {
+        public string listenName;
+        public GameObject eventer;
+        public string sendMessage;
+        public BaseEventer(string name,GameObject obj,string msg) {
+            listenName = name;
+            eventer = obj;
+            sendMessage = msg;
+        }
+    }
 
 	public class BaseEventListener : SerializedMonoBehaviour
 	{
-		public enum ParameterType
-		{
-			Void,GameObject,Int,String
-		}
+		
 
 		public static List<BaseEventListener> eventListeners = new List<BaseEventListener> ();
+        public static List<BaseEventer> eventers = new List<BaseEventer>();
 		public string eventName="";
-		[FoldoutGroup("Condition")]
-		public Condition thisCondition;
-		[FoldoutGroup("Condition")]
-		public Condition publisherCondition;
 		[FoldoutGroup("Listen")]
 		public string listenName;
 		[FoldoutGroup("Listen")]
@@ -59,15 +63,22 @@ namespace BSS {
 			}
 		}
 
+        public static void registEventer(string _listenName,GameObject _eventer,string _sendMessage) {
+            var eventer=new BaseEventer(_listenName, _eventer, _sendMessage);
+            eventers.Add(eventer);
+        }
+        public static void unregistEventer(GameObject _eventer) {
+            foreach (var it in eventers.FindAll(x => x.eventer.GetInstanceID() == _eventer.GetInstanceID())) {
+                eventers.Remove(it);
+            }
+        }
+
 		public static void onPublish(string _listenType,GameObject publisher=null) {
+            foreach (var it in eventers.FindAll(x => x.listenName == _listenType)) {
+                it.eventer.SendMessage(it.sendMessage);
+            }
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.Void);
 			foreach (var it in listeners) {
-				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
-					continue;
-				}
-				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
-					continue;
-				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -81,14 +92,11 @@ namespace BSS {
 		}
 
 		public static void onPublishGameObject(string _listenType,GameObject param,GameObject publisher=null) {
+            foreach (var it in eventers.FindAll(x => x.listenName == _listenType)) {
+                it.eventer.SendMessage(it.sendMessage);
+            }
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.GameObject);
 			foreach (var it in listeners) {
-				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
-					continue;
-				}
-				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
-					continue;
-				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -101,14 +109,11 @@ namespace BSS {
 			}
 		}
 		public static void onPublishInt(string _listenType,int param,GameObject publisher=null) {
+            foreach (var it in eventers.FindAll(x => x.listenName == _listenType)) {
+                it.eventer.SendMessage(it.sendMessage);
+            }
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.Int);
 			foreach (var it in listeners) {
-				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
-					continue;
-				}
-				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
-					continue;
-				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;
@@ -121,14 +126,11 @@ namespace BSS {
 			}
 		}
 		public static void onPublishString(string _listenType,string param,GameObject publisher=null) {
+            foreach (var it in eventers.FindAll(x => x.listenName == _listenType)) {
+                it.eventer.SendMessage(it.sendMessage);
+            }
 			var listeners=eventListeners.FindAll (x => x.listenName == _listenType && x.listenType==ParameterType.String);
 			foreach (var it in listeners) {
-				if (it.thisCondition!=null && !it.thisCondition.validate (it.gameObject)) {
-					continue;
-				}
-				if (publisher != null && it.publisherCondition!=null && !it.publisherCondition.validate (publisher)) {
-					continue;
-				}
 				var _sender = it.gameObject;
 				if (it.sender != null) {
 					_sender = it.sender;

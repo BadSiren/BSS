@@ -7,9 +7,10 @@ using BSS.UI;
 
 namespace BSS {
     public class BaseSelect : SerializedMonoBehaviour {
+        public static BaseSelect instance;
         public Texture2D selectCircle;
         public Texture2D enemySelectCircle;
-        public static BaseSelect instance;
+
         public ESelectState eSelectState = ESelectState.None;
         public ESelectUnitState eSelectUnitState = ESelectUnitState.None;
         public Selectable mainSelectable;
@@ -22,6 +23,9 @@ namespace BSS {
 
         void Awake() {
             instance = this;
+
+        }
+        void Start() {
         }
         public void setSelectUnitState(string state) {
             eSelectUnitState = (ESelectUnitState)System.Enum.Parse(typeof(ESelectUnitState), state);
@@ -39,7 +43,6 @@ namespace BSS {
             }
 			selectableList.Clear ();
             selectableList.Add(selectable);
-            var reacts = selectable.GetComponentsInChildren<ISelectReact>();
             BaseEventListener.onPublishGameObject(selectEvent, selectable.gameObject, selectable.gameObject);
 			
 		}
@@ -64,26 +67,24 @@ namespace BSS {
             selectableList.Clear();
 		}
 
-		public void selectRemove(Selectable selectable) {
-			if (!selectableList.Contains(selectable)) {
-				return;
-			}
-			selectableList.Remove (selectable);
-			if (selectableList.Count == 0) {
-				selectCancle ();
-			} else if (selectableList.Count == 1) {
-				unitSelect (selectableList [0]);
-			}
-		}
-
-		public bool isSelect(BaseUnit unit) {
-			if (mainSelectable == null) {
-				return false;
-			}
-			return mainSelectable.owner == unit;
-		}
-
-
+        public void selectRemove(Selectable selectable) {
+            if (!selectableList.Contains(selectable)) {
+                return;
+            }
+            selectableList.Remove(selectable);
+            if (selectableList.Count == 0) {
+                selectCancle();
+            } else if (selectableList.Count == 1) {
+                unitSelect(selectableList[0]);
+            }
+        }
+        public bool isMainSelect(BaseUnit unit) {
+            var selectable=unit.gameObject.GetComponent<Selectable>();
+            if (mainSelectable == null || selectable == null) {
+                return false;
+            }
+            return mainSelectable == selectable;
+        }
 
 	}
 }

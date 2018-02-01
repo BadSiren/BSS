@@ -4,21 +4,14 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using Sirenix.OdinInspector;
+using BSS.Input;
 
 namespace BSS.Event {
     public class Clickable : BSEvent
 	{
-		public enum EClickType
-		{
-			Once,Double
-		}
-		public bool hasParent;
-        [ShowIf("hasParent")]
-        public GameObject parent;
+        public static List<IInputReact> clickReactList = new List<IInputReact>();
+
 		public EClickType eClickType;
-        public bool isPublish;
-        [ShowIf("isPublish")]
-        public string publishKey;
 
 		[TabGroup("GameObject")]
 		public GameObjectEvent gameObjectTrueAction;
@@ -31,25 +24,23 @@ namespace BSS.Event {
 
 
 		public void onClick() {
-			GameObject obj = gameObject;
 			Vector2 mp=BSS.Input.BaseInput.getMousePoint ();
-			if (hasParent) {
-                obj=parent;
-			}
             if (validate()) {
                 trueAction.Invoke();
-                gameObjectTrueAction.Invoke(obj);
+                gameObjectTrueAction.Invoke(parent);
                 vector2TrueAction.Invoke(mp);
             } else {
                 falseAction.Invoke();
-                gameObjectFalseAction.Invoke(obj);
+                gameObjectFalseAction.Invoke(parent);
                 vector2FalseAction.Invoke(mp);
             }
 		}
-        public void onPublish() {
-            BSS.Input.BaseInput.instance.onPublish(publishKey);
-        }
 
+        public void onPublish(string clickName) {
+            foreach (var it in clickReactList) {
+                it.onClick(clickName, parent);
+            }
+        }
 
 	}
 }

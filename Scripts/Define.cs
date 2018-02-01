@@ -5,12 +5,18 @@ using System.Collections.Generic;
 using BSS.Unit;
 
 namespace BSS {
+    public enum ParameterType {
+        Void, GameObject, Int, String
+    }
 	public enum ESelectState {
 		None,Mine,NotMine,Multi,
 		All
 	}
     public enum ESelectUnitState {
         None,Attack,Follow
+    }
+    public enum EClickType {
+        Once, Double
     }
 	public struct ArgWithRecevier
 	{

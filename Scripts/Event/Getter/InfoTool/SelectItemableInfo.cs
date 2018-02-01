@@ -17,19 +17,26 @@ namespace BSS.Event {
             return itemable != null;
         }
         public bool isSelected(int index) {
+            return false;
+            /*
             if (!existItemable()) {
                 return false;
             }
             return itemable.selectedItem == index;
+            */
         }
         public bool isSelected() {
+            return false;
+            /*
             if (!existItemable()) {
                 return false;
             }
             return itemable.selectedItem != -1;
+            */
         }
         public Item getSelectedItem() {
-            return itemable.getItemOrNull(itemable.selectedItem);
+            return null;
+            //return itemable.getItemOrNull(itemable.selectedItem);
         }
 
         public string getTitle() {

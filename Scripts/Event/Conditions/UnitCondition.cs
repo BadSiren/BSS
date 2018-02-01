@@ -4,45 +4,20 @@ using Sirenix.OdinInspector;
 using BSS.Unit;
 
 namespace BSS.Event {
-    public class UnitCondition : SerializedMonoBehaviour {
-        public GameObject _target;
+    public abstract class UnitCondition : SerializedMonoBehaviour {
         public System.Func<GameObject> targetFunc;
 
-        private GameObject target {
+        protected GameObject target {
             get {
-                if (targetFunc != null) {
-                    return targetFunc();
-                }
-                return _target;
+                return targetFunc();
             }
         }
 
-        public GameObject getSelectUnit() {
+        public GameObject getMainSelect() {
             if (BaseSelect.instance.mainSelectable == null) {
                 return null;
             }
-            return BaseSelect.instance.mainSelectable.owner.gameObject;
-        }
-
-        public bool equalMainSelect() {
-            if (BaseSelect.instance.mainSelectable == null || target == null) {
-                return false;
-            }
-            GameObject comparisonObj = BaseSelect.instance.mainSelectable.owner.gameObject;
-            return target.GetInstanceID() == comparisonObj.GetInstanceID();
-        }
-        public bool equalMainSelect(GameObject obj) {
-            if (BaseSelect.instance.mainSelectable == null) {
-                return false;
-            }
-            GameObject comparisonObj = BaseSelect.instance.mainSelectable.owner.gameObject;
-            return obj.GetInstanceID() == comparisonObj.GetInstanceID();
-        }
-        public bool isOnlyMine() {
-            return target.GetComponent<BaseUnit>().onlyMine;
-        }
-        public bool isOnlyMine(GameObject obj) {
-            return obj.GetComponent<BaseUnit>().onlyMine;
+            return BaseSelect.instance.mainSelectable.gameObject;
         }
     }
 }

@@ -6,13 +6,18 @@ using Sirenix.OdinInspector;
 namespace BSS.Event {
     public class SecondsEvent : BSEvent {
 
+        public bool isDynamic;
+        [HideIf("isDynamic")]
         public float seconds = 1f;
-        public System.Func<float> secondsFunc;
+        [ShowIf("isDynamic")]
+        public float minSeconds = 1f;
+        [ShowIf("isDynamic")]
+        public float maxSeconds = 3f;
 
         private float _seconds {
             get {
-                if (secondsFunc!=null) {
-                    return secondsFunc();
+                if (isDynamic) {
+                    return Random.Range(minSeconds, maxSeconds);
                 }
                 return seconds;
             }

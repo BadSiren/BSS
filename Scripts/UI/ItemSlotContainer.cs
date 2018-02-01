@@ -12,8 +12,8 @@ namespace BSS.UI {
 			ShowSlot (page);
 		}
 
-		public override void pageViewUpdate() {
-			base.pageViewUpdate ();
+		public override void pageUpdate() {
+            base.pageUpdate ();
 			ShowSlot (page);
 		}
 		public virtual void infoUpdate() {

@@ -2,63 +2,86 @@
 using System.Collections;
 using BSS.UI;
 using UnityEngine.EventSystems;
+using BSS.Input;
+using BSS.Event;
 
 namespace BSS.Unit {
-    public class ActItem : Activable {
+    public class ActItem : Activable, IInputReact {
 		private Itemable itemable;
-        private Vector2 prePos;
+        private Item item {
+            get {
+                if (itemable == null) {
+                    return null;
+                }
+                return itemable.getItemOrNull(index);
+            }
+        }
 
 		public override void initialize ()
 		{
 			itemable = GetComponentInParent<Itemable> ();
+            Clickable.clickReactList.Add(this);
 		}
+        public override void deInitialize() {
+            Clickable.clickReactList.Remove(this);
+        }
 		public override void activate() {
-            if (itemable.getItemOrNull (index) == null || !checkInteractable()) {
+            if (item == null || !checkInteractable()) {
 				return;
 			}
-            var pickUpItemBoard = Board.boardList.Find(x => x is PickUpItemBoard) as PickUpItemBoard;
 
-            if (itemable.selectedItem != -1) {
-                if (itemable.selectedItem != index) {
-                    itemable.swapItem(itemable.selectedItem, index);
+            if (activables.selectedAct != -1) {
+                if (activables.selectedAct != index) {
+                    itemable.swapItem(activables.selectedAct, index);
                 }
-                itemable.selectedItem = -1;
+                activables.actSelect(-1);
                 return;
             }
-            itemable.selectedItem = -1;
+            activables.actSelect(-1);
 		}
 
         public override void activateLongPress() {
-            if (itemable.getItemOrNull(index) == null || !checkInteractable()) {
+            if (item == null || !checkInteractable()) {
                 return;
             }
-            itemable.selectedItem = index;
+            activables.actSelect(index);
         }
 
 		public override Sprite getIcon ()
 		{
-            if (itemable.getItemOrNull (index) == null ) {
+            if (item == null ) {
 				return null;
 			}
-			return itemable.getItemOrNull (index).icon;
+            return item.icon;
 		}
 		public override string getTitle ()
 		{
-			if (itemable.getItemOrNull (index) == null) {
+            if (item == null) {
 				return "";
 			}
-			return itemable.getItemOrNull (index).itemName;
+            return item.itemName;
 		}
 		public override string getText ()
 		{
-			if (itemable.getItemOrNull (index) == null) {
+            if (item == null) {
 				return "";
 			}
-			return itemable.getItemOrNull (index).itemDescription;
+            return item.itemDescription;
 		}
 
-       
 
-	}
+        //Interface
+        public void onClick(string clickName, GameObject target) {
+            if (!BaseSelect.instance.isMainSelect(owner)) {
+                return;
+            }
+            if (item==null || !isSelected || clickName != "MapOnce") {
+                return;
+            }
+            PickUpItemManager.instance.create(item.ID, owner.transform.position);
+            itemable.removeItem(index);
+            activables.actSelect(-1);
+        }
+    }
 }
 

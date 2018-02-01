@@ -44,9 +44,7 @@ namespace BSS.Unit {
 
         public void setCategory(string category) {
             nowCategory = category;
-            selectedAct = -1;
-            BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
-
+            updateActivable();
         }
 			
 		public string getCategory(Activable activable) {
@@ -84,7 +82,7 @@ namespace BSS.Unit {
 				}
 			}
 			activableList [category][index]= act;
-            BaseEventListener.onPublishGameObject(actChangeEvent,owner.gameObject,owner.gameObject);
+            updateActivable();
 		}
 		public void unregistActivable(string category,int index) {
             if (!activableList.ContainsKey(category)) {
@@ -92,7 +90,7 @@ namespace BSS.Unit {
             }
 			Destroy (activableList [category] [index]);
 			activableList [category] [index] = null;
-            BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
+            updateActivable();
 		}
 
 		public GameObject getContainerOrCreate(string category){
@@ -104,7 +102,18 @@ namespace BSS.Unit {
 			}
 			return containerTr.gameObject;
 		}
-			
+        public void actSelect(int num) {
+            selectedAct = num;
+            updateActivable();
+        }
+
+        private void updateActivable() {
+            var updateReacts = GetComponentsInParent<IActivableUpdateReact>();
+            foreach (var it in updateReacts) {
+                it.onActivableUpdate();
+            }
+            BaseEventListener.onPublishGameObject(actChangeEvent, owner.gameObject, owner.gameObject);
+        }
 	}
 }
 

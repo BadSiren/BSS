@@ -92,13 +92,17 @@ namespace BSS.Event {
             attackable.toHunt(enemyObj);
         }
         public void toThrow() {
+
+            /*
             if (unit == null || itemable == null) {
                 return;
             }
             if (itemable.selectedItem == -1) {
                 return;
             }
-            itemable.throwItem(itemable.selectedItem);
+            PickUpItemManager.instance.create(itemable.items[itemable.selectedItem], unit.transform.position);
+            itemable.removeItem(itemable.selectedItem);
+            */
         }
 
 

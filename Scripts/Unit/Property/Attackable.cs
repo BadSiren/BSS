@@ -5,10 +5,8 @@ using Sirenix.OdinInspector;
 
 namespace BSS.Unit {
 	public class AttackInfo {
-		public GameObject attacker;
-		public GameObject hitter;
+		public BaseUnit attacker;
 		public float damage;
-		public float attackSpeed;
 	}
 	[RequireComponent (typeof (BaseUnit))]
     public class Attackable : SerializedMonoBehaviour,IItemPropertyApply
@@ -152,11 +150,12 @@ namespace BSS.Unit {
             canAttack = false;
             Invoke("enableAttack", 1f / attackSpeed);
 
-            var reacts = GetComponents<IAttackReact>();
+            var reacts = GetComponentsInChildren<IAttackReact>();
             foreach (var it in reacts) {
                 it.onAttack((enemyObj));
             }
-            enemyObj.GetComponent<BaseUnit>().hitDamage(damage);
+            var enemy = enemyObj.GetComponent<BaseUnit>();
+            enemy.photonView.RPC("hitDamage",PhotonTargets.All,damage);
 		}
 
         public void toHunt(GameObject enemyObj) {

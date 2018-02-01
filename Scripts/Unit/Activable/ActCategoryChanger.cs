@@ -13,6 +13,7 @@ namespace BSS.Unit {
 		}
 		public override void activate() {
             activables.setCategory(changeCategory);
+            activables.actSelect(-1);
 		}
 
 	}

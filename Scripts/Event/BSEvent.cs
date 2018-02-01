@@ -9,6 +9,18 @@ namespace BSS.Event {
     {
         public static List<BSEvent> eventers= new List<BSEvent>();
 
+
+        public bool hasParent;
+        [ShowIf("hasParent")]
+        public GameObject _parent;
+        public GameObject parent {
+            get {
+                if (_parent == null) {
+                    return gameObject;
+                }
+                return _parent;
+            }
+        }
         [FoldoutGroup("Condition")]
         public List<System.Func<bool>> trueConditions = new List<System.Func<bool>>();
         [FoldoutGroup("Condition")]

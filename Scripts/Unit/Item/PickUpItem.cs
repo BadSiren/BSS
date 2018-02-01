@@ -5,7 +5,7 @@ using BSS.Unit;
 using BSS.UI;
 
 namespace BSS {
-	public class PickUpItem : Photon.MonoBehaviour
+	public class PickUpItem : MonoBehaviour
 	{
         [SerializeField]
         private string _ID;
@@ -29,13 +29,13 @@ namespace BSS {
                 return;
             }
             itemable.addItem(ID);
-            photonView.RPC("recvDestroy", PhotonTargets.All);
+            var index=PickUpItemManager.instance.pickUpItems.FindIndex(x => x == this);
+            if (index < 0) {
+                Debug.Log("No Find");
+                return;
+            }
+            PickUpItemManager.instance.destroy(index);
         }
-
-		[PunRPC]
-		private void recvDestroy(PhotonMessageInfo mi) {
-			Destroy (gameObject);
-		}
 	}
 }
 

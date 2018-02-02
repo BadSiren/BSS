@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222938332214000144}
   - component: {fileID: 114805473768047594}
   - component: {fileID: 114763474323153996}
-  - component: {fileID: 114693726314441732}
+  - component: {fileID: 114376161258796522}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -42,8 +42,9 @@ GameObject:
   - component: {fileID: 114490705939805176}
   - component: {fileID: 114886783405428428}
   - component: {fileID: 114416064446946128}
-  - component: {fileID: 114229208204951798}
   - component: {fileID: 114237433050208670}
+  - component: {fileID: 114313898387612710}
+  - component: {fileID: 114763054003978216}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -99,7 +100,7 @@ GameObject:
   - component: {fileID: 222632141517216408}
   - component: {fileID: 114639031329689074}
   - component: {fileID: 114841313705274560}
-  - component: {fileID: 114044507539708034}
+  - component: {fileID: 114650962965554702}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -119,7 +120,7 @@ GameObject:
   - component: {fileID: 114659935969195610}
   - component: {fileID: 114271088139226362}
   - component: {fileID: 114071380147561654}
-  - component: {fileID: 114218405152339310}
+  - component: {fileID: 114518677673134818}
   m_Layer: 5
   m_Name: health
   m_TagString: Untagged
@@ -137,8 +138,8 @@ GameObject:
   - component: {fileID: 224528224020748492}
   - component: {fileID: 222118981622888044}
   - component: {fileID: 114692708100288152}
-  - component: {fileID: 114572785497484572}
   - component: {fileID: 114484041627368952}
+  - component: {fileID: 114069544987275368}
   m_Layer: 5
   m_Name: player
   m_TagString: Untagged
@@ -156,8 +157,8 @@ GameObject:
   - component: {fileID: 224039518499170194}
   - component: {fileID: 222093584313739494}
   - component: {fileID: 114186746182564074}
-  - component: {fileID: 114391914552193268}
   - component: {fileID: 114109115092866244}
+  - component: {fileID: 114717042255082210}
   m_Layer: 5
   m_Name: UnitName
   m_TagString: Untagged
@@ -195,8 +196,8 @@ GameObject:
   - component: {fileID: 222529366224091534}
   - component: {fileID: 114716619165872990}
   - component: {fileID: 114785331720851222}
-  - component: {fileID: 114745778128753000}
   - component: {fileID: 114072049326407934}
+  - component: {fileID: 114776029309317652}
   m_Layer: 5
   m_Name: Armor
   m_TagString: Untagged
@@ -214,8 +215,8 @@ GameObject:
   - component: {fileID: 224467446692185672}
   - component: {fileID: 222369938893665432}
   - component: {fileID: 114768579298181142}
-  - component: {fileID: 114281086310162554}
   - component: {fileID: 114210424410191888}
+  - component: {fileID: 114680688249604752}
   m_Layer: 5
   m_Name: UnitImage
   m_TagString: Untagged
@@ -252,7 +253,7 @@ GameObject:
   - component: {fileID: 222694507552526370}
   - component: {fileID: 114558204284241520}
   - component: {fileID: 114411369370048688}
-  - component: {fileID: 114661945371438246}
+  - component: {fileID: 114360333532067020}
   m_Layer: 5
   m_Name: Icon
   m_TagString: Untagged
@@ -290,7 +291,7 @@ GameObject:
   - component: {fileID: 114729869519822936}
   - component: {fileID: 114452714609657626}
   - component: {fileID: 114936811268359342}
-  - component: {fileID: 114372646788717576}
+  - component: {fileID: 114572752999890222}
   m_Layer: 5
   m_Name: maxhealth
   m_TagString: Untagged
@@ -309,8 +310,8 @@ GameObject:
   - component: {fileID: 222700912554143022}
   - component: {fileID: 114466474061547736}
   - component: {fileID: 114290832334199544}
-  - component: {fileID: 114990990389043670}
   - component: {fileID: 114851531394551058}
+  - component: {fileID: 114763295696030524}
   m_Layer: 5
   m_Name: Portrait
   m_TagString: Untagged
@@ -330,7 +331,7 @@ GameObject:
   - component: {fileID: 114372833641614010}
   - component: {fileID: 114452899120753074}
   - component: {fileID: 114136556802404640}
-  - component: {fileID: 114595781408493620}
+  - component: {fileID: 114817290895629816}
   m_Layer: 5
   m_Name: Attack
   m_TagString: Untagged
@@ -367,9 +368,10 @@ GameObject:
   - component: {fileID: 222416544468857302}
   - component: {fileID: 114735289864301254}
   - component: {fileID: 114222178624306550}
-  - component: {fileID: 114893923712175254}
   - component: {fileID: 114797609994722100}
   - component: {fileID: 114072313520252952}
+  - component: {fileID: 114097075860156938}
+  - component: {fileID: 114153959272824898}
   m_Layer: 5
   m_Name: ArmorButton
   m_TagString: Untagged
@@ -377,17 +379,69 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114044507539708034
+--- !u!114 &114069544987275368
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1256465084202856}
+  m_GameObject: {fileID: 1309574641094252}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114069544987275368}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114071380147561654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -403,7 +457,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114218405152339310}
+    - {fileID: 114518677673134818}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -423,7 +477,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -473,7 +527,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114745778128753000}
+    - {fileID: 114776029309317652}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -493,7 +547,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -543,7 +597,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114893923712175254}
+    - {fileID: 114153959272824898}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -563,7 +617,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -596,6 +650,69 @@ MonoBehaviour:
       Data: 
   title: "\uBC29\uC5B4\uC815\uBCF4"
   content: 
+--- !u!114 &114097075860156938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887174985531374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaea52656b1be4ddf80543efa2f20950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114097075860156938}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114109115092866244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,7 +728,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114391914552193268}
+    - {fileID: 114717042255082210}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -631,7 +748,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -681,7 +798,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114595781408493620}
+    - {fileID: 114817290895629816}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -701,7 +818,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+      Data: BSS.Event.UnitAttackableGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -736,6 +853,69 @@ MonoBehaviour:
       Entry: 6
       Data: 
   clearIgnore: 0
+--- !u!114 &114153959272824898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1887174985531374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114153959272824898}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114186746182564074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,7 +964,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114281086310162554}
+    - {fileID: 114680688249604752}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -807,7 +987,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -839,17 +1019,6 @@ MonoBehaviour:
       Entry: 8
       Data: 
   clearIgnore: 0
---- !u!114 &114218405152339310
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1269367863533796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114222178624306550
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -877,17 +1046,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114229208204951798
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1167333579519960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114231571918385174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -950,7 +1108,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114229208204951798}
+    - {fileID: 114763054003978216}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -970,7 +1128,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+      Data: BSS.Event.UnitAttackableGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -1017,17 +1175,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114281086310162554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1534265893023822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114290832334199544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1080,17 +1227,132 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114372646788717576
+--- !u!114 &114313898387612710
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1702746137424832}
+  m_GameObject: {fileID: 1167333579519960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Script: {fileID: 11500000, guid: 8af393d842e7447458ada459202d3369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114313898387612710}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &114360333532067020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1675602301083188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaea52656b1be4ddf80543efa2f20950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114360333532067020}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114372833641614010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1124,6 +1386,69 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114376161258796522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064917810246330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af393d842e7447458ada459202d3369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114376161258796522}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114380420101797104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1157,10 +1482,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   updatingEventList:
-  - UnitSelect
   - SelectUnitHit
   - SelectItemUpdate
-  clearEventList:
+  clearEventList: []
+  showEventList:
+  - UnitSelect
+  closeEventList:
   - UnitDeselect
   - SelectUnitDestroy
 --- !u!114 &114380628836305372
@@ -1177,17 +1504,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
---- !u!114 &114391914552193268
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377508811340708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114411369370048688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1203,7 +1519,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114661945371438246}
+    - {fileID: 114360333532067020}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1220,13 +1536,13 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: methodName
       Entry: 1
-      Data: existSelectUnit
+      Data: existTarget
     - Name: delegateType
       Entry: 7
       Data: 2|System.RuntimeType, mscorlib
@@ -1273,7 +1589,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114229208204951798}
+    - {fileID: 114313898387612710}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1290,7 +1606,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+      Data: BSS.Event.UnitAttackableCondition, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -1398,7 +1714,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114572785497484572}
+    - {fileID: 114069544987275368}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1418,7 +1734,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -1480,6 +1796,69 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114518677673134818
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1269367863533796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114518677673134818}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114558204284241520
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1507,28 +1886,69 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114572785497484572
+--- !u!114 &114572752999890222
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1309574641094252}
+  m_GameObject: {fileID: 1702746137424832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114595781408493620
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1873854563664116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114572752999890222}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114639031329689074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1588,9 +2008,70 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '/
-
-    /'
+  m_Text: /
+--- !u!114 &114650962965554702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1256465084202856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaea52656b1be4ddf80543efa2f20950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114650962965554702}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114659935969195610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1624,17 +2105,69 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114661945371438246
+--- !u!114 &114680688249604752
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1675602301083188}
+  m_GameObject: {fileID: 1534265893023822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114680688249604752}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114692708100288152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1668,17 +2201,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114693726314441732
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1064917810246330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e27dd24d1234078a7221fe8b89bea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114705564619157324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1753,6 +2275,69 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114717042255082210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1377508811340708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114717042255082210}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114729869519822936
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1838,17 +2423,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114745778128753000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1466012812461648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114749098044580210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1881,9 +2455,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '/
-
-    /'
+  m_Text: /
 --- !u!114 &114753652401103552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1896,6 +2468,132 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!114 &114763054003978216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167333579519960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52eb1b3e5c2384b14b5d71d15d43e3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114763054003978216}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+--- !u!114 &114763295696030524
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1865413716104264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114763295696030524}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114763474323153996
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1911,7 +2609,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114693726314441732}
+    - {fileID: 114376161258796522}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -1928,7 +2626,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectAttackableInfo, Assembly-CSharp
+      Data: BSS.Event.UnitAttackableCondition, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -1993,6 +2691,69 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114776029309317652
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466012812461648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652bdf33412b146bda4ca4edfc4fbef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114776029309317652}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114783785432857458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2036,7 +2797,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114893923712175254}
+    - {fileID: 114097075860156938}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -2053,13 +2814,13 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: methodName
       Entry: 1
-      Data: existSelectUnit
+      Data: existTarget
     - Name: delegateType
       Entry: 7
       Data: 2|System.RuntimeType, mscorlib
@@ -2118,6 +2879,69 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114817290895629816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1873854563664116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52eb1b3e5c2384b14b5d71d15d43e3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 114817290895629816}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetFunc
+      Entry: 7
+      Data: 0|System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: target
+      Entry: 10
+      Data: 0
+    - Name: declaringType
+      Entry: 7
+      Data: 1|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: methodName
+      Entry: 1
+      Data: getMainSelect
+    - Name: delegateType
+      Entry: 7
+      Data: 2|System.RuntimeType, mscorlib
+    - Name: 
+      Entry: 1
+      Data: System.Func`1[[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: signature
+      Entry: 7
+      Data: 3|System.Type[], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
 --- !u!114 &114841313705274560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2133,7 +2957,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114044507539708034}
+    - {fileID: 114650962965554702}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -2150,13 +2974,13 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.UnitCondition, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: methodName
       Entry: 1
-      Data: existSelectUnit
+      Data: existTarget
     - Name: delegateType
       Entry: 7
       Data: 2|System.RuntimeType, mscorlib
@@ -2236,7 +3060,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114990990389043670}
+    - {fileID: 114763295696030524}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -2253,13 +3077,13 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.UnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
     - Name: methodName
       Entry: 1
-      Data: getSelectGameObject
+      Data: get_target
     - Name: delegateType
       Entry: 7
       Data: 2|System.RuntimeType, mscorlib
@@ -2364,17 +3188,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114893923712175254
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1887174985531374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114936811268359342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2390,7 +3203,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 114372646788717576}
+    - {fileID: 114572752999890222}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -2410,7 +3223,7 @@ MonoBehaviour:
       Data: 1|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: BSS.Unit.SelectUnitInfo, Assembly-CSharp
+      Data: BSS.Event.BaseUnitGetter, Assembly-CSharp
     - Name: 
       Entry: 8
       Data: 
@@ -2458,17 +3271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentType: 0
   elementName: MaxMana
---- !u!114 &114990990389043670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1865413716104264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35432cdb7ad87408eb938c8104bdca18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &222087338422699712
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -2950,7 +3752,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1243552905754826}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

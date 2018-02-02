@@ -6,6 +6,10 @@ namespace BSS.Unit {
         public override void initialize() {
         }
         public override void activate() {
+            if (!checkInteractable()) {
+                return;
+            }
+
             var movable=owner.GetComponent<Movable>();
             if (movable!=null) {
                 movable.followStop();
@@ -15,7 +19,7 @@ namespace BSS.Unit {
             if (attackable != null) {
                 attackable.huntStop();
             }
-            BaseSelect.instance.eSelectUnitState = ESelectUnitState.None;
+            activables.actSelect(-1);
         }
 
     }

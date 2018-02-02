@@ -12,9 +12,6 @@ namespace BSS {
 		None,Mine,NotMine,Multi,
 		All
 	}
-    public enum ESelectUnitState {
-        None,Attack,Follow
-    }
     public enum EClickType {
         Once, Double
     }

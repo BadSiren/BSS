@@ -9,16 +9,10 @@ namespace BSS.Event {
 	{
         [FoldoutGroup("State")]
 		public ESelectState selectState;
-        [FoldoutGroup("State")]
-        public ESelectUnitState selectUnitState;
 
 		public bool selectStateEqual () {
             return BaseSelect.instance.eSelectState==selectState;
 		}
-        public bool selectUnitStateEqual() {
-            return BaseSelect.instance.eSelectUnitState == selectUnitState;
-        }
-
 	}
 }
 

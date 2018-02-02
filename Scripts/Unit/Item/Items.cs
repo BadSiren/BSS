@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 namespace BSS {
     public class Item {
+        public bool consumable;
 		public string ID;
         public string category;
 		public string itemName;
@@ -12,6 +13,7 @@ namespace BSS {
 		public string itemDescription;
 		public Sprite icon;
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
+        public Dictionary<string,float> useActs = new Dictionary<string, float>();
 	}
 	public class Items : SerializedMonoBehaviour
 	{

@@ -7,7 +7,7 @@ using BSS.UI;
 
 namespace BSS.Unit {
     [System.Serializable]
-    public class Itemable : SerializedMonoBehaviour,ISelectReact
+    public class Itemable : SerializedMonoBehaviour
 	{
 		[Range(0,8)]
 		public int maxCount;
@@ -17,10 +17,6 @@ namespace BSS.Unit {
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
-        [FoldoutGroup("BaseEvent")]
-        public string itemSelectedEvent = "ItemSelected";
-        [FoldoutGroup("BaseEvent")]
-        public string itemDeselectedEvent = "ItemDeselected";
 
 		[HideInInspector()]
 		public BaseUnit owner;
@@ -69,6 +65,21 @@ namespace BSS.Unit {
             var temp = items[index1];
             items[index1] = items[index2];
             items[index2] = temp;
+            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
+        }
+        public void useItem(int index) {
+            if (!owner.isMine || items.Count >= maxCount) {
+                return;
+            }
+            var item = getItem(items[index]);
+            var useComponents = GetComponents<IItemUseReact>();
+            foreach (var comp in useComponents) {
+                foreach (var useAct in item.useActs) {
+                    comp.onItemUse(useAct.Key, useAct.Value);
+                }
+            }
+
+            items.RemoveAt(index);
             owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
         }
 
@@ -129,12 +140,6 @@ namespace BSS.Unit {
             for (int i = 0; i < num; i++) {
                 items.Add(codes[i + 1]);
             }
-        }
-
-        //Interface
-        public void onSelect() {
-        }
-        public void onDeselect() {
         }
 	}
 }

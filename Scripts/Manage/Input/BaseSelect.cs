@@ -12,7 +12,6 @@ namespace BSS {
         public Texture2D enemySelectCircle;
 
         public ESelectState eSelectState = ESelectState.None;
-        public ESelectUnitState eSelectUnitState = ESelectUnitState.None;
         public Selectable mainSelectable;
         public List<Selectable> selectableList = new List<Selectable>();
         [BoxGroup("Event(GameObject)")]
@@ -27,16 +26,12 @@ namespace BSS {
         }
         void Start() {
         }
-        public void setSelectUnitState(string state) {
-            eSelectUnitState = (ESelectUnitState)System.Enum.Parse(typeof(ESelectUnitState), state);
-        }
 
         public void unitSelect(Selectable selectable) {
             eSelectState = ESelectState.NotMine;
             if (selectable.owner.onlyMine) {
 				eSelectState = ESelectState.Mine;
 			}
-            eSelectUnitState = ESelectUnitState.None;
             mainSelectable = selectable;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);
@@ -48,7 +43,6 @@ namespace BSS {
 		}
         public void multiUnitSelect(List<Selectable> selectables) {
 			eSelectState = ESelectState.Multi;
-            eSelectUnitState = ESelectUnitState.None;
             mainSelectable = null;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);
@@ -59,7 +53,6 @@ namespace BSS {
 		}
         public void selectCancle() {
 			eSelectState = ESelectState.None;
-            eSelectUnitState = ESelectUnitState.None;
             mainSelectable = null;
             foreach (var it in selectableList) {
                 BaseEventListener.onPublishGameObject(deselectEvent, it.gameObject, it.gameObject);

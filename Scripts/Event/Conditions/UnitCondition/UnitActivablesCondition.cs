@@ -5,7 +5,7 @@ using BSS.Unit;
 namespace BSS.Event {
     public class UnitActivablesCondition : UnitCondition
     {
-        public Activables targetActivables {
+        public Activables activables {
             get {
                 if (target == null) {
                     return null;
@@ -14,15 +14,20 @@ namespace BSS.Event {
             }
         }
         public bool isSelected(int index) {
-            if (targetActivables == null) {
+            if (activables == null) {
                 return false;
             }
-            if (targetActivables.selectedAct == -1) {
+            if (activables.selectedAct == -1) {
                 return false;
             }
-            return targetActivables.selectedAct == index;
+            return activables.selectedAct == index;
         }
-
+        public bool existSelected() {
+            if (activables == null) {
+                return false;
+            }
+            return activables.selectedAct != -1;
+        }
 
     }
 }

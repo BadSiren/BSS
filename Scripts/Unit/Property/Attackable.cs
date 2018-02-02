@@ -116,7 +116,10 @@ namespace BSS.Unit {
         private Movable _movable;
         private Movable movable {
             get {
-                return _movable == null ? GetComponent<Movable>() : _movable;
+                if (_movable == null) {
+                    _movable = GetComponent<Movable>();
+                }
+                return  _movable;
             }
         }
 		[SerializeField]

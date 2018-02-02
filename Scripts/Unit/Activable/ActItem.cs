@@ -19,7 +19,7 @@ namespace BSS.Unit {
 
 		public override void initialize ()
 		{
-			itemable = GetComponentInParent<Itemable> ();
+            itemable = owner.GetComponent<Itemable> ();
             Clickable.clickReactList.Add(this);
 		}
         public override void deInitialize() {
@@ -29,23 +29,21 @@ namespace BSS.Unit {
             if (item == null || !checkInteractable()) {
 				return;
 			}
-
-            if (activables.selectedAct != -1) {
-                if (activables.selectedAct != index) {
-                    itemable.swapItem(activables.selectedAct, index);
+            if (isSelected) {
+                if (item.consumable) {
+                    itemable.useItem(index);
                 }
                 activables.actSelect(-1);
-                return;
+            } else {
+                if (activables.selectedAct == -1) {
+                    activables.actSelect(index);
+                    BaseEventListener.onPublishGameObject("ItemSelect", owner.gameObject, owner.gameObject);
+                } else {
+                    itemable.swapItem(activables.selectedAct, index);
+                    activables.actSelect(-1);
+                }
             }
-            activables.actSelect(-1);
 		}
-
-        public override void activateLongPress() {
-            if (item == null || !checkInteractable()) {
-                return;
-            }
-            activables.actSelect(index);
-        }
 
 		public override Sprite getIcon ()
 		{
@@ -72,7 +70,7 @@ namespace BSS.Unit {
 
         //Interface
         public void onClick(string clickName, GameObject target) {
-            if (!BaseSelect.instance.isMainSelect(owner)) {
+            if (!checkInteractable() || !BaseSelect.instance.isMainSelect(owner)) {
                 return;
             }
             if (item==null || !isSelected || clickName != "MapOnce") {

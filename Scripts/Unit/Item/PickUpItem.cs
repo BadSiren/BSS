@@ -17,11 +17,6 @@ namespace BSS {
                 _ID = value;
             }
         }
-		private Item item;
-
-		void Start() {
-            item=Items.instance.database [ID];
-		}
 
         public void pickUp() {
             var itemable = BaseSelect.instance.mainSelectable.owner.GetComponent<Itemable>();

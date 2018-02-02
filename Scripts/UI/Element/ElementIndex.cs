@@ -12,12 +12,10 @@ namespace BSS.UI {
         public System.Func<int,Sprite> spriteFunc;
         public bool clearIgnore = false;
 
-        private UpdateBoard updateBoard;
         private Text textComp;
         private Image imageComp;
 
         void Awake() {
-            updateBoard = GetComponentInParent<UpdateBoard>();
             textComp = GetComponent<Text>();
             imageComp = GetComponent<Image>();
         }

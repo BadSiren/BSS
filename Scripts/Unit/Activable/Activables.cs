@@ -105,6 +105,11 @@ namespace BSS.Unit {
         public void actSelect(int num) {
             selectedAct = num;
             updateActivable();
+            if (num == -1) {
+                BaseEventListener.onPublishGameObject("ActDeselect", owner.gameObject, owner.gameObject);
+            } else {
+                BaseEventListener.onPublishGameObject("ActSelect", owner.gameObject, owner.gameObject);
+            }
         }
 
         private void updateActivable() {

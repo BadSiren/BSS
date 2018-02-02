@@ -12,6 +12,9 @@ namespace BSS.Unit {
 		{
 		}
 		public override void activate() {
+            if (!checkInteractable()) {
+                return;
+            }
             activables.setCategory(changeCategory);
             activables.actSelect(-1);
 		}

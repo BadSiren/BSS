@@ -54,6 +54,16 @@ namespace BSS.Event {
             }
         }
 
+        public void toStop() {
+            if (movable != null) {
+                movable.followStop();
+                movable.moveStop();
+            }
+            if (attackable != null) {
+                attackable.huntStop();
+            }
+        }
+
         public void toMove(Vector2 pos) {
             if (unit == null || movable == null) {
                 return;
@@ -90,25 +100,6 @@ namespace BSS.Event {
                 movable.toFollow(enemyObj, attackable.range * 0.9f);
             }
             attackable.toHunt(enemyObj);
-        }
-        public void toThrow() {
-
-            /*
-            if (unit == null || itemable == null) {
-                return;
-            }
-            if (itemable.selectedItem == -1) {
-                return;
-            }
-            PickUpItemManager.instance.create(itemable.items[itemable.selectedItem], unit.transform.position);
-            itemable.removeItem(itemable.selectedItem);
-            */
-        }
-
-
-
-        public void setSelectUnitState(string state) {
-            BaseSelect.instance.eSelectUnitState = (ESelectUnitState)System.Enum.Parse(typeof(ESelectUnitState), state);
         }
     }
 }

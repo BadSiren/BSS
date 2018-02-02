@@ -6,7 +6,7 @@ namespace BSS.Event {
     public class UnitSelectableCondition : UnitCondition
     {
         public bool isMainSelect() {
-            if (target == null && BaseSelect.instance.mainSelectable == null ) {
+            if (target == null || BaseSelect.instance.mainSelectable == null ) {
                 return false;
             }
             GameObject selectObj = BaseSelect.instance.mainSelectable.owner.gameObject;

@@ -56,7 +56,7 @@ namespace BSS {
 			}
 		}
 
-		//Monery Function
+		//Money Function
 		public void addMoney(int _money) {
 			int loadMoney=ES2.Load<int> (moneyName);
 			ES2.Save<int> (loadMoney + _money, moneyName);

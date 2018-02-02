@@ -8,7 +8,7 @@ using System.Linq;
 using Photon;
 
 namespace BSS.Unit {
-    public class BaseUnit : SerializedMonoBehaviour
+    public class BaseUnit : SerializedMonoBehaviour,IItemUseReact
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 
@@ -25,6 +25,9 @@ namespace BSS.Unit {
             }
             set {
                 _maxHealth = value;
+                if (healthBar != null) {
+                    healthBar.AssignMaxHealthValue(_maxHealth);
+                }
             }
         }
         private float _health;
@@ -34,10 +37,15 @@ namespace BSS.Unit {
             }
             set {
                 _health = value;
-
-                if (isMine && _health < 0.01f) {
-                    die();
-                    return;
+                if (healthBar != null) {
+                    healthBar.AssignHealthValue(_health);
+                }
+                if (isMine) {
+                    if (_health < 0.01f) {
+                        photonView.RPC("recvDie", PhotonTargets.All);
+                    } else {
+                        photonView.RPC("recvHealth", PhotonTargets.Others, _health);
+                    }
                 }
             }
         }
@@ -64,6 +72,15 @@ namespace BSS.Unit {
             }
         }
 
+        private HealthBar _healthBar;
+        public HealthBar healthBar {
+            get {
+                if (_healthBar == null) {
+                    _healthBar = GetComponentInChildren<HealthBar>();
+                }
+                return _healthBar;
+            }
+        }
 		public PhotonView photonView {
 			get;
 			private set;
@@ -82,6 +99,9 @@ namespace BSS.Unit {
         public string destroyEvent = "UnitDestroy";
         [FoldoutGroup("BaseEvent")]
         public string hitEvent = "UnitHit";
+
+        [FoldoutGroup("ItemUseAct")]
+        public string healthUseAct = "HealthRestore";
 
 
 		void Awake() {
@@ -103,36 +123,23 @@ namespace BSS.Unit {
 		}
 
         [PunRPC]
-        public void hitDamage(float _damage) {
-            if (!isMine) {
-                return;
-            }
-
-            if (health > _damage) {
-                photonView.RPC("recvHitDamage", PhotonTargets.All,_damage);
-            } else {
-                photonView.RPC("die", PhotonTargets.All);
-            }
+        public void recvHealth(float changeHealth,PhotonMessageInfo mi) {
+            health = changeHealth;
         }
 
         [PunRPC]
-        void recvHitDamage(float _damage,PhotonMessageInfo mi) {
-            float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
-            health -= damage;
-
+        public void hitDamage(float _damage) {
+            if (isMine) {
+                float damage = _damage * (1f - UnitUtils.GetDamageReduction(armor));
+                health -= damage;
+            }
             var hitReacts = GetComponentsInChildren<IHitReact>();
             foreach (var it in hitReacts) {
                 it.onHit();
             }
             BaseEventListener.onPublishGameObject(hitEvent, gameObject, gameObject);
         }
-        [PunRPC]
-        public void die() {
-            if (!isMine) {
-                return;
-            }
-            photonView.RPC("recvDie", PhotonTargets.All);
-        }
+
         [PunRPC]
         void recvDie(PhotonMessageInfo mi) {
             var dieReacts = GetComponentsInChildren<IDieReact>();
@@ -142,7 +149,13 @@ namespace BSS.Unit {
             BaseEventListener.onPublishGameObject(destroyEvent, gameObject, gameObject);
             Destroy(gameObject);
         }
-
+        //Interface
+        public void onItemUse(string ID, float _value) {
+            if (ID != healthUseAct) {
+                return;
+            }
+            health += _value;
+        }
     }
 }
 

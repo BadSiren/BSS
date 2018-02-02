@@ -55,7 +55,7 @@ namespace BSS.Unit {
         }
         public bool isSelected {
             get {
-                return activables.selectedAct == index;
+                return activables.nowCategory==category && activables.selectedAct == index;
             }
         }
 

@@ -8,7 +8,7 @@ using System.Linq;
 using Photon;
 
 namespace BSS.Unit {
-    public class BaseUnit : SerializedMonoBehaviour,IItemUseReact
+    public class BaseUnit : SerializedMonoBehaviour,IItemUseReact, IItemPropertyApply
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 
@@ -26,7 +26,7 @@ namespace BSS.Unit {
             set {
                 _maxHealth = value;
                 if (healthBar != null) {
-                    healthBar.AssignMaxHealthValue(_maxHealth);
+                    healthBar.AssignMaxHealthValue((int)_maxHealth);
                 }
             }
         }
@@ -36,9 +36,9 @@ namespace BSS.Unit {
                 return _health;
             }
             set {
-                _health = value;
+                _health = Mathf.Min(maxHealth,value);
                 if (healthBar != null) {
-                    healthBar.AssignHealthValue(_health);
+                    healthBar.AssignHealthValue((int)_health);
                 }
                 if (isMine) {
                     if (_health < 0.01f) {
@@ -54,7 +54,16 @@ namespace BSS.Unit {
 
         public float initArmor;
         [HideInInspector]
-        public float changeArmor = 0f;
+        private float _changeArmor;
+        public float changeArmor {
+            get {
+                return _changeArmor;
+            }
+            set {
+                _changeArmor = value;
+                //BaseEventListener.onPublishInt(armorEvent, (int)armor, gameObject);
+            }
+        }
         public float armor {
             get {
                 return initArmor + changeArmor;
@@ -100,8 +109,15 @@ namespace BSS.Unit {
         [FoldoutGroup("BaseEvent")]
         public string hitEvent = "UnitHit";
 
+        [Header("Int")]
+        [FoldoutGroup("BaseEvent")]
+        public string armorEvent = "Armor";
+
         [FoldoutGroup("ItemUseAct")]
         public string healthUseAct = "HealthRestore";
+
+        [FoldoutGroup("ItemProperty")]
+        public string armorProperty = "Armor";
 
 
 		void Awake() {
@@ -155,6 +171,16 @@ namespace BSS.Unit {
                 return;
             }
             health += _value;
+        }
+        public void applyProperty(string ID, float value) {
+            if (ID == armorProperty) {
+                changeArmor += value;
+            }
+        }
+        public void cancleProperty(string ID, float value) {
+            if (ID == armorProperty) {
+                changeArmor -= value;
+            }
         }
     }
 }

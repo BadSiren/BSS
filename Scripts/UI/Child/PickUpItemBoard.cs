@@ -8,12 +8,12 @@ namespace BSS.UI {
         private GameObject lastedObj;
 
         public void Show(string ID, PickUpItem _pickUpItem) {
-            if (!Items.instance.database.ContainsKey(ID)) {
+            if (!InItems.instance.database.ContainsKey(ID)) {
                 return;
             }
             base.Show();
             pickUpItem = _pickUpItem;
-            var item = Items.instance.database[ID];
+            var item = InItems.instance.database[ID];
             sendToReceiver("Icon", item.icon);
             sendToReceiver("Title", item.itemName);
             sendToReceiver("Content", item.itemDescription);
@@ -25,6 +25,14 @@ namespace BSS.UI {
                 return;
             }
             pickUpItem.pickUp();
+            Close();
+        }
+        public void destroy() {
+            if (pickUpItem == null) {
+                Close();
+                return;
+            }
+            pickUpItem.destory();
             Close();
         }
     }

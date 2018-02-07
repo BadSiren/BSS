@@ -5,11 +5,12 @@ namespace BSS.Unit {
     [RequireComponent(typeof(SpriteRenderer))]
     public class SelectCircle : MonoBehaviour
     {
+        public Sprite mineSprite;
         public Sprite notMineSprite;
         private SpriteRenderer spriteRenderer;
         private Selectable selectable;
 
-        void Awake() {
+        void Start() {
             spriteRenderer=GetComponent<SpriteRenderer>();
             spriteRenderer.enabled = false;
             selectable = GetComponentInParent<Selectable>();
@@ -17,7 +18,9 @@ namespace BSS.Unit {
                 Destroy(gameObject);
                 return;
             }
-            if (!selectable.owner.onlyMine) {
+            if (selectable.owner.onlyMine) {
+                spriteRenderer.sprite = mineSprite;
+            } else {
                 spriteRenderer.sprite = notMineSprite;
             }
         }

@@ -53,6 +53,17 @@ namespace BSS.Event {
                 return unit.GetComponent<Itemable>();
             }
         }
+        public static void ToStop(BaseUnit _unit) {
+            var _movable = _unit.GetComponent<Movable>();
+            var _attackable = _unit.GetComponent<Attackable>();
+            if (_movable != null) {
+                _movable.followStop();
+                _movable.moveStop();
+            }
+            if (_attackable != null) {
+                _attackable.huntStop();
+            }
+        }
 
         public void toStop() {
             if (movable != null) {

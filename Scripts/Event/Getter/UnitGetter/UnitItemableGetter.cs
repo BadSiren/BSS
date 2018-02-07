@@ -81,5 +81,15 @@ namespace BSS.Event {
             }
             return item.icon;
         }
+        public string getCount(int index) {
+            if (itemable == null || itemable.items.Count-1<index) {
+                return "";
+            }
+            var item = itemable.getItemOrNull(index);
+            if (item == null || !item.consumable) {
+                return "";
+            }
+            return itemable.items[index].count.ToString();
+        }
     }
 }

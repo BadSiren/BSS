@@ -20,8 +20,8 @@ namespace BSS.Unit {
 				return _initSpeed;
 			}
 			private set {
-				_initSpeed = value;
-				navAgent.maxSpeed = speed;
+                _initSpeed = value;
+				navAgent.maxSpeed = 1f+speed;
 			}
 		}
 		private float _changeSpeed=0f;
@@ -30,8 +30,8 @@ namespace BSS.Unit {
 				return _changeSpeed;
 			}
 			private set {
-				_changeSpeed = value;
-				navAgent.maxSpeed = speed;
+                _changeSpeed = value;
+				navAgent.maxSpeed = 1f+speed;
 			}
 		}
 		public float speed {
@@ -57,7 +57,7 @@ namespace BSS.Unit {
 			owner = GetComponent<BaseUnit> ();
 			navAgent=GetComponent<PolyNavAgent> ();
 			movableList.Add(this);
-			navAgent.maxSpeed = speed;
+            initSpeed = _initSpeed;
             StartCoroutine(coFollowTarget());
 		}
 		void OnDestroy()

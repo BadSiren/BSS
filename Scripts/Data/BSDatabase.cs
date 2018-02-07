@@ -13,9 +13,12 @@ namespace BSS {
 		public BaseUnitDatabase baseUnitDatabase;
 
 		void Awake() {
-			if (instance == null) {
-				instance = this;
-			}
+            if (instance == null) {
+                instance = this;
+                DontDestroyOnLoad(this);
+            } else {
+                Destroy(gameObject);
+            }
 		}
 	}
 }

@@ -20,11 +20,13 @@ namespace BSS {
 
         public void pickUp() {
             var itemable = BaseSelect.instance.mainSelectable.owner.GetComponent<Itemable>();
-            if (itemable == null) {
+            if (itemable == null || !itemable.addItem(ID)) {
                 return;
             }
-            itemable.addItem(ID);
-            var index=PickUpItemManager.instance.pickUpItems.FindIndex(x => x == this);
+            destory();
+        }
+        public void destory() {
+            var index = PickUpItemManager.instance.pickUpItems.FindIndex(x => x == this);
             if (index < 0) {
                 Debug.Log("No Find");
                 return;

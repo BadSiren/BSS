@@ -21,7 +21,7 @@ namespace BSS.Unit {
 			}
 			private set {
 				_initDamage = value;
-                BaseEventListener.onPublishInt(damageEvent,(int)damage,gameObject);
+                //BaseEventListener.onPublishInt(damageEvent,(int)damage,gameObject);
 			}
 		}
         [HideInInspector]
@@ -32,7 +32,7 @@ namespace BSS.Unit {
             }
             set {
                 _changeDamage = value;
-                BaseEventListener.onPublishInt(damageEvent, (int)damage, gameObject);
+                //BaseEventListener.onPublishInt(damageEvent, (int)damage, gameObject);
             }
         }
         public float damage {

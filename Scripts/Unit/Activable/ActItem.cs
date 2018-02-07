@@ -8,7 +8,7 @@ using BSS.Event;
 namespace BSS.Unit {
     public class ActItem : Activable, IInputReact {
 		private Itemable itemable;
-        private Item item {
+        private InItem item {
             get {
                 if (itemable == null) {
                     return null;
@@ -57,6 +57,9 @@ namespace BSS.Unit {
             if (item == null) {
 				return "";
 			}
+            if (item.consumable) {
+                return item.itemName + " [" + itemable.items[index].count.ToString() + "]";
+            }
             return item.itemName;
 		}
 		public override string getText ()

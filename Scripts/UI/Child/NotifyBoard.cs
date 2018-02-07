@@ -1,45 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace BSS.UI {
-	public class NotifyBoard : Board
+    public class NotifyBoard : TimerBoard
 	{
-		public float time=2f;
-		public override void Show() {
+        public Dictionary<string, string> notifyDics = new Dictionary<string, string>();
+        private string lastedText = "";
+
+        public static void Notify(string notifyID) {
+            var notifyBoard = boardList.Find(x => x is NotifyBoard) as NotifyBoard;
+            if (!notifyBoard.notifyDics.ContainsKey(notifyID)) {
+                return;
+            }
+            notifyBoard.Show(notifyBoard.notifyDics[notifyID]);
+        }
+		public void Show(string _text) {
 			base.Show ();
-
-			sendBoolToReceiver ("Title", false);
-			sendBoolToReceiver ("Text", false);
-			StopAllCoroutines ();
-			StartCoroutine (setClose (time));
-
-		}
-		public void Show(string _title,string _text) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			StopAllCoroutines ();
-			StartCoroutine (setClose (time));
-		}
-		public void Show(string _title,string _text,float _time) {
-			base.Show ();
-
-			sendToReceiver ("Title", _title);
-			sendToReceiver ("Text", _text);
-			StopAllCoroutines ();
-			StartCoroutine (setClose (_time));
+            lastedText = lastedText + _text+"\n";
+            sendToReceiver ("Text", lastedText);
 		}
 
-		IEnumerator setClose(float _time) {
-			int i = 0;
-			while (i<50) {
-				yield return new WaitForSeconds (_time/50);
-				canvasGroup.alpha -= 0.01f;
-				i++;
-			}
-			Close ();
-		}
+        public override void Close() {
+            base.Close();
+            lastedText = "";
+        }
+
+
 	}
 }
 

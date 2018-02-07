@@ -4,9 +4,16 @@ using System.Collections;
 namespace BSS.UI {
 	public class NoticeBoard : Board
 	{
-
 		private System.Action action;
 
+        public static void Notice(string _text) {
+            var notice = boardList.Find(x => x is NoticeBoard) as NoticeBoard;
+            notice.Show(_text);
+        }
+        public static void Notice(string _text, System.Action act) {
+            var notice = boardList.Find(x => x is NoticeBoard) as NoticeBoard;
+            notice.Show(_text,act);
+        }
 		public void Show(string _text) {
 			base.Show ();
 			sendToReceiver ("Text", _text);

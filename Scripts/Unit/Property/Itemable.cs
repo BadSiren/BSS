@@ -9,14 +9,27 @@ namespace BSS.Unit {
     [System.Serializable]
     public class Itemable : SerializedMonoBehaviour
 	{
+        [System.Serializable]
+        public class ItemInfo {
+            public ItemInfo() {
+            }
+            public ItemInfo(string _ID, int _count) {
+                ID = _ID;
+                count = _count;
+            }
+            public string ID;
+            public int count;
+        }
 		[Range(0,8)]
 		public int maxCount;
-		public List<string> items=new List<string>();
+        public List<ItemInfo> items=new List<ItemInfo>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
+        [FoldoutGroup("NotifyEvent")]
+        public string fullCategoryNotify="FullCategory";
 
 		[HideInInspector()]
 		public BaseUnit owner;
@@ -26,6 +39,7 @@ namespace BSS.Unit {
 		}
 		void Start() {
 			var container=owner.activables.getContainerOrCreate ("Item");
+
 			for (int i = 0; i < maxCount; i++) {
                 var actItem = container.AddComponent<ActItem>();
                 actItem.isIgnore = true;
@@ -34,29 +48,47 @@ namespace BSS.Unit {
 		}
 
 
-        public Item getItemOrNull(int index) {
+        public InItem getItemOrNull(int index) {
             if (items.Count - 1 < index) {
                 return null;
             }
-            return Items.instance.database[items[index]];
+            return InItems.instance.database[items[index].ID];
         }
-        public Item getItem(string ID) {
-            return Items.instance.database[ID];
+        public InItem getItem(string ID) {
+            return InItems.instance.database[ID];
         }
 
-		public void addItem(string ID) {
-            if (!owner.isMine|| items.Count >= maxCount) {
-				return;
-			}
-            items.Add(ID);
-            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
+		public bool addItem(string ID) {
+            if (!owner.isMine || items.Count >= maxCount) {
+                return false;
+            }
+            var item = getItem(ID);
+            if (!categoryValidate(item.category)) {
+                NotifyBoard.Notify(fullCategoryNotify);
+                return false;
+            }
+            if (item.consumable) {
+                int num = items.FindIndex(x => x.ID == ID);
+                if (num >=0) {
+                    items[num].count += 1;
+                    owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, serialize(items));
+                    return true;
+                };
+            }
+            items.Add(new ItemInfo(ID, 1));
+            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, serialize(items));
+            return true;
 		}
 		public void removeItem(int index) {
-            if (!owner.isMine) {
+            if (!owner.isMine || items.Count-1 < index) {
                 return;
             }
-            items.RemoveAt(index);
-            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, itemSerialize());
+            if (items[index].count > 1) {
+                items[index].count -= 1;
+            } else {
+                items.RemoveAt(index);
+            }
+            owner.photonView.RPC ("recvUpdateItems", PhotonTargets.All, serialize(items));
 		}
         public void swapItem(int index1,int index2) {
             if (!owner.isMine || index1==index2) {
@@ -65,27 +97,25 @@ namespace BSS.Unit {
             var temp = items[index1];
             items[index1] = items[index2];
             items[index2] = temp;
-            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
+            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, serialize(items));
         }
         public void useItem(int index) {
             if (!owner.isMine || items.Count >= maxCount) {
                 return;
             }
-            var item = getItem(items[index]);
+            var item = getItem(items[index].ID);
             var useComponents = GetComponents<IItemUseReact>();
             foreach (var comp in useComponents) {
                 foreach (var useAct in item.useActs) {
                     comp.onItemUse(useAct.Key, useAct.Value);
                 }
             }
-
-            items.RemoveAt(index);
-            owner.photonView.RPC("recvUpdateItems", PhotonTargets.All, itemSerialize());
+            removeItem(index);
         }
 
         [PunRPC]
         void recvUpdateItems(string code,PhotonMessageInfo mi) {
-            itemDeserialize(code);
+            items=deserialize(code);
             canclePropeties();
             setThisProperties();
             applyPropeties();
@@ -96,6 +126,20 @@ namespace BSS.Unit {
             BaseEventListener.onPublishGameObject(itemChangeEvent, gameObject, gameObject);
         }
 
+        private bool categoryValidate(string category) {
+            if (string.IsNullOrEmpty(category) || !InItems.instance.categoryMax.ContainsKey(category)) {
+                return true;
+            }
+            var max = InItems.instance.categoryMax[category];
+            int cnt = 0;
+            for (int i = 0; i < items.Count; i++) {
+                var item = getItemOrNull(i);
+                if (category == item.category) {
+                    cnt++;
+                }
+            }
+            return cnt < max;
+        }
 		
         private void applyPropeties() {
             var applyComponents = GetComponents<IItemPropertyApply>();
@@ -116,7 +160,7 @@ namespace BSS.Unit {
 		private void setThisProperties() {
 			properties.Clear ();
 			foreach (var it in items) {
-                var item = getItem(it);
+                var item = getItem(it.ID);
 				foreach (var property in item.properties) {
 					if (properties.ContainsKey (property.Key)) {
 						properties [property.Key] = properties [property.Key] + property.Value;
@@ -126,20 +170,25 @@ namespace BSS.Unit {
 				}
 			}
 		}
-        private string itemSerialize() {
-            string text = items.Count.ToString()+"/";
-            foreach (var it in items) {
-                text += it+"/";
+
+        private string serialize(List<ItemInfo> itemInfos) {
+            string text = itemInfos.Count.ToString() + "/";
+            foreach (var it in itemInfos) {
+                text += it.ID + "/" + it.count.ToString() + "/";
             }
             return text;
         }
-        private void itemDeserialize(string code) {
-            items.Clear();
-            var codes=code.Split('/');
-            int num=int.Parse(codes[0]);
+        private List<ItemInfo> deserialize(string code) {
+            var itemInfos = new List<ItemInfo>();
+            var codes = code.Split('/');
+            int num = int.Parse(codes[0]);
             for (int i = 0; i < num; i++) {
-                items.Add(codes[i + 1]);
+                var info = new ItemInfo();
+                info.ID = codes[2 * i + 1];
+                info.count = int.Parse(codes[2 * i + 2]);
+                itemInfos.Add(info);
             }
+            return itemInfos;
         }
 	}
 }

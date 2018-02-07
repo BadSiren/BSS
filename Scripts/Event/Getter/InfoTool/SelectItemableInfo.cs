@@ -34,7 +34,7 @@ namespace BSS.Event {
             return itemable.selectedItem != -1;
             */
         }
-        public Item getSelectedItem() {
+        public InItem getSelectedItem() {
             return null;
             //return itemable.getItemOrNull(itemable.selectedItem);
         }

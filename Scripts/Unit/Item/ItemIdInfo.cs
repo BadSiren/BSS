@@ -17,10 +17,10 @@ namespace BSS {
             }
         }
 
-        private Item _item;
-        private Item item {
+        private InItem _item;
+        private InItem item {
             get {
-                if (Items.instance.database.TryGetValue(_ID,out _item)) {
+                if (InItems.instance.database.TryGetValue(_ID,out _item)) {
                     return _item;
                 }
                 return null;

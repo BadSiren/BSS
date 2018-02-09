@@ -6,9 +6,10 @@ using BSS.Input;
 using Sirenix.OdinInspector;
 using System.Linq;
 using Photon;
+using BSS.Callback;
 
 namespace BSS.Unit {
-    public class BaseUnit : SerializedMonoBehaviour,IItemUseReact, IItemPropertyApply
+    public class BaseUnit : SerializedMonoBehaviour, IItemPropertyApply
 	{
 		public static List<BaseUnit> unitList=new List<BaseUnit>();
 
@@ -61,7 +62,6 @@ namespace BSS.Unit {
             }
             set {
                 _changeArmor = value;
-                //BaseEventListener.onPublishInt(armorEvent, (int)armor, gameObject);
             }
         }
         public float armor {
@@ -109,13 +109,6 @@ namespace BSS.Unit {
         [FoldoutGroup("BaseEvent")]
         public string hitEvent = "UnitHit";
 
-        [Header("Int")]
-        [FoldoutGroup("BaseEvent")]
-        public string armorEvent = "Armor";
-
-        [FoldoutGroup("ItemUseAct")]
-        public string healthUseAct = "HealthRestore";
-
         [FoldoutGroup("ItemProperty")]
         public string armorProperty = "Armor";
 
@@ -131,11 +124,15 @@ namespace BSS.Unit {
             maxHealth = _maxHealth;
 			health = maxHealth;
 			mana = maxMana;
+            UnitCallback.OnCreateUnit(this);
+            if (onlyMine) {
+                UnitCallback.OnCreateUnitOnlyMine(this);
+            }
 			BaseEventListener.onPublishGameObject (enableEvent, gameObject, gameObject);
 		}
 		protected virtual void OnDisable()
 		{
-			unitList.Remove(this);
+            unitList.Remove(this);
 		}
 
         [PunRPC]
@@ -162,15 +159,12 @@ namespace BSS.Unit {
             foreach (var it in dieReacts) {
                 it.onDie();
             }
+            UnitCallback.OnDestroyUnit(this);
+            if (onlyMine) {
+                UnitCallback.OnDestroyUnitOnlyMine(this);
+            }
             BaseEventListener.onPublishGameObject(destroyEvent, gameObject, gameObject);
             Destroy(gameObject);
-        }
-        //Interface
-        public void onItemUse(string ID, float _value) {
-            if (ID != healthUseAct) {
-                return;
-            }
-            health += _value;
         }
         public void applyProperty(string ID, float value) {
             if (ID == armorProperty) {

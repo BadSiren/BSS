@@ -8,7 +8,8 @@ namespace BSS {
 	[RequireComponent(typeof(PhotonView))]
 	public class InRoomCustomChat : Photon.MonoBehaviour
 	{
-		public const int MESSAGE_MAX = 4;
+		public const int MESSAGE_MAX = 100;
+        public Text PlayersText;
 		public Text ChatText;
 		public InputField inputField;
 		public bool IsVisible = true;
@@ -16,31 +17,13 @@ namespace BSS {
 		public string inputLine {
 			get;set;
 		}
-		private Vector2 scrollPos = Vector2.zero;
-        private Rect GuiRect=new Rect();
-
 		public static readonly string ChatRPC = "Chat";
 
+        void Start() {
+            updatePlayers();
+        }
 
-		public void OnGUI()
-		{
-			if (!this.IsVisible || !PhotonNetwork.inRoom)
-			{
-				return;
-			}
-				
-			GUI.SetNextControlName("");
-			GUILayout.BeginArea(GuiRect);
 
-			scrollPos = GUILayout.BeginScrollView(scrollPos);
-			GUILayout.FlexibleSpace();
-			for (int i = messages.Count - 1; i >= 0; i--)
-			{
-				GUILayout.Label(messages[i]);
-			}
-			GUILayout.EndScrollView();
-			GUILayout.EndArea();
-		}
 		public void SendChat() {
 			if (string.IsNullOrEmpty (inputLine)) {
 				return;
@@ -63,7 +46,7 @@ namespace BSS {
 				}
 				else
 				{
-					senderName = "player " + mi.sender.ID;
+					senderName = "Player " + mi.sender.ID;
 				}
 			}
 
@@ -76,6 +59,10 @@ namespace BSS {
 			this.messages.Add(newLine);
 		}
 
+        public void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer) {
+            updatePlayers();
+        }
+
 		private void updateChat() {
 			ChatText.text = "";
 			int startIt = Mathf.Max (0, messages.Count - MESSAGE_MAX);
@@ -83,5 +70,15 @@ namespace BSS {
 				ChatText.text += messages [i] + "\n";
 			}
 		}
+        private void updatePlayers() {
+            if (PlayersText == null) {
+                return;
+            }
+            var players = PhotonNetwork.playerList;
+            foreach (var player in players) {
+                PlayersText.text = "";
+                PlayersText.text += "Player " + player.ID.ToString() + "\n";
+            }
+        }
 	}
 }

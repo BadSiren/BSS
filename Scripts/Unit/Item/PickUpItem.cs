@@ -23,12 +23,23 @@ namespace BSS {
             if (itemable == null || !itemable.addItem(ID)) {
                 return;
             }
-            destory();
+            forceDestory();
         }
         public void destory() {
             var index = PickUpItemManager.instance.pickUpItems.FindIndex(x => x == this);
             if (index < 0) {
-                Debug.Log("No Find");
+                return;
+            }
+            var item = InItems.instance.database[ID];
+            if (item.isInvulnerable) {
+                NotifyBoard.Notify("ItemCantDestroy");
+                return;
+            }
+            PickUpItemManager.instance.destroy(index);
+        }
+        public void forceDestory() {
+            var index = PickUpItemManager.instance.pickUpItems.FindIndex(x => x == this);
+            if (index < 0) {
                 return;
             }
             PickUpItemManager.instance.destroy(index);

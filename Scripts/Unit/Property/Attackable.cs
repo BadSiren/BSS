@@ -21,7 +21,6 @@ namespace BSS.Unit {
 			}
 			private set {
 				_initDamage = value;
-                //BaseEventListener.onPublishInt(damageEvent,(int)damage,gameObject);
 			}
 		}
         [HideInInspector]
@@ -32,7 +31,6 @@ namespace BSS.Unit {
             }
             set {
                 _changeDamage = value;
-                //BaseEventListener.onPublishInt(damageEvent, (int)damage, gameObject);
             }
         }
         public float damage {
@@ -93,10 +91,6 @@ namespace BSS.Unit {
 				return initRange+changeRange;
 			}
 		}
-
-        [Header("Int")]
-        [FoldoutGroup("BaseEvent")]
-        public string damageEvent = "Damage";
 
         [FoldoutGroup("ItemProperty")]
         public string damageProperty = "Damage";

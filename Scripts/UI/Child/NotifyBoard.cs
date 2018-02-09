@@ -5,15 +5,20 @@ using System.Collections.Generic;
 namespace BSS.UI {
     public class NotifyBoard : TimerBoard
 	{
-        public Dictionary<string, string> notifyDics = new Dictionary<string, string>();
+        public Dictionary<string, string> baseNotifyDics = new Dictionary<string, string>();
+        public Dictionary<string, string> customNotifyDics = new Dictionary<string, string>();
         private string lastedText = "";
 
         public static void Notify(string notifyID) {
             var notifyBoard = boardList.Find(x => x is NotifyBoard) as NotifyBoard;
-            if (!notifyBoard.notifyDics.ContainsKey(notifyID)) {
+            if (notifyBoard.baseNotifyDics.ContainsKey(notifyID)) {
+                notifyBoard.Show(notifyBoard.baseNotifyDics[notifyID]);
                 return;
             }
-            notifyBoard.Show(notifyBoard.notifyDics[notifyID]);
+            if (notifyBoard.customNotifyDics.ContainsKey(notifyID)) {
+                notifyBoard.Show(notifyBoard.customNotifyDics[notifyID]);
+                return;
+            }
         }
 		public void Show(string _text) {
 			base.Show ();

@@ -25,6 +25,15 @@ namespace BSS.Unit {
         public List<ItemInfo> items=new List<ItemInfo>();
 		public Dictionary<string,float> properties=new Dictionary<string,float>();
 
+        public int selectedItem {
+            get {
+                if (owner.activables.nowCategory != "Item") {
+                    return -1;
+                }
+                return owner.activables.selectedAct;
+            }
+        }
+
         [Header("GameObject")]
         [FoldoutGroup("BaseEvent")]
 		public string itemChangeEvent="ItemUpdate";
@@ -104,14 +113,20 @@ namespace BSS.Unit {
                 return;
             }
             var item = getItem(items[index].ID);
-            var useComponents = GetComponents<IItemUseReact>();
-            foreach (var comp in useComponents) {
-                foreach (var useAct in item.useActs) {
-                    comp.onItemUse(useAct.Key, useAct.Value);
-                }
+            foreach (var it in item.useActs) {
+                it.activate(owner);
             }
-            removeItem(index);
+            if (item.consumable) {
+                removeItem(index);
+            }
         }
+        public void resetSelect(){
+            if (owner.activables.nowCategory != "Item") {
+                return;
+            }
+            owner.activables.actSelect(-1);
+        }
+
 
         [PunRPC]
         void recvUpdateItems(string code,PhotonMessageInfo mi) {

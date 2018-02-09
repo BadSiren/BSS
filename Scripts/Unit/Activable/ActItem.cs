@@ -30,7 +30,7 @@ namespace BSS.Unit {
 				return;
 			}
             if (isSelected) {
-                if (item.consumable) {
+                if (item.usable) {
                     itemable.useItem(index);
                 }
                 activables.actSelect(-1);
@@ -79,9 +79,11 @@ namespace BSS.Unit {
             if (item==null || !isSelected || clickName != "MapOnce") {
                 return;
             }
+            /*
             PickUpItemManager.instance.create(item.ID, owner.transform.position);
             itemable.removeItem(index);
             activables.actSelect(-1);
+            */
         }
     }
 }
